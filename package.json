@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "next": "latest",
+    "pg-promise": "^10.9.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "swr": "^0.1.18"
