@@ -10,6 +10,8 @@ export default function Index() {
   if (!data) return <div>Loading...</div>
 
   return (
+    <div>
+    <h1>Test</h1>
     <ul>
       {data.map((user) => (
         <li key={user.id}>
@@ -18,6 +20,6 @@ export default function Index() {
           </Link>
         </li>
       ))}
-    </ul>
+    </ul></div>
   )
 }
