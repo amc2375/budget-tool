@@ -7,10 +7,40 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 /* Useful Example: http://jsfiddle.net/EL4tf/ */
 const budgetForm = () => {
   const [sliderValues, setSliderValues] = useState({
-    slider1: 5,
-    slider2: 10,
-    slider3: 0,
+    slider1:3.6,
+    slider2:3.9,
+    slider3:31.6,
+    slider4:0.5,
+    slider5:17.0,
+    slider6:8.1,
+    slider7:1.3,
+    slider8:1.5,
+    slider9:3.1,
+    slider10:1.9,
+    slider11:1.5,
+    slider12:0.8,
+    slider13:10.9,
+    slider14:2.3,
+    slider15:12.1
   });
+
+  const sliderNames = {
+    slider1:"Debt Service",
+    slider2:"General Government",
+    slider3:"Education",
+    slider4:"Libraries",
+    slider5:"Social Services",
+    slider6:"Police & Corrections",
+    slider7:"Transportation",
+    slider8:"Housing",
+    slider9:"Health",
+    slider10: "Sanitation",
+    slider11: "Environmental Protection",
+    slider12: "Recreation & Culture",
+    slider13: "Pension & Fringe Benefits",
+    slider14: "Fire",
+    slider15: "Misc"
+  }
 
   const getTotal = () => Object.values(sliderValues).reduce((a, b) => a + b, 0);
 
@@ -62,25 +92,27 @@ const budgetForm = () => {
 
   return (
     <div>
-      <h2>Fake form</h2>
+      <h2>Budget Form</h2>
 
       <form onSubmit={handleSubmit}>
         <div>
           {Object.keys(sliderValues).map((slider) => (
             <div style={{ paddingTop: "20px;" }}>
               <div>
-                <label>{sliderValues[slider]}</label>
+              <label>{sliderNames[slider]}</label>
+                
               </div>
 
               <input
                 name={slider}
                 type="range"
-                min={1}
+                min={0.1}
                 max={100}
                 value={sliderValues[slider]}
                 onChange={handleChange}
                 required
               />
+              <div><label>{sliderValues[slider]}</label></div>
             </div>
           ))}
         </div>
