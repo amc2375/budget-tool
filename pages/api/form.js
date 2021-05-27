@@ -14,9 +14,10 @@ export default async function handler(req, res) {
       console.log("this is post");
       const body = req.body;
       console.log(body);
-      res.status(200).json({ it: "worked!" });
+      const insert = await db.one("INSERT INTO bcdi.test_table (name) VALUES ($1) RETURNING *", [body.location])
+      res.status(200).json(insert);
 
-      //const response = await db.one("INSERT INTO bcdi.test_table (name) VALUES ($1)", [body])
+      
       //console.log(response)
       //const dataSingle = {id: 1, name: body}
       //const query = pgp.helpers.update(dataSingle, null, "bcdi.test_table") + "WHERE id = 1"

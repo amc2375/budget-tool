@@ -46,6 +46,11 @@ const budgetForm = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const location = e.currentTarget.location.value
+    const data = {
+      location: location, 
+      sliderValues: sliderValues
+    }
     /*
      * Since the form data is the current state,
      * we don't need to specify the field values
@@ -56,7 +61,7 @@ const budgetForm = () => {
       fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(sliderValues),
+        body: JSON.stringify(data),
       });
     } catch (error) {
       console.log(error);
@@ -66,7 +71,7 @@ const budgetForm = () => {
   function handleChange(event) {
     const name = event.target.name; // Name of this slider.
     const oldVal = sliderValues[name]; // Current value in state.
-    const newVal = parseInt(event.target.value); // Value of change event.
+    const newVal = parseFloat(event.target.value); // Value of change event.
 
     /*
      * Get the current total from state,
@@ -96,8 +101,19 @@ const budgetForm = () => {
 
       <form onSubmit={handleSubmit}>
         <div>
+          <select 
+            name = "location"
+            defaultValue = ""
+            required
+            >
+              <option value = "">Select location</option>
+              <option value = "bronx">The Bronx</option>
+              <option value = "not_bronx">Outside The Bronx</option>
+          </select>
+        </div>
+        <div>
           {Object.keys(sliderValues).map((slider) => (
-            <div style={{ paddingTop: "20px;" }}>
+            <div style={{ paddingTop: "20px;" }} key = {slider}>
               <div>
               <label>{sliderNames[slider]}</label>
                 
@@ -106,10 +122,11 @@ const budgetForm = () => {
               <input
                 name={slider}
                 type="range"
-                min={0.1}
+                min={0}
                 max={100}
                 value={sliderValues[slider]}
                 onChange={handleChange}
+                step = {0.1}
                 required
               />
               <div><label>{sliderValues[slider]}</label></div>
