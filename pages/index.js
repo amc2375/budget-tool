@@ -6,6 +6,11 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 /* Useful Example: http://jsfiddle.net/EL4tf/ */
 const budgetForm = () => {
+  const {data} = useSwr(
+    `/api/form`,
+    fetcher
+  );
+  console.log(data)
   const [sliderValues, setSliderValues] = useState({
     slider1:3.6,
     slider2:3.9,

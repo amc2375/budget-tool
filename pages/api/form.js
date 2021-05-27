@@ -1,23 +1,32 @@
 import { db, pgp } from "../../utilities/postgres";
+import { nanoid } from "nanoid";
+
+const getId = () => nanoid(12)
 
 export default async function handler(req, res) {
   const { method } = req;
   console.log(method);
   switch (method) {
     case "GET": {
-      const query = await db.any("SELECT * FROM bcdi.test_table");
-      console.log(query);
-      res.status(200).json(query);
+      const locations = await db.any("SELECT * FROM bcdi.locations");
+      const categories = await db.any("SELECT * FROM bcdi.categories");
+      const data = {locations: locations,
+                    categories: categories}
+      console.log(data)
+      res.status(200).json(data);
       break;
     }
     case "POST": {
       console.log("this is post");
       const body = req.body;
+      const submission_id = getId()
       console.log(body);
       const insert = await db.one("INSERT INTO bcdi.test_table (name) VALUES ($1) RETURNING *", [body.location])
       res.status(200).json(insert);
 
-      
+      //INSERT INTO bcdi.budget (submission_id, location_id, category_id, category_value) VALUES ()
+
+
       //console.log(response)
       //const dataSingle = {id: 1, name: body}
       //const query = pgp.helpers.update(dataSingle, null, "bcdi.test_table") + "WHERE id = 1"
