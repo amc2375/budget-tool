@@ -21,8 +21,18 @@ export default async function handler(req, res) {
       const body = req.body;
       const submission_id = getId()
       console.log(body);
-      const insert = await db.one("INSERT INTO bcdi.test_table (name) VALUES ($1) RETURNING *", [body.location])
-      res.status(200).json(insert);
+      //const insert = await db.one("INSERT INTO bcdi.test_table (name) VALUES ($1) RETURNING *", [body.location])
+      const dataMulti = Object.keys(body.testValues).map(category_id => 
+          ({submission_id: submission_id,
+            location_id:body.location,
+            category_id: category_id,
+            category_value: body.testValues[category_id]})
+        )
+      const insert = pgp.helpers.insert(dataMulti, 
+          ['submission_id', 'location_id', 'category_id', 'category_value'], 
+            'bcdi.budget').replace('"bcdi.budget"', "bcdi.budget");
+      const query = await db.any(insert)
+      res.status(200).json(query);
 
       //INSERT INTO bcdi.budget (submission_id, location_id, category_id, category_value) VALUES ()
 

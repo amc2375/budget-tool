@@ -1,6 +1,6 @@
 import useSwr from "swr";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -10,7 +10,22 @@ const budgetForm = () => {
     `/api/form`,
     fetcher
   );
-  console.log(data)
+
+  const [testValues, setTestValues] = useState(data)
+
+  useEffect(() => {
+    if(data == null) {
+      return
+    }
+    let updatedState = {}
+    data.categories.forEach(category => 
+        {updatedState[category.id]= parseFloat(category.default_value)}
+      )
+    setTestValues(updatedState)
+  }, [data]);
+
+console.log(testValues)
+
   const [sliderValues, setSliderValues] = useState({
     slider1:3.6,
     slider2:3.9,
@@ -47,14 +62,15 @@ const budgetForm = () => {
     slider15: "Misc"
   }
 
-  const getTotal = () => Object.values(sliderValues).reduce((a, b) => a + b, 0);
+  const getTotal = () => Object.values(testValues).reduce((a, b) => a + b,0);
+  //const getTotal = testValues => Object.values(testValues).reduce((a, b) => a + b);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const location = e.currentTarget.location.value
     const data = {
       location: location, 
-      sliderValues: sliderValues
+      testValues: testValues
     }
     /*
      * Since the form data is the current state,
@@ -75,8 +91,9 @@ const budgetForm = () => {
 
   function handleChange(event) {
     const name = event.target.name; // Name of this slider.
-    const oldVal = sliderValues[name]; // Current value in state.
+    const oldVal = testValues[name]; // Current value in state.
     const newVal = parseFloat(event.target.value); // Value of change event.
+    console.log(name, oldVal, newVal)
 
     /*
      * Get the current total from state,
@@ -86,14 +103,15 @@ const budgetForm = () => {
      */
 
     const total = getTotal() - oldVal + newVal;
+    console.log(total)
 
     // If total is less than 100, update state.
     if (total <= 100) {
       const updatedState = {
-        ...sliderValues,
+        ...testValues,
         [name]: newVal,
       };
-      setSliderValues(updatedState);
+      setTestValues(updatedState);
     }
 
     // If total is greater than 100, do nothing.
@@ -106,37 +124,43 @@ const budgetForm = () => {
 
       <form onSubmit={handleSubmit}>
         <div>
+            
           <select 
             name = "location"
             defaultValue = ""
             required
             >
               <option value = "">Select location</option>
-              <option value = "bronx">The Bronx</option>
-              <option value = "not_bronx">Outside The Bronx</option>
+              {Boolean(data) &&
+               <>{data.locations.map(location => (
+                  <option value = {location.id}>{location.location}</option>
+                ))}</>
+              }
           </select>
         </div>
         <div>
-          {Object.keys(sliderValues).map((slider) => (
-            <div style={{ paddingTop: "20px;" }} key = {slider}>
-              <div>
-              <label>{sliderNames[slider]}</label>
-                
-              </div>
+          {Boolean(testValues) &&
+               <>{data.categories.map(category => (
+                <div style={{ paddingTop: "20px;" }} key = {category.id}>
+                  <div>
+                  <label>{category.category}: {category.default_value}</label>
+                    
+                  </div>
 
-              <input
-                name={slider}
-                type="range"
-                min={0}
-                max={100}
-                value={sliderValues[slider]}
-                onChange={handleChange}
-                step = {0.1}
-                required
-              />
-              <div><label>{sliderValues[slider]}</label></div>
-            </div>
-          ))}
+                  <input
+                    name={category.id}
+                    type="range"
+                    min={0}
+                    max={100}
+                    value={testValues[category.id]}
+                    onChange={handleChange}
+                    step = {0.1}
+                    required
+                  />
+                  <div><label>{testValues[category.id]}</label></div>
+                </div>
+                ))}</>
+              }
         </div>
 
         <div style={{ paddingTop: "20px;" }}>
