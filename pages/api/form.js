@@ -13,6 +13,8 @@ export default async function handler(req, res) {
       const data = {locations: locations,
                     categories: categories}
       console.log(data)
+      const budget = await db.any("SELECT * FROM bcdi.budget")
+      console.log(budget)
       res.status(200).json(data);
       break;
     }
