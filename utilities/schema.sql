@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS bcdi;
+
 CREATE SEQUENCE IF NOT EXISTS location_sequence_id;
 
 CREATE TABLE bcdi.locations (
@@ -53,8 +55,3 @@ CREATE TABLE bcdi.budget (
 	CONSTRAINT "category_constraint_id" FOREIGN KEY ("category_id") REFERENCES "bcdi"."categories"("id") ON DELETE CASCADE,
 	PRIMARY KEY ("id")
 )
-
-
-
-
-
