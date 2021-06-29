@@ -98,13 +98,6 @@ export default function form() {
 
   /* now for HTML generation */
 
-  // helper function to generate sorted dropdown option HTML
-  // function getSortedDistrictOptionsHTML() {
-  //   let sortedDistricts = data.districts.sort((a, b) => a.name.localCompare(b.name));
-  // };
-
-  // helper function to generate sorted budget row HTML
-
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
       <form onSubmit={handleSubmit}>
