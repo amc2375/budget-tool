@@ -17,6 +17,10 @@ export default function form() {
     ''
   );
 
+  const [userInputZipCode, setUserInputZipCode] = useState(
+    ''
+  );
+
   const [userSelectedBudgetValues, setUserSelectedBudgetValues] = useState(
     {}
   );
@@ -63,6 +67,10 @@ export default function form() {
 
   function handleDistrictSelection(event) {
     setUserSelectedDistrict(event.target.value);
+  }
+
+  function handleZipCodeInput(event) {
+    setUserInputZipCode(event.target.value);
   }
 
   function handleBudgetValueInput(event) {
@@ -116,10 +124,10 @@ export default function form() {
     return (
       <form onSubmit={handleSubmit}>
         <select
-          value={userSelectedDistrict}
+          defaultValue="default"
           required={true}
           onChange={handleDistrictSelection}>
-
+          <option value="default" disabled>--</option>
           {data.districts.map(district => (
             <option
               key={district.id}
@@ -129,6 +137,12 @@ export default function form() {
           ))}
 
         </select>
+
+        <input
+          type="text"
+          name="zip code"
+          placeholder="10451"
+          onChange={handleZipCodeInput}></input>
 
         {data.categories.map(budgetCategory => createCategoryRowHTML(budgetCategory))}
 
