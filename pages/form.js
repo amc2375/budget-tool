@@ -12,7 +12,7 @@ export default function form() {
     fetcher
   );
 
-  /* now we set up state variables */
+  // initialize state variables for controlling inputs in the form
   const [userSelectedDistrict, setUserSelectedDistrict] = useState(
     ''
   );
@@ -76,7 +76,6 @@ export default function form() {
       ...userSelectedBudgetValues,
       [key]: value
     });
-    console.log(userSelectedBudgetValues);
   }
 
   async function handleSubmit(event) {
@@ -87,7 +86,10 @@ export default function form() {
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
       <form>
-        <select defaultValue="Select Your District" required={true}>
+        <select
+          value={userSelectedDistrict}
+          required={true}
+          onChange={handleDistrictSelection}>
 
           {data.locations.map(district => (
             <option
@@ -101,7 +103,7 @@ export default function form() {
 
         {data.categories.map(budgetCategory => (
             <div key={budgetCategory.id}>
-              <label>Category Name</label>
+              <label>{budgetCategory.category}</label>
               <input
                 name={budgetCategory.id}
                 value={userSelectedBudgetValues[budgetCategory.id]}
