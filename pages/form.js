@@ -12,6 +12,8 @@ export default function form() {
     fetcher
   );
 
+
+
   // initialize state variables for controlling inputs in the form
   const [userSelectedDistrict, setUserSelectedDistrict] = useState(
     ''
@@ -19,6 +21,11 @@ export default function form() {
 
   const [userSelectedBudgetValues, setUserSelectedBudgetValues] = useState(
     {}
+  );
+
+  // helper function for sorting data alphabetically, move this elsewhere
+  const alphabetSort = (a, b) => (
+    (a > b) ? 1 : ((b > a) ? -1 : 0)
   );
 
   /* useEffect takes two arguments - one is a callback defining
@@ -29,9 +36,12 @@ export default function form() {
 
   useEffect(() => {
 
-      // map category ID (key) to default value (value) in pairs
+    // map category ID (key) to default value (value) in pairs
     let assignedBudgetCategoryValues = {};
     if (Boolean(data)) {
+
+      data.districts.sort((a, b) => alphabetSort(a.name, b.name));
+      data.categories.sort((a, b) => alphabetSort(a.category, b.category));
 
       data.categories.map(budgetCategory => {
         assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.default_value);
@@ -51,19 +61,7 @@ export default function form() {
   stored in the state. and there is a variable to track the user's
   district selection and function to update it. */
 
-  /* the first effect will handle updates related to district selection */
-  // useEffect(function district() {
-  //
-  // });
-
-  /* the second effect is used for updating the userInputValues
-  state variable with the user's changes on the page */
-  // useEffect(function userSelection() {
-  //   console.log("userSelectedBudgetValues:");
-  //   console.log(userSelectedBudgetValues);
-  // });
-
-  /* need some handlers for changed values and form submission */
+  /* now we need some handlers for changed values and form submission */
 
   function handleDistrictSelection(event) {
     setUserSelectedDistrict(event.target.value);
@@ -85,8 +83,6 @@ export default function form() {
       reallocations: userSelectedBudgetValues
     }
 
-    console.log(submissionData);
-
     try {
       fetch("/api/form", {
         method: "POST",
@@ -97,6 +93,15 @@ export default function form() {
       console.log(error);
     };
   }
+
+  /* now for HTML generation */
+
+  // helper function to generate sorted dropdown option HTML
+  // function getSortedDistrictOptionsHTML() {
+  //   let sortedDistricts = data.districts.sort((a, b) => a.name.localCompare(b.name));
+  // };
+
+  // helper function to generate sorted budget row HTML
 
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
