@@ -80,22 +80,37 @@ export default function form() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const submissionData = {
+      district: userSelectedDistrict,
+      reallocations: userSelectedBudgetValues
+    }
 
+    console.log(submissionData);
+
+    try {
+      fetch("/api/form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submissionData),
+      });
+    } catch (error) {
+      console.log(error);
+    };
   }
 
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <select
           value={userSelectedDistrict}
           required={true}
           onChange={handleDistrictSelection}>
 
-          {data.locations.map(district => (
+          {data.districts.map(district => (
             <option
               key={district.id}
               value={district.id}>
-              {district.location}
+              {district.name}
             </option>
           ))}
 

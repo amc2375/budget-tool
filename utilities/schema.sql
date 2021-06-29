@@ -1,19 +1,19 @@
 CREATE SCHEMA IF NOT EXISTS bcdi;
 
-CREATE SEQUENCE IF NOT EXISTS location_sequence_id;
+CREATE SEQUENCE IF NOT EXISTS district_sequence_id;
 
-CREATE TABLE bcdi.locations (
-	"id" int4 NOT NULL DEFAULT nextval('location_sequence_id'::regclass),
-	"location" text NOT NULL,
+CREATE TABLE bcdi.districts (
+	"id" int4 NOT NULL DEFAULT nextval('district_sequence_id'::regclass),
+	"name" text NOT NULL,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY ("id")
 );
 
-INSERT INTO bcdi.locations (location) VALUES ('Bronx');
-INSERT INTO bcdi.locations (location) VALUES ('Manhattan');
-INSERT INTO bcdi.locations (location) VALUES ('Brooklyn');
-INSERT INTO bcdi.locations (location) VALUES ('Queens');
-INSERT INTO bcdi.locations (location) VALUES ('Staten Island');
+INSERT INTO bcdi.districts (name) VALUES ('Bronx');
+INSERT INTO bcdi.districts (name) VALUES ('Manhattan');
+INSERT INTO bcdi.districts (name) VALUES ('Brooklyn');
+INSERT INTO bcdi.districts (name) VALUES ('Queens');
+INSERT INTO bcdi.districts (name) VALUES ('Staten Island');
 
 CREATE SEQUENCE IF NOT EXISTS category_sequence_id;
 
@@ -47,11 +47,11 @@ CREATE SEQUENCE IF NOT EXISTS budget_sequence_id;
 CREATE TABLE bcdi.budget (
 	"id" int4 NOT NULL DEFAULT nextval('budget_sequence_id'::regclass),
 	"submission_id" text NOT NULL,
-	"location_id" int4 NOT NULL,
+	"district_id" int4 NOT NULL,
 	"category_id" int4 NOT NULL,
 	"category_value" numeric NOT NULL,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT "location_constraint_id" FOREIGN KEY ("location_id") REFERENCES "bcdi"."locations"("id") ON DELETE CASCADE,
+  CONSTRAINT "district_constraint_id" FOREIGN KEY ("district_id") REFERENCES "bcdi"."districts"("id") ON DELETE CASCADE,
 	CONSTRAINT "category_constraint_id" FOREIGN KEY ("category_id") REFERENCES "bcdi"."categories"("id") ON DELETE CASCADE,
 	PRIMARY KEY ("id")
 )
