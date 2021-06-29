@@ -7,6 +7,12 @@ $white: #FFFFFF;
 
 // font colors
 $light-grey: #939393;
+$very-light-grey: #B2B2B2;
+
+// button colors
+$red: #C91E1E;
+$blue: #1E62C9;
+$button-background: #F9F9F9;
 
 // font sizes
 $h1-size: 60.8px;
@@ -92,6 +98,7 @@ $p2-size: 12px;
           flex: 1;
           display: flex;
           align-items: center;
+          margin: 12px;
         }
 
         .formRowSectionHover:hover {
@@ -108,8 +115,91 @@ $p2-size: 12px;
           align-items: baseline;
 
           input[type=range]{
-            width: 90%;
+            width: 100%;
           }
+        }
+      }
+
+      .formFooterLineBreak {
+        width: 88%;
+        height: 0px;
+        border-top: 1px solid $very-light-grey;
+        margin: 0 auto;
+      }
+
+      .formFooterRow {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 18px;
+
+        .formFooterRowContents {
+          display: flex;
+          padding: 0px 48px;
+          margin-bottom: 18px;
+
+          label {
+            margin-right: 18px;
+            padding: 8px;
+            color: $light-grey;
+          }
+
+          div {
+            border: 1px solid blue;
+            padding: 8px;
+            border-radius: 8px;
+          }
+        }
+      }
+    }
+
+    .buttonContainer {
+      display: flex;
+      justify-content: space-between;
+
+      button:hover {
+        cursor: pointer;
+      }
+
+      .leftButtons {
+
+        margin: 12px 18px;
+
+        .buttonReset {
+          border: 3px solid $red;
+          background-color: $button-background;
+          color: $red;
+          border-radius: 8px;
+          margin: 12px 18px;
+          width: 156px;
+          height: 48px;
+          font-size: $p1-size;
+        }
+
+        .buttonSnap {
+          border: 3px solid $blue;
+          background-color: $button-background;
+          color: $blue;
+          border-radius: 8px;
+          margin: 12px 18px;
+          width: 156px;
+          height: 48px;
+          font-size: $p1-size;
+        }
+      }
+
+      .rightButtons {
+
+        margin: 12px 18px;
+
+        .buttonSubmit {
+          border: 3px solid $blue;
+          background-color: $blue;
+          color: $white;
+          border-radius: 8px;
+          margin: 12px 18px;
+          width: 156px;
+          height: 48px;
+          font-size: $p1-size;
         }
       }
     }

@@ -114,7 +114,6 @@ export default function form() {
     let categoryKeys = Object.keys(userSelectedBudgetValues);
     let countOfKeys = categoryKeys.length
     let multiplier = 100 / allocatedTotal;
-    console.log(multiplier);
     categoryKeys.forEach(key => {
       let value = parseFloat((userSelectedBudgetValues[key] * multiplier).toFixed(2));
       newSelectedBudgetValues = {
@@ -206,7 +205,6 @@ export default function form() {
     )
   }
 
-  console.log(accordionState);
   // finally the exported react component's return method:
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
@@ -259,14 +257,23 @@ export default function form() {
               </div>
             </div>
             {data.categories.map(budgetCategory => createCategoryRowHTML(budgetCategory))}
-            <section className="surplus-display">
-              <label>Surplus</label>
-              <div>{allocatedTotal.toFixed(2)}</div>
+            <div className={s.formFooterLineBreak}/>
+            <section className={s.formFooterRow}>
+              <div className={s.formFooterRowContents}>
+                <label>Surplus</label>
+                <div>{`${(100 - allocatedTotal).toFixed(2)}%`}</div>
+              </div>
             </section>
           </main>
-          <button name="reset" onClick={handleReset}>Reset</button>
-          <button name="snap-to-100" onClick={handleSnap}>Snap to 100%</button>
-          <button name="submit" onClick={handleSubmit}>Submit</button>
+          <div className={s.buttonContainer}>
+            <div className={s.leftButtons}>
+              <button className={s.buttonReset} onClick={handleReset}>Reset</button>
+              <button className={s.buttonSnap} onClick={handleSnap}>Snap to 100%</button>
+            </div>
+            <div className={s.rightButtons}>
+              <button className={s.buttonSubmit} onClick={handleSubmit}>Submit</button>
+            </div>
+          </div>
         </form>
       </div>
     )
