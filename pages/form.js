@@ -120,7 +120,6 @@ export default function form() {
 
   // post the results of the survey
   async function handleSubmit(event) {
-    console.log("fish");
     event.preventDefault();
     const submissionData = {
       district: userSelectedDistrict,
@@ -168,34 +167,44 @@ export default function form() {
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
       <form>
-        <select
-          defaultValue="default"
-          required={true}
-          onChange={handleDistrictSelection}>
-          <option value="default" disabled>--</option>
-          {data.districts.map(district => (
-            <option
-              key={district.id}
-              value={district.id}>
-              {district.district_id ? district.district_id + " - " + district.name : district.name}
-            </option>
-          ))}
-
-        </select>
-
-        <input
-          type="text"
-          name="zip code"
-          placeholder="10451"
-          onChange={handleZipCodeInput}></input>
-
+        <div name="locale-details">
+          <label>Select your City Council District</label>
+          <select
+            defaultValue="default"
+            required={true}
+            onChange={handleDistrictSelection}>
+            <option value="default" disabled>--</option>
+            {data.districts.map(district => (
+              <option
+                key={district.id}
+                value={district.id}>
+                {district.district_id ? district.district_id + " - " + district.name : district.name}
+              </option>
+            ))}
+          </select>
+          <label>Enter your Zip Code</label>
+          <input
+            type="text"
+            name="zip-code"
+            placeholder="10451"
+            onChange={handleZipCodeInput}>
+          </input>
+        </div>
+        <div name="column-labels">
+          <label>Department</label>
+          <p>Click a department to learn more</p>
+          <label>Current Allocation</label>
+          <p>As of the 2020 NYC Budget</p>
+          <label>Your Allocation</label>
+          <p>One department's budget must be <strong>decreased</strong> before increasing another.</p>
+        </div>
         {data.categories.map(budgetCategory => createCategoryRowHTML(budgetCategory))}
         <section>
           <label>Surplus</label>
           <div>{allocatedTotal.toFixed(2)}</div>
         </section>
-        <button name="snap to 100" onClick={handleSnap}>Snap to 100%</button>
         <button name="reset" onClick={handleReset}>Reset</button>
+        <button name="snap-to-100" onClick={handleSnap}>Snap to 100%</button>
         <button name="submit" onClick={handleSubmit}>Submit</button>
       </form>
     )

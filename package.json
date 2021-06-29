@@ -7,8 +7,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "bourbon": "^7.0.0",
+    "eyeglass": "^3.0.3",
     "nanoid": "^3.1.23",
     "next": "latest",
+    "node-sass": "^6.0.1",
     "pg-promise": "^10.9.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
