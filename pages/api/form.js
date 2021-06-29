@@ -1,8 +1,14 @@
 import { db, pgp } from "../../utilities/postgres";
 import { nanoid } from "nanoid";
+import {
+  BRONX_COUNCIL_DISTRICTS,
+  BRONX_FY2022_BUDGET
+} from "../../utilities/constants.js";
+
 
 const getId = () => nanoid(12)
 
+// for DB interaction
 async function handleGet(request, response) {
   // get districts
   const districts = await db.any("SELECT * FROM bcdi.districts");
@@ -10,6 +16,15 @@ async function handleGet(request, response) {
   const data = {
     districts: districts,
     categories: categories
+  }
+  response.status(200).json(data);
+};
+
+// no DB; uses data stored in constances in ../../utilities/constants.js
+async function handleGetNoDB(request, response) {
+  const data = {
+    districts: BRONX_COUNCIL_DISTRICTS,
+    categories: BRONX_FY2022_BUDGET
   }
   response.status(200).json(data);
 };
@@ -33,16 +48,24 @@ async function handlePost(request, response) {
   response.status(200).json(query);
 };
 
+async function handlePostNoDB(request, response) {
+  response.status(200).json("great! thanks for the submission.");
+};
+
 export default function handler(req, res) {
   const { method } = req;
   console.log(method);
   switch (method) {
     case "GET": {
-      handleGet(req, res);
+      // // commented out for user testing + DB hosting cutover
+      // handleGet(req, res);
+      handleGetNoDB(req, res);
       break;
     }
     case "POST": {
-      handlePost(req, res);
+      // // commented out for user testing + DB hosting cutover
+      // handlePost(req, res);
+      handlePostNoDB(req, res);
 
       //INSERT INTO bcdi.budget (submission_id, location_id, category_id, category_value) VALUES ()
 

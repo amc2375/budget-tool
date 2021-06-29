@@ -12,8 +12,6 @@ export default function form() {
     fetcher
   );
 
-
-
   // initialize state variables for controlling inputs in the form
   const [userSelectedDistrict, setUserSelectedDistrict] = useState(
     ''
@@ -44,7 +42,7 @@ export default function form() {
       data.categories.sort((a, b) => alphabetSort(a.name, b.name));
 
       data.categories.map(budgetCategory => {
-        assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.default_value);
+        assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total);
       });
 
       // save the object of category keys and budget point values
@@ -83,8 +81,6 @@ export default function form() {
       reallocations: userSelectedBudgetValues
     }
 
-    console.log(submissionData);
-
     try {
       fetch("/api/form", {
         method: "POST",
@@ -94,6 +90,24 @@ export default function form() {
     } catch (error) {
       console.log(error);
     };
+  }
+
+  function createCategoryRowHTML(budgetCategory) {
+    return (
+      <div key={budgetCategory.id}>
+        <label>{budgetCategory.name}</label>
+        <label>{budgetCategory.percentage_of_total}</label>
+        <input
+          name={budgetCategory.id}
+          value={userSelectedBudgetValues[budgetCategory.id]}
+          onChange={handleBudgetValueInput}
+          type="range"
+          min={0}
+          max={100}
+          step = {0.1}
+          required />
+      </div>
+    )
   }
 
   /* now for HTML generation */
@@ -116,20 +130,7 @@ export default function form() {
 
         </select>
 
-        {data.categories.map(budgetCategory => (
-            <div key={budgetCategory.id}>
-              <label>{budgetCategory.name}</label>
-              <input
-                name={budgetCategory.id}
-                value={userSelectedBudgetValues[budgetCategory.id]}
-                onChange={handleBudgetValueInput}
-                type="range"
-                min={0}
-                max={100}
-                step = {0.1}
-                required />
-            </div>
-          ))}
+        {data.categories.map(budgetCategory => createCategoryRowHTML(budgetCategory))}
 
         <button>Submit</button>
       </form>
