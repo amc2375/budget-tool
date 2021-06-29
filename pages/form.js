@@ -37,6 +37,10 @@ export default function form() {
     100
   );
 
+  const [accordionState, setAccordionState] = useState(
+    {}
+  );
+
   // helper function for sorting data alphabetically
   const alphabetSort = (a, b) => (
     (a > b) ? 1 : ((b > a) ? -1 : 0)
@@ -54,7 +58,6 @@ export default function form() {
     setUserSelectedBudgetValues(assignedBudgetCategoryValues);
   };
 
-
   /* useEffect takes two arguments - one is a callback defining
   the operation(s) to perform as part of the Hook, and the other is
   an array of dependencies, such that if none of the dependencies
@@ -67,7 +70,6 @@ export default function form() {
     };
 
   }, [data]);
-
 
   /* userSelectedBudgetValues is the variable that points to a slice
   of state that looks like the assignedBudgetCategoryValues object.
@@ -104,6 +106,8 @@ export default function form() {
     }
   }, [userSelectedBudgetValues])
 
+  /* handler for snap to 100% button; multiply all values by
+  100 / current allocated total. */
   function handleSnap(event) {
     event.preventDefault();
     let newSelectedBudgetValues = {};
@@ -121,9 +125,22 @@ export default function form() {
     setUserSelectedBudgetValues(newSelectedBudgetValues);
   }
 
+  // reset user input values for the budget
   function handleReset(event) {
     event.preventDefault();
     resetAssignedBudgetCategoryValues();
+  }
+
+  /* this is the accordion handler. when a user clicks on the ChevronDown
+  component, the details for the row will display below the row. the
+  state of which accordions are active is tracked via the accordionState
+  variable */
+  function handleAccordion(event) {
+    event.preventDefault();
+    setAccordionState({
+      ...accordionState,
+      [event.target.id]: (!accordionState[event.target.id])
+    });
   }
 
   // post the results of the survey
@@ -151,27 +168,45 @@ export default function form() {
     let amountInBillions = Number(Math.round(budgetCategory.amount/1000000000 + 'e4') + 'e-4');
     let formattedAmount = amountInBillions != 0 ? `$${amountInBillions} Billion` : "$0";
     return (
-      <div key={budgetCategory.id} className="form-row">
-        <ChevronDown/>
-        <label className="category-name">{budgetCategory.name}</label>
-        <label className="current-allocation-percentage">{budgetCategory.percentage_of_total + "%"}</label>
-        <label className="current-allocation-dollar-amount">{formattedAmount}</label>
-        <input
-          name={budgetCategory.id}
-          value={userSelectedBudgetValues[budgetCategory.id]}
-          onChange={handleBudgetValueInput}
-          type="range"
-          min={0}
-          max={100}
-          step = {0.01}
-          required
-          className="slider"/>
-        <figcaption className="user-allocation-percentage">{userSelectedBudgetValues[budgetCategory.id] + "%"}</figcaption>
-        <details className="accordion-details"
-          dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}/>
+      <div>
+        <div key={budgetCategory.id} className={s.formRow}>
+          <section
+            className={s.formRowSectionHover}
+            id={budgetCategory.id}
+            onClick={handleAccordion}>
+            <ChevronDown
+              className={s.chevron}
+              id={budgetCategory.id}
+              style={accordionState[budgetCategory.id] ? {transform: 'rotate(180deg)'} : {}}/>
+            <div
+              className={s.categoryTitle}
+              id={budgetCategory.id}>{budgetCategory.name}</div>
+          </section>
+          <section className={s.formRowSection}>
+          <label>{`${budgetCategory.percentage_of_total}% (${formattedAmount})`}</label>
+          </section>
+          <section className={s.formRowSectionSlider}>
+            <input
+              name={budgetCategory.id}
+              value={userSelectedBudgetValues[budgetCategory.id]}
+              onChange={handleBudgetValueInput}
+              type="range"
+              min={0}
+              max={100}
+              step = {0.01}
+              required
+              className="slider"/>
+            <figcaption className="user-allocation-percentage">{userSelectedBudgetValues[budgetCategory.id] + "%"}</figcaption>
+          </section>
+        </div>
+        <section className={s.formRow}
+          dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}
+          style={accordionState[budgetCategory.id] ? {} : {display: 'none'}}/>
       </div>
     )
   }
+
+  console.log(accordionState);
   // finally the exported react component's return method:
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
