@@ -114,12 +114,12 @@ export default function form() {
           max={100}
           step = {0.1}
           required />
+        <section dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}/>
       </div>
     )
   }
 
   /* now for HTML generation */
-
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
       <form onSubmit={handleSubmit}>
