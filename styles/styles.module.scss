@@ -1,1 +1,87 @@
 @import "bourbon";
+
+// body colors
+$color-background: #E5E5E5;
+$color-base: #F5F5F5;
+$white: #FFFFFF;
+
+// font colors
+$light-grey: #939393;
+
+// font sizes
+$h1-size: 60.8px;
+$h2-size: 40.5px;
+$h3-size: 27px;
+$p1-size: 18px;
+$p2-size: 12px;
+
+.body {
+  background-color: $color-background;
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  font-family: $font-stack-helvetica;
+
+  .form {
+    background-color: $color-base;
+    margin: 10%;
+    padding: 120px 100px 200px 100px;
+
+    .formTitle {
+      font-size: $h2-size;
+
+      p {
+        margin-top: 16px;
+      }
+    }
+
+    .localeDetails {
+      display: flex;
+      padding-right: 20%;
+      margin-bottom: 36px;
+      font-size: $p1-size;
+
+      div {
+        flex: 1;
+        padding: 0px 20px;
+
+        label {
+          display: block;
+          padding-bottom: 6px;
+        }
+      }
+
+      select, input {
+        font-size: $p1-size;
+        border-radius: 8px;
+        border: 1px solid #7B7B7B;
+        padding: 6px;
+      }
+    }
+
+    .formBody {
+      background-color: $white;
+      border-radius: 8px;
+
+      .formLabelsRow {
+        padding: 36px 48px;
+        display: flex;
+
+        .formLabel {
+          flex: 1;
+          color: $light-grey;
+
+          label {
+            font-size: $p1-size;
+            font-weight: bold;
+            padding-bottom: 6px;
+          }
+
+          p {
+            font-size: $p2-size;
+          }
+        }
+      }
+    }
+  }
+}

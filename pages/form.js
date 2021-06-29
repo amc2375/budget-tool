@@ -1,6 +1,7 @@
 import useSwr from "swr";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import s from '../styles/styles.module.scss';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -143,10 +144,10 @@ export default function form() {
     let amountInBillions = Number(Math.round(budgetCategory.amount/1000000000 + 'e4') + 'e-4');
     let formattedAmount = amountInBillions != 0 ? `$${amountInBillions} Billion` : "$0";
     return (
-      <div key={budgetCategory.id}>
-        <label>{budgetCategory.name}</label>
-        <label>{budgetCategory.percentage_of_total + "%"}</label>
-        <label>{formattedAmount}</label>
+      <div key={budgetCategory.id} className="form-row">
+        <label className="category-name">{budgetCategory.name}</label>
+        <label className="current-allocation-percentage">{budgetCategory.percentage_of_total + "%"}</label>
+        <label className="current-allocation-dollar-amount">{formattedAmount}</label>
         <input
           name={budgetCategory.id}
           value={userSelectedBudgetValues[budgetCategory.id]}
@@ -155,9 +156,10 @@ export default function form() {
           min={0}
           max={100}
           step = {0.01}
-          required />
-        <figcaption>{userSelectedBudgetValues[budgetCategory.id] + "%"}</figcaption>
-        <details
+          required
+          className="slider"/>
+        <figcaption className="user-allocation-percentage">{userSelectedBudgetValues[budgetCategory.id] + "%"}</figcaption>
+        <details className="accordion-details"
           dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}/>
       </div>
     )
@@ -166,47 +168,65 @@ export default function form() {
   // finally the exported react component's return method:
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
-      <form>
-        <div name="locale-details">
-          <label>Select your City Council District</label>
-          <select
-            defaultValue="default"
-            required={true}
-            onChange={handleDistrictSelection}>
-            <option value="default" disabled>--</option>
-            {data.districts.map(district => (
-              <option
-                key={district.id}
-                value={district.id}>
-                {district.district_id ? district.district_id + " - " + district.name : district.name}
-              </option>
-            ))}
-          </select>
-          <label>Enter your Zip Code</label>
-          <input
-            type="text"
-            name="zip-code"
-            placeholder="10451"
-            onChange={handleZipCodeInput}>
-          </input>
-        </div>
-        <div name="column-labels">
-          <label>Department</label>
-          <p>Click a department to learn more</p>
-          <label>Current Allocation</label>
-          <p>As of the 2020 NYC Budget</p>
-          <label>Your Allocation</label>
-          <p>One department's budget must be <strong>decreased</strong> before increasing another.</p>
-        </div>
-        {data.categories.map(budgetCategory => createCategoryRowHTML(budgetCategory))}
-        <section>
-          <label>Surplus</label>
-          <div>{allocatedTotal.toFixed(2)}</div>
-        </section>
-        <button name="reset" onClick={handleReset}>Reset</button>
-        <button name="snap-to-100" onClick={handleSnap}>Snap to 100%</button>
-        <button name="submit" onClick={handleSubmit}>Submit</button>
-      </form>
+      <div className={s.body}>
+        <form className={s.form}>
+          <header className={s.formTitle}>
+            <strong>People's Vision for the Bronx</strong>
+            <p>Participatory Budgeting Survey</p>
+          </header>
+          <div className={s.localeDetails}>
+            <div>
+              <label>Choose your City Council District</label>
+              <select
+                defaultValue="default"
+                required={true}
+                onChange={handleDistrictSelection}>
+                <option value="default" disabled>--</option>
+                {data.districts.map(district => (
+                  <option
+                    key={district.id}
+                    value={district.id}>
+                    {district.district_id ? district.district_id + " - " + district.name : district.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label>Enter your Zip Code</label>
+              <input
+                type="text"
+                name="zip-code"
+                placeholder="10451"
+                onChange={handleZipCodeInput}>
+              </input>
+            </div>
+          </div>
+          <main className={s.formBody}>
+            <div className={s.formLabelsRow}>
+              <div className={s.formLabel}>
+                <label>Department</label>
+                <p>Click a department to learn more</p>
+              </div>
+              <div className={s.formLabel}>
+                <label>Current Allocation</label>
+                <p>As of the 2020 NYC Budget</p>
+              </div>
+              <div className={s.formLabel}>
+                <label>Your Allocation</label>
+                <p>One department's budget must be <strong>decreased</strong> before increasing another.</p>
+              </div>
+            </div>
+            {data.categories.map(budgetCategory => createCategoryRowHTML(budgetCategory))}
+            <section className="surplus-display">
+              <label>Surplus</label>
+              <div>{allocatedTotal.toFixed(2)}</div>
+            </section>
+          </main>
+          <button name="reset" onClick={handleReset}>Reset</button>
+          <button name="snap-to-100" onClick={handleSnap}>Snap to 100%</button>
+          <button name="submit" onClick={handleSubmit}>Submit</button>
+        </form>
+      </div>
     )
   } else {
     return (
