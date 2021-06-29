@@ -69,7 +69,7 @@ export const BRONX_FY2022_BUDGET = [
     name: "General Government",
     descriptive_html: '<p>The General Government consists of the <a href="https://www1.nyc.gov/office-of-the-mayor/"  target="_blank" rel="noreferrer noopener">NYC Office of the Mayor</a> and various administrative departments in the city. It also includes <a href="https://www1.nyc.gov/site/cau/community-boards/community-boards.page" target="_blank" rel="noreferrer noopener">NYC Community Boards</a>, <a href="http://bronxboropres.nyc.gov/" target="_blank" rel="noreferrer noopener">Offices of the Borough Presidents</a>, and <a href="https://council.nyc.gov/" target="_blank" rel="noreferrer noopener">NYC City Council</a>.</p>',
     amount:  3759550000.00,
-    percentage_of_total: 5.32
+    percentage_of_total: 5.33
   },
   {
     id: 3,
