@@ -41,7 +41,7 @@ export default function form() {
     if (Boolean(data)) {
 
       data.districts.sort((a, b) => alphabetSort(a.name, b.name));
-      data.categories.sort((a, b) => alphabetSort(a.category, b.category));
+      data.categories.sort((a, b) => alphabetSort(a.name, b.name));
 
       data.categories.map(budgetCategory => {
         assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.default_value);
@@ -83,6 +83,8 @@ export default function form() {
       reallocations: userSelectedBudgetValues
     }
 
+    console.log(submissionData);
+
     try {
       fetch("/api/form", {
         method: "POST",
@@ -123,7 +125,7 @@ export default function form() {
 
         {data.categories.map(budgetCategory => (
             <div key={budgetCategory.id}>
-              <label>{budgetCategory.category}</label>
+              <label>{budgetCategory.name}</label>
               <input
                 name={budgetCategory.id}
                 value={userSelectedBudgetValues[budgetCategory.id]}

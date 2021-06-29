@@ -19,27 +19,27 @@ CREATE SEQUENCE IF NOT EXISTS category_sequence_id;
 
 CREATE TABLE bcdi.categories (
 	"id" int4 NOT NULL DEFAULT nextval('category_sequence_id'::regclass),
-	"category" text NOT NULL,
+	"name" text NOT NULL,
 	"default_value" numeric NOT NULL,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY ("id")
 );
 
-INSERT INTO bcdi.categories (category, default_value) VALUES ('Debt Service', 3.6);
-INSERT INTO bcdi.categories (category, default_value) VALUES ('General Government', 3.9);
-INSERT INTO bcdi.categories (category, default_value) VALUES ('Education', 31.6);
-INSERT INTO bcdi.categories (category, default_value) VALUES ('Libraries', .5);
-INSERT INTO bcdi.categories (category, default_value) VALUES ('Social Services', 17);
-INSERT INTO bcdi.categories (category, default_value) VALUES ('Police & Corrections', 8.1);
-INSERT INTO bcdi.categories (category, default_value) VALUES ('Transportation', 1.3);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Housing',1.5);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Health', 3.1);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Sanitation', 1.9);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Environmental Protection', 1.5);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Recreation & Culture', .8);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Pension & Fringe Benefits', 10.9);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Fire', 2.3);
-INSERT INTO bcdi.categories (category,default_value) VALUES ('Misc', 12.1);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Debt Service', 3.6);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('General Government', 3.9);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Education', 31.6);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Libraries', .5);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Social Services', 17);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Police & Corrections', 8.1);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Transportation', 1.3);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Housing',1.5);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Health', 3.1);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Sanitation', 1.9);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Environmental Protection', 1.5);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Recreation & Culture', .8);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Pension & Fringe Benefits', 10.9);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Fire', 2.3);
+INSERT INTO bcdi.categories (name, default_value) VALUES ('Misc', 12.1);
 
 
 CREATE SEQUENCE IF NOT EXISTS budget_sequence_id;
