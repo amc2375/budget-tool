@@ -38,7 +38,7 @@ export default function form() {
     let assignedBudgetCategoryValues = {};
     if (Boolean(data)) {
 
-      data.districts.sort((a, b) => alphabetSort(a.name, b.name));
+      data.districts.sort((a, b) => alphabetSort(a.district_id, b.district_id));
       data.categories.sort((a, b) => alphabetSort(a.name, b.name));
 
       data.categories.map(budgetCategory => {
@@ -124,7 +124,7 @@ export default function form() {
             <option
               key={district.id}
               value={district.id}>
-              {district.name}
+              {district.district_id ? district.district_id + " - " + district.name : district.name}
             </option>
           ))}
 
