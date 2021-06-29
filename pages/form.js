@@ -3,6 +3,13 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import s from '../styles/styles.module.scss';
 
+/* the following works because of the babel-plugin-inline-react-svg
+dependency. it converts an svg into a react component so that it
+can easily be used in a react script like this. see examples at
+https://github.com/vercel/next.js/tree/master/examples/svg-components
+and https://gist.github.com/iamchristough/493c60112770058566d559e6860dc4c9 */
+import ChevronDown from '../assets/chevron-down.svg';
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function form() {
@@ -145,6 +152,7 @@ export default function form() {
     let formattedAmount = amountInBillions != 0 ? `$${amountInBillions} Billion` : "$0";
     return (
       <div key={budgetCategory.id} className="form-row">
+        <ChevronDown/>
         <label className="category-name">{budgetCategory.name}</label>
         <label className="current-allocation-percentage">{budgetCategory.percentage_of_total + "%"}</label>
         <label className="current-allocation-dollar-amount">{formattedAmount}</label>
@@ -164,7 +172,6 @@ export default function form() {
       </div>
     )
   }
-
   // finally the exported react component's return method:
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (

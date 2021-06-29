@@ -7,6 +7,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "babel-plugin-inline-react-svg": "^2.0.1",
     "bourbon": "^7.0.0",
     "eyeglass": "^3.0.3",
     "nanoid": "^3.1.23",
