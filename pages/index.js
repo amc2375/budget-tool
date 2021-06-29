@@ -1,175 +1,21 @@
 import useSwr from "swr";
 import Link from "next/link";
-import React, { useState, useEffect} from "react";
+import React from "react";
+import Form from "./form.js";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-/* Useful Example: http://jsfiddle.net/EL4tf/ */
-const budgetForm = () => {
-  const {data} = useSwr(
-    `/api/form`,
-    fetcher
-  );
+export default class Index extends React.Component {
 
-  const [testValues, setTestValues] = useState(data)
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  useEffect(() => {
-    if(data == null) {
-      return
-    }
-    let updatedState = {}
-    data.categories.forEach(category => 
-        {updatedState[category.id]= parseFloat(category.default_value)}
-      )
-    setTestValues(updatedState)
-  }, [data]);
-
-console.log(testValues)
-
-  const [sliderValues, setSliderValues] = useState({
-    slider1:3.6,
-    slider2:3.9,
-    slider3:31.6,
-    slider4:0.5,
-    slider5:17.0,
-    slider6:8.1,
-    slider7:1.3,
-    slider8:1.5,
-    slider9:3.1,
-    slider10:1.9,
-    slider11:1.5,
-    slider12:0.8,
-    slider13:10.9,
-    slider14:2.3,
-    slider15:12.1
-  });
-
-  const sliderNames = {
-    slider1:"Debt Service",
-    slider2:"General Government",
-    slider3:"Education",
-    slider4:"Libraries",
-    slider5:"Social Services",
-    slider6:"Police & Corrections",
-    slider7:"Transportation",
-    slider8:"Housing",
-    slider9:"Health",
-    slider10: "Sanitation",
-    slider11: "Environmental Protection",
-    slider12: "Recreation & Culture",
-    slider13: "Pension & Fringe Benefits",
-    slider14: "Fire",
-    slider15: "Misc"
+    };
   }
 
-  const getTotal = () => Object.values(testValues).reduce((a, b) => a + b,0);
-  //const getTotal = testValues => Object.values(testValues).reduce((a, b) => a + b);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const location = e.currentTarget.location.value
-    const data = {
-      location: location, 
-      testValues: testValues
-    }
-    /*
-     * Since the form data is the current state,
-     * we don't need to specify the field values
-     * via their "name" attribute.
-     * We can just POST the state object over to /api/form/
-     */
-    try {
-      fetch("/api/form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  render() {
+    return <Form/>
   }
 
-  function handleChange(event) {
-    const name = event.target.name; // Name of this slider.
-    const oldVal = testValues[name]; // Current value in state.
-    const newVal = parseFloat(event.target.value); // Value of change event.
-    console.log(name, oldVal, newVal)
-
-    /*
-     * Get the current total from state,
-     * minus the "old"/current value,
-     * plus the "new"/this value
-     * (we're updating the old value with the new one).
-     */
-
-    const total = getTotal() - oldVal + newVal;
-    console.log(total)
-
-    // If total is less than 100, update state.
-    if (total <= 100) {
-      const updatedState = {
-        ...testValues,
-        [name]: newVal,
-      };
-      setTestValues(updatedState);
-    }
-
-    // If total is greater than 100, do nothing.
-    return null;
-  }
-
-  return (
-    <div>
-      <h2>Budget Form</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-            
-          <select 
-            name = "location"
-            defaultValue = ""
-            required
-            >
-              <option value = "">Select location</option>
-              {Boolean(data) &&
-               <>{data.locations.map(location => (
-                  <option value = {location.id}>{location.location}</option>
-                ))}</>
-              }
-          </select>
-        </div>
-        <div>
-          {Boolean(testValues) &&
-               <>{data.categories.map(category => (
-                <div style={{ paddingTop: "20px;" }} key = {category.id}>
-                  <div>
-                  <label>{category.category}: {category.default_value}</label>
-                    
-                  </div>
-
-                  <input
-                    name={category.id}
-                    type="range"
-                    min={0}
-                    max={100}
-                    value={testValues[category.id]}
-                    onChange={handleChange}
-                    step = {0.1}
-                    required
-                  />
-                  <div><label>{testValues[category.id]}</label></div>
-                </div>
-                ))}</>
-              }
-        </div>
-
-        <div style={{ paddingTop: "20px;" }}>
-          <button style={{ padding: "4px;", background: "#008000" }}>
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
-  );
 };
-export default budgetForm;

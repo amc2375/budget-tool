@@ -1,0 +1,213 @@
+@import "bourbon";
+
+// body colors
+$color-background: #E5E5E5;
+$color-base: #F5F5F5;
+$white: #FFFFFF;
+
+// font colors
+$light-grey: #939393;
+$very-light-grey: #B2B2B2;
+
+// button colors
+$red: #C91E1E;
+$blue: #1E62C9;
+$button-background: #F9F9F9;
+
+// font sizes
+$h1-size: 60.8px;
+$h2-size: 40.5px;
+$h3-size: 27px;
+$p1-size: 18px;
+$p2-size: 12px;
+
+.body {
+  background-color: $color-background;
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  font-family: $font-stack-helvetica;
+
+  .form {
+    background-color: $color-base;
+    margin: 10%;
+    padding: 120px 100px 200px 100px;
+
+    .formTitle {
+      font-size: $h2-size;
+
+      p {
+        margin-top: 16px;
+        margin-bottom: 80px;
+      }
+    }
+
+    .localeDetails {
+      display: flex;
+      padding-right: 20%;
+      margin-bottom: 36px;
+      font-size: $p1-size;
+
+      div {
+        flex: 1;
+        padding: 0px 20px;
+
+        label {
+          display: block;
+          padding-bottom: 6px;
+        }
+      }
+
+      select, input {
+        font-size: $p1-size;
+        border-radius: 8px;
+        border: 1px solid #7B7B7B;
+        padding: 6px;
+      }
+    }
+
+    .formBody {
+      background-color: $white;
+      border-radius: 8px;
+
+      .formLabelsRow {
+        padding: 36px 48px 12px 48px;
+        display: flex;
+
+        .formLabel {
+          flex: 1;
+          color: $light-grey;
+
+          label {
+            font-size: $p1-size;
+            font-weight: bold;
+            padding-bottom: 6px;
+          }
+
+          p {
+            font-size: $p2-size;
+          }
+        }
+      }
+
+      .formRow {
+        padding: 12px 48px;
+        display: flex;
+
+        .formRowSectionHover, .formRowSection, .formRowSectionSlider {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          margin: 12px;
+        }
+
+        .formRowSectionHover:hover {
+          cursor: pointer;
+        }
+
+        .categoryTitle {
+          font-weight: bold;
+          font-size: $p1-size;
+          padding-left: 8px;
+        }
+
+        .formRowSectionSlider {
+          flex-direction: column;
+          align-items: baseline;
+
+          input[type=range]{
+            width: 100%;
+          }
+        }
+      }
+
+      .accordionTextWrapper {
+        margin: 0px 44px;
+        font-size: $p1-size;
+      }
+
+      .formFooterLineBreak {
+        width: 88%;
+        height: 0px;
+        border-top: 1px solid $very-light-grey;
+        margin: 0 auto;
+      }
+
+      .formFooterRow {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 18px;
+
+        .formFooterRowContents {
+          display: flex;
+          padding: 0px 48px;
+          margin-bottom: 18px;
+
+          label {
+            margin-right: 18px;
+            padding: 8px;
+            color: $light-grey;
+          }
+
+          div {
+            border: 1px solid blue;
+            padding: 8px;
+            border-radius: 8px;
+          }
+        }
+      }
+    }
+
+    .buttonContainer {
+      display: flex;
+      justify-content: space-between;
+
+      button:hover {
+        cursor: pointer;
+      }
+
+      .leftButtons {
+
+        margin: 12px 18px;
+
+        .buttonReset {
+          border: 3px solid $red;
+          background-color: $button-background;
+          color: $red;
+          border-radius: 8px;
+          margin: 12px 18px;
+          width: 156px;
+          height: 48px;
+          font-size: $p1-size;
+        }
+
+        .buttonSnap {
+          border: 3px solid $blue;
+          background-color: $button-background;
+          color: $blue;
+          border-radius: 8px;
+          margin: 12px 18px;
+          width: 156px;
+          height: 48px;
+          font-size: $p1-size;
+        }
+      }
+
+      .rightButtons {
+
+        margin: 12px 18px;
+
+        .buttonSubmit {
+          border: 3px solid $blue;
+          background-color: $blue;
+          color: $white;
+          border-radius: 8px;
+          margin: 12px 18px;
+          width: 156px;
+          height: 48px;
+          font-size: $p1-size;
+        }
+      }
+    }
+  }
+}
