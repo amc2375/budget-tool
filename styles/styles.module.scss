@@ -108,6 +108,7 @@ $p2-size: 12px;
         .categoryTitle {
           font-weight: bold;
           font-size: $p1-size;
+          padding-left: 8px;
         }
 
         .formRowSectionSlider {
@@ -118,6 +119,11 @@ $p2-size: 12px;
             width: 100%;
           }
         }
+      }
+
+      .accordionTextWrapper {
+        margin: 0px 44px;
+        font-size: $p1-size;
       }
 
       .formFooterLineBreak {

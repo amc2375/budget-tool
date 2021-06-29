@@ -198,9 +198,13 @@ export default function form() {
             <figcaption className="user-allocation-percentage">{userSelectedBudgetValues[budgetCategory.id] + "%"}</figcaption>
           </section>
         </div>
-        <section className={s.formRow}
-          dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}
-          style={accordionState[budgetCategory.id] ? {} : {display: 'none'}}/>
+        <div
+          className={s.formRow}
+          style={accordionState[budgetCategory.id] ? {} : {display: 'none'}}>
+          <section
+            className={s.accordionTextWrapper}
+            dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}/>
+        </div>
       </div>
     )
   }
