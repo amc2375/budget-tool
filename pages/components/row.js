@@ -39,8 +39,12 @@ export default function Row(props) {
       case "amountAsText":
         break;
       case "percentageAsText":
-        let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id]);
-        return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
+        if (userSelectedBudgetValues[budgetCategory.id] == '') {
+          return "$0";
+        } else {
+          let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
+          return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
+        }
       case "incremental":
         break;
     }

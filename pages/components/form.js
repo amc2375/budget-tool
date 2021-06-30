@@ -107,10 +107,10 @@ export default function Form(props) {
         break;
       case "percentageAsText":
         if (validateUserInput(event.target.value)) {
-          let value = parseFloat(event.target.value);
+          console.log(event.target.value);
           setUserSelectedBudgetValues({
             ...userSelectedBudgetValues,
-            [key]: value
+            [key]: event.target.value
           });
         }
         break;
@@ -131,7 +131,7 @@ export default function Form(props) {
   }, [userSelectedBudgetValues])
 
   /* handler for snap to 100% button; multiply all values by
-  100 / current allocated total. */
+  100 / current allocated total. store float as string.*/
   function handleSnap(event) {
     event.preventDefault();
     let newSelectedBudgetValues = {};
