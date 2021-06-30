@@ -6,7 +6,7 @@ import {
 } from "../../utilities/constants.js";
 
 
-const getId = () => nanoid(12)
+const getId = () => nanoid(12);
 
 // for DB interaction
 async function handleGet(request, response) {
@@ -16,7 +16,7 @@ async function handleGet(request, response) {
   const data = {
     districts: districts,
     categories: categories
-  }
+  };
   response.status(200).json(data);
 };
 
@@ -25,7 +25,7 @@ async function handleGetNoDB(request, response) {
   const data = {
     districts: BRONX_COUNCIL_DISTRICTS,
     categories: BRONX_FY2022_BUDGET
-  }
+  };
   response.status(200).json(data);
 };
 
@@ -111,4 +111,4 @@ export default function handler(req, res) {
   //        res.setHeader(“Allow”, [“GET”, “POST”, “PUT”, “DELETE”]);
   //        res.status(405).end(`Method ${method} Not Allowed`);
   //    }
-}
+};

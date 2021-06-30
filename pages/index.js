@@ -1,21 +1,32 @@
-import useSwr from "swr";
 import Link from "next/link";
 import React from "react";
-import Form from "./form.js";
+import { useRouter } from 'next/router'
+import Form from "./components/form.js";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+export default function Index() {
 
-export default class Index extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
+  const router = useRouter();
+  const selectedInputScheme = router.query["variation"];
+  let inputScheme;
+  switch(selectedInputScheme) {
+    case "A":
+      inputScheme = "slider";
+      break;
+    case "B":
+      inputScheme = "percentageAsText";
+      break;
+    case "C":
+      inputScheme = "amountAsText";
+      break;
+    case "D":
+      inputScheme = "incremental";
+      break;
+    default:
+      inputScheme = "slider";
+      break;
   }
 
-  render() {
-    return <Form/>
-  }
-
+  return (
+    <Form inputScheme={inputScheme}/>
+  );
 };
