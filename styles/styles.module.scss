@@ -97,7 +97,12 @@ $p2-size: 12px;
         padding: 12px 48px;
         display: flex;
 
-        .formRowSectionHover, .formRowSection, .formRowSectionSlider {
+        .formRowSectionHover,
+        .formRowSection,
+        .formRowSectionSlider,
+        .formRowSectionPercentageAsText,
+        .formRowSectionAmountAsText,
+        .formRowSectionIncremental {
           flex: 1;
           display: flex;
           align-items: center;
@@ -120,6 +125,26 @@ $p2-size: 12px;
 
           input[type=range]{
             width: 100%;
+          }
+        }
+
+        .formRowSectionPercentageAsText {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+
+          input[type=text] {
+            font-size: $p1-size;
+            border-radius: 8px;
+            border: 1px solid #7B7B7B;
+            padding: 6px;
+            width: 64px;
+            margin-right: 2px;
+          }
+
+          .afterInput {
+            margin-right: 12px;
           }
         }
       }

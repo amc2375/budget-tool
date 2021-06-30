@@ -11,7 +11,7 @@ export default function AllocationInput(props) {
     caption,
   } = props;
 
-  let className, type;
+  let className, type, after;
 
   switch(inputScheme) {
     case "slider":
@@ -25,6 +25,7 @@ export default function AllocationInput(props) {
     case "percentageAsText":
       className = s.formRowSectionPercentageAsText;
       type = "text";
+      after = "%";
       break;
     case "incremental":
       className = s.formRowSectionIncremental;
@@ -43,6 +44,7 @@ export default function AllocationInput(props) {
         max={100}
         step = {0.01}
         required/>
+      <div className={s.afterInput}>{after}</div>
       <figcaption>{caption}</figcaption>
     </section>
   );
