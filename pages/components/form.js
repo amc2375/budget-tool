@@ -61,7 +61,7 @@ export default function Form(props) {
     data.categories.sort((a, b) => alphabetSort(a.name, b.name));
     let assignedBudgetCategoryValues = {};
     data.categories.map(budgetCategory => {
-      if (inputScheme == "slider" || inputScheme == "percentageAsText") {
+      if (inputScheme == "slider" || inputScheme == "percentageAsText" || "incremental") {
         assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total).toString();
       } else {
         let valueInBillions = parseFloat(budgetCategory.amount)/1000000000
@@ -98,6 +98,7 @@ export default function Form(props) {
   two decimal places because the range input seems not to always obey
   the 'step' attribute set on it. then save the state*/
   function handleBudgetValueInput(event) {
+    event.preventDefault();
     let key = event.target.name;
     switch(inputScheme) {
       case "slider":
@@ -124,6 +125,15 @@ export default function Form(props) {
             [key]: event.target.value
           });
         }
+        break;
+      case "incremental":
+        let incrementalChange = parseFloat(event.target.value);
+        let oldValue = parseFloat(userSelectedBudgetValues[key]);
+        let newValue = (oldValue + parseFloat(incrementalChange)).toString();
+        setUserSelectedBudgetValues({
+          ...userSelectedBudgetValues,
+          [key]: newValue
+        });
         break;
     }
   }
@@ -153,9 +163,9 @@ export default function Form(props) {
     event.preventDefault();
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
-    let countOfKeys = categoryKeys.length
+    let countOfKeys = categoryKeys.lengthe
     let multiplier;
-    if (inputScheme == "slider" || inputScheme == "percentageAsText") {
+    if (inputScheme == "slider" || inputScheme == "percentageAsText" || "incremental") {
       multiplier = 100 / parseFloat(allocatedTotal);
     } else {
       multiplier = calculateFixedBudgetAmount() / (parseFloat(allocatedTotal) * 1000000000) ;
@@ -165,7 +175,7 @@ export default function Form(props) {
       let value = userSelectedBudgetValues[key]
       if (value != "0" && value != "" ) {
         nonZeroFlag = true;
-        let precision = (inputScheme == "slider" || inputScheme == "percentageAsText") ? 2 : 4;
+        let precision = (inputScheme == "slider" || inputScheme == "percentageAsText" || "incremental") ? 2 : 4;
         value = (parseFloat(userSelectedBudgetValues[key]) * multiplier).toFixed(precision).toString();
       } else {
         value = "0"

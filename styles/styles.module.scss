@@ -186,6 +186,77 @@ $p2-size: 12px;
             max-width: 48px;
           }
         }
+
+        .formRowSectionIncremental {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+
+          .incrementalInputWrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+          }
+
+          .beforeInput {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+
+            .decreaseButtonOne {
+              border: 1px solid $red;
+              border-radius: 4px;
+              color: $red;
+              background-color: $white;
+              padding: 6px;
+              margin-right: 4px;
+            }
+
+            .decreaseButtonPointOne {
+              border: 1px solid $red;
+              border-radius: 4px;
+              color: $white;
+              background-color: $red;
+              padding: 6px;
+              margin-right: 4px;
+            }
+
+          }
+
+          .afterInput {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+
+            .increaseButtonPointOne {
+              border: 1px solid $blue;
+              border-radius: 4px;
+              color: $white;
+              background-color: $blue;
+              padding: 6px;
+              margin-right: 4px;
+            }
+
+            .increaseButtonOne {
+              border: 1px solid $blue;
+              border-radius: 4px;
+              color: $blue;
+              background-color: $white;
+              padding: 6px;
+              margin-right: 4px;
+            }
+
+          }
+
+          figcaption {
+            width: 48px;
+            max-width: 48px;
+          }
+        }
       }
 
       .accordionTextWrapper {

@@ -6,19 +6,19 @@ import Form from "./components/form.js";
 export default function Index() {
 
   const router = useRouter();
-  const selectedInputScheme = router.query["scheme"];
+  const selectedInputScheme = router.query["variation"];
   let inputScheme;
   switch(selectedInputScheme) {
-    case "slider":
+    case "A":
       inputScheme = "slider";
       break;
-    case "amountAsText":
-      inputScheme = "amountAsText";
-      break;
-    case "percentageAsText":
+    case "B":
       inputScheme = "percentageAsText";
       break;
-    case "incremental":
+    case "C":
+      inputScheme = "amountAsText";
+      break;
+    case "D":
       inputScheme = "incremental";
       break;
     default:

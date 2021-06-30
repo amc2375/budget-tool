@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import s from '../../styles/styles.module.scss';
+import IncrementalButtons from './incrementalButtons.js';
 
 export default function AllocationInput(props) {
 
@@ -32,13 +33,36 @@ export default function AllocationInput(props) {
     case "incremental":
       className = s.formRowSectionIncremental;
       type = "range";
+      before = <IncrementalButtons
+        domElementName={name}
+        leftButtonClassName={s.decreaseButtonOne}
+        leftButtonValue={-1}
+        leftDisplayBefore={""}
+        leftDisplayAfter={"%"}
+        rightButtonClassName={s.decreaseButtonPointOne}
+        rightButtonValue={-0.1}
+        rightDisplayBefore={""}
+        rightDisplayAfter={"%"}
+        handler={handler}/>;
+      after = <IncrementalButtons
+        domElementName={name}
+        leftButtonClassName={s.increaseButtonPointOne}
+        leftButtonValue={0.1}
+        leftDisplayBefore={"+"}
+        leftDisplayAfter={"%"}
+        rightButtonClassName={s.increaseButtonOne}
+        rightButtonValue={1}
+        rightDisplayBefore={"+"}
+        rightDisplayAfter={"%"}
+        handler={handler}/>;
       break;
   }
 
-  return(
-    <section className={className}>
+  const content = (
+    <React.Fragment>
       <div className={s.beforeInput}>{before}</div>
       <input
+        disabled={(inputScheme == "incremental") ? true : false}
         name={name}
         value={value}
         onChange={handler}
@@ -48,7 +72,25 @@ export default function AllocationInput(props) {
         step = {0.01}
         required/>
       <div className={s.afterInput}>{after}</div>
-      <figcaption>{caption}</figcaption>
-    </section>
+    </React.Fragment>
   );
+
+
+  if (inputScheme == "incremental") {
+    return(
+      <section className={className}>
+        <div className={s.incrementalInputWrapper}>
+          {content}
+        </div>
+        <figcaption>{caption}</figcaption>
+      </section>
+    );
+  } else {
+    return(
+      <section className={className}>
+        {content}
+        <figcaption>{caption}</figcaption>
+      </section>
+    );
+  }
 };

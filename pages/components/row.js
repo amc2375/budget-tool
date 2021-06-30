@@ -35,6 +35,7 @@ export default function Row(props) {
   const generateCaption = () => {
     switch(inputScheme) {
       case "slider":
+      case "incremental":
         return userSelectedBudgetValues[budgetCategory.id] + "%";
       case "amountAsText":
       if (
@@ -55,8 +56,6 @@ export default function Row(props) {
           let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
           return `($${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion)`;
         }
-      case "incremental":
-        break;
     }
   };
 
