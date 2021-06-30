@@ -64,7 +64,7 @@ export default function Form(props) {
     data.categories.sort((a, b) => alphabetSort(a.name, b.name));
     let assignedBudgetCategoryValues = {};
     data.categories.map(budgetCategory => {
-      assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total);
+      assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total).toString();
     });
     // save the object of category keys and budget point values
     setUserSelectedBudgetValues(assignedBudgetCategoryValues);
@@ -99,7 +99,7 @@ export default function Form(props) {
     let key = event.target.name;
     switch(inputScheme) {
       case "slider":
-        let value = parseFloat(parseFloat(event.target.value).toFixed(2));
+        let value = parseFloat(parseFloat(event.target.value).toFixed(2)).toString();
         setUserSelectedBudgetValues({
           ...userSelectedBudgetValues,
           [key]: value
@@ -108,7 +108,6 @@ export default function Form(props) {
       case "percentageAsText":
         if (validateUserInput(event.target.value)) {
           let value = parseFloat(event.target.value);
-          console.log(event.target.value);
           setUserSelectedBudgetValues({
             ...userSelectedBudgetValues,
             [key]: value
@@ -127,7 +126,7 @@ export default function Form(props) {
   // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(userSelectedBudgetValues).length > 0) {
-      setAllocatedTotalPercentage(Object.values(userSelectedBudgetValues).reduce((a, b) => a + b));
+      setAllocatedTotalPercentage(Object.values(userSelectedBudgetValues).reduce((a, b) => parseFloat(a) + parseFloat(b)));
     }
   }, [userSelectedBudgetValues])
 
@@ -140,7 +139,7 @@ export default function Form(props) {
     let countOfKeys = categoryKeys.length
     let multiplier = 100 / allocatedTotalPercentage;
     categoryKeys.forEach(key => {
-      let value = parseFloat((userSelectedBudgetValues[key] * multiplier).toFixed(2));
+      let value = parseFloat((userSelectedBudgetValues[key] * multiplier).toFixed(2)).toString();
       newSelectedBudgetValues = {
         ...newSelectedBudgetValues,
         [key]: value
@@ -176,7 +175,7 @@ export default function Form(props) {
 
   /* now for HTML generation */
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
-    console.log(userSelectedBudgetValues)
+    console.log(userSelectedBudgetValues);
     return (
       <div className={s.body}>
         <form className={s.form}>
