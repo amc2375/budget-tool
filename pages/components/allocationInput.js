@@ -22,6 +22,7 @@ export default function AllocationInput(props) {
       className = s.formRowSectionAmountAsText;
       type = "text";
       before = "$";
+      after = "Billion"
       break;
     case "percentageAsText":
       className = s.formRowSectionPercentageAsText;

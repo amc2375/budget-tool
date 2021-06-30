@@ -37,6 +37,14 @@ export default function Row(props) {
       case "slider":
         return userSelectedBudgetValues[budgetCategory.id] + "%";
       case "amountAsText":
+      if (
+        userSelectedBudgetValues[budgetCategory.id] == '' ||
+        userSelectedBudgetValues[budgetCategory.id] == '0') {
+        return "(0%)";
+      } else {
+        let ratio = parseFloat(userSelectedBudgetValues[budgetCategory.id])/(parseFloat(fixedBudgetAmount)/1000000000);
+        return `(${(ratio * 100).toFixed(2)}%)`;
+      }
         break;
       case "percentageAsText":
         if (

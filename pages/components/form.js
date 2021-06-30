@@ -61,7 +61,12 @@ export default function Form(props) {
     data.categories.sort((a, b) => alphabetSort(a.name, b.name));
     let assignedBudgetCategoryValues = {};
     data.categories.map(budgetCategory => {
-      assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total).toString();
+      if (inputScheme == "slider" || inputScheme == "percentageAsText") {
+        assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total).toString();
+      } else {
+        let valueInBillions = parseFloat(budgetCategory.amount)/1000000000
+        assignedBudgetCategoryValues[budgetCategory.id] = valueInBillions.toFixed(4).toString();
+      }
     });
     // save the object of category keys and budget point values
     setUserSelectedBudgetValues(assignedBudgetCategoryValues);
@@ -111,6 +116,15 @@ export default function Form(props) {
           });
         }
         break;
+      case "amountAsText":
+        if (validateUserInput(event.target.value)) {
+          console.log(event.target.value);
+          setUserSelectedBudgetValues({
+            ...userSelectedBudgetValues,
+            [key]: event.target.value
+          });
+        }
+        break;
     }
   }
 
@@ -132,23 +146,27 @@ export default function Form(props) {
   }, [userSelectedBudgetValues])
 
   /* handler for snap to 100% button; multiply all values by
-  100 / current allocated total. store float as string.*/
+  (if percentage input) 100 / current allocated total, or
+  (if amount as text input) total budget / current allocated total.
+  store float value as string.*/
   function handleSnap(event) {
     event.preventDefault();
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
     let countOfKeys = categoryKeys.length
-    let multiplier = 100 / parseFloat(allocatedTotal);
-    console.log("allocated total percentage:")
-    console.log(allocatedTotal);
+    let multiplier;
+    if (inputScheme == "slider" || inputScheme == "percentageAsText") {
+      multiplier = 100 / parseFloat(allocatedTotal);
+    } else {
+      multiplier = calculateFixedBudgetAmount() / (parseFloat(allocatedTotal) * 1000000000) ;
+    }
     let nonZeroFlag = false;
     categoryKeys.forEach(key => {
       let value = userSelectedBudgetValues[key]
       if (value != "0" && value != "" ) {
         nonZeroFlag = true;
-        value = (parseFloat(userSelectedBudgetValues[key]) * multiplier).toFixed(2).toString();
-        console.log("nonzero value:");
-        console.log(value);
+        let precision = (inputScheme == "slider" || inputScheme == "percentageAsText") ? 2 : 4;
+        value = (parseFloat(userSelectedBudgetValues[key]) * multiplier).toFixed(precision).toString();
       } else {
         value = "0"
       }
