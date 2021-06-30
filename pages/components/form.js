@@ -1,14 +1,13 @@
 import useSwr from "swr";
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import s from '../styles/styles.module.scss';
+import s from '../../styles/styles.module.scss';
 
 /* the following works because of the babel-plugin-inline-react-svg
 dependency. it converts an svg into a react component so that it
 can easily be used in a react script like this. see examples at
 https://github.com/vercel/next.js/tree/master/examples/svg-components
 and https://gist.github.com/iamchristough/493c60112770058566d559e6860dc4c9 */
-import ChevronDown from '../assets/chevron-down.svg';
+import Row from './row.js';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -20,7 +19,14 @@ export default function form() {
     fetcher
   );
 
-  // initialize state variables for controlling inputs in the form
+  /* initialize state variables for controlling inputs in the form.
+  these variable references and the functions to set are passed
+  down into the child components so that logic can be localized to
+  each component, but data is never passed up the tree of react
+  components; rather, the child components are furnished with the
+  ability to display and set values that can then be submitted from
+  this level in the hierarchy.
+  */
   const [userSelectedDistrict, setUserSelectedDistrict] = useState(
     ''
   );
@@ -41,7 +47,7 @@ export default function form() {
     {}
   );
 
-  // helper function for sorting data alphabetically
+  // helper function for sorting data alphabetically, to-do: move this
   const alphabetSort = (a, b) => (
     (a > b) ? 1 : ((b > a) ? -1 : 0)
   );
@@ -77,8 +83,7 @@ export default function form() {
   stored in the state. and there is a variable to track the user's
   district selection and function to update it. */
 
-  /* now we need some handlers for changed values and form submission */
-
+  /* handlers for changed values and form submission */
   function handleDistrictSelection(event) {
     setUserSelectedDistrict(event.target.value);
   }
@@ -162,54 +167,6 @@ export default function form() {
   }
 
   /* now for HTML generation */
-  // helper function to create the form rows
-  function createCategoryRowHTML(budgetCategory) {
-    let amountInBillions = Number(Math.round(budgetCategory.amount/1000000000 + 'e4') + 'e-4');
-    let formattedAmount = amountInBillions != 0 ? `$${amountInBillions} Billion` : "$0";
-    return (
-      <div>
-        <div key={budgetCategory.id} className={s.formRow}>
-          <section
-            className={s.formRowSectionHover}
-            id={budgetCategory.id}
-            onClick={handleAccordion}>
-            <ChevronDown
-              className={s.chevron}
-              id={budgetCategory.id}
-              style={accordionState[budgetCategory.id] ? {transform: 'rotate(180deg)'} : {}}/>
-            <div
-              className={s.categoryTitle}
-              id={budgetCategory.id}>{budgetCategory.name}</div>
-          </section>
-          <section className={s.formRowSection}>
-          <label>{`${budgetCategory.percentage_of_total}% (${formattedAmount})`}</label>
-          </section>
-          <section className={s.formRowSectionSlider}>
-            <input
-              name={budgetCategory.id}
-              value={userSelectedBudgetValues[budgetCategory.id]}
-              onChange={handleBudgetValueInput}
-              type="range"
-              min={0}
-              max={100}
-              step = {0.01}
-              required
-              className="slider"/>
-            <figcaption className="user-allocation-percentage">{userSelectedBudgetValues[budgetCategory.id] + "%"}</figcaption>
-          </section>
-        </div>
-        <div
-          className={s.formRow}
-          style={accordionState[budgetCategory.id] ? {} : {display: 'none'}}>
-          <section
-            className={s.accordionTextWrapper}
-            dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}/>
-        </div>
-      </div>
-    )
-  }
-
-  // finally the exported react component's return method:
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
     return (
       <div className={s.body}>
@@ -260,7 +217,14 @@ export default function form() {
                 <p>One department's budget must be <strong>decreased</strong> before increasing another.</p>
               </div>
             </div>
-            {data.categories.map(budgetCategory => createCategoryRowHTML(budgetCategory))}
+            {data.categories.map(budgetCategory => (
+              <Row
+                budgetCategory={budgetCategory}
+                accordionState={accordionState}
+                handleAccordion={handleAccordion}
+                userSelectedBudgetValues={userSelectedBudgetValues}
+                handleBudgetValueInput={handleBudgetValueInput}/>
+            ))}
             <div className={s.formFooterLineBreak}/>
             <section className={s.formFooterRow}>
               <div className={s.formFooterRowContents}>
