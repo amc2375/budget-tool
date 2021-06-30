@@ -70,7 +70,7 @@ export default function Form(props) {
     });
     // save the object of category keys and budget point values
     setUserSelectedBudgetValues(assignedBudgetCategoryValues);
-  }, [data]);
+  }, [data, inputScheme]);
 
   /* useEffect takes two arguments - one is a callback defining
   the operation(s) to perform as part of the Hook, and the other is
