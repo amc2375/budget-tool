@@ -42,10 +42,10 @@ export default function Row(props) {
         if (
           userSelectedBudgetValues[budgetCategory.id] == '' ||
           userSelectedBudgetValues[budgetCategory.id] == '0') {
-          return "$0";
+          return "($0)";
         } else {
           let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
-          return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
+          return `($${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion)`;
         }
       case "incremental":
         break;
@@ -60,6 +60,7 @@ export default function Row(props) {
     let rowAmountInBillions = formatBillionsOfDollars(amount);
     return rowAmountInBillions != 0 ? `$${rowAmountInBillions} Billion` : "$0";
   };
+
   if (Boolean(budgetCategory)) {
     return(
       <div>

@@ -11,7 +11,7 @@ export default function AllocationInput(props) {
     caption,
   } = props;
 
-  let className, type, after;
+  let className, type, before, after;
 
   switch(inputScheme) {
     case "slider":
@@ -21,6 +21,7 @@ export default function AllocationInput(props) {
     case "amountAsText":
       className = s.formRowSectionAmountAsText;
       type = "text";
+      before = "$";
       break;
     case "percentageAsText":
       className = s.formRowSectionPercentageAsText;
@@ -35,6 +36,7 @@ export default function AllocationInput(props) {
 
   return(
     <section className={className}>
+      <div className={s.beforeInput}>{before}</div>
       <input
         name={name}
         value={value}

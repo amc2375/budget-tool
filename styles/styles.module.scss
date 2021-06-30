@@ -128,7 +128,7 @@ $p2-size: 12px;
           }
         }
 
-        .formRowSectionPercentageAsText {
+        .formRowSectionPercentageAsText, .formRowSectionAmountAsText {
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -141,9 +141,16 @@ $p2-size: 12px;
             padding: 6px;
             width: 64px;
             margin-right: 2px;
+            text-align:right;
+          }
+
+          .beforeInput {
+            font-size: $p1-size;
+            margin-right: 2px;
           }
 
           .afterInput {
+            font-size: $p1-size;
             margin-right: 12px;
           }
         }
@@ -166,7 +173,7 @@ $p2-size: 12px;
         justify-content: flex-end;
         margin-top: 18px;
 
-        .formFooterRowContents {
+        .formFooterRowContentsSurplus {
           display: flex;
           padding: 0px 48px;
           margin-bottom: 18px;
@@ -181,6 +188,35 @@ $p2-size: 12px;
             border: 1px solid blue;
             padding: 8px;
             border-radius: 8px;
+          }
+
+          span {
+            display: none;
+          }
+        }
+
+        .formFooterRowContentsTotalPercentage {
+          display: flex;
+          padding: 0px 48px;
+          margin-bottom: 18px;
+
+          label {
+            margin-right: 18px;
+            padding: 8px;
+            color: $light-grey;
+          }
+
+          div {
+            border: 1px solid blue;
+            padding: 8px;
+            border-radius: 8px;
+          }
+
+          span {
+            margin-right: 48px;
+            padding: 8px;
+            color: $light-grey;
+
           }
         }
       }

@@ -2,6 +2,7 @@ import useSwr from "swr";
 import React, { useState, useEffect, useCallback } from "react";
 import s from '../../styles/styles.module.scss';
 import Row from './row.js';
+import FooterRow from './footerRow.js';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -35,12 +36,8 @@ export default function Form(props) {
     {}
   );
 
-  const [allocatedTotalPercentage, setAllocatedTotalPercentage] = useState(
+  const [allocatedTotal, setAllocatedTotal] = useState(
     100
-  );
-
-  const [allocatedTotalAmount, setAllocatedTotalAmount] = useState(
-    0
   );
 
   // helper function for sorting data alphabetically, to-do: move this
@@ -126,7 +123,7 @@ export default function Form(props) {
   // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(userSelectedBudgetValues).length > 0) {
-      setAllocatedTotalPercentage(Object.values(userSelectedBudgetValues).reduce((a, b) => {
+      setAllocatedTotal(Object.values(userSelectedBudgetValues).reduce((a, b) => {
         let addendA = (a == "") ? 0 : parseFloat(a);
         let addendB = (b == "") ? 0 : parseFloat(b);
         return addendA + addendB;
@@ -141,9 +138,9 @@ export default function Form(props) {
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
     let countOfKeys = categoryKeys.length
-    let multiplier = 100 / parseFloat(allocatedTotalPercentage);
+    let multiplier = 100 / parseFloat(allocatedTotal);
     console.log("allocated total percentage:")
-    console.log(allocatedTotalPercentage);
+    console.log(allocatedTotal);
     let nonZeroFlag = false;
     categoryKeys.forEach(key => {
       let value = userSelectedBudgetValues[key]
@@ -186,6 +183,16 @@ export default function Form(props) {
     } catch (error) {
       console.log(error);
     };
+  }
+
+  const generateFooterLabel = () => {
+    switch(inputScheme) {
+      case "slider":
+        return "Surplus";
+      case "amountAsText":
+      case "percentageAsText":
+        return "Total";
+    }
   }
 
   /* now for HTML generation */
@@ -251,10 +258,10 @@ export default function Form(props) {
             ))}
             <div className={s.formFooterLineBreak}/>
             <section className={s.formFooterRow}>
-              <div className={s.formFooterRowContents}>
-                <label>Surplus</label>
-                <div>{`${(100 - allocatedTotalPercentage).toFixed(2)}%`}</div>
-              </div>
+              <FooterRow
+                inputScheme={inputScheme}
+                allocatedTotal={allocatedTotal}
+                fixedBudgetAmount={calculateFixedBudgetAmount()}/>
             </section>
           </main>
           <div className={s.buttonContainer}>
