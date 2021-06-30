@@ -61,7 +61,7 @@ export default function Form(props) {
     data.categories.sort((a, b) => alphabetSort(a.name, b.name));
     let assignedBudgetCategoryValues = {};
     data.categories.map(budgetCategory => {
-      if (inputScheme == "slider" || inputScheme == "percentageAsText" || "incremental") {
+      if (inputScheme == "slider" || inputScheme == "percentageAsText" || inputScheme == "incremental") {
         assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total).toString();
       } else {
         let valueInBillions = parseFloat(budgetCategory.amount)/1000000000

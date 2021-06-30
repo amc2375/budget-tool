@@ -21,6 +21,7 @@ export default function FooterRow(props) {
 
   let className, label, value, after;
   switch(inputScheme) {
+    case "incremental":
     case "slider":
       className = s.formFooterRowContentsSurplus;
       label = "Surplus";
@@ -32,7 +33,7 @@ export default function FooterRow(props) {
       let ratio = (parseFloat(allocatedTotal) * 1000000000) / fixedBudgetAmount;
       console.log("allocatedTotal");
       console.log(allocatedTotal);
-      value = `$${(allocatedTotal).toFixed(4)} Billion`;
+      value = `$${(allocatedTotal).toFixed(2)} Billion`;
       after = `(${(ratio * 100).toFixed(2)}%)`;
       break;
     case "percentageAsText":
@@ -42,7 +43,6 @@ export default function FooterRow(props) {
       value = `${(allocatedTotal).toFixed(2)}%`;
       after = `(${formattedRowAmount(totalDollarAmount)})`;
       break;
-    case "incremental":
     break;
   };
 
