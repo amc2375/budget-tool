@@ -39,7 +39,9 @@ export default function Row(props) {
       case "amountAsText":
         break;
       case "percentageAsText":
-        if (userSelectedBudgetValues[budgetCategory.id] == '') {
+        if (
+          userSelectedBudgetValues[budgetCategory.id] == '' ||
+          userSelectedBudgetValues[budgetCategory.id] == '0') {
           return "$0";
         } else {
           let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;

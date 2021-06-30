@@ -126,7 +126,11 @@ export default function Form(props) {
   // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(userSelectedBudgetValues).length > 0) {
-      setAllocatedTotalPercentage(Object.values(userSelectedBudgetValues).reduce((a, b) => parseFloat(a) + parseFloat(b)));
+      setAllocatedTotalPercentage(Object.values(userSelectedBudgetValues).reduce((a, b) => {
+        let addendA = (a == "") ? 0 : parseFloat(a);
+        let addendB = (b == "") ? 0 : parseFloat(b);
+        return addendA + addendB;
+      }));
     }
   }, [userSelectedBudgetValues])
 
@@ -137,15 +141,26 @@ export default function Form(props) {
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
     let countOfKeys = categoryKeys.length
-    let multiplier = 100 / allocatedTotalPercentage;
+    let multiplier = 100 / parseFloat(allocatedTotalPercentage);
+    console.log("allocated total percentage:")
+    console.log(allocatedTotalPercentage);
+    let nonZeroFlag = false;
     categoryKeys.forEach(key => {
-      let value = parseFloat((userSelectedBudgetValues[key] * multiplier).toFixed(2)).toString();
+      let value = userSelectedBudgetValues[key]
+      if (value != "0" && value != "" ) {
+        nonZeroFlag = true;
+        value = (parseFloat(userSelectedBudgetValues[key]) * multiplier).toFixed(2).toString();
+        console.log("nonzero value:");
+        console.log(value);
+      } else {
+        value = "0"
+      }
       newSelectedBudgetValues = {
         ...newSelectedBudgetValues,
         [key]: value
       };
     });
-    setUserSelectedBudgetValues(newSelectedBudgetValues);
+    if (nonZeroFlag) setUserSelectedBudgetValues(newSelectedBudgetValues);
   }
 
   // reset user input values for the budget
