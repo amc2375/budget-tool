@@ -27,6 +27,14 @@ export default function FooterRow(props) {
       value = `${(100 - allocatedTotal).toFixed(2)}%`
       break;
     case "amountAsText":
+      className = s.formFooterRowContentsTotalAmount;
+      label = "Total";
+      let ratio = (parseFloat(allocatedTotal) * 1000000000) / fixedBudgetAmount;
+      console.log("allocatedTotal");
+      console.log(allocatedTotal);
+      value = `$${(allocatedTotal).toFixed(4)} Billion`;
+      after = `(${(ratio * 100).toFixed(2)}%)`;
+      break;
     case "percentageAsText":
       className = s.formFooterRowContentsTotalPercentage;
       label = "Total";
