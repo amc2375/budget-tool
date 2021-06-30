@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import s from '../../styles/styles.module.scss';
 
-export default function allocationInput(props) {
+export default function AllocationInput(props) {
+
   const {
     inputScheme,
     name,

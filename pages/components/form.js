@@ -1,11 +1,13 @@
 import useSwr from "swr";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import s from '../../styles/styles.module.scss';
 import Row from './row.js';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function form() {
+export default function Form(props) {
+
+  const { inputScheme } = props;
 
   // get from api/form
   const { data, error } = useSwr(
@@ -33,8 +35,12 @@ export default function form() {
     {}
   );
 
-  const [allocatedTotal, setAllocatedTotal] = useState(
+  const [allocatedTotalPercentage, setAllocatedTotalPercentage] = useState(
     100
+  );
+
+  const [allocatedTotalAmount, setAllocatedTotalAmount] = useState(
+    0
   );
 
   // helper function for sorting data alphabetically, to-do: move this
@@ -42,9 +48,19 @@ export default function form() {
     (a > b) ? 1 : ((b > a) ? -1 : 0)
   );
 
+  // helper function to calculate total $ amount; move to api side
+  const calculateFixedBudgetAmount = () => {
+    let sum = 0;
+    data.categories.forEach(category => {
+      sum = sum + category.amount;
+    });
+    return sum;
+  };
+
   /* helper function used to initialize and reset userSelectedBudgetValues;
-  map category ID (key) to default value (value) in pairs */
-  const resetAssignedBudgetCategoryValues = () => {
+  map category ID (key) to default value (value) in pairs. useCallback
+  documentation is here: https://reactjs.org/docs/hooks-reference.html#usecallback */
+  const resetAssignedBudgetCategoryValues = useCallback(() => {
     data.categories.sort((a, b) => alphabetSort(a.name, b.name));
     let assignedBudgetCategoryValues = {};
     data.categories.map(budgetCategory => {
@@ -52,7 +68,7 @@ export default function form() {
     });
     // save the object of category keys and budget point values
     setUserSelectedBudgetValues(assignedBudgetCategoryValues);
-  };
+  }, [data]);
 
   /* useEffect takes two arguments - one is a callback defining
   the operation(s) to perform as part of the Hook, and the other is
@@ -65,7 +81,7 @@ export default function form() {
       resetAssignedBudgetCategoryValues();
     };
 
-  }, [data]);
+  }, [data, resetAssignedBudgetCategoryValues]);
 
   /* handlers for changed values and form submission */
   function handleDistrictSelection(event) {
@@ -81,17 +97,37 @@ export default function form() {
   the 'step' attribute set on it. then save the state*/
   function handleBudgetValueInput(event) {
     let key = event.target.name;
-    let value = parseFloat(parseFloat(event.target.value).toFixed(2));
-    setUserSelectedBudgetValues({
-      ...userSelectedBudgetValues,
-      [key]: value
-    });
+    switch(inputScheme) {
+      case "slider":
+        let value = parseFloat(parseFloat(event.target.value).toFixed(2));
+        setUserSelectedBudgetValues({
+          ...userSelectedBudgetValues,
+          [key]: value
+        });
+        break;
+      case "percentageAsText":
+        if (validateUserInput(event.target.value)) {
+          let value = parseFloat(event.target.value);
+          console.log(event.target.value);
+          setUserSelectedBudgetValues({
+            ...userSelectedBudgetValues,
+            [key]: value
+          });
+        }
+        break;
+    }
   }
 
-  // this should run after handleBudgetValueInput, before render
+  // helper to validate user input for integers and floats
+  const validateUserInput = (value) => {
+    const re = /^([0-9]*)(\.{1})?([0-9]*)+$/;
+    return value === '' || re.test(value)
+  }
+
+  // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(userSelectedBudgetValues).length > 0) {
-      setAllocatedTotal(Object.values(userSelectedBudgetValues).reduce((a, b) => a + b));
+      setAllocatedTotalPercentage(Object.values(userSelectedBudgetValues).reduce((a, b) => a + b));
     }
   }, [userSelectedBudgetValues])
 
@@ -102,7 +138,7 @@ export default function form() {
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
     let countOfKeys = categoryKeys.length
-    let multiplier = 100 / allocatedTotal;
+    let multiplier = 100 / allocatedTotalPercentage;
     categoryKeys.forEach(key => {
       let value = parseFloat((userSelectedBudgetValues[key] * multiplier).toFixed(2));
       newSelectedBudgetValues = {
@@ -140,11 +176,12 @@ export default function form() {
 
   /* now for HTML generation */
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
+    console.log(userSelectedBudgetValues)
     return (
       <div className={s.body}>
         <form className={s.form}>
           <header className={s.formTitle}>
-            <strong>People's Vision for the Bronx</strong>
+            <strong>People&apos;s Vision for the Bronx</strong>
             <p>Participatory Budgeting Survey</p>
           </header>
           <div className={s.localeDetails}>
@@ -186,21 +223,23 @@ export default function form() {
               </div>
               <div className={s.formLabel}>
                 <label>Your Allocation</label>
-                <p>One department's budget must be <strong>decreased</strong> before increasing another.</p>
+                <p>One department&apos;s budget must be <strong>decreased</strong> before increasing another.</p>
               </div>
             </div>
             {data.categories.map(budgetCategory => (
               <Row
+                inputScheme={inputScheme}
                 key={budgetCategory.id}
                 budgetCategory={budgetCategory}
                 userSelectedBudgetValues={userSelectedBudgetValues}
-                handleBudgetValueInput={handleBudgetValueInput}/>
+                handleBudgetValueInput={handleBudgetValueInput}
+                fixedBudgetAmount={calculateFixedBudgetAmount()}/>
             ))}
             <div className={s.formFooterLineBreak}/>
             <section className={s.formFooterRow}>
               <div className={s.formFooterRowContents}>
                 <label>Surplus</label>
-                <div>{`${(100 - allocatedTotal).toFixed(2)}%`}</div>
+                <div>{`${(100 - allocatedTotalPercentage).toFixed(2)}%`}</div>
               </div>
             </section>
           </main>

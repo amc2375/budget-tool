@@ -10,12 +10,14 @@ and https://gist.github.com/iamchristough/493c60112770058566d559e6860dc4c9 */
 import ChevronDown from '../../assets/chevron-down.svg';
 
 /* https://dev.to/pnkfluffy/passing-data-from-child-to-parent-with-react-hooks-1ji3 */
-export default function row(props) {
+export default function Row(props) {
 
   const {
+    inputScheme,
     budgetCategory,
     userSelectedBudgetValues,
     handleBudgetValueInput,
+    fixedBudgetAmount
   } = props;
 
   const [accordionOpen, setAccordionOpen] = useState(
@@ -29,41 +31,65 @@ export default function row(props) {
     setAccordionOpen(!accordionOpen);
   };
 
-  const amountInBillions = Number(Math.round(budgetCategory.amount/1000000000 + 'e4') + 'e-4');
-  const formattedAmount = amountInBillions != 0 ? `$${amountInBillions} Billion` : "$0";
+  // conditionally generate caption for each input scheme
+  const generateCaption = () => {
+    switch(inputScheme) {
+      case "slider":
+        return userSelectedBudgetValues[budgetCategory.id] + "%";
+      case "amountAsText":
+        break;
+      case "percentageAsText":
+        let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id]);
+        return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
+      case "incremental":
+        break;
+    }
+  };
 
-  return(
-    <div>
-      <div key={budgetCategory.id} className={s.formRow}>
-        <section
-          className={s.formRowSectionHover}
-          id={budgetCategory.id}
-          onClick={handleAccordion}>
-          <ChevronDown
-            className={s.chevron}
-            id={budgetCategory.id}
-            style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
-          <div
-            className={s.categoryTitle}
-            id={budgetCategory.id}>{budgetCategory.name}</div>
-        </section>
-        <section className={s.formRowSection}>
-        <label>{`${budgetCategory.percentage_of_total}% (${formattedAmount})`}</label>
-        </section>
-        <AllocationInput
-          inputScheme={"slider"}
-          name={budgetCategory.id}
-          value={userSelectedBudgetValues[budgetCategory.id]}
-          handler={handleBudgetValueInput}
-          caption={userSelectedBudgetValues[budgetCategory.id] + "%"}/>
-      </div>
-      <div
-        className={s.formRow}
-        style={accordionOpen ? {} : {display: 'none'}}>
-        <section
-          className={s.accordionTextWrapper}
-          dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}/>
-      </div>
-    </div>
+  const formatBillionsOfDollars = (amount) => (
+    Number(Math.round(amount/1000000000 + 'e4') + 'e-4')
   );
-};
+
+  const formattedRowAmount = (amount) => {
+    let rowAmountInBillions = formatBillionsOfDollars(amount);
+    return rowAmountInBillions != 0 ? `$${rowAmountInBillions} Billion` : "$0";
+  };
+  if (Boolean(budgetCategory)) {
+    return(
+      <div>
+        <div key={budgetCategory.id} className={s.formRow}>
+          <section
+            className={s.formRowSectionHover}
+            id={budgetCategory.id}
+            onClick={handleAccordion}>
+            <ChevronDown
+              className={s.chevron}
+              id={budgetCategory.id}
+              style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
+            <div
+              className={s.categoryTitle}
+              id={budgetCategory.id}>{budgetCategory.name}</div>
+          </section>
+          <section className={s.formRowSection}>
+          <label>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</label>
+          </section>
+          <AllocationInput
+            inputScheme={inputScheme}
+            name={budgetCategory.id}
+            value={userSelectedBudgetValues[budgetCategory.id]}
+            handler={handleBudgetValueInput}
+            caption={generateCaption()}/>
+        </div>
+        <div
+          className={s.formRow}
+          style={accordionOpen ? {} : {display: 'none'}}>
+          <section
+            className={s.accordionTextWrapper}
+            dangerouslySetInnerHTML={{ __html: budgetCategory.descriptive_html }}/>
+        </div>
+      </div>
+    );
+  } else {
+    return <div></div>
+  }
+}
