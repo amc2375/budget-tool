@@ -1,12 +1,6 @@
 import useSwr from "swr";
 import React, { useState, useEffect } from "react";
 import s from '../../styles/styles.module.scss';
-
-/* the following works because of the babel-plugin-inline-react-svg
-dependency. it converts an svg into a react component so that it
-can easily be used in a react script like this. see examples at
-https://github.com/vercel/next.js/tree/master/examples/svg-components
-and https://gist.github.com/iamchristough/493c60112770058566d559e6860dc4c9 */
 import Row from './row.js';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -43,10 +37,6 @@ export default function form() {
     100
   );
 
-  const [accordionState, setAccordionState] = useState(
-    {}
-  );
-
   // helper function for sorting data alphabetically, to-do: move this
   const alphabetSort = (a, b) => (
     (a > b) ? 1 : ((b > a) ? -1 : 0)
@@ -76,12 +66,6 @@ export default function form() {
     };
 
   }, [data]);
-
-  /* userSelectedBudgetValues is the variable that points to a slice
-  of state that looks like the assignedBudgetCategoryValues object.
-  function setUserInputValues can be used to update the values
-  stored in the state. and there is a variable to track the user's
-  district selection and function to update it. */
 
   /* handlers for changed values and form submission */
   function handleDistrictSelection(event) {
@@ -133,18 +117,6 @@ export default function form() {
   function handleReset(event) {
     event.preventDefault();
     resetAssignedBudgetCategoryValues();
-  }
-
-  /* this is the accordion handler. when a user clicks on the ChevronDown
-  component, the details for the row will display below the row. the
-  state of which accordions are active is tracked via the accordionState
-  variable */
-  function handleAccordion(event) {
-    event.preventDefault();
-    setAccordionState({
-      ...accordionState,
-      [event.target.id]: (!accordionState[event.target.id])
-    });
   }
 
   // post the results of the survey
@@ -219,9 +191,8 @@ export default function form() {
             </div>
             {data.categories.map(budgetCategory => (
               <Row
+                key={budgetCategory.id}
                 budgetCategory={budgetCategory}
-                accordionState={accordionState}
-                handleAccordion={handleAccordion}
                 userSelectedBudgetValues={userSelectedBudgetValues}
                 handleBudgetValueInput={handleBudgetValueInput}/>
             ))}
