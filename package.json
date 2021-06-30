@@ -18,18 +18,18 @@
     "react-dom": "^17.0.2",
     "swr": "^0.1.18"
   },
-  "eslintConfig" : {
+  "eslintConfig": {
     "extends": "next",
     "parserOptions": {
-        "ecmaVersion": 8,
-        "sourceType": "module"
-      }
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    }
   },
   "license": "MIT",
   "devDependencies": {
     "eslint": "^7.29.0",
     "eslint-config-next": "^11.0.1",
-    "node-sass": "^6.0.0",
+    "sass": "^1.35.1",
     "sass-loader": "^11.1.1"
   }
 }
