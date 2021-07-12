@@ -61,10 +61,9 @@ export default function AllocationInput(props) {
       type = "range";
       before = <IncrementalButtons
         domElementName={name}
-        leftButtonClassName={s.decreaseButtonOne}
+        leftButtonClassName={s.decreaseButtonPointOne}
         leftButtonValue={-.1}
-        leftDisplayBefore={""}
-        leftDisplayAfter={"%"}
+        leftDisplayBefore={"-"}
         handler={handler}
         inputScheme={inputScheme}
         side={"left"}/>;
@@ -75,12 +74,10 @@ export default function AllocationInput(props) {
             leftButtonClassName={s.increaseButtonPointOne}
             leftButtonValue={0.1}
             leftDisplayBefore={"+"}
-            leftDisplayAfter={"%"}
             handler={handler}
             inputScheme={inputScheme}
             side={"right"}/>
           <input
-            disabled={(inputScheme == "incremental") ? true : false}
             name={name}
             value={value}
             onChange={handler}
@@ -97,7 +94,7 @@ export default function AllocationInput(props) {
 
   const content = (
     <React.Fragment>
-      <div className={s.beforeInput}>{before}</div>
+      {before}
       <input
         disabled={(inputScheme == "incremental") ? true : false}
         name={name}
@@ -108,12 +105,21 @@ export default function AllocationInput(props) {
         max={100}
         step = {0.01}
         required/>
-      <div className={s.afterInput}>{after}</div>
+      {after}
     </React.Fragment>
   );
 
 
-  if (inputScheme == "incremental" || inputScheme == "combo") {
+  if (inputScheme == "combo") {
+    return(
+      <section className={className}>
+        <div className={s.incrementalInputWrapperCombo}>
+          {content}
+        </div>
+        <figcaption>{caption}</figcaption>
+      </section>
+    );
+  } else if (inputScheme == "incremental") {
     return(
       <section className={className}>
         <div className={s.incrementalInputWrapper}>

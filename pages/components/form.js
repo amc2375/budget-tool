@@ -235,11 +235,11 @@ export default function Form(props) {
         <div className={s.formLabelsRow}>
           <div className={s.formLabel}>
             <label>Current Allocation</label>
-            <p>As of the 2020 NYC Budget</p>
+            <p>Click a department to learn more</p>
           </div>
           <div className={s.formLabel}>
             <label>Your Allocation</label>
-            <p>One department&apos;s budget must be <strong>decreased</strong> before increasing another.</p>
+            <p>Drag the slider or enter a percentage.</p>
           </div>
           <div className={s.formLabel}>
 

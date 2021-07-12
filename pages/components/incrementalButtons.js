@@ -36,6 +36,6 @@ export default function IncrementalButtons(props) {
       name={domElementName}
       value={leftButtonValue}
       className={leftButtonClassName}
-      onClick={handler}>{leftDisplayBefore}{leftButtonValue}{leftDisplayAfter}</button>
+      onClick={handler}>{leftDisplayBefore}</button>
   )
 };

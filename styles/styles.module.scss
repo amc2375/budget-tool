@@ -76,6 +76,7 @@ $p2-size: 12px;
       .formLabelsRow {
         padding: 36px 48px 12px 48px;
         display: flex;
+        margin-left: 42px;
 
         .formLabel {
           flex: 1;
@@ -85,6 +86,7 @@ $p2-size: 12px;
             font-size: $p1-size;
             font-weight: bold;
             padding-bottom: 6px;
+            color: $blue
           }
 
           p {
@@ -93,7 +95,7 @@ $p2-size: 12px;
         }
       }
 
-      .formRow {
+      .formRow, .formRowCombo {
         padding: 12px 48px;
         display: flex;
 
@@ -261,7 +263,40 @@ $p2-size: 12px;
 
         .formRowSectionCombo {
 
+
+
+          .decreaseButtonPointOne {
+            border: 1px solid $red;
+            border-radius: 4px;
+            color: $white;
+            background-color: $red;
+            padding: 6px;
+            margin-right: 4px;
+            width: 28px;
+          }
+
+          .increaseButtonPointOne {
+            border: 1px solid $blue;
+            border-radius: 4px;
+            color: $white;
+            background-color: $blue;
+            padding: 6px;
+            margin-right: 4px;
+            width: 28px;
+          }
+
+
         }
+
+      }
+
+      .formRowCombo {
+
+        .formRowSection {
+          padding-left: 33px;
+          color: $light-grey
+        }
+
       }
 
       .accordionTextWrapper {
