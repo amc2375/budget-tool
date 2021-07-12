@@ -37,13 +37,13 @@ export default function FooterRow(props) {
       after = `(${(ratio * 100).toFixed(2)}%)`;
       break;
     case "percentageAsText":
+    case "combo":
       className = s.formFooterRowContentsTotalPercentage;
       label = "Total";
       let totalDollarAmount = (parseFloat(allocatedTotal)/100) * fixedBudgetAmount;
       value = `${(allocatedTotal).toFixed(2)}%`;
       after = `(${formattedRowAmount(totalDollarAmount)})`;
       break;
-    break;
   };
 
   return(

@@ -261,8 +261,36 @@ $p2-size: 12px;
           }
         }
 
-        .formRowSectionCombo {
+      }
 
+      .formRowCombo {
+
+        .formRowSection {
+          padding-left: 33px;
+          color: $light-grey
+        }
+
+        .spaghettiDiv {
+          flex: 1;
+        }
+
+        .formRowSectionCombo {
+          flex: 2;
+          padding-left: 48px;
+
+          input[type=range]{
+            width: 100%;
+          }
+
+          input[type=text] {
+            font-size: $p1-size;
+            border-radius: 8px;
+            border: 1px solid #7B7B7B;
+            padding: 4px;
+            width: 64px;
+            margin-right: 2px;
+            text-align:right;
+          }
 
 
           .decreaseButtonPointOne {
@@ -285,16 +313,6 @@ $p2-size: 12px;
             width: 28px;
           }
 
-
-        }
-
-      }
-
-      .formRowCombo {
-
-        .formRowSection {
-          padding-left: 33px;
-          color: $light-grey
         }
 
       }

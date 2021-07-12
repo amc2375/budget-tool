@@ -113,9 +113,7 @@ export default function AllocationInput(props) {
   if (inputScheme == "combo") {
     return(
       <section className={className}>
-        <div className={s.incrementalInputWrapperCombo}>
           {content}
-        </div>
         <figcaption>{caption}</figcaption>
       </section>
     );

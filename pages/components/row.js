@@ -75,7 +75,7 @@ export default function Row(props) {
       case "combo":
         return (
           <div key={budgetCategory.id} className={s.formRowCombo}>
-            <div>
+            <div className={s.spaghettiDiv}>
               <section
                 className={s.formRowSectionHover}
                 id={budgetCategory.id}

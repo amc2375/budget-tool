@@ -136,15 +136,15 @@ export default function Form(props) {
         });
         break;
       case "combo":
+        event.preventDefault();
         let val;
-        if (textInput) {
-
-        } else if (sliderInput) {
-
-        } else if (incrementerInput) {
-
+        if (event.target.tagName == "BUTTON") {
+          incrementalChange = parseFloat(parseFloat(event.target.value).toFixed(2));
+          oldValue = parseFloat(parseFloat(userSelectedBudgetValues[key]).toFixed(2));
+          val = (oldValue + parseFloat(parseFloat(incrementalChange).toFixed(2))).toString();
+        } else {
+          val = event.target.value
         }
-
         setUserSelectedBudgetValues({
           ...userSelectedBudgetValues,
           [key]: val
