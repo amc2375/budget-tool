@@ -61,7 +61,7 @@ export default function Form(props) {
     data.categories.sort((a, b) => alphabetSort(a.name, b.name));
     let assignedBudgetCategoryValues = {};
     data.categories.map(budgetCategory => {
-      if (inputScheme == "slider" || inputScheme == "percentageAsText" || inputScheme == "incremental") {
+      if (inputScheme == "slider" || inputScheme == "percentageAsText" || inputScheme == "incremental" || inputScheme == "combo") {
         assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total).toString();
       } else {
         let valueInBillions = parseFloat(budgetCategory.amount)/1000000000
@@ -133,6 +133,21 @@ export default function Form(props) {
         setUserSelectedBudgetValues({
           ...userSelectedBudgetValues,
           [key]: newValue
+        });
+        break;
+      case "combo":
+        let val;
+        if (textInput) {
+
+        } else if (sliderInput) {
+
+        } else if (incrementerInput) {
+
+        }
+
+        setUserSelectedBudgetValues({
+          ...userSelectedBudgetValues,
+          [key]: val
         });
         break;
     }
@@ -213,13 +228,41 @@ export default function Form(props) {
     };
   }
 
-  const generateFooterLabel = () => {
+  const getFormLabelsRow = () => {
     switch(inputScheme) {
-      case "slider":
-        return "Surplus";
-      case "amountAsText":
-      case "percentageAsText":
-        return "Total";
+      case "combo":
+      return (
+        <div className={s.formLabelsRow}>
+          <div className={s.formLabel}>
+            <label>Current Allocation</label>
+            <p>As of the 2020 NYC Budget</p>
+          </div>
+          <div className={s.formLabel}>
+            <label>Your Allocation</label>
+            <p>One department&apos;s budget must be <strong>decreased</strong> before increasing another.</p>
+          </div>
+          <div className={s.formLabel}>
+
+          </div>
+        </div>
+      )
+      default:
+        return (
+          <div className={s.formLabelsRow}>
+            <div className={s.formLabel}>
+              <label>Department</label>
+              <p>Click a department to learn more</p>
+            </div>
+            <div className={s.formLabel}>
+              <label>Current Allocation</label>
+              <p>As of the 2020 NYC Budget</p>
+            </div>
+            <div className={s.formLabel}>
+              <label>Your Allocation</label>
+              <p>One department&apos;s budget must be <strong>decreased</strong> before increasing another.</p>
+            </div>
+          </div>
+        )
     }
   }
 
@@ -261,20 +304,7 @@ export default function Form(props) {
             </div>
           </div>
           <main className={s.formBody}>
-            <div className={s.formLabelsRow}>
-              <div className={s.formLabel}>
-                <label>Department</label>
-                <p>Click a department to learn more</p>
-              </div>
-              <div className={s.formLabel}>
-                <label>Current Allocation</label>
-                <p>As of the 2020 NYC Budget</p>
-              </div>
-              <div className={s.formLabel}>
-                <label>Your Allocation</label>
-                <p>One department&apos;s budget must be <strong>decreased</strong> before increasing another.</p>
-              </div>
-            </div>
+            {getFormLabelsRow()}
             {data.categories.map(budgetCategory => (
               <Row
                 inputScheme={inputScheme}

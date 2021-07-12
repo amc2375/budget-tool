@@ -56,6 +56,43 @@ export default function AllocationInput(props) {
         rightDisplayAfter={"%"}
         handler={handler}/>;
       break;
+    case "combo":
+      className = s.formRowSectionCombo;
+      type = "range";
+      before = <IncrementalButtons
+        domElementName={name}
+        leftButtonClassName={s.decreaseButtonOne}
+        leftButtonValue={-.1}
+        leftDisplayBefore={""}
+        leftDisplayAfter={"%"}
+        handler={handler}
+        inputScheme={inputScheme}
+        side={"left"}/>;
+      after = (
+        <React.Fragment>
+          <IncrementalButtons
+            domElementName={name}
+            leftButtonClassName={s.increaseButtonPointOne}
+            leftButtonValue={0.1}
+            leftDisplayBefore={"+"}
+            leftDisplayAfter={"%"}
+            handler={handler}
+            inputScheme={inputScheme}
+            side={"right"}/>
+          <input
+            disabled={(inputScheme == "incremental") ? true : false}
+            name={name}
+            value={value}
+            onChange={handler}
+            type={"text"}
+            min={0}
+            max={100}
+            step = {0.01}
+            required/>
+          <div className={s.afterInput}>{"%"}</div>
+        </React.Fragment>
+      );
+      break;
   }
 
   const content = (
@@ -76,7 +113,7 @@ export default function AllocationInput(props) {
   );
 
 
-  if (inputScheme == "incremental") {
+  if (inputScheme == "incremental" || inputScheme == "combo") {
     return(
       <section className={className}>
         <div className={s.incrementalInputWrapper}>
