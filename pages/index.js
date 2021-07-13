@@ -21,6 +21,9 @@ export default function Index() {
     case "D":
       inputScheme = "incremental";
       break;
+    case "E":
+      inputScheme = "combo";
+      break;
     default:
       inputScheme = "slider";
       break;

@@ -13,10 +13,12 @@ export default function IncrementalButtons(props) {
     rightButtonValue,
     rightDisplayBefore,
     rightDisplayAfter,
-    handler
+    handler,
+    inputScheme,
+    side
   } = props;
 
-  return(
+  return (inputScheme != "combo") ? (
     <React.Fragment>
       <button
         name={domElementName}
@@ -29,5 +31,11 @@ export default function IncrementalButtons(props) {
         className={rightButtonClassName}
         onClick={handler}>{rightDisplayBefore}{rightButtonValue}{rightDisplayAfter}</button>
     </React.Fragment>
-  );
+  ) : (
+    <button
+      name={domElementName}
+      value={leftButtonValue}
+      className={leftButtonClassName}
+      onClick={handler}>{leftDisplayBefore}</button>
+  )
 };

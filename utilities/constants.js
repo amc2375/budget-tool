@@ -57,13 +57,13 @@ export const BRONX_COUNCIL_DISTRICTS = [
 
 // these are JSON mocks of bcdi.categories objects
 export const BRONX_FY2022_BUDGET = [
-  {
-    id: 1,
-    name: "Debt Service",
-    descriptive_html: '<p>The payment of interest and principal on debt outstanding.</p>',
-    amount: 0.00,
-    percentage_of_total: 0.0
-  },
+  // {
+  //   id: 1,
+  //   name: "Debt Service",
+  //   descriptive_html: '<p>The payment of interest and principal on debt outstanding.</p>',
+  //   amount: 0.00,
+  //   percentage_of_total: 0.0
+  // },
   {
     id: 2,
     name: "General Government",
@@ -141,13 +141,13 @@ export const BRONX_FY2022_BUDGET = [
     amount:  810997000.00,
     percentage_of_total: 1.10
   },
-  {
-    id: 13,
-    name: "Pension & Fringe Benefits",
-    descriptive_html: '<p>Pension and Fringe benefit charges pay for retirement benefits, health insurance, short-term disability insurance, mandatory life insurance, FICA and other benefits.</p>',
-    amount: 0.00,
-    percentage_of_total: 0.0
-  },
+  // {
+  //   id: 13,
+  //   name: "Pension & Fringe Benefits",
+  //   descriptive_html: '<p>Pension and Fringe benefit charges pay for retirement benefits, health insurance, short-term disability insurance, mandatory life insurance, FICA and other benefits.</p>',
+  //   amount: 0.00,
+  //   percentage_of_total: 0.0
+  // },
   {
     id: 14,
     name: "Fire",
@@ -155,11 +155,11 @@ export const BRONX_FY2022_BUDGET = [
     amount: 2171878000.00,
     percentage_of_total: 2.95
   },
-  {
-    id: 15,
-    name: "Misc",
-    descriptive_html: '<p>Non-Departmental are funds set aside for other miscellaneous reasons.</p>',
-    amount: 0.00,
-    percentage_of_total: 0.0
-  },
+  // {
+  //   id: 15,
+  //   name: "Misc",
+  //   descriptive_html: '<p>Non-Departmental are funds set aside for other miscellaneous reasons.</p>',
+  //   amount: 0.00,
+  //   percentage_of_total: 0.0
+  // },
 ];

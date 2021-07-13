@@ -56,11 +56,22 @@ export default function Row(props) {
           let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
           return `($${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion)`;
         }
+        break;
+      case "combo":
+      if (
+        userSelectedBudgetValues[budgetCategory.id] == '' ||
+        userSelectedBudgetValues[budgetCategory.id] == '0') {
+        return "($0)";
+      } else {
+        let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
+        return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
+      }
+      break;
     }
   };
 
   const formatBillionsOfDollars = (amount) => (
-    Number(Math.round(amount/1000000000 + 'e4') + 'e-4')
+    Number(Math.round(amount/1000000000 + 'e2') + 'e-2')
   );
 
   const formattedRowAmount = (amount) => {
@@ -68,9 +79,38 @@ export default function Row(props) {
     return rowAmountInBillions != 0 ? `$${rowAmountInBillions} Billion` : "$0";
   };
 
-  if (Boolean(budgetCategory)) {
-    return(
-      <div>
+  const getRowContent = () => {
+    switch(inputScheme) {
+      case "combo":
+        return (
+          <div key={budgetCategory.id} className={s.formRowCombo}>
+            <div className={s.spaghettiDiv}>
+              <section
+                className={s.formRowSectionHover}
+                id={budgetCategory.id}
+                onClick={handleAccordion}>
+                <ChevronDown
+                  className={s.chevron}
+                  id={budgetCategory.id}
+                  style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
+                <div
+                  className={s.categoryTitle}
+                  id={budgetCategory.id}>{budgetCategory.name}</div>
+              </section>
+              <section className={s.formRowSection}>
+                <div>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</div>
+              </section>
+            </div>
+            <AllocationInput
+              inputScheme={inputScheme}
+              name={budgetCategory.id}
+              value={userSelectedBudgetValues[budgetCategory.id]}
+              handler={handleBudgetValueInput}
+              caption={generateCaption()}/>
+          </div>
+        );
+      default:
+      return (
         <div key={budgetCategory.id} className={s.formRow}>
           <section
             className={s.formRowSectionHover}
@@ -85,7 +125,7 @@ export default function Row(props) {
               id={budgetCategory.id}>{budgetCategory.name}</div>
           </section>
           <section className={s.formRowSection}>
-          <label>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</label>
+            <label>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</label>
           </section>
           <AllocationInput
             inputScheme={inputScheme}
@@ -94,6 +134,14 @@ export default function Row(props) {
             handler={handleBudgetValueInput}
             caption={generateCaption()}/>
         </div>
+      );
+    }
+  };
+
+  if (Boolean(budgetCategory)) {
+    return(
+      <div>
+        {getRowContent()}
         <div
           className={s.formRow}
           style={accordionOpen ? {} : {display: 'none'}}>

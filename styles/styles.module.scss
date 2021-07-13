@@ -4,10 +4,12 @@
 $color-background: #E5E5E5;
 $color-base: #F5F5F5;
 $white: #FFFFFF;
+$black: #151515;
 
 // font colors
 $light-grey: #939393;
 $very-light-grey: #B2B2B2;
+$sort-of-light-grey: #636363;
 
 // button colors
 $red: #C91E1E;
@@ -19,7 +21,7 @@ $h1-size: 60.8px;
 $h2-size: 40.5px;
 $h3-size: 27px;
 $p1-size: 18px;
-$p2-size: 12px;
+$p2-size: 13px;
 
 .body {
   background-color: $color-background;
@@ -29,15 +31,22 @@ $p2-size: 12px;
   margin: 0;
   width: 100%;
   font-family: $font-stack-helvetica;
+  color: $black;
+  min-width: 1065px;
 
   .form {
     background-color: $color-base;
-    margin: 10%;
+    margin: 0;
     padding: 120px 100px 200px 100px;
     min-width: 580px;
 
     .formTitle {
       font-size: $h2-size;
+      margin-left: 90px;
+
+      strong {
+        color: $blue;
+      }
 
       p {
         margin-top: 16px;
@@ -47,13 +56,13 @@ $p2-size: 12px;
 
     .localeDetails {
       display: flex;
-      padding-right: 20%;
       margin-bottom: 36px;
       font-size: $p1-size;
+      margin-left: 42px;
+      padding: 0px 48px;
 
       div {
         flex: 1;
-        padding: 0px 20px;
 
         label {
           display: block;
@@ -76,6 +85,7 @@ $p2-size: 12px;
       .formLabelsRow {
         padding: 36px 48px 12px 48px;
         display: flex;
+        margin-left: 42px;
 
         .formLabel {
           flex: 1;
@@ -85,6 +95,7 @@ $p2-size: 12px;
             font-size: $p1-size;
             font-weight: bold;
             padding-bottom: 6px;
+            color: $blue
           }
 
           p {
@@ -93,8 +104,8 @@ $p2-size: 12px;
         }
       }
 
-      .formRow {
-        padding: 12px 48px;
+      .formRow, .formRowCombo {
+        padding: 0px 48px;
         display: flex;
 
         .formRowSectionHover,
@@ -102,11 +113,16 @@ $p2-size: 12px;
         .formRowSectionSlider,
         .formRowSectionPercentageAsText,
         .formRowSectionAmountAsText,
-        .formRowSectionIncremental {
+        .formRowSectionIncremental,
+        .formRowSectionCombo {
           flex: 1;
           display: flex;
           align-items: center;
           margin: 12px;
+
+          label {
+            padding-left: 18px;
+          }
         }
 
         .formRowSectionHover:hover {
@@ -126,6 +142,7 @@ $p2-size: 12px;
           input[type=range]{
             width: 100%;
           }
+
         }
 
         .formRowSectionPercentageAsText {
@@ -152,6 +169,12 @@ $p2-size: 12px;
           .afterInput {
             font-size: $p1-size;
             margin-right: 12px;
+          }
+
+          figcaption {
+            color: $sort-of-light-grey;
+            font-size: $p2-size;
+            padding-left: 12px;
           }
         }
 
@@ -185,6 +208,7 @@ $p2-size: 12px;
             width: 48px;
             max-width: 48px;
           }
+
         }
 
         .formRowSectionIncremental {
@@ -257,6 +281,88 @@ $p2-size: 12px;
             max-width: 48px;
           }
         }
+
+      }
+
+      .formRowCombo {
+
+        .formRowSection {
+          padding-left: 33px;
+          color: $light-grey
+        }
+
+        .spaghettiDiv {
+          flex: 1;
+        }
+
+        .formRowSectionCombo {
+          flex: 2;
+          padding-left: 48px;
+          position: relative;
+
+          input[type=range]{
+            width: 100%;
+          }
+
+          input[type=text] {
+            font-size: $p1-size;
+            border-radius: 8px;
+            border: 1px solid #7B7B7B;
+            padding: 4px;
+            width: 64px;
+            margin-right: 2px;
+            text-align:right;
+          }
+
+
+          .decreaseButtonPointOne {
+            min-width: 40px;
+            max-width: 40px;
+            height: 40px;
+            margin: 12px;
+            margin-left: 0px;
+            font-size: $h3-size;
+            border: 1px solid $red;
+            border-radius: 4px;
+            color: $white;
+            background-color: $red;
+            padding: 0px 6px;
+            width: 28px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+            box-shadow: inset 2px 5px 5px rgba(247, 247, 247, 0.25);
+          }
+
+          .increaseButtonPointOne {
+            min-width: 40px;
+            max-width: 40px;
+            height: 40px;
+            margin: 12px;
+            font-size: $h3-size;
+            border: 1px solid $blue;
+            border-radius: 4px;
+            color: $white;
+            background-color: $blue;
+            padding: 0px 6px;
+            width: 28px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+            box-shadow: inset 2px 5px 5px rgba(247, 247, 247, 0.25);
+          }
+
+          .increaseButtonPointOne:hover, .decreaseButtonPointOne:hover {
+            cursor: pointer;
+          }
+
+          figcaption {
+            color: $sort-of-light-grey;
+            font-size: $p2-size;
+            position: absolute;
+            bottom: -2px;
+            right: -6px;
+            min-width: 96px;
+          }
+
+        }
+
       }
 
       .accordionTextWrapper {
