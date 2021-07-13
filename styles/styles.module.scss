@@ -170,6 +170,12 @@ $p2-size: 13px;
             font-size: $p1-size;
             margin-right: 12px;
           }
+
+          figcaption {
+            color: $sort-of-light-grey;
+            font-size: $p2-size;
+            padding-left: 12px;
+          }
         }
 
         .formRowSectionAmountAsText {
