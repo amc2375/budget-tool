@@ -142,13 +142,19 @@ export default function Form(props) {
           incrementalChange = parseFloat(parseFloat(event.target.value).toFixed(2));
           oldValue = parseFloat(parseFloat(userSelectedBudgetValues[key]).toFixed(2));
           val = (oldValue + parseFloat(parseFloat(incrementalChange).toFixed(2))).toString();
+          setUserSelectedBudgetValues({
+            ...userSelectedBudgetValues,
+            [key]: val
+          });
         } else {
-          val = event.target.value
+          if (validateUserInput(event.target.value)) {
+            val = event.target.value
+            setUserSelectedBudgetValues({
+              ...userSelectedBudgetValues,
+              [key]: val
+            });
+          }
         }
-        setUserSelectedBudgetValues({
-          ...userSelectedBudgetValues,
-          [key]: val
-        });
         break;
     }
   }
