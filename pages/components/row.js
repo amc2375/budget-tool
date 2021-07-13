@@ -56,13 +56,22 @@ export default function Row(props) {
           let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
           return `($${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion)`;
         }
-      case "combo":
         break;
+      case "combo":
+      if (
+        userSelectedBudgetValues[budgetCategory.id] == '' ||
+        userSelectedBudgetValues[budgetCategory.id] == '0') {
+        return "($0)";
+      } else {
+        let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
+        return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
+      }
+      break;
     }
   };
 
   const formatBillionsOfDollars = (amount) => (
-    Number(Math.round(amount/1000000000 + 'e4') + 'e-4')
+    Number(Math.round(amount/1000000000 + 'e2') + 'e-2')
   );
 
   const formattedRowAmount = (amount) => {
@@ -89,7 +98,7 @@ export default function Row(props) {
                   id={budgetCategory.id}>{budgetCategory.name}</div>
               </section>
               <section className={s.formRowSection}>
-                <label>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</label>
+                <div>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</div>
               </section>
             </div>
             <AllocationInput

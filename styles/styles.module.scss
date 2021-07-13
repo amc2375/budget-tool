@@ -4,10 +4,12 @@
 $color-background: #E5E5E5;
 $color-base: #F5F5F5;
 $white: #FFFFFF;
+$black: #151515;
 
 // font colors
 $light-grey: #939393;
 $very-light-grey: #B2B2B2;
+$sort-of-light-grey: #636363;
 
 // button colors
 $red: #C91E1E;
@@ -19,7 +21,7 @@ $h1-size: 60.8px;
 $h2-size: 40.5px;
 $h3-size: 27px;
 $p1-size: 18px;
-$p2-size: 12px;
+$p2-size: 13px;
 
 .body {
   background-color: $color-background;
@@ -29,15 +31,22 @@ $p2-size: 12px;
   margin: 0;
   width: 100%;
   font-family: $font-stack-helvetica;
+  color: $black;
+  min-width: 1065px;
 
   .form {
     background-color: $color-base;
-    margin: 10%;
+    margin: 0;
     padding: 120px 100px 200px 100px;
     min-width: 580px;
 
     .formTitle {
       font-size: $h2-size;
+      margin-left: 90px;
+
+      strong {
+        color: $blue;
+      }
 
       p {
         margin-top: 16px;
@@ -47,13 +56,13 @@ $p2-size: 12px;
 
     .localeDetails {
       display: flex;
-      padding-right: 20%;
       margin-bottom: 36px;
       font-size: $p1-size;
+      margin-left: 42px;
+      padding: 0px 48px;
 
       div {
         flex: 1;
-        padding: 0px 20px;
 
         label {
           display: block;
@@ -96,7 +105,7 @@ $p2-size: 12px;
       }
 
       .formRow, .formRowCombo {
-        padding: 12px 48px;
+        padding: 0px 48px;
         display: flex;
 
         .formRowSectionHover,
@@ -110,6 +119,10 @@ $p2-size: 12px;
           display: flex;
           align-items: center;
           margin: 12px;
+
+          label {
+            padding-left: 18px;
+          }
         }
 
         .formRowSectionHover:hover {
@@ -129,6 +142,7 @@ $p2-size: 12px;
           input[type=range]{
             width: 100%;
           }
+
         }
 
         .formRowSectionPercentageAsText {
@@ -188,6 +202,7 @@ $p2-size: 12px;
             width: 48px;
             max-width: 48px;
           }
+
         }
 
         .formRowSectionIncremental {
@@ -277,6 +292,7 @@ $p2-size: 12px;
         .formRowSectionCombo {
           flex: 2;
           padding-left: 48px;
+          position: relative;
 
           input[type=range]{
             width: 100%;
@@ -328,6 +344,15 @@ $p2-size: 12px;
 
           .increaseButtonPointOne:hover, .decreaseButtonPointOne:hover {
             cursor: pointer;
+          }
+
+          figcaption {
+            color: $sort-of-light-grey;
+            font-size: $p2-size;
+            position: absolute;
+            bottom: -2px;
+            right: -6px;
+            min-width: 96px;
           }
 
         }

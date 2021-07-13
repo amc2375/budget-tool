@@ -278,7 +278,7 @@ export default function Form(props) {
           </header>
           <div className={s.localeDetails}>
             <div>
-              <label>Choose your City Council District</label>
+              <label>Choose Your Council District</label>
               <select
                 defaultValue="default"
                 required={true}
@@ -302,6 +302,7 @@ export default function Form(props) {
                 onChange={handleZipCodeInput}>
               </input>
             </div>
+            <div></div>
           </div>
           <main className={s.formBody}>
             {getFormLabelsRow()}
