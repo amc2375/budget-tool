@@ -13,7 +13,6 @@ import ChevronDown from '../../assets/chevron-down.svg';
 export default function Row(props) {
 
   const {
-    inputScheme,
     budgetCategory,
     userSelectedBudgetValues,
     handleBudgetValueInput,
@@ -33,40 +32,13 @@ export default function Row(props) {
 
   // conditionally generate caption for each input scheme
   const generateCaption = () => {
-    switch(inputScheme) {
-      case "slider":
-      case "incremental":
-        return userSelectedBudgetValues[budgetCategory.id] + "%";
-      case "amountAsText":
-      if (
-        userSelectedBudgetValues[budgetCategory.id] == '' ||
-        userSelectedBudgetValues[budgetCategory.id] == '0') {
-        return "(0%)";
-      } else {
-        let ratio = parseFloat(userSelectedBudgetValues[budgetCategory.id])/(parseFloat(fixedBudgetAmount)/1000000000);
-        return `(${(ratio * 100).toFixed(2)}%)`;
-      }
-        break;
-      case "percentageAsText":
-        if (
-          userSelectedBudgetValues[budgetCategory.id] == '' ||
-          userSelectedBudgetValues[budgetCategory.id] == '0') {
-          return "($0)";
-        } else {
-          let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
-          return `($${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion)`;
-        }
-        break;
-      case "combo":
-      if (
-        userSelectedBudgetValues[budgetCategory.id] == '' ||
-        userSelectedBudgetValues[budgetCategory.id] == '0') {
-        return "($0)";
-      } else {
-        let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
-        return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
-      }
-      break;
+    if (
+      userSelectedBudgetValues[budgetCategory.id] == '' ||
+      userSelectedBudgetValues[budgetCategory.id] == '0') {
+      return "($0)";
+    } else {
+      let multiplier = parseFloat(userSelectedBudgetValues[budgetCategory.id])/100;
+      return `$${formatBillionsOfDollars(fixedBudgetAmount * multiplier)} Billion`;
     }
   };
 
@@ -80,38 +52,9 @@ export default function Row(props) {
   };
 
   const getRowContent = () => {
-    switch(inputScheme) {
-      case "combo":
-        return (
-          <div key={budgetCategory.id} className={s.formRowCombo}>
-            <div className={s.spaghettiDiv}>
-              <section
-                className={s.formRowSectionHover}
-                id={budgetCategory.id}
-                onClick={handleAccordion}>
-                <ChevronDown
-                  className={s.chevron}
-                  id={budgetCategory.id}
-                  style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
-                <div
-                  className={s.categoryTitle}
-                  id={budgetCategory.id}>{budgetCategory.name}</div>
-              </section>
-              <section className={s.formRowSection}>
-                <div>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</div>
-              </section>
-            </div>
-            <AllocationInput
-              inputScheme={inputScheme}
-              name={budgetCategory.id}
-              value={userSelectedBudgetValues[budgetCategory.id]}
-              handler={handleBudgetValueInput}
-              caption={generateCaption()}/>
-          </div>
-        );
-      default:
-      return (
-        <div key={budgetCategory.id} className={s.formRow}>
+    return (
+      <div key={budgetCategory.id} className={s.formRowCombo}>
+        <div className={s.spaghettiDiv}>
           <section
             className={s.formRowSectionHover}
             id={budgetCategory.id}
@@ -125,17 +68,16 @@ export default function Row(props) {
               id={budgetCategory.id}>{budgetCategory.name}</div>
           </section>
           <section className={s.formRowSection}>
-            <label>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</label>
+            <div>{`${budgetCategory.percentage_of_total}% (${formattedRowAmount(budgetCategory.amount)})`}</div>
           </section>
-          <AllocationInput
-            inputScheme={inputScheme}
-            name={budgetCategory.id}
-            value={userSelectedBudgetValues[budgetCategory.id]}
-            handler={handleBudgetValueInput}
-            caption={generateCaption()}/>
         </div>
-      );
-    }
+        <AllocationInput
+          name={budgetCategory.id}
+          value={userSelectedBudgetValues[budgetCategory.id]}
+          handler={handleBudgetValueInput}
+          caption={generateCaption()}/>
+      </div>
+    );
   };
 
   if (Boolean(budgetCategory)) {
