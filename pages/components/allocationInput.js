@@ -17,7 +17,7 @@ export default function AllocationInput(props) {
   before = <IncrementalButtons
     domElementName={name}
     leftButtonClassName={s.decreaseButtonPointOne}
-    leftButtonValue={-.1}
+    leftButtonValue={-1}
     leftDisplayBefore={"-"}
     handler={handler}
     side={"left"}/>;
@@ -26,7 +26,7 @@ export default function AllocationInput(props) {
       <IncrementalButtons
         domElementName={name}
         leftButtonClassName={s.increaseButtonPointOne}
-        leftButtonValue={0.1}
+        leftButtonValue={1}
         leftDisplayBefore={"+"}
         handler={handler}
         side={"right"}/>
@@ -48,12 +48,12 @@ export default function AllocationInput(props) {
       {before}
       <input
         name={name}
-        value={value}
+        value={value * 100}
         onChange={handler}
         type={type}
         min={0}
-        max={100}
-        step = {0.01}
+        max={10000}
+        step = {1}
         required/>
       {after}
     </React.Fragment>
