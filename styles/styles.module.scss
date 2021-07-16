@@ -110,10 +110,6 @@ $p2-size: 13px;
 
         .formRowSectionHover,
         .formRowSection,
-        .formRowSectionSlider,
-        .formRowSectionPercentageAsText,
-        .formRowSectionAmountAsText,
-        .formRowSectionIncremental,
         .formRowSectionCombo {
           flex: 1;
           display: flex;
@@ -134,154 +130,6 @@ $p2-size: 13px;
           font-size: $p1-size;
           padding-left: 8px;
         }
-
-        .formRowSectionSlider {
-          flex-direction: column;
-          align-items: baseline;
-
-          input[type=range]{
-            width: 100%;
-          }
-
-        }
-
-        .formRowSectionPercentageAsText {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: flex-start;
-
-          input[type=text] {
-            font-size: $p1-size;
-            border-radius: 8px;
-            border: 1px solid #7B7B7B;
-            padding: 4px;
-            width: 64px;
-            margin-right: 2px;
-            text-align:right;
-          }
-
-          .beforeInput {
-            font-size: $p1-size;
-            margin-right: 2px;
-          }
-
-          .afterInput {
-            font-size: $p1-size;
-            margin-right: 12px;
-          }
-
-          figcaption {
-            color: $sort-of-light-grey;
-            font-size: $p2-size;
-            padding-left: 12px;
-          }
-        }
-
-        .formRowSectionAmountAsText {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: flex-start;
-
-          input[type=text] {
-            font-size: $p1-size;
-            border-radius: 8px;
-            border: 1px solid #7B7B7B;
-            padding: 4px;
-            width: 96px;
-            margin-right: 2px;
-            text-align:left;
-          }
-
-          .beforeInput {
-            font-size: $p1-size;
-            margin-right: 2px;
-          }
-
-          .afterInput {
-            font-size: $p1-size;
-            margin-right: 12px;
-          }
-
-          figcaption {
-            width: 48px;
-            max-width: 48px;
-          }
-
-        }
-
-        .formRowSectionIncremental {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: center;
-
-          .incrementalInputWrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-          }
-
-          .beforeInput {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-
-            .decreaseButtonOne {
-              border: 1px solid $red;
-              border-radius: 4px;
-              color: $red;
-              background-color: $white;
-              padding: 6px;
-              margin-right: 4px;
-            }
-
-            .decreaseButtonPointOne {
-              border: 1px solid $red;
-              border-radius: 4px;
-              color: $white;
-              background-color: $red;
-              padding: 6px;
-              margin-right: 4px;
-            }
-
-          }
-
-          .afterInput {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-
-            .increaseButtonPointOne {
-              border: 1px solid $blue;
-              border-radius: 4px;
-              color: $white;
-              background-color: $blue;
-              padding: 6px;
-              margin-right: 4px;
-            }
-
-            .increaseButtonOne {
-              border: 1px solid $blue;
-              border-radius: 4px;
-              color: $blue;
-              background-color: $white;
-              padding: 6px;
-              margin-right: 4px;
-            }
-
-          }
-
-          figcaption {
-            width: 48px;
-            max-width: 48px;
-          }
-        }
-
       }
 
       .formRowCombo {
@@ -360,9 +208,7 @@ $p2-size: 13px;
             right: -6px;
             min-width: 96px;
           }
-
         }
-
       }
 
       .accordionTextWrapper {
@@ -382,54 +228,7 @@ $p2-size: 13px;
         justify-content: flex-end;
         margin-top: 18px;
 
-        .formFooterRowContentsSurplus {
-          display: flex;
-          padding: 0px 48px;
-          margin-bottom: 18px;
-
-          label {
-            margin-right: 18px;
-            padding: 8px;
-            color: $light-grey;
-          }
-
-          div {
-            border: 1px solid blue;
-            padding: 8px;
-            border-radius: 8px;
-          }
-
-          span {
-            display: none;
-          }
-        }
-
         .formFooterRowContentsTotalPercentage {
-          display: flex;
-          padding: 0px 48px;
-          margin-bottom: 18px;
-
-          label {
-            margin-right: 18px;
-            padding: 8px;
-            color: $light-grey;
-          }
-
-          div {
-            border: 1px solid blue;
-            padding: 8px;
-            border-radius: 8px;
-          }
-
-          span {
-            margin-right: 48px;
-            padding: 8px;
-            color: $light-grey;
-
-          }
-        }
-
-        .formFooterRowContentsTotalAmount {
           display: flex;
           padding: 0px 48px;
           margin-bottom: 18px;
@@ -492,7 +291,6 @@ $p2-size: 13px;
       }
 
       .rightButtons {
-
         margin: 12px 18px;
 
         .buttonSubmit {

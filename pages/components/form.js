@@ -8,8 +8,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Form(props) {
 
-  const { inputScheme } = props;
-
   // get from api/form
   const { data, error } = useSwr(
     '/api/form',
@@ -61,16 +59,11 @@ export default function Form(props) {
     data.categories.sort((a, b) => alphabetSort(a.name, b.name));
     let assignedBudgetCategoryValues = {};
     data.categories.map(budgetCategory => {
-      if (inputScheme == "slider" || inputScheme == "percentageAsText" || inputScheme == "incremental" || inputScheme == "combo") {
         assignedBudgetCategoryValues[budgetCategory.id] = parseFloat(budgetCategory.percentage_of_total).toString();
-      } else {
-        let valueInBillions = parseFloat(budgetCategory.amount)/1000000000
-        assignedBudgetCategoryValues[budgetCategory.id] = valueInBillions.toFixed(4).toString();
-      }
     });
     // save the object of category keys and budget point values
     setUserSelectedBudgetValues(assignedBudgetCategoryValues);
-  }, [data, inputScheme]);
+  }, [data]);
 
   /* useEffect takes two arguments - one is a callback defining
   the operation(s) to perform as part of the Hook, and the other is
@@ -100,62 +93,24 @@ export default function Form(props) {
   function handleBudgetValueInput(event) {
     event.preventDefault();
     let key = event.target.name;
-    switch(inputScheme) {
-      case "slider":
-        let value = parseFloat(parseFloat(event.target.value).toFixed(2)).toString();
+    event.preventDefault();
+    let val, incrementalChange, oldValue;
+    if (event.target.tagName == "BUTTON") {
+      incrementalChange = parseFloat(parseFloat(event.target.value).toFixed(2));
+      oldValue = parseFloat(parseFloat(userSelectedBudgetValues[key]).toFixed(2));
+      val = (oldValue + parseFloat(parseFloat(incrementalChange).toFixed(2))).toString();
+      setUserSelectedBudgetValues({
+        ...userSelectedBudgetValues,
+        [key]: val
+      });
+    } else {
+      if (validateUserInput(event.target.value)) {
+        val = event.target.value
         setUserSelectedBudgetValues({
           ...userSelectedBudgetValues,
-          [key]: value
+          [key]: val
         });
-        break;
-      case "percentageAsText":
-        if (validateUserInput(event.target.value)) {
-          console.log(event.target.value);
-          setUserSelectedBudgetValues({
-            ...userSelectedBudgetValues,
-            [key]: event.target.value
-          });
-        }
-        break;
-      case "amountAsText":
-        if (validateUserInput(event.target.value)) {
-          console.log(event.target.value);
-          setUserSelectedBudgetValues({
-            ...userSelectedBudgetValues,
-            [key]: event.target.value
-          });
-        }
-        break;
-      case "incremental":
-        let incrementalChange = parseFloat(event.target.value);
-        let oldValue = parseFloat(userSelectedBudgetValues[key]);
-        let newValue = (oldValue + parseFloat(incrementalChange)).toString();
-        setUserSelectedBudgetValues({
-          ...userSelectedBudgetValues,
-          [key]: newValue
-        });
-        break;
-      case "combo":
-        event.preventDefault();
-        let val;
-        if (event.target.tagName == "BUTTON") {
-          incrementalChange = parseFloat(parseFloat(event.target.value).toFixed(2));
-          oldValue = parseFloat(parseFloat(userSelectedBudgetValues[key]).toFixed(2));
-          val = (oldValue + parseFloat(parseFloat(incrementalChange).toFixed(2))).toString();
-          setUserSelectedBudgetValues({
-            ...userSelectedBudgetValues,
-            [key]: val
-          });
-        } else {
-          if (validateUserInput(event.target.value)) {
-            val = event.target.value
-            setUserSelectedBudgetValues({
-              ...userSelectedBudgetValues,
-              [key]: val
-            });
-          }
-        }
-        break;
+      }
     }
   }
 
@@ -182,21 +137,17 @@ export default function Form(props) {
   store float value as string.*/
   function handleSnap(event) {
     event.preventDefault();
+    console.log(userSelectedBudgetValues);
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
-    let countOfKeys = categoryKeys.lengthe
     let multiplier;
-    if (inputScheme == "slider" || inputScheme == "percentageAsText" || "incremental") {
-      multiplier = 100 / parseFloat(allocatedTotal);
-    } else {
-      multiplier = calculateFixedBudgetAmount() / (parseFloat(allocatedTotal) * 1000000000) ;
-    }
+    multiplier = 100 / parseFloat(allocatedTotal);
     let nonZeroFlag = false;
     categoryKeys.forEach(key => {
       let value = userSelectedBudgetValues[key]
       if (value != "0" && value != "" ) {
         nonZeroFlag = true;
-        let precision = (inputScheme == "slider" || inputScheme == "percentageAsText" || "incremental") ? 2 : 4;
+        let precision = 2;
         value = (parseFloat(userSelectedBudgetValues[key]) * multiplier).toFixed(precision).toString();
       } else {
         value = "0"
@@ -235,41 +186,21 @@ export default function Form(props) {
   }
 
   const getFormLabelsRow = () => {
-    switch(inputScheme) {
-      case "combo":
-      return (
-        <div className={s.formLabelsRow}>
-          <div className={s.formLabel}>
-            <label>Current Allocation</label>
-            <p>Click a department to learn more</p>
-          </div>
-          <div className={s.formLabel}>
-            <label>Your Allocation</label>
-            <p>Drag the slider or enter a percentage.</p>
-          </div>
-          <div className={s.formLabel}>
-
-          </div>
+    return (
+      <div className={s.formLabelsRow}>
+        <div className={s.formLabel}>
+          <label>Current Allocation</label>
+          <p>Click a department to learn more</p>
         </div>
-      )
-      default:
-        return (
-          <div className={s.formLabelsRow}>
-            <div className={s.formLabel}>
-              <label>Department</label>
-              <p>Click a department to learn more</p>
-            </div>
-            <div className={s.formLabel}>
-              <label>Current Allocation</label>
-              <p>As of the 2020 NYC Budget</p>
-            </div>
-            <div className={s.formLabel}>
-              <label>Your Allocation</label>
-              <p>One department&apos;s budget must be <strong>decreased</strong> before increasing another.</p>
-            </div>
-          </div>
-        )
-    }
+        <div className={s.formLabel}>
+          <label>Your Allocation</label>
+          <p>Drag the slider or enter a percentage.</p>
+        </div>
+        <div className={s.formLabel}>
+
+        </div>
+      </div>
+    )
   }
 
   /* now for HTML generation */
@@ -314,7 +245,6 @@ export default function Form(props) {
             {getFormLabelsRow()}
             {data.categories.map(budgetCategory => (
               <Row
-                inputScheme={inputScheme}
                 key={budgetCategory.id}
                 budgetCategory={budgetCategory}
                 userSelectedBudgetValues={userSelectedBudgetValues}
@@ -324,7 +254,6 @@ export default function Form(props) {
             <div className={s.formFooterLineBreak}/>
             <section className={s.formFooterRow}>
               <FooterRow
-                inputScheme={inputScheme}
                 allocatedTotal={allocatedTotal}
                 fixedBudgetAmount={calculateFixedBudgetAmount()}/>
             </section>

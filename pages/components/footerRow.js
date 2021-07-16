@@ -5,7 +5,6 @@ import s from '../../styles/styles.module.scss';
 export default function FooterRow(props) {
 
   const {
-    inputScheme,
     allocatedTotal,
     fixedBudgetAmount
   } = props;
@@ -20,31 +19,11 @@ export default function FooterRow(props) {
   };
 
   let className, label, value, after;
-  switch(inputScheme) {
-    case "incremental":
-    case "slider":
-      className = s.formFooterRowContentsSurplus;
-      label = "Surplus";
-      value = `${(100 - allocatedTotal).toFixed(2)}%`
-      break;
-    case "amountAsText":
-      className = s.formFooterRowContentsTotalAmount;
-      label = "Total";
-      let ratio = (parseFloat(allocatedTotal) * 1000000000) / fixedBudgetAmount;
-      console.log("allocatedTotal");
-      console.log(allocatedTotal);
-      value = `$${(allocatedTotal).toFixed(2)} Billion`;
-      after = `(${(ratio * 100).toFixed(2)}%)`;
-      break;
-    case "percentageAsText":
-    case "combo":
-      className = s.formFooterRowContentsTotalPercentage;
-      label = "Total";
-      let totalDollarAmount = (parseFloat(allocatedTotal)/100) * fixedBudgetAmount;
-      value = `${(allocatedTotal).toFixed(2)}%`;
-      after = `(${formattedRowAmount(totalDollarAmount)})`;
-      break;
-  };
+  className = s.formFooterRowContentsTotalPercentage;
+  label = "Total";
+  let totalDollarAmount = (parseFloat(allocatedTotal)/100) * fixedBudgetAmount;
+  value = allocatedTotal != null ? `${(allocatedTotal).toFixed(2)}%` : '';
+  after = `(${formattedRowAmount(totalDollarAmount)})`;
 
   return(
     <div className={className}>
