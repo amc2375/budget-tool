@@ -94,7 +94,7 @@ export default function Form(props) {
     event.preventDefault();
     let key = event.target.name;
     event.preventDefault();
-    let val;
+    let val, incrementalChange, oldValue;
     if (event.target.tagName == "BUTTON") {
       incrementalChange = parseFloat(parseFloat(event.target.value).toFixed(2));
       oldValue = parseFloat(parseFloat(userSelectedBudgetValues[key]).toFixed(2));
@@ -141,13 +141,13 @@ export default function Form(props) {
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
     let multiplier;
-    multiplier = calculateFixedBudgetAmount() / (parseFloat(allocatedTotal) * 1000000000) ;
+    multiplier = 100 / parseFloat(allocatedTotal);
     let nonZeroFlag = false;
     categoryKeys.forEach(key => {
       let value = userSelectedBudgetValues[key]
       if (value != "0" && value != "" ) {
         nonZeroFlag = true;
-        let precision = 4;
+        let precision = 2;
         value = (parseFloat(userSelectedBudgetValues[key]) * multiplier).toFixed(precision).toString();
       } else {
         value = "0"
