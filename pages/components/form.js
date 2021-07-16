@@ -92,20 +92,18 @@ export default function Form(props) {
   the 'step' attribute set on it. then save the state*/
   function handleBudgetValueInput(event) {
     event.preventDefault();
-    let key = event.target.name;
-    event.preventDefault();
-    let val, incrementalChange, oldValue;
+    let val, incrementalChange, oldValue,key = event.target.name;
     if (event.target.tagName == "BUTTON") {
-      incrementalChange = parseFloat(parseFloat(event.target.value).toFixed(2));
-      oldValue = parseFloat(parseFloat(userSelectedBudgetValues[key]).toFixed(2));
-      val = (oldValue + parseFloat(parseFloat(incrementalChange).toFixed(2))).toString();
+      incrementalChange = parseFloat(event.target.value) / 10;
+      oldValue = parseFloat(userSelectedBudgetValues[key]);
+      val = (oldValue + incrementalChange).toFixed(2);
       setUserSelectedBudgetValues({
         ...userSelectedBudgetValues,
         [key]: val
       });
     } else {
       if (validateUserInput(event.target.value)) {
-        val = event.target.value
+        val = (event.target.value / 100).toFixed(2);
         setUserSelectedBudgetValues({
           ...userSelectedBudgetValues,
           [key]: val
