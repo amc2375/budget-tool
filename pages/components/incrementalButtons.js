@@ -19,6 +19,7 @@ export default function IncrementalButtons(props) {
 
   return (
     <button
+      type={"button"}
       name={domElementName}
       value={leftButtonValue}
       className={leftButtonClassName}

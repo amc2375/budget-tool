@@ -166,6 +166,7 @@ export default function Form(props) {
 
   // post the results of the survey
   async function handleSubmit(event) {
+    console.log(event);
     event.preventDefault();
     const submissionData = {
       district: userSelectedDistrict,
@@ -258,11 +259,11 @@ export default function Form(props) {
           </main>
           <div className={s.buttonContainer}>
             <div className={s.leftButtons}>
-              <button className={s.buttonReset} onClick={handleReset}>Reset</button>
-              <button className={s.buttonSnap} onClick={handleSnap}>Snap to 100%</button>
+              <button className={s.buttonReset} onClick={handleReset} type={"button"}>Reset</button>
+              <button className={s.buttonSnap} onClick={handleSnap} type={"button"}>Snap to 100%</button>
             </div>
             <div className={s.rightButtons}>
-              <button className={s.buttonSubmit} onClick={handleSubmit}>Submit</button>
+              <button className={s.buttonSubmit} onClick={handleSubmit} type={"button"}>Submit</button>
             </div>
           </div>
         </form>
