@@ -101,7 +101,7 @@ export default function Form(props) {
         ...userSelectedBudgetValues,
         [key]: val
       });
-    } else {
+    } else if (event.target.type == "range") {
       if (validateUserInput(event.target.value)) {
         val = (event.target.value / 100).toFixed(2);
         setUserSelectedBudgetValues({
@@ -109,6 +109,12 @@ export default function Form(props) {
           [key]: val
         });
       }
+    } else {
+      val = event.target.value;
+      setUserSelectedBudgetValues({
+        ...userSelectedBudgetValues,
+        [key]: val
+      });
     }
   }
 
