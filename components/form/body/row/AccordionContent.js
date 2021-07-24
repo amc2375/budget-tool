@@ -1,8 +1,7 @@
-export default function AccordionContent() {
-
-  return (
-    <React.Fragment>
-      <!-- content -->
-    </React.Fragment>
+export default function AccordionContent({ content, open }) {
+  return(
+    <section
+      style={open ? {} : {display: 'none'}}
+      dangerouslySetInnerHTML={{ __html: content }}/>
   );
 };

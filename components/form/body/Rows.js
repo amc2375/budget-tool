@@ -7,15 +7,21 @@ export default function Rows({
     setBudgetValues
   }) {
 
+  const setBudgetValue = (key, value) => {
+    setBudgetValues({
+      ...budgetValues,
+      [key]: value
+    })
+  };
+
   return (
     <React.Fragment>
     {data.categories.map(budgetCategory => (
       <Row
         key={budgetCategory.id}
         budgetCategory={budgetCategory}
-        budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}
-        totalBudget={data.totalBudget}/>
+        budgetValue={budgetValues[budgetCategory.id]}
+        setBudgetValue={setBudgetValue}/>
     ))}
     </React.Fragment>
   );
