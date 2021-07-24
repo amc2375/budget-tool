@@ -63,6 +63,8 @@ export default function Form(props) {
     });
     // save the object of category keys and budget point values
     setUserSelectedBudgetValues(assignedBudgetCategoryValues);
+
+    console.log('resetting!')
   }, [data]);
 
   /* useEffect takes two arguments - one is a callback defining
@@ -74,6 +76,7 @@ export default function Form(props) {
     if (Boolean(data)) {
       data.districts.sort((a, b) => alphabetSort(a.district_id, b.district_id));
       resetAssignedBudgetCategoryValues();
+      console.log('useEffect is calling the reset function:')
     };
 
   }, [data, resetAssignedBudgetCategoryValues]);
@@ -141,7 +144,6 @@ export default function Form(props) {
   store float value as string.*/
   function handleSnap(event) {
     event.preventDefault();
-    console.log(userSelectedBudgetValues);
     let newSelectedBudgetValues = {};
     let categoryKeys = Object.keys(userSelectedBudgetValues);
     let multiplier;
@@ -172,7 +174,6 @@ export default function Form(props) {
 
   // post the results of the survey
   async function handleSubmit(event) {
-    console.log(event);
     event.preventDefault();
     const submissionData = {
       district: userSelectedDistrict,
@@ -210,7 +211,6 @@ export default function Form(props) {
 
   /* now for HTML generation */
   if (Boolean(data) && Object.keys(userSelectedBudgetValues).length != 0){
-    console.log(userSelectedBudgetValues);
     return (
       <div className={s.body}>
         <form className={s.form}>

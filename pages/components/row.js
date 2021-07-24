@@ -7,7 +7,7 @@ dependency. it converts an svg into a react component so that it
 can easily be used in a react script like this. see examples at
 https://github.com/vercel/next.js/tree/master/examples/svg-components
 and https://gist.github.com/iamchristough/493c60112770058566d559e6860dc4c9 */
-import ChevronDown from '../../assets/chevron-down.svg';
+import ChevronDown from '../../static/chevron-down.svg';
 
 /* https://dev.to/pnkfluffy/passing-data-from-child-to-parent-with-react-hooks-1ji3 */
 export default function Row(props) {
