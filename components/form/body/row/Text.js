@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function Text({ budgetValue, setBudgetValue }) {
+export default function Text({
+    budgetValue,
+    setBudgetValue,
+    totalBudget
+  }) {
 
   const handler = (e) => {
     if (validateUserInput(e.target.value)) {
@@ -13,7 +17,7 @@ export default function Text({ budgetValue, setBudgetValue }) {
       return "($0)";
     } else {
       let multiplier = parseFloat(budgetValue)/100;
-      return `$${amountInBillions(fixedBudgetAmount * multiplier)} Billion`;
+      return `$${amountInBillions(totalBudget * multiplier)} Billion`;
     }
   }
 

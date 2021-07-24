@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import FormFooter from './footer/FormFooter.js';
@@ -56,11 +56,7 @@ function Form({ data }) {
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
         allocatedTotal={allocatedTotal}/>
-      <FormFooter
-        budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}
-        allocatedTotal={allocatedTotal}
-        setAllocatedTotal={setAllocatedTotal}/>
+
     </form>
   );
 }

@@ -16,7 +16,8 @@ export default function FormBody({
       <Rows
         data={data}
         budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}/>
+        setBudgetValues={setBudgetValues}
+        totalBudget={data.totalBudget}/>
       <Total
         totalBudget={data.totalBudget}
         budgetValues={budgetValues}

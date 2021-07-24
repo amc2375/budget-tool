@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Label from './Label.js';
-import Inputs from '.;Inputs.js';
+import Inputs from './Inputs.js';
 import AccordionContent from './AccordionContent.js';
 
 export default function Row({
   budgetCategory,
   budgetValue,
-  setBudgetValue
+  setBudgetValue,
+  totalBudget
 }) {
 
   const [accordionOpen, setAccordionOpen] = useState(
@@ -23,7 +24,8 @@ export default function Row({
         setAccordionOpen={setAccordionOpen}/>
       <Inputs
         budgetValue={budgetValue}
-        setBudgetValue={setBudgetValue}/>
+        setBudgetValue={setBudgetValue}
+        totalBudget={totalBudget}/>
       <AccordionContent
         open={accordionOpen}
         content={budgetCategory.descriptive_html}/>

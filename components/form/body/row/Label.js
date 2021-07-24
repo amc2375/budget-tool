@@ -1,4 +1,5 @@
 import ChevronDown from '../../../../static/chevron-down.svg';
+import s from '../../../../styles/styles.module.scss';
 
 export default function Label({
     label,

@@ -4,7 +4,11 @@ import Slider from './Slider.js';
 import PlusButton from './PlusButton.js';
 import Text from './Text.js';
 
-export default function Inputs({ budgetValue, setBudgetValue }) {
+export default function Inputs({
+    budgetValue,
+    setBudgetValue,
+    totalBudget
+  }) {
 
   return (
     <React.Fragment>
@@ -19,7 +23,8 @@ export default function Inputs({ budgetValue, setBudgetValue }) {
         setBudgetValue={setBudgetValue}/>
       <Text
         budgetValue={budgetValue}
-        setBudgetValue={setBudgetValue}/>
+        setBudgetValue={setBudgetValue}
+        totalBudget={totalBudget}/>
     </React.Fragment>
   );
 };

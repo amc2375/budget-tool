@@ -4,7 +4,8 @@ import Row from './row/Row.js';
 export default function Rows({
     data,
     budgetValues,
-    setBudgetValues
+    setBudgetValues,
+    totalBudget
   }) {
 
   const setBudgetValue = (key, value) => {
@@ -21,7 +22,8 @@ export default function Rows({
         key={budgetCategory.id}
         budgetCategory={budgetCategory}
         budgetValue={budgetValues[budgetCategory.id]}
-        setBudgetValue={setBudgetValue}/>
+        setBudgetValue={setBudgetValue}
+        totalBudget={totalBudget}/>
     ))}
     </React.Fragment>
   );
