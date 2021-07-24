@@ -1,5 +1,5 @@
 import useSwr from "swr";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 import s from '../../styles/styles.module.scss';
 import Row from './row.js';
 import FooterRow from './footerRow.js';

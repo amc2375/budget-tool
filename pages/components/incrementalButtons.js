@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import s from '../../styles/styles.module.scss';
 
 export default function IncrementalButtons(props) {

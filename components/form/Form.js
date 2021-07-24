@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import FormFooter from './footer/FormFooter.js';
@@ -10,10 +10,10 @@ function Form({ data }) {
   down so children can update state values. */
   const [district, setDistrict] = useState('');
   const [zipCode, setZipCode] = useState('');
+  const [allocatedTotal, setAllocatedTotal] = useState(100);
   const [budgetValues, setBudgetValues] = useState(
     createDefaultBudgetValues(data)
   );
-  const [allocatedTotal, setAllocatedTotal] = useState(100);
 
   // post the results of the survey
   async function handleSubmit(event) {
@@ -40,7 +40,15 @@ function Form({ data }) {
         districts={data.districts}
         setDistrict={setDistrict}
         setZipCode={setZipCode}/>
-
+      <FormBody
+        data={data}
+        budgetValues={budgetValues}
+        setBudgetValues={setBudgetValues}/>
+      <FormFooter
+        budgetValues={budgetValues}
+        setBudgetValues={setBudgetValues}
+        allocatedTotal={allocatedTotal}
+        setAllocatedTotal={setAllocatedTotal}/>
     </form>
   );
 }

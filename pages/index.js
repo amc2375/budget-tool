@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React from 'react';
 import { useRouter } from 'next/router'
 // import Form from "./components/form.js";
 import Form from "../components/form/Form.js"
