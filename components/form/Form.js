@@ -15,6 +15,17 @@ function Form({ data }) {
     createDefaultBudgetValues(data)
   );
 
+    // this should run after handleBudgetValueInput before render
+  useEffect(() => {
+    if (Object.values(budgetValues).length > 0) {
+      setAllocatedTotal(Object.values(budgetValues).reduce((a, b) => {
+        let addendA = (a == "") ? 0 : parseFloat(a);
+        let addendB = (b == "") ? 0 : parseFloat(b);
+        return addendA + addendB;
+      }));
+    }
+  }, [budgetValues])
+
   // post the results of the survey
   async function handleSubmit(event) {
     event.preventDefault();
