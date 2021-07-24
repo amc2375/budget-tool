@@ -6,7 +6,8 @@ import Total from './Total.js';
 export default function FormBody({
     data,
     budgetValues,
-    setBudgetValues
+    setBudgetValues,
+    allocatedTotal
   }) {
 
   return (
@@ -19,7 +20,8 @@ export default function FormBody({
       <Total
         totalBudget={data.totalBudget}
         budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}/>
+        setBudgetValues={setBudgetValues}
+        allocatedTotal={allocatedTotal}/>
     </React.Fragment>
   );
 };

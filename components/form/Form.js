@@ -54,7 +54,8 @@ function Form({ data }) {
       <FormBody
         data={data}
         budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}/>
+        setBudgetValues={setBudgetValues}
+        allocatedTotal={allocatedTotal}/>
       <FormFooter
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
