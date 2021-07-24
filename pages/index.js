@@ -39,6 +39,8 @@ export async function getStaticProps() {
   data.districts.sort((a, b) => alphabetSort(a.district_id, b.district_id));
   data.categories.sort((a, b) => alphabetSort(a.name, b.name));
 
+  data.totalBudget = calculateFixedBudgetAmount(data);
+
   // By returning { props: { xyz } }, the component
   // will receive `xyz` as a prop at build time
   return {
@@ -46,7 +48,16 @@ export async function getStaticProps() {
   }
 }
 
-// helper function for sorting data alphabetically
+// sorting data alphabetically
 const alphabetSort = (a, b) => (
   (a > b) ? 1 : ((b > a) ? -1 : 0)
 );
+
+// calculate the fixed budget amount
+const calculateFixedBudgetAmount = (data) => {
+  let sum = 0;
+  data.categories.forEach(category => {
+    sum = sum + category.amount;
+  });
+  return sum;
+};

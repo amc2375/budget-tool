@@ -1,11 +1,19 @@
-export default function CouncilDistrictInput({ districts }) {
+export default function CouncilDistrictInput({
+    districts,
+    setDistrict
+  }) {
+
+  const handler = (e) => {
+    setDistrict(e.target.value);
+  }
+
   return (
     <div>
       <label>Choose Your Council District</label>
       <select
         defaultValue="default"
         required={true}
-        onChange={handleDistrictSelection}>
+        onChange={handler}>
         <option value="default" disabled>--</option>
         {districts.map(district => (
           <option
