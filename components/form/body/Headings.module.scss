@@ -1,0 +1,13 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %form-row-flex-parent;
+}
+
+.left {
+  @extend %form-row-flex-child-left;
+}
+
+.right {
+  @extend %form-row-flex-child-right;
+}

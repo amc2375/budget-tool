@@ -1,6 +1,6 @@
 import ChevronDown from '../../../../static/chevron-down.svg';
 import { billionsAmountString } from '../../../../utilities/helpers.js';
-import s from '../../../../styles/styles.module.scss';
+import styles from './Inputs.module.scss';
 
 export default function Label({
     label,
@@ -18,9 +18,8 @@ export default function Label({
     };
 
   return (
-    <section onClick={handleAccordion}>
+    <section onClick={handleAccordion} className={styles.container}>
       <ChevronDown
-        className={s.chevron}
         style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
       <div>{label}</div>
       <div>{`${percentageOfTotal}% (${billionsAmountString(amount)})`}</div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Label from './Label.js';
 import Inputs from './Inputs.js';
 import AccordionContent from './AccordionContent.js';
+import styles from './Row.module.scss';
 
 export default function Row({
   budgetCategory,
@@ -16,16 +17,18 @@ export default function Row({
 
   return (
     <React.Fragment>
-      <Label
-        label={budgetCategory.name}
-        amount={budgetCategory.amount}
-        percentageOfTotal={budgetCategory.percentage_of_total}
-        accordionOpen={accordionOpen}
-        setAccordionOpen={setAccordionOpen}/>
-      <Inputs
-        budgetValue={budgetValue}
-        setBudgetValue={setBudgetValue}
-        totalBudget={totalBudget}/>
+      <div className={styles.container}>
+        <Label
+          label={budgetCategory.name}
+          amount={budgetCategory.amount}
+          percentageOfTotal={budgetCategory.percentage_of_total}
+          accordionOpen={accordionOpen}
+          setAccordionOpen={setAccordionOpen}/>
+        <Inputs
+          budgetValue={budgetValue}
+          setBudgetValue={setBudgetValue}
+          totalBudget={totalBudget}/>
+      </div>
       <AccordionContent
         open={accordionOpen}
         content={budgetCategory.descriptive_html}/>

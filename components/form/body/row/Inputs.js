@@ -1,8 +1,8 @@
-import React from 'react';
 import MinusButton from './MinusButton.js';
 import Slider from './Slider.js';
 import PlusButton from './PlusButton.js';
 import Text from './Text.js';
+import styles from './Inputs.module.scss';
 
 export default function Inputs({
     budgetValue,
@@ -11,7 +11,7 @@ export default function Inputs({
   }) {
 
   return (
-    <React.Fragment>
+    <div className={styles.container}>
       <MinusButton
         budgetValue={budgetValue}
         setBudgetValue={setBudgetValue}/>
@@ -25,6 +25,6 @@ export default function Inputs({
         budgetValue={budgetValue}
         setBudgetValue={setBudgetValue}
         totalBudget={totalBudget}/>
-    </React.Fragment>
+    </div>
   );
 };
