@@ -6,7 +6,6 @@ export default function Slider({ budgetValue, setBudgetValue }) {
 
   return (
     <input
-      name={name}
       value={budgetValue * 100}
       onChange={handler}
       type={"range"}

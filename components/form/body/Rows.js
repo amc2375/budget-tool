@@ -8,12 +8,18 @@ export default function Rows({
     totalBudget
   }) {
 
-  const setBudgetValue = (key, value) => {
-    setBudgetValues({
-      ...budgetValues,
-      [key]: value
-    })
+  const setBudgetValue = (key) => {
+    return function(value) {
+      console.log(key);
+      console.log(value);
+      setBudgetValues({
+        ...budgetValues,
+        [key]: value
+      })
+    }
   };
+
+  console.log(budgetValues);
 
   return (
     <React.Fragment>
@@ -22,7 +28,7 @@ export default function Rows({
         key={budgetCategory.id}
         budgetCategory={budgetCategory}
         budgetValue={budgetValues[budgetCategory.id]}
-        setBudgetValue={setBudgetValue}
+        setBudgetValue={setBudgetValue(budgetCategory.id)}
         totalBudget={totalBudget}/>
     ))}
     </React.Fragment>
