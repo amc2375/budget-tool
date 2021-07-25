@@ -6,6 +6,5 @@
     $background-color: $button-background,
     $text-color: $red
   );
-
   @extend %big-button;
 }

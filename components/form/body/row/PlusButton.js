@@ -1,3 +1,5 @@
+import styles from './PlusButton.module.scss';
+
 export default function PlusButton({ budgetValue, setBudgetValue }) {
 
   const handler = (e) => {
@@ -7,5 +9,10 @@ export default function PlusButton({ budgetValue, setBudgetValue }) {
     }
   }
 
-  return <button type={"button"} onClick={handler}>{"+"}</button>
+  return (
+    <button
+    type={"button"}
+    onClick={handler}
+    className={styles.button}>{"+"}</button>
+  );
 };

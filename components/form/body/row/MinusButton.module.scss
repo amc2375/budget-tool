@@ -1,0 +1,10 @@
+@use 'styles/base' as *;
+
+.button {
+  @include button-colors(
+    $border-color: $red,
+    $background-color: $red,
+    $text-color: $white
+  );
+  @extend %little-button;
+}
