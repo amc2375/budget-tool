@@ -1,0 +1,52 @@
+// body colors
+$color-background: #E5E5E5;
+$color-base: #F5F5F5;
+$white: #FFFFFF;
+$black: #151515;
+
+// font colors
+$light-grey: #939393;
+$very-light-grey: #B2B2B2;
+$sort-of-light-grey: #636363;
+
+// button colors
+$red: #C91E1E;
+$blue: #1E62C9;
+$button-background: #F9F9F9;
+
+// font sizes
+$h1-size: 60.8px;
+$h2-size: 40.5px;
+$h3-size: 27px;
+$p1-size: 18px;
+$p2-size: 13px;
+
+// button stuff
+@mixin button-colors($border-color, $background-color, $text-color) {
+  border-color: $border-color;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+%big-button {
+  width: 156px;
+  height: 48px;
+  margin: 12px 18px;
+  border-radius: 8px;
+  font-size: $p1-size;
+  border-width: 3px;
+  border-style: solid;
+}
+
+%little-button {
+  width: 40px;
+  height: 40px;
+  margin: 12px;
+  font-size: $h3-size;
+  border-radius: 4px;
+  padding: 0px 6px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  box-shadow: inset 2px 5px 5px rgba(247, 247, 247, 0.25);
+  border-width: 1px;
+  border-style: solid;
+}

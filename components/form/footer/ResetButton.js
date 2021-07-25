@@ -1,3 +1,5 @@
+import styles from './ResetButton.module.scss';
+
 export default function ResetButton({
     createDefaultBudgetValues,
     setBudgetValues
@@ -8,5 +10,10 @@ export default function ResetButton({
     setBudgetValues(createDefaultBudgetValues());
   }
 
-  return <button type={"button"} onClick={handler}>{"Reset"}</button>;
+  return (
+    <button
+      type={"button"}
+      onClick={handler}
+      className={styles.button}>{"Reset"}</button>
+  );
 };

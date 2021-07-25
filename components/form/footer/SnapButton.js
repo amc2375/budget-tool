@@ -1,3 +1,5 @@
+import styles from './SnapButton.module.scss';
+
 export default function SnapButton({
     allocatedTotal,
     budgetValues,
@@ -27,5 +29,10 @@ export default function SnapButton({
       if (nonZeroFlag) setBudgetValues(newBudgetValues);
     }
 
-    return <button type={"button"} onClick={handler}>{"Snap to 100%"}</button>;
+    return (
+      <button
+      type={"button"}
+      onClick={handler}
+      className={styles.button}>{"Snap to 100%"}</button>
+    );
 };
