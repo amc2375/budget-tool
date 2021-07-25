@@ -51,17 +51,25 @@ $p2-size: 13px;
   border-style: solid;
 }
 
+%left-align-vertical {
+  margin-left: 84px;
+}
+
 %form-row-flex-parent {
-  padding: 0px 48px;
+  @extend %left-align-vertical;
   display: flex;
 }
 
 %form-row-flex-child-left {
-  padding-left: 33px;
   flex: 1;
 }
 
 %form-row-flex-child-right {
   padding-left: 48px;
   flex: 2
+}
+
+%header-input-container {
+  display: flex;
+  flex-direction: column;
 }

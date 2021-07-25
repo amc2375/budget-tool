@@ -1,3 +1,5 @@
+import styles from './ZipCodeInput.module.scss';
+
 export default function ZipCodeInput({ setZipCode }) {
 
   const handler = (e) => {
@@ -5,7 +7,7 @@ export default function ZipCodeInput({ setZipCode }) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <label>Enter your Zip Code</label>
       <input
         type="text"

@@ -1,6 +1,6 @@
-import React from 'react';
 import CouncilDistrictInput from './CouncilDistrictInput.js';
 import ZipCodeInput from './ZipCodeInput.js';
+import styles from './Inputs.module.scss';
 
 export default function Inputs({
     districts,
@@ -9,12 +9,12 @@ export default function Inputs({
   }) {
 
   return (
-    <React.Fragment>
+    <section className={styles.container}>
       <CouncilDistrictInput
         districts={districts}
         setDistrict={setDistrict}/>
       <ZipCodeInput
         setZipCode={setZipCode}/>
-    </React.Fragment>
+    </section>
   );
 };

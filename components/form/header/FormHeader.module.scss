@@ -1,0 +1,15 @@
+@use 'styles/base' as *;
+
+.header {
+  @extend %left-align-vertical;
+  font-size: $h2-size;
+
+  strong {
+    color: $blue;
+  }
+
+  p {
+    margin-top: 16px;
+    margin-bottom: 80px;
+  }
+}

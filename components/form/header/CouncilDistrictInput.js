@@ -1,3 +1,5 @@
+import styles from './CouncilDistrictInput.module.scss';
+
 export default function CouncilDistrictInput({
     districts,
     setDistrict
@@ -8,7 +10,7 @@ export default function CouncilDistrictInput({
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <label>Choose Your Council District</label>
       <select
         defaultValue="default"

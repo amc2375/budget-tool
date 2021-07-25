@@ -1,5 +1,6 @@
 import React from 'react';
 import Inputs from './Inputs.js';
+import styles from './FormHeader.module.scss';
 
 export default function FormHeader({
     districts,
@@ -9,7 +10,7 @@ export default function FormHeader({
 
   return (
     <React.Fragment>
-      <header>
+      <header className={styles.header}>
         <strong>People&apos;s Vision for the Bronx</strong>
         <p>Participatory Budgeting Survey</p>
       </header>
