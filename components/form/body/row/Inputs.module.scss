@@ -2,4 +2,5 @@
 
 .container {
   @extend %form-row-flex-child-right;
+  display: flex;
 }

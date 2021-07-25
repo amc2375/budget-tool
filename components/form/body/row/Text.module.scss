@@ -1,0 +1,22 @@
+@use 'styles/base' as *;
+
+.inputAndPercentage {
+  display: flex;
+  align-items: center;
+
+  input {
+    @extend %text-input;
+    width: 107px;
+  }
+
+  div {
+    font-size: $p1-size;
+    padding-top: 6px;
+    padding-left: 2px;
+  }
+}
+
+.caption {
+  font-size: $p2-size;
+  color: $sort-of-light-grey;
+}

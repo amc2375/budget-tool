@@ -1,3 +1,5 @@
+import styles from './Slider.module.scss';
+
 export default function Slider({ budgetValue, setBudgetValue }) {
 
   const handler = (e) => {
@@ -6,6 +8,7 @@ export default function Slider({ budgetValue, setBudgetValue }) {
 
   return (
     <input
+      className={styles.slider}
       value={budgetValue * 100}
       onChange={handler}
       type={"range"}

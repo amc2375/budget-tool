@@ -1,8 +1,8 @@
-import React from 'react';
 import {
   amountInBillions,
   validateUserInput
 } from '../../../../utilities/helpers.js';
+import styles from './Text.module.scss';
 
 export default function Text({
     budgetValue,
@@ -26,17 +26,20 @@ export default function Text({
   }
 
   return (
-    <React.Fragment>
-      <input
-        value={budgetValue}
-        onChange={handler}
-        type={"text"}
-        min={0}
-        max={100}
-        step = {0.01}
-        required/>
-      <div>{"%"}</div>
-      <figcaption>{caption()}</figcaption>
-    </React.Fragment>
+    <section>
+      <div className={styles.inputAndPercentage}>
+        <input
+          className={styles.input}
+          value={budgetValue}
+          onChange={handler}
+          type={"text"}
+          min={0}
+          max={100}
+          step = {0.01}
+          required/>
+        <div>{"%"}</div>
+      </div>
+      <figcaption className={styles.caption}>{caption()}</figcaption>
+    </section>
   );
 };

@@ -2,4 +2,29 @@
 
 .container {
   @extend %form-row-flex-child-left;
+  position: relative;
+
+  svg {
+    position: absolute;
+    left: -32px;
+    top: -4px;
+    padding: 4px;
+  }
+
+  label {
+    display: block;
+    color: $black;
+    font-size: $p1-size;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0;
+    padding: 6px 0px;
+    color: $sort-of-light-grey;
+  }
+
+  svg:hover, label:hover, p:hover {
+    cursor: pointer;
+  }
 }

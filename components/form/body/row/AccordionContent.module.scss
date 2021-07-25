@@ -1,0 +1,10 @@
+@use 'styles/base' as *;
+
+.accordionContent {
+  @extend %left-align-vertical;
+  padding: 48px 0px;
+
+  p {
+    margin: 0;
+  }
+}
