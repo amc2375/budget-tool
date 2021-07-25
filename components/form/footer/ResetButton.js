@@ -1,6 +1,12 @@
-export default function ResetButton() {
+export default function ResetButton({
+    createDefaultBudgetValues,
+    setBudgetValues
+  }) {
 
-  return (
-    <!-- button -->
-  );
+  const handler = (e) => {
+    e.preventDefault();
+    setBudgetValues(createDefaultBudgetValues());
+  }
+
+  return <button type={"button"} onClick={handler}>{"Reset"}</button>;
 };

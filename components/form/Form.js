@@ -27,8 +27,8 @@ function Form({ data }) {
   }, [budgetValues])
 
   // post the results of the survey
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
     const submissionData = {
       district: district,
       reallocations: budgetValues
@@ -56,7 +56,12 @@ function Form({ data }) {
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
         allocatedTotal={allocatedTotal}/>
-
+      <FormFooter
+        allocatedTotal={allocatedTotal}
+        budgetValues={budgetValues}
+        setBudgetValues={setBudgetValues}
+        handleSubmit={handleSubmit}
+        createDefaultBudgetValues={() => createDefaultBudgetValues(data)}/>
     </form>
   );
 }

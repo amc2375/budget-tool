@@ -1,6 +1,7 @@
-export default function SubmitButton() {
-
-  return (
-    <!-- button -->
-  );
+export default function SubmitButton({ handleSubmit }) {
+    return (
+      <button
+        type={"button"}
+        onClick={handleSubmit}>{"Submit"}</button>
+    );
 };
