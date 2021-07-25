@@ -1,4 +1,5 @@
 import ChevronDown from '../../../../static/chevron-down.svg';
+import { billionsAmountString } from '../../../../utilities/helpers.js';
 import s from '../../../../styles/styles.module.scss';
 
 export default function Label({
@@ -22,18 +23,7 @@ export default function Label({
         className={s.chevron}
         style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
       <div>{label}</div>
-      <div>{`${percentageOfTotal}% (${formattedAmount(amount)})`}</div>
+      <div>{`${percentageOfTotal}% (${billionsAmountString(amount)})`}</div>
     </section>
   );
-};
-
-// helper
-const amountInBillions = (amount) => (
-  Number(Math.round(amount/1000000000 + 'e2') + 'e-2')
-);
-
-// helper
-const formattedAmount = (amount) => {
-  let rowAmountInBillions = amountInBillions(amount);
-  return rowAmountInBillions != 0 ? `$${rowAmountInBillions} Billion` : "$0";
 };

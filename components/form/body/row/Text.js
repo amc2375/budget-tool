@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  amountInBillions,
+  validateUserInput
+} from '../../../../utilities/helpers.js';
 
 export default function Text({
     budgetValue,
@@ -36,14 +40,3 @@ export default function Text({
     </React.Fragment>
   );
 };
-
-// helper to validate user input for integers and floats
-const validateUserInput = (value) => {
-  const re = /^([0-9]*)(\.{1})?([0-9]*)+$/;
-  return value === '' || re.test(value)
-}
-
-// helper
-const amountInBillions = (amount) => (
-  Number(Math.round(amount/1000000000 + 'e2') + 'e-2')
-);

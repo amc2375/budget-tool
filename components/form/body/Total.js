@@ -1,4 +1,5 @@
 import React from 'react';
+import { billionsAmountString } from '../../../utilities/helpers.js';
 
 export default function Total({
     totalBudget,
@@ -13,18 +14,7 @@ export default function Total({
     <React.Fragment>
       <label>{"Total"}</label>
       <div>{`${(allocatedTotal).toFixed(2)}%`}</div>
-      <span>{`(${formattedRowAmount(totalAmount)})`}</span>
+      <span>{`(${billionsAmountString(totalAmount)})`}</span>
     </React.Fragment>
   );
-};
-
-// helper
-const amountInBillions = (amount) => (
-  Number(Math.round(amount/1000000000 + 'e4') + 'e-4')
-);
-
-// helper
-const formattedRowAmount = (amount) => {
-  let rowAmountInBillions = amountInBillions(amount);
-  return rowAmountInBillions != 0 ? `$${rowAmountInBillions} Billion` : "$0";
 };
