@@ -1,5 +1,6 @@
 @use 'styles/base' as *;
 
 .container {
-  @extend %form-row-flex-parent
+  @extend %form-row-flex-parent;
+  margin-bottom: 48px;
 }

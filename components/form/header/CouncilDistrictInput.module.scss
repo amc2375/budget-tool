@@ -4,6 +4,10 @@
   @extend %header-input-container;
   @extend %form-row-flex-child-left;
 
+  label {
+    font-size: $p1-size;
+  }
+
   select {
     @extend %header-input;
   }

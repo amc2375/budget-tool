@@ -4,6 +4,10 @@
   @extend %header-input-container;
   @extend %form-row-flex-child-right;
 
+  label {
+    font-size: $p1-size;
+  }
+
   input {
     @extend %header-input;
   }
