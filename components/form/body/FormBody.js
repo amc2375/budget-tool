@@ -1,7 +1,7 @@
-import React from 'react';
 import Headings from './Headings.js';
 import Rows from './Rows.js';
 import Total from './Total.js';
+import styles from './FormBody.module.scss';
 
 export default function FormBody({
     data,
@@ -11,7 +11,7 @@ export default function FormBody({
   }) {
 
   return (
-    <React.Fragment>
+    <section className={styles.container}>
       <Headings/>
       <Rows
         data={data}
@@ -23,6 +23,6 @@ export default function FormBody({
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
         allocatedTotal={allocatedTotal}/>
-    </React.Fragment>
+    </section>
   );
 };

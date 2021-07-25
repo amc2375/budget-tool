@@ -3,4 +3,8 @@
 .container {
   @extend %header-input-container;
   @extend %form-row-flex-child-left;
+
+  select {
+    @extend %header-input;
+  }
 }

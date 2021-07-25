@@ -2,14 +2,15 @@
 
 .header {
   @extend %left-align-vertical;
-  font-size: $h2-size;
 
   strong {
     color: $blue;
+    font-size: $h2-size;
   }
 
   p {
     margin-top: 16px;
     margin-bottom: 80px;
+    font-size: $h3-size;
   }
 }

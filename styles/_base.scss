@@ -73,3 +73,10 @@ $p2-size: 13px;
   display: flex;
   flex-direction: column;
 }
+
+%header-input {
+  font-size: $p1-size;
+  border-radius: 8px;
+  border: 1px solid #7B7B7B;
+  padding: 6px;
+}
