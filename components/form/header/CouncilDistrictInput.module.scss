@@ -10,5 +10,6 @@
 
   select {
     @extend %text-input;
+    min-height: 42px;
   }
 }
