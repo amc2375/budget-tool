@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import FormFooter from './footer/FormFooter.js';
+import styles from './Form.module.scss';
 
 function Form({ data }) {
 
@@ -46,23 +47,25 @@ function Form({ data }) {
   }
 
   return (
-    <form>
-      <FormHeader
-        districts={data.districts}
-        setDistrict={setDistrict}
-        setZipCode={setZipCode}/>
-      <FormBody
-        data={data}
-        budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}
-        allocatedTotal={allocatedTotal}/>
-      <FormFooter
-        allocatedTotal={allocatedTotal}
-        budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}
-        handleSubmit={handleSubmit}
-        createDefaultBudgetValues={() => createDefaultBudgetValues(data)}/>
-    </form>
+    <div className={styles.body}>
+      <form className={styles.form}>
+        <FormHeader
+          districts={data.districts}
+          setDistrict={setDistrict}
+          setZipCode={setZipCode}/>
+        <FormBody
+          data={data}
+          budgetValues={budgetValues}
+          setBudgetValues={setBudgetValues}
+          allocatedTotal={allocatedTotal}/>
+        <FormFooter
+          allocatedTotal={allocatedTotal}
+          budgetValues={budgetValues}
+          setBudgetValues={setBudgetValues}
+          handleSubmit={handleSubmit}
+          createDefaultBudgetValues={() => createDefaultBudgetValues(data)}/>
+      </form>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import ChevronDown from '../../../../static/chevron-down.svg';
 import { billionsAmountString } from '../../../../utilities/helpers.js';
-import styles from './Inputs.module.scss';
+import styles from './Label.module.scss';
 
 export default function Label({
     label,
