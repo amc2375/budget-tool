@@ -1,4 +1,5 @@
-import { db, pgp } from "../../utilities/postgres";
+const db = require("../../utilities/postgres").instance;
+const pgp = require("pg-promise")(/*initOptions*/);
 import { nanoid } from "nanoid";
 import {
   BRONX_COUNCIL_DISTRICTS,
@@ -50,6 +51,7 @@ async function handlePost(request, response) {
     ['submission_id', 'district_id', 'category_id', 'category_value'],
     'bcdi.budget'
   ).replace('"bcdi.budget"', "bcdi.budget");
+  console.log(insert);
   const query = await db.any(insert)
   response.status(200).json(query);
 };
@@ -71,7 +73,7 @@ export default function handler(req, res) {
     case "POST": {
       // // commented out for user testing + DB hosting cutover
       // handlePost(req, res);
-      handlePostNoDB(req, res);
+      handlePost(req, res);
 
       //INSERT INTO bcdi.budget (submission_id, location_id, category_id, category_value) VALUES ()
 
