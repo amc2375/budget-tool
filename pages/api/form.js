@@ -17,6 +17,12 @@ async function handleGet(request, response) {
     districts: districts,
     categories: categories
   };
+
+  data.districts.sort((a, b) => alphabetSort(a.district_id, b.district_id));
+  data.categories.sort((a, b) => alphabetSort(a.name, b.name));
+
+  data.totalBudget = calculateFixedBudgetAmount(data);
+
   response.status(200).json(data);
 };
 
@@ -59,7 +65,7 @@ export default function handler(req, res) {
     case "GET": {
       // // commented out for user testing + DB hosting cutover
       // handleGet(req, res);
-      handleGetNoDB(req, res);
+      handleGet(req, res);
       break;
     }
     case "POST": {
@@ -111,4 +117,18 @@ export default function handler(req, res) {
   //        res.setHeader(“Allow”, [“GET”, “POST”, “PUT”, “DELETE”]);
   //        res.status(405).end(`Method ${method} Not Allowed`);
   //    }
+};
+
+// sorting data alphabetically
+const alphabetSort = (a, b) => (
+  (a > b) ? 1 : ((b > a) ? -1 : 0)
+);
+
+// calculate the fixed budget amount
+const calculateFixedBudgetAmount = (data) => {
+  let sum = 0;
+  data.categories.forEach(category => {
+    sum = sum + category.amount;
+  });
+  return sum;
 };

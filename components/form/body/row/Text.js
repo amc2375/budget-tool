@@ -17,8 +17,8 @@ export default function Text({
   };
 
   const caption = () => {
-    if (budgetValue == '' || budgetValue == '0') {
-      return "($0)";
+    if (budgetValue == '' || budgetValue == 0) {
+      return "$0";
     } else {
       let multiplier = parseFloat(budgetValue)/100;
       return `$${amountInBillions(totalBudget * multiplier)} Billion`;
