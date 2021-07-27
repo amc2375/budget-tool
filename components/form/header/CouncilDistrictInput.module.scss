@@ -1,0 +1,15 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %header-input-container;
+  @extend %form-row-flex-child-left;
+
+  label {
+    font-size: $p1-size;
+  }
+
+  select {
+    @extend %text-input;
+    min-height: 42px;
+  }
+}

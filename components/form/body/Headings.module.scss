@@ -1,0 +1,33 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %form-row-flex-parent;
+}
+
+%blue-label {
+  font-size: $p1-size;
+  font-weight: bold;
+  color: $blue;
+}
+
+%grey-label {
+  font-size: $p2-size;
+  color: $light-grey;
+  margin: 6px 0px 36px 0px;
+}
+
+.left {
+  @extend %form-row-flex-child-left;
+}
+
+.right {
+  @extend %form-row-flex-child-right;
+}
+
+.left label, .right label {
+  @extend %blue-label;
+}
+
+.left p, .right p {
+  @extend %grey-label;
+}
