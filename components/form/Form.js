@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import FormFooter from './footer/FormFooter.js';
+import { categoryPercentage } from '../../utilities/helpers.js';
 import styles from './Form.module.scss';
 
 function Form({ data }) {
@@ -75,9 +76,9 @@ export default Form;
 const createDefaultBudgetValues = (data) => {
   let values = {};
   data.categories.map(category => {
-      values[category.id] = parseFloat(
-        category.percentage_of_total
-      ).toString();
+      values[category.id] = categoryPercentage(
+        category.amount, data.totalBudget
+      );
   });
   return values;
 };

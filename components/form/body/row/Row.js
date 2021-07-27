@@ -21,7 +21,7 @@ export default function Row({
         <Label
           label={budgetCategory.name}
           amount={budgetCategory.amount}
-          percentageOfTotal={budgetCategory.percentage_of_total}
+          totalBudget={totalBudget}
           accordionOpen={accordionOpen}
           setAccordionOpen={setAccordionOpen}/>
         <Inputs
