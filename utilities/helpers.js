@@ -14,3 +14,7 @@ export const billionsAmountString = (amount) => {
   let rowAmountInBillions = amountInBillions(amount);
   return rowAmountInBillions != 0 ? `$${rowAmountInBillions} Billion` : "$0";
 };
+
+export const categoryPercentage = (amount, total) => {
+  return (amount * 100 / total).toFixed(2);
+}

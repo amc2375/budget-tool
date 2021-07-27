@@ -1,9 +1,9 @@
 # Here's how we are writing this application!
 
-[Guide to writing great React](https://medium.com/swlh/how-to-write-great-react-c4f23f2f3f4f)
-[Project structure](https://dev.to/vadorequest/a-2021-guide-about-structuring-your-next-js-project-in-a-flexible-and-efficient-way-472)
-[Description of what each folder should contain](https://sergiodxa.com/articles/next-file-structure/)
-[Here's how the styles work](https://nextjs.org/docs/basic-features/built-in-css-support)
+* [Guide to writing great React](https://medium.com/swlh/how-to-write-great-react-c4f23f2f3f4f)
+* [Project structure](https://dev.to/vadorequest/a-2021-guide-about-structuring-your-next-js-project-in-a-flexible-and-efficient-way-472)
+* [Description of what each folder should contain](https://sergiodxa.com/articles/next-file-structure/)
+* [Here's how the styles work](https://nextjs.org/docs/basic-features/built-in-css-support)
 
 ## API routes with REST
 
