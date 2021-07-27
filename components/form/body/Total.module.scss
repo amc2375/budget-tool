@@ -1,0 +1,22 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %left-align-vertical;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+
+  label {
+    font-size: $p1-size;
+    font-weight: bold;
+  }
+
+  span {
+    font-size: $p1-size;
+  }
+
+  figcaption {
+    font-size: $p2-size;
+  }
+}

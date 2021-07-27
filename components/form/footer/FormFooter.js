@@ -2,6 +2,7 @@ import React from 'react';
 import ResetButton from './ResetButton.js';
 import SnapButton from './SnapButton.js';
 import SubmitButton from './SubmitButton.js';
+import styles from './FormFooter.module.scss';
 
 export default function FormFooter({
     allocatedTotal,
@@ -12,16 +13,20 @@ export default function FormFooter({
   }) {
 
   return (
-    <React.Fragment>
-      <ResetButton
-        setBudgetValues={setBudgetValues}
-        createDefaultBudgetValues={createDefaultBudgetValues}/>
-      <SnapButton
-        budgetValues={budgetValues}
-        setBudgetValues={setBudgetValues}
-        allocatedTotal={allocatedTotal}/>
-      <SubmitButton
-        handleSubmit={handleSubmit}/>
-    </React.Fragment>
+    <section className={styles.container}>
+      <div className={styles.buttonContainerLeft}>
+        <ResetButton
+          setBudgetValues={setBudgetValues}
+          createDefaultBudgetValues={createDefaultBudgetValues}/>
+      </div>
+      <div className={styles.buttonContainerRight}>
+        <SnapButton
+          budgetValues={budgetValues}
+          setBudgetValues={setBudgetValues}
+          allocatedTotal={allocatedTotal}/>
+        <SubmitButton
+          handleSubmit={handleSubmit}/>
+    </div>
+    </section>
   );
 };

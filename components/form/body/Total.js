@@ -1,5 +1,5 @@
-import React from 'react';
 import { billionsAmountString } from '../../../utilities/helpers.js';
+import styles from './Total.module.scss';
 
 export default function Total({
     totalBudget,
@@ -11,10 +11,12 @@ export default function Total({
   let totalAmount = (parseFloat(allocatedTotal)/100) * totalBudget;
 
   return (
-    <React.Fragment>
+    <section className={styles.container}>
       <label>{"Total"}</label>
-      <div>{`${(allocatedTotal).toFixed(2)}%`}</div>
-      <span>{`(${billionsAmountString(totalAmount)})`}</span>
-    </React.Fragment>
+      <div>
+        <span>{`${(allocatedTotal).toFixed(2)}%`}</span>
+        <figcaption>{`${billionsAmountString(totalAmount)}`}</figcaption>
+      </div>
+  </section>
   );
 };

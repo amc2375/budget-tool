@@ -1,0 +1,15 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %left-align-vertical;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonContainerLeft {
+  display: flex;
+}
+
+.buttonContainerRight {
+  
+}

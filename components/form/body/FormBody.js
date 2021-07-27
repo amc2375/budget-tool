@@ -18,6 +18,7 @@ export default function FormBody({
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
         totalBudget={data.totalBudget}/>
+      <div className={styles.divider}/>
       <Total
         totalBudget={data.totalBudget}
         budgetValues={budgetValues}
