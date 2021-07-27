@@ -10,16 +10,12 @@ export default function Rows({
 
   const setBudgetValue = (key) => {
     return function(value) {
-      console.log(key);
-      console.log(value);
       setBudgetValues({
         ...budgetValues,
         [key]: value
       })
     }
   };
-
-  console.log(budgetValues);
 
   return (
     <React.Fragment>

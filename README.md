@@ -5,6 +5,7 @@
 * [Description of what each folder should contain](https://sergiodxa.com/articles/next-file-structure/)
 * [Here's how the styles work](https://nextjs.org/docs/basic-features/built-in-css-support)
 * [Here's sort of how we're managing the database via Heroku command line](https://www.youtube.com/watch?v=80oty2v4HsE)
+* [This is sort of how the DB connectivity works](https://www.codeoftheprogrammer.com/2020/01/16/postgresql-from-nextjs-api-route/)
 
 ## How do you connect to the database?
 * First, install heroku CLI.

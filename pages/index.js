@@ -7,7 +7,7 @@ import {
   BRONX_COUNCIL_DISTRICTS,
   BRONX_FY2022_BUDGET
 } from "../utilities/constants.js";
-import { db } from "../utilities/postgres";
+const db = require("../utilities/postgres").instance;
 
 export default function Index({ data }) {
 
