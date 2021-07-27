@@ -9,9 +9,4 @@ const conn = {
   ssl: false
 };
 
-const db = pgp(conn);
-
-module.exports = {
-  db,
-  pgp,
-};
+export const db = pgp(conn);

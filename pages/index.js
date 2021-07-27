@@ -7,6 +7,7 @@ import {
   BRONX_COUNCIL_DISTRICTS,
   BRONX_FY2022_BUDGET
 } from "../utilities/constants.js";
+import { db } from "../utilities/postgres";
 
 export default function Index({ data }) {
 
@@ -31,14 +32,20 @@ export default function Index({ data }) {
 // generates a JSON file holding the result of running getStaticProps."
 export async function getStaticProps() {
 
-  const data = {
-    districts: BRONX_COUNCIL_DISTRICTS,
-    categories: BRONX_FY2022_BUDGET
-  };
+  // const data = {
+  //   districts: BRONX_COUNCIL_DISTRICTS,
+  //   categories: BRONX_FY2022_BUDGET
+  // };
 
+  const districts = await db.any("SELECT id, district_id, name FROM bcdi.districts");
+  const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bcdi.categories");
+  const data = {
+    districts: districts,
+    categories: categories
+  };
+  data.categories.forEach(c => c.amount = parseInt(c.amount));
   data.districts.sort((a, b) => alphabetSort(a.district_id, b.district_id));
   data.categories.sort((a, b) => alphabetSort(a.name, b.name));
-
   data.totalBudget = calculateFixedBudgetAmount(data);
 
   // By returning { props: { xyz } }, the component
