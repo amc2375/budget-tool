@@ -21,7 +21,7 @@ $ heroku pg:pull postgresql-closed-53032 peoplesbudget-test --app peoplesbudget-
 ```
 * You can set up the schema by doing the following:
 ```
-$ heroku pg:psql postgresql-closed-53032 --app peoplesbudget-test < schema.sql
+$ heroku pg:psql postgresql-closed-53032 --app peoplesbudget-test < utilities/schema.sql
 ```
 
 ### API routes with REST

@@ -153,14 +153,13 @@ INSERT INTO bcdi.categories (
 	 '<p>The <a href="https://www1.nyc.gov/site/fdny/about/overview/overview.page" target="_blank" rel="noreferrer noopener">Fire Department of the City of New York (FDNY)</a> provides fire suppression and prevention services, along with emergency rescue/medical response.</p>'
 );
 
-
-
 CREATE SEQUENCE IF NOT EXISTS budget_sequence_id;
 
 CREATE TABLE bcdi.budget (
 	"id" int4 NOT NULL DEFAULT nextval('budget_sequence_id'::regclass),
 	"submission_id" text NOT NULL,
 	"district_id" int4 NOT NULL,
+	"zip_code" numeric NOT NULL,
 	"category_id" int4 NOT NULL,
 	"category_value" numeric NOT NULL,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

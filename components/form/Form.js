@@ -33,7 +33,8 @@ function Form({ data }) {
     e.preventDefault();
     const submissionData = {
       district: district,
-      reallocations: budgetValues
+      zipCode: zipCode,
+      budgetValues: budgetValues
     }
 
     try {

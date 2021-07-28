@@ -21,7 +21,7 @@ $h3-size: 27px;
 $p1-size: 18px;
 $p2-size: 13px;
 
-// button stuff
+// form button stuff
 @mixin button-colors($border-color, $background-color, $text-color) {
   border-color: $border-color;
   background-color: $background-color;
@@ -57,7 +57,7 @@ $p2-size: 13px;
   cursor: pointer;
 }
 
-// align various content along left vertical axis
+// align various form content along left vertical axis
 %left-align-vertical {
   margin-left: 84px;
   margin-right: 52px;
@@ -68,22 +68,24 @@ $p2-size: 13px;
   display: flex;
 }
 
-// one third
+// form row - one third
 %form-row-flex-child-left {
   flex: 1;
 }
 
-// two thirds
+// form row - two thirds
 %form-row-flex-child-right {
   padding-left: 48px;
   flex: 2
 }
 
+// form
 %header-input-container {
   display: flex;
   flex-direction: column;
 }
 
+// form text input
 %text-input {
   font-size: $p1-size;
   border-radius: 8px;
