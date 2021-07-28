@@ -1,3 +1,15 @@
+/* home page! */
+@import "bourbon";
+
+$blue-900: #1E3A8A;
+$home-background: #E5E5E5;
+$blue-50: #EFF6FF;
+$gray-800: #1F2937;
+$gray-500: #6B7280;
+$gray-50: #F9FAFB;
+
+/* survey page! */
+
 // body colors
 $color-background: #F6F6F7;
 $color-base: #F5F5F5;
@@ -20,6 +32,19 @@ $h2-size: 40.5px;
 $h3-size: 27px;
 $p1-size: 18px;
 $p2-size: 13px;
+
+%body {
+  background-color: $color-background;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  font-family: $font-stack-helvetica;
+  color: $black;
+  min-width: 1080px;
+}
+
 
 // form button stuff
 @mixin button-colors($border-color, $background-color, $text-color) {

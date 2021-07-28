@@ -8,7 +8,7 @@ import styles from './Home.module.scss';
 export default function Home() {
 
   return (
-    <main className={styles.main}>
+    <main className={styles.body}>
       <Nav/>
       <Splash/>
       <Banner/>

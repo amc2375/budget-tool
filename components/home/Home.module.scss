@@ -1,6 +1,5 @@
 @use 'styles/base' as *;
-@import "bourbon";
 
-.main {
-
+.body {
+  @extend %body;
 }

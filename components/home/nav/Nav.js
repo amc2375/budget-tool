@@ -5,9 +5,9 @@ import styles from './Nav.module.scss';
 export default function Nav() {
 
   return (
-    <React.Fragment>
+    <nav className={styles.container}>
       <Logos/>
       <Menu/>
-    </React.Fragment>
+    </nav>
   );
 };

@@ -6,10 +6,10 @@ import styles from './Splash.module.scss';
 export default function Splash() {
 
   return (
-    <React.Fragment>
+    <section className={styles.container}>
       <Headline/>
       <SubHeadline/>
       <SplashImage/>
-    </React.Fragment>
+    </section>
   );
 };

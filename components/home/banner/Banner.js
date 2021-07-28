@@ -6,10 +6,10 @@ import styles from './Banner.module.scss';
 export default function Banner() {
 
   return (
-    <React.Fragment>
+    <section className={styles.container}>
       <PrimaryText/>
       <SecondaryText/>
       <Seal/>
-    </React.Fragment>
+    </section>
   );
 };

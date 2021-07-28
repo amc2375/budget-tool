@@ -7,10 +7,10 @@ import styles from './Content.module.scss';
 export default function Content() {
 
   return (
-    <React.Fragment>
+    <section className={styles.container}>
       <AboutThis/>
       <AboutUs/>
       <Image src={bronxDots} alt={"Image of the Bronx Borough Footprint"}/>
-    </React.Fragment>
+    </section>
   );
 };

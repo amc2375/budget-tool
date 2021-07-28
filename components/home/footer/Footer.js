@@ -5,9 +5,9 @@ import styles from './Footer.module.scss';
 export default function Footer() {
 
   return (
-    <React.Fragment>
+    <footer className={styles.container}>
       <Heading/>
       <Info/>
-    </React.Fragment>
+    </footer>
   );
 };
