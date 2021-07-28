@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from './NavButton.module.scss';
-export default function NavButton() {
+export default function NavButton({ text }) {
 
   return (
-    <div>
-    </div>
+    <p>{text}</p>
   );
 };

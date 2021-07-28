@@ -3,7 +3,6 @@ import styles from './PrimaryText.module.scss';
 export default function PrimaryText() {
 
   return (
-    <div>
-    </div>
+    <p>{"We want to hear from you"}</p>
   );
 };

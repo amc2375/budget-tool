@@ -3,7 +3,6 @@ import styles from './Headline.module.scss';
 export default function Headline() {
 
   return (
-    <div>
-    </div>
+    <p>{"How should NYC spend its money?"}</p>
   );
 };
