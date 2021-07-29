@@ -1,5 +1,6 @@
 @use 'styles/base' as *;
 
 .container {
-  background: $color-background;
+  display: flex;
+  justify-content: space-between;
 }

@@ -33,6 +33,14 @@ $h3-size: 27px;
 $p1-size: 18px;
 $p2-size: 13px;
 
+/* home page! */
+
+%home-align-left {
+  margin-left: 118px;
+}
+
+/* survey page! */
+
 %body {
   background-color: $color-background;
   position: absolute;

@@ -1,1 +1,6 @@
 @use 'styles/base' as *;
+
+.text {
+  color: $gray-800;
+  font-size: 16px;
+}

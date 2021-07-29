@@ -1,12 +1,12 @@
 import React from 'react';
-import NavButton from './NavButton.js';
+import NavLink from './NavLink.js';
 import styles from './Menu.module.scss';
 export default function Menu() {
 
   return (
-    <React.Fragment>
-      <NavButton text={"Home"}/>
-      <NavButton text={"Take the Survey"}/>
-    </React.Fragment>
+    <section className={styles.container}>
+      <NavLink text={"Home"} path={"/"}/>
+      <NavLink text={"Take the Survey"} path={"/budget-survey"}/>
+    </section>
   );
 };
