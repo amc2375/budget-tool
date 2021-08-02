@@ -22,6 +22,8 @@
 
 .right {
   @extend %form-row-flex-child-right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .left label, .right label {
@@ -30,4 +32,11 @@
 
 .left p, .right p {
   @extend %grey-label;
+}
+
+.leftSub {
+
+}
+.rightSub {
+  text-align: right;
 }

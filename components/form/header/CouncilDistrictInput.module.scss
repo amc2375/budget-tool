@@ -11,5 +11,6 @@
   select {
     @extend %text-input;
     min-height: 42px;
+    max-width: 374px;
   }
 }

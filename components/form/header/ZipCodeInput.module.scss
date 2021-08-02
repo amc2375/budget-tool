@@ -10,5 +10,6 @@
 
   input {
     @extend %text-input;
+    max-width: 374px;
   }
 }
