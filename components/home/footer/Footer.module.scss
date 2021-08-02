@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
 
-  p, h1, figcaption {
+  p, h1, a, figcaption {
     color: $gray-50;
   }
 
@@ -16,9 +16,10 @@
     font-size: 36px;
   }
 
-  p {
+  p, a {
     font-size: 16px;
     line-height: 24px;
+    text-decoration: none;
   }
 }
 
