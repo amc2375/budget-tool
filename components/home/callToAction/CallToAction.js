@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styles from './CallToAction.module.scss';
-export default function CallToAction({ text, path }) {
+export default function CallToAction({ text, path, type }) {
 
   const router = useRouter();
   const route = () => {
@@ -12,6 +12,6 @@ export default function CallToAction({ text, path }) {
   return (
     <button
       onClick={route}
-      className={styles.button}>{ text }</button>
+      className={styles[type]}>{ text }</button>
   );
 };

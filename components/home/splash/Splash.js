@@ -11,7 +11,7 @@ export default function Splash() {
       <div className={styles.left}>
         <Headline/>
         <SubHeadline/>
-        <CallToAction text={"Get started"} path={"/budget-survey"}/>
+        <CallToAction text={"Get started"} path={"/budget-survey"} type={"button-splash"}/>
       </div>
       <div className={styles.right}>
         <SplashImage/>

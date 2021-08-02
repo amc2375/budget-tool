@@ -1,1 +1,18 @@
 @use 'styles/base' as *;
+
+.container {
+  padding-bottom: 50px;
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    font-style: none;
+  }
+  figcaption {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+    font-style: none;
+  }
+}

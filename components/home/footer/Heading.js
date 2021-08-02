@@ -4,7 +4,7 @@ export default function Heading() {
 
   return (
     <React.Fragment>
-      <p>{"People’s Vision for the Bronx"}</p>
+      <h1>{"People’s Vision for the Bronx"}</h1>
       <p>{"Participatory Budgeting Survey"}</p>
     </React.Fragment>
   );

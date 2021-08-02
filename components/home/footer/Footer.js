@@ -7,9 +7,14 @@ export default function Footer() {
 
   return (
     <footer className={styles.container}>
-      <Heading/>
-      <CallToAction text={"Get started"} path={"/"}/>
-      <Info/>
+      <div className={styles.left}>
+        <Heading/>
+        <CallToAction text={"Get started"} path={"/"} type={"button-footer"}/>
+      </div>
+      <div className={styles.middle}></div>
+      <div className={styles.right}>
+        <Info/>
+      </div>
     </footer>
   );
 };
