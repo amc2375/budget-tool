@@ -36,7 +36,11 @@ $p2-size: 13px;
 /* home page! */
 
 %home-align-left {
-  margin-left: 118px;
+  padding-left: 118px;
+}
+
+%home-align-right {
+  padding-right: 118px;
 }
 
 /* survey page! */
@@ -52,7 +56,7 @@ $p2-size: 13px;
   color: $black;
   min-width: 1080px;
 
-  section, footer, nav {
+  section, footer {
     overflow: hidden;
   }
 }
