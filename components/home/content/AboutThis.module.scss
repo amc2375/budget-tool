@@ -1,1 +1,43 @@
 @use 'styles/base' as *;
+
+.container {
+  @extend %home-align-left;
+  display: flex;
+  min-height: 750px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  flex: 2;
+  margin-right: 50px;
+  max-width: 680px;
+
+  h1 {
+    color: $blue-900;
+    font-weight: normal;
+    font-size: 36px;
+  }
+
+  p {
+    color: $blue-900;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+}
+
+.right {
+  flex: 1;
+  align-items: center;
+  margin: auto 110px auto 55px;
+  max-width: 538px;
+
+  div {
+    justify-content: center;
+  }
+
+  img {
+    max-height: 500px;
+  }
+}

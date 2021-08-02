@@ -51,6 +51,10 @@ $p2-size: 13px;
   font-family: $font-stack-helvetica;
   color: $black;
   min-width: 1080px;
+
+  section, footer, nav {
+    overflow: hidden;
+  }
 }
 
 
