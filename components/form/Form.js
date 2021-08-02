@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Nav from '../nav/Nav.js';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import FormFooter from './footer/FormFooter.js';
+import Footer from '../footer/Footer.js';
 import { categoryPercentage } from '../../utilities/helpers.js';
 import styles from './Form.module.scss';
 
@@ -50,6 +52,7 @@ function Form({ data }) {
 
   return (
     <div className={styles.body}>
+      <Nav />
       <form className={styles.form}>
         <FormHeader
           districts={data.districts}
@@ -59,7 +62,8 @@ function Form({ data }) {
           data={data}
           budgetValues={budgetValues}
           setBudgetValues={setBudgetValues}
-          allocatedTotal={allocatedTotal}/>
+          allocatedTotal={allocatedTotal}
+          totalBudget={data.totalBudget}/>
         <FormFooter
           allocatedTotal={allocatedTotal}
           budgetValues={budgetValues}
@@ -67,6 +71,7 @@ function Form({ data }) {
           handleSubmit={handleSubmit}
           createDefaultBudgetValues={() => createDefaultBudgetValues(data)}/>
       </form>
+      <Footer />
     </div>
   );
 }

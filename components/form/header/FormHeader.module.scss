@@ -2,16 +2,19 @@
 
 .header {
   @extend %left-align-vertical;
-
-  strong {
-    color: $blue;
-    font-size: $h2-size;
-  }
+  padding-bottom: 28px;
 
   p {
-    color: $black;
-    font-size: $h3-size;
-    margin-top: 16px;
-    margin-bottom: 80px;
+    color: $gray-800;
+    font-size: 24px;
+    margin: 0;
+    display: block;
+  }
+
+  strong {
+    color: $blue-900;
+    font-size: 48px;
+    margin-top: 18px;
+    display: block;
   }
 }

@@ -12,7 +12,8 @@ export default function FormBody({
 
   return (
     <section className={styles.container}>
-      <Headings/>
+      <Headings
+        totalBudget={data.totalBudget}/>
       <Rows
         data={data}
         budgetValues={budgetValues}
