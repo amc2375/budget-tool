@@ -1,0 +1,18 @@
+@use 'styles/base' as *;
+
+.container {
+  width: 0px;
+  height: 0px;
+}
+
+.container > div {
+  position: relative;
+  top: -67px;
+  left: 118px;
+  min-width: 140px;
+  height: 135px;
+
+  div {
+    position: absolute;
+  }
+}

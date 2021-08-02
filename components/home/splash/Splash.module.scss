@@ -5,16 +5,24 @@
   display: flex;
   @extend %home-align-left;
   padding-top: 50px;
+  align-items: center;
+  height: 450px;
+  padding-bottom: 50px;
 }
 
 .left {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-right: 55px;
+  min-width: 288px;
 }
 
 .right {
   flex: 2;
-  margin-right: 56px;
+  align-items: center;
+  margin: auto 55px;
+
+  img {
+  max-height: 340px;
+  }
 }

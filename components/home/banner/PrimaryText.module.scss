@@ -1,1 +1,13 @@
 @use 'styles/base' as *;
+
+.container {
+  width: 330px;
+  height: 80px;
+  margin-right: 10%;
+}
+
+.text {
+  font-size: 36px;
+  color: $gray-50;
+  margin: 0px;
+}

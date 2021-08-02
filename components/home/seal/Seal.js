@@ -5,6 +5,8 @@ import styles from './Seal.module.scss';
 export default function Seal() {
 
   return (
-    <Image src={bronxSeal} alt={"Bronx Seal"}/>
+    <div className={styles.container}>
+      <Image src={bronxSeal} alt={"Bronx Seal"}/>
+    </div>
   );
 };
