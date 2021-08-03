@@ -7,14 +7,17 @@ export default function FormBody({
     data,
     budgetValues,
     setBudgetValues,
-    allocatedTotal
+    allocatedTotal,
+    createDefaultBudgetValues
   }) {
 
   return (
     <section className={styles.container}>
       <Headings
         totalBudget={data.totalBudget}
-        allocatedTotal={allocatedTotal}/>
+        setBudgetValues={setBudgetValues}
+        allocatedTotal={allocatedTotal}
+        createDefaultBudgetValues={createDefaultBudgetValues}/>
       <Rows
         data={data}
         budgetValues={budgetValues}

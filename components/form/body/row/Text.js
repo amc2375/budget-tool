@@ -37,7 +37,7 @@ export default function Text({
           max={100}
           step = {0.01}
           required/>
-        <div>{"%"}</div>
+        <div className={styles.after}>{"%"}</div>
       </div>
       <figcaption className={styles.caption}>{caption()}</figcaption>
     </section>

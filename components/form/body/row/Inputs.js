@@ -12,19 +12,19 @@ export default function Inputs({
 
   return (
     <div className={styles.container}>
-      <MinusButton
+      <Text
         budgetValue={budgetValue}
-        setBudgetValue={setBudgetValue}/>
-      <Slider
+        setBudgetValue={setBudgetValue}
+        totalBudget={totalBudget}/>
+      <MinusButton
         budgetValue={budgetValue}
         setBudgetValue={setBudgetValue}/>
       <PlusButton
         budgetValue={budgetValue}
         setBudgetValue={setBudgetValue}/>
-      <Text
+      <Slider
         budgetValue={budgetValue}
-        setBudgetValue={setBudgetValue}
-        totalBudget={totalBudget}/>
+        setBudgetValue={setBudgetValue}/>
     </div>
   );
 };

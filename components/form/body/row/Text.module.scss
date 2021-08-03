@@ -3,16 +3,19 @@
 .inputAndPercentage {
   display: flex;
   align-items: center;
+  position: relative;
 
   input {
     @extend %text-input;
     width: 107px;
   }
 
-  div {
+  .after {
     font-size: $p1-size;
-    padding-top: 6px;
-    padding-left: 2px;
+    position: absolute;
+    right: 6px;
+    top: 22px;
+    color: $gray-500;
   }
 }
 

@@ -63,13 +63,13 @@ function Form({ data }) {
           budgetValues={budgetValues}
           setBudgetValues={setBudgetValues}
           allocatedTotal={allocatedTotal}
-          totalBudget={data.totalBudget}/>
+          totalBudget={data.totalBudget}
+          createDefaultBudgetValues={() => createDefaultBudgetValues(data)}/>
         <FormFooter
           allocatedTotal={allocatedTotal}
           budgetValues={budgetValues}
           setBudgetValues={setBudgetValues}
-          handleSubmit={handleSubmit}
-          createDefaultBudgetValues={() => createDefaultBudgetValues(data)}/>
+          handleSubmit={handleSubmit}/>
       </form>
       <Footer />
     </div>

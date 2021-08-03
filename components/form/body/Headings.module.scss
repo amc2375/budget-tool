@@ -4,16 +4,15 @@
   @extend %form-row-flex-parent;
 }
 
-%blue-label {
-  font-size: $p1-size;
+%gray-500-label {
+  font-size: 16px;
   font-weight: bold;
-  color: $blue;
+  color: $gray-500;
 }
 
 %grey-label {
-  font-size: $p2-size;
-  color: $light-grey;
-  margin: 6px 0px 36px 0px;
+  font-size: 13px;
+  color: $gray-500;
 }
 
 .left {
@@ -27,16 +26,39 @@
 }
 
 .left label, .right label {
-  @extend %blue-label;
+  @extend %gray-500-label;
 }
 
-.left p, .right p {
+.left p, .right p, .right figcaption {
   @extend %grey-label;
 }
 
-.leftSub {
-
+.billions {
+  font-size: 24px;
+  color: $blue-900;
 }
+
+.allocated {
+  font-size: 24px;
+  color: $blue-900;
+  font-weight: bold;
+}
+
+.overAmount {
+  font-size: 24px;
+  color: $red-800;
+  font-weight: bold;
+}
+
 .rightSub {
   text-align: right;
+}
+
+.top {
+  margin-bottom: 22px;
+}
+
+.middle {
+  height: 49px;
+  margin-bottom: 21px;
 }
