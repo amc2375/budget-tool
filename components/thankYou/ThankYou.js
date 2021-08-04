@@ -1,8 +1,10 @@
 import React from 'react';
 import Nav from '../nav/Nav.js';
+import Footer from '../footer/Footer.js';
 import styles from './ThankYou.module.scss';
-export default function Home() {
 
+export default function ThankYou({ data }) {
+  console.log(data);
   return (
     <main className={styles.body}>
       <Nav/>
@@ -14,6 +16,9 @@ export default function Home() {
         <p>{"Thanks for your response!"}</p>
         <figcaption>{"We're tallying responses from residents across the Bronx. Check out the results so far:"}</figcaption>
       </section>
+      <section className={styles.charts}>
+      </section>
+      <Footer />
     </main>
   );
 };

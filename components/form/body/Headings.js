@@ -14,6 +14,14 @@ export default function Headings({
 
   let totalAmount = (parseFloat(allocatedTotal)/100) * totalBudget;
 
+  const warningText = (allocatedTotal) => {
+    return allocatedTotal.toFixed(2) != 100.00 ? overUnderBudgetText(allocatedTotal) : "";
+  }
+
+  const warningTextCaption = (allocatedTotal) => {
+    return allocatedTotal.toFixed(2) != 100.00 ? `${allocatedTotal < 100 ? "Increase" : "Decrease"} your spending by this amount` : "";
+  }
+
   return (
     <section className={styles.container}>
       <div className={styles.left}>
@@ -47,8 +55,8 @@ export default function Headings({
             createDefaultBudgetValues={createDefaultBudgetValues}/>
           </div>
           <div className={styles.middle}>
-            <div className={styles.overAmount}>{overUnderBudgetText(allocatedTotal)}</div>
-            <p>{allocatedTotal < 100 ? "Increase" : "Decrease"} your spending by this amount</p>
+            <div className={styles.overAmount}>{warningText(allocatedTotal)}</div>
+            <p>{warningTextCaption(allocatedTotal)}</p>
           </div>
         </div>
       </div>
