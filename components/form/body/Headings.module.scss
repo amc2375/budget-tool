@@ -10,7 +10,7 @@
 
 %gray-500-label {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   color: $gray-500;
 }
 
@@ -51,13 +51,11 @@
 .allocated {
   font-size: 24px;
   color: $blue-900;
-  font-weight: bold;
 }
 
 .overAmount {
   font-size: 24px;
   color: $red-800;
-  font-weight: bold;
 }
 
 .rightSub {

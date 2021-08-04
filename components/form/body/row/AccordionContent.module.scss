@@ -1,13 +1,25 @@
 @use 'styles/base' as *;
 
-.accordionContent {
-  padding-top: 48px;
-  padding-bottom: 48px;
-  @extend %left-align-vertical;
-  @extend %right-align-vertical;
+.container {
+  display: flex;
+}
+
+.accordionContentLeft {
+  @extend %form-row-flex-child-left;
+  padding-top: 16px;
+  padding-bottom: 32px;
   background-color: $gray-50;
 
   p {
     margin: 0;
+    margin-right: 48px;
+    font-size: 16px;
+    line-height: 20px;
   }
+}
+
+.accordionContentRight {
+  @extend %form-row-flex-child-right;
+  padding-top: 16px;
+  padding-bottom: 32px;
 }

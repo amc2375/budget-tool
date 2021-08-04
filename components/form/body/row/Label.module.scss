@@ -11,20 +11,27 @@
     right: 16px;
     top: 5px;
     padding: 4px;
+    color: $gray-600;
   }
 
   label {
     display: block;
-    color: $black;
-    font-size: $p1-size;
-    font-weight: bold;
+    color: $gray-600;
+    font-size: 20px;
     margin-right: 42px;
   }
 
   p {
     margin: 0;
     padding: 6px 0px;
-    color: $sort-of-light-grey;
+    color: $gray-600;
+    font-size: 20px;
+
+    span {
+      font-size: 14px;
+      display: inline;
+      color: $gray-400;
+    }
   }
 
   svg:hover, label:hover, p:hover {

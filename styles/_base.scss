@@ -1,13 +1,15 @@
 /* home page! */
-@import "bourbon";
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900';
 
 $blue-900: #1E3A8A;
 $home-background: #E5E5E5;
 $blue-50: #EFF6FF;
 $gray-800: #1F2937;
 $gray-700: #374151;
+$gray-600: #4B5563;
 $gray-500: #6B7280;
 $gray-400: #9CA3AF;
+$gray-200: #E5E7EB;
 $gray-50: #F9FAFB;
 $red-800: #991B1B;
 $divider-gray: #9CA3AF;
@@ -18,7 +20,7 @@ $divider-gray: #9CA3AF;
 $color-background: #F6F6F7;
 $color-base: #F5F5F5;
 $white: #FFFFFF;
-$black: #151515;
+$black: #4B5563;
 
 // font colors
 $light-grey: #939393;
@@ -60,8 +62,11 @@ $form-inner-padding: 74px;
   top: 0;
   margin: 0;
   width: 100%;
-  font-family: $font-stack-helvetica;
+  font-family: Inter, sans-serif;
   color: $black;
+  a {
+    color: $blue-900;
+  }
 }
 
 
@@ -91,8 +96,8 @@ $form-inner-padding: 74px;
   font-size: $h3-size;
   border-radius: 6px;
   padding: 0px 6px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  box-shadow: inset 2px 5px 5px rgba(247, 247, 247, 0.25);
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  box-shadow: inset 0px 4px 8px 2px rgba(255, 255, 255, 0.3);
   border-width: 1px;
   border-style: solid;
 }

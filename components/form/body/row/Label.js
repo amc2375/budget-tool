@@ -28,7 +28,7 @@ export default function Label({
       <ChevronDown
         style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
       <label>{label}</label>
-      <p>{`${percentage}% (${billionsAmountString(displayAmount)})`}</p>
+      <p>{`${percentage}% `}<span>{`(${billionsAmountString(displayAmount)})`}</span></p>
     </section>
   );
 };

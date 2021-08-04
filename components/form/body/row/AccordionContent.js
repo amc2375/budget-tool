@@ -3,8 +3,12 @@ import styles from './AccordionContent.module.scss';
 export default function AccordionContent({ content, open }) {
   return(
     <section
-      className={styles.accordionContent}
       style={open ? {} : {display: 'none'}}
-      dangerouslySetInnerHTML={{ __html: content }}/>
+      className={styles.container}>
+      <div
+        className={styles.accordionContentLeft}
+        dangerouslySetInnerHTML={{ __html: content }}/>
+      <div className={styles.accordionContentRight}>{"Placeholder text"}</div>
+    </section>
   );
 };
