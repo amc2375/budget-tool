@@ -1,0 +1,25 @@
+@use 'styles/base' as *;
+
+.container {
+  background: $color-background;
+  padding-top: 50px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 288px;
+  @extend %home-align-left;
+  @extend %home-align-right;
+}
+
+.bottom {
+  margin-top: 48px;
+  align-items: center;
+  overflow: hidden;
+  background-color: $blue-900;
+}

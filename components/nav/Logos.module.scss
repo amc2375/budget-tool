@@ -1,0 +1,23 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %home-align-left;
+  display: flex;
+  height: 30px;
+  width: 50%;
+  align-items: center;
+  margin-top: 64px;
+  flex: 1;
+
+  svg {
+    height: 46px;
+    width: 46px;
+    margin-right: 10px;
+  }
+
+  img {
+    display: block;
+    min-width: 148px;
+    max-height: 30px;
+  }
+}

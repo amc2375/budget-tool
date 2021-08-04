@@ -1,0 +1,29 @@
+@use 'styles/base' as *;
+
+.button-splash {
+  @include button-colors(
+    $border-color: $blue-900,
+    $background-color: $blue-900,
+    $text-color: $white
+  );
+  @extend %big-button;
+
+  a:link, a:visited {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.button-footer {
+  @include button-colors(
+    $border-color: $white,
+    $background-color: $white,
+    $text-color: $blue-900
+  );
+  @extend %big-button;
+
+  a:link, a:visited {
+    text-decoration: none;
+    color: white;
+  }
+}

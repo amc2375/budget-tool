@@ -1,0 +1,41 @@
+@use 'styles/base' as *;
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  @extend %home-align-left;
+  @extend %home-align-right;
+  background: $color-background;
+
+  .left, .middle, .right {
+    flex: 1;
+  }
+
+  .left {
+    margin: 60px 0px;
+    min-width: 226px;
+    
+    h1 {
+      color: $blue-900;
+      font-weight: normal;
+      font-size: 36px;
+      margin: 0;
+    }
+  }
+
+  .middle, .right {
+    margin: 60px;
+
+    div {
+      height: 36px;
+      width: 178px;
+    }
+
+    p {
+      color: $gray-500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}

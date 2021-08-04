@@ -1,8 +1,11 @@
 @use 'styles/base' as *;
 
 .accordionContent {
+  padding-top: 48px;
+  padding-bottom: 48px;
   @extend %left-align-vertical;
-  padding: 48px 0px;
+  @extend %right-align-vertical;
+  background-color: $gray-50;
 
   p {
     margin: 0;

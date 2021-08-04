@@ -3,12 +3,5 @@
 .container {
   border-radius: 8px;
   background-color: $white;
-  padding-top: 64px;
-}
-
-.divider {
-  border-top: 1px solid $light-grey;
-  @extend %left-align-vertical;
-  margin-top: 24px;
-  margin-bottom: 24px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
 }

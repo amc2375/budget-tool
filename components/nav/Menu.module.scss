@@ -1,0 +1,12 @@
+@use 'styles/base' as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 30px;
+  width: 50%;
+  margin-right: 118px;
+  margin-top: 64px;
+  flex: 4;
+}

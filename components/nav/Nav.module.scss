@@ -1,0 +1,6 @@
+@use 'styles/base' as *;
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}

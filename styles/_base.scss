@@ -1,3 +1,19 @@
+/* home page! */
+@import "bourbon";
+
+$blue-900: #1E3A8A;
+$home-background: #E5E5E5;
+$blue-50: #EFF6FF;
+$gray-800: #1F2937;
+$gray-700: #374151;
+$gray-500: #6B7280;
+$gray-400: #9CA3AF;
+$gray-50: #F9FAFB;
+$red-800: #991B1B;
+$divider-gray: #9CA3AF;
+
+/* survey page! */
+
 // body colors
 $color-background: #F6F6F7;
 $color-base: #F5F5F5;
@@ -21,7 +37,35 @@ $h3-size: 27px;
 $p1-size: 18px;
 $p2-size: 13px;
 
-// button stuff
+/* home page! */
+
+%home-align-left {
+  padding-left: 118px;
+}
+
+%home-align-right {
+  padding-right: 118px;
+}
+
+/* survey page! */
+
+// spacings
+$form-outer-padding: 54px;
+$form-inner-padding: 74px;
+
+%body {
+  background-color: $color-background;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  font-family: $font-stack-helvetica;
+  color: $black;
+}
+
+
+// form button stuff
 @mixin button-colors($border-color, $background-color, $text-color) {
   border-color: $border-color;
   background-color: $background-color;
@@ -43,7 +87,7 @@ $p2-size: 13px;
   min-width: 40px;
   max-width: 40px;
   height: 40px;
-  margin: 12px;
+  margin: 14px 0px;
   font-size: $h3-size;
   border-radius: 6px;
   padding: 0px 6px;
@@ -57,40 +101,45 @@ $p2-size: 13px;
   cursor: pointer;
 }
 
-// align various content along left vertical axis
+// align various form content along left vertical axis
 %left-align-vertical {
-  margin-left: 84px;
-  margin-right: 52px;
+  padding-left: $form-inner-padding;
 }
 
-%form-row-flex-parent {
-  @extend %left-align-vertical;
-  display: flex;
+%right-align-vertical {
+  padding-right: $form-inner-padding;
 }
 
-// one third
+// form row - one third
 %form-row-flex-child-left {
   flex: 1;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: $form-inner-padding;
 }
 
-// two thirds
+// form row - two thirds
 %form-row-flex-child-right {
+  padding-bottom: 16px;
   padding-left: 48px;
+  padding-right: $form-inner-padding;
   flex: 2
 }
 
+// form
 %header-input-container {
   display: flex;
   flex-direction: column;
 }
 
+// form text input
 %text-input {
   font-size: $p1-size;
   border-radius: 8px;
   border: 1px solid #7B7B7B;
   padding: 6px;
   height: 29px;
-  width: 216px;
+  max-width: 216px;
   margin-top: 12px;
   color: $black;
 }

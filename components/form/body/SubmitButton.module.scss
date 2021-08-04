@@ -2,8 +2,8 @@
 
 .button {
   @include button-colors(
-    $border-color: $blue,
-    $background-color: $blue,
+    $border-color: $blue-900,
+    $background-color: $blue-900,
     $text-color: $white
   );
   @extend %big-button;

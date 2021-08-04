@@ -11,7 +11,7 @@ export default function CouncilDistrictInput({
 
   return (
     <div className={styles.container}>
-      <label>Choose Your Council District</label>
+      <label>Choose your City Council District</label>
       <select
         defaultValue="default"
         required={true}

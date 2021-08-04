@@ -2,9 +2,11 @@
 
 .button {
   @include button-colors(
-    $border-color: $blue,
-    $background-color: $blue,
+    $border-color: $blue-900,
+    $background-color: $blue-900,
     $text-color: $white
   );
   @extend %little-button;
+  margin-left: 12px;
+  margin-right: 22px;
 }

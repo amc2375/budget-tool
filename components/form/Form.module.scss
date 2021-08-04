@@ -2,19 +2,11 @@
 @import "bourbon";
 
 .body {
-  background-color: $color-background;
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0;
-  width: 100%;
-  font-family: $font-stack-helvetica;
-  color: $black;
-  min-width: 1080px;
+  @extend %body;
 }
 
 .form {
   margin: 0;
-  padding: 120px 100px 200px 100px;
+  padding: 120px $form-outer-padding $form-outer-padding $form-outer-padding;
   min-width: 580px;
 }

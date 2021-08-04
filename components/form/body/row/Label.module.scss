@@ -3,11 +3,13 @@
 .container {
   @extend %form-row-flex-child-left;
   position: relative;
+  background-color: $gray-50;
+  padding-left: $form-inner-padding;
 
   svg {
     position: absolute;
-    left: -32px;
-    top: -4px;
+    right: 16px;
+    top: 5px;
     padding: 4px;
   }
 
@@ -16,6 +18,7 @@
     color: $black;
     font-size: $p1-size;
     font-weight: bold;
+    margin-right: 42px;
   }
 
   p {

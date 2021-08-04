@@ -1,0 +1,23 @@
+@use 'styles/base' as *;
+
+.container {
+  padding-bottom: 50px;
+
+  p, a, a:visited {
+    margin: 0;
+    font-weight: 400;
+    font-style: none;
+    display: block;
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+
+  figcaption {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+    font-style: none;
+  }
+}

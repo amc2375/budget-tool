@@ -1,11 +1,9 @@
 @use 'styles/base' as *;
 
 .container {
-  @extend %left-align-vertical;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 24px;
 
   label {
     font-size: $p1-size;
@@ -19,4 +17,60 @@
   figcaption {
     font-size: $p2-size;
   }
+}
+
+.left {
+  @extend %form-row-flex-child-left;
+  background: $gray-50;
+  height: 240px;
+}
+
+.right {
+  @extend %form-row-flex-child-right;
+  height: 180px;
+  padding-top: 60px;
+  p {
+    margin: 0;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+
+  p {
+    color: $gray-700;
+    font-size: 24px;
+    margin: 0px 4px 0px 0px;
+  }
+
+  figcaption {
+    color: $gray-400;
+    font-size: 13px;
+  }
+}
+
+.overUnder {
+  p {
+    color: $red-800;
+    font-size: 24px;
+  }
+}
+
+.caption {
+  color: $gray-700;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.divider {
+  border-top: 1px solid $divider-gray;
+  margin-top: 9px;
+  margin-bottom: 5px;
 }
