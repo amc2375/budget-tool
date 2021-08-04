@@ -8,12 +8,12 @@ export default function Splash() {
 
   return (
     <section className={styles.container}>
-      <div className={styles.left}>
+      <div className={styles.top}>
         <Headline/>
         <SubHeadline/>
         <CallToAction text={"Get started"} path={"/budget-survey"} type={"button-splash"}/>
       </div>
-      <div className={styles.right}>
+      <div className={styles.bottom}>
         <SplashImage/>
       </div>
     </section>
