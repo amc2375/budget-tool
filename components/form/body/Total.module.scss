@@ -1,11 +1,9 @@
 @use 'styles/base' as *;
 
 .container {
-  @extend %left-align-vertical;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 24px;
 
   label {
     font-size: $p1-size;
@@ -19,4 +17,19 @@
   figcaption {
     font-size: $p2-size;
   }
+}
+
+.left {
+  @extend %form-row-flex-child-left;
+  background: $gray-50;
+  height: 120px;
+}
+
+.right {
+  @extend %form-row-flex-child-right;
+  height: 120px;
+}
+
+.row {
+  
 }

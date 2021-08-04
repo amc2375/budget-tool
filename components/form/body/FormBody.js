@@ -1,6 +1,6 @@
 import Headings from './Headings.js';
 import Rows from './Rows.js';
-import Total from './Total.js';
+import Total from './Total.js'
 import styles from './FormBody.module.scss';
 
 export default function FormBody({
@@ -23,12 +23,12 @@ export default function FormBody({
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
         totalBudget={data.totalBudget}/>
-      <div className={styles.divider}/>
       <Total
         totalBudget={data.totalBudget}
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
         allocatedTotal={allocatedTotal}/>
+      <div className={styles.divider}/>
     </section>
   );
 };

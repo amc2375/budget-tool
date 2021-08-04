@@ -1,6 +1,9 @@
 import styles from './Headings.module.scss';
 import ResetLink from './ResetLink.js';
-import { billionsAmountString } from '../../../utilities/helpers.js';
+import {
+  billionsAmountString,
+  overUnderBudgetText
+} from '../../../utilities/helpers.js';
 
 export default function Headings({
     totalBudget,
@@ -10,15 +13,6 @@ export default function Headings({
   }) {
 
   let totalAmount = (parseFloat(allocatedTotal)/100) * totalBudget;
-
-  const overUnderBudgetText = (allocatedTotal) => {
-    let difference = parseFloat(allocatedTotal) - 100;
-    if (difference >= 0) {
-      return `${difference.toFixed(2)}% Over Budget`;
-    } else if (difference < 0) {
-      return `${(difference * -1).toFixed(2)}% Under Budget`
-    }
-  }
 
   return (
     <section className={styles.container}>

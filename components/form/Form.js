@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../nav/Nav.js';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
-import FormFooter from './footer/FormFooter.js';
 import Footer from '../footer/Footer.js';
 import { categoryPercentage } from '../../utilities/helpers.js';
 import styles from './Form.module.scss';
@@ -65,16 +64,21 @@ function Form({ data }) {
           allocatedTotal={allocatedTotal}
           totalBudget={data.totalBudget}
           createDefaultBudgetValues={() => createDefaultBudgetValues(data)}/>
-        <FormFooter
-          allocatedTotal={allocatedTotal}
-          budgetValues={budgetValues}
-          setBudgetValues={setBudgetValues}
-          handleSubmit={handleSubmit}/>
       </form>
       <Footer />
     </div>
   );
 }
+
+/*
+
+<FormFooter
+  allocatedTotal={allocatedTotal}
+  budgetValues={budgetValues}
+  setBudgetValues={setBudgetValues}
+  handleSubmit={handleSubmit}/>
+
+*/
 
 export default Form;
 
