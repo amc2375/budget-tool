@@ -46,6 +46,10 @@ $p2-size: 13px;
 
 /* survey page! */
 
+// spacings
+$form-outer-padding: 54px;
+$form-inner-padding: 74px;
+
 %body {
   background-color: $color-background;
   position: absolute;
@@ -80,7 +84,7 @@ $p2-size: 13px;
   min-width: 40px;
   max-width: 40px;
   height: 40px;
-  margin: 12px;
+  margin: 14px 0px;
   font-size: $h3-size;
   border-radius: 6px;
   padding: 0px 6px;
@@ -96,23 +100,26 @@ $p2-size: 13px;
 
 // align various form content along left vertical axis
 %left-align-vertical {
-  margin-left: 84px;
-  margin-right: 52px;
+  padding-left: $form-inner-padding;
 }
 
-%form-row-flex-parent {
-  @extend %left-align-vertical;
-  display: flex;
+%right-align-vertical {
+  padding-right: $form-inner-padding;
 }
 
 // form row - one third
 %form-row-flex-child-left {
   flex: 1;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: $form-inner-padding;
 }
 
 // form row - two thirds
 %form-row-flex-child-right {
+  padding-bottom: 16px;
   padding-left: 48px;
+  padding-right: $form-inner-padding;
   flex: 2
 }
 

@@ -3,6 +3,8 @@
 .container {
   @extend %form-row-flex-child-left;
   position: relative;
+  background-color: $gray-50;
+  padding-left: $form-inner-padding;
 
   svg {
     position: absolute;

@@ -1,7 +1,11 @@
 @use 'styles/base' as *;
 
 .container {
-  @extend %form-row-flex-parent;
+  display: flex;
+
+  p {
+    margin: 0px;
+  }
 }
 
 %gray-500-label {
@@ -17,12 +21,18 @@
 
 .left {
   @extend %form-row-flex-child-left;
+  background-color: $gray-50;
+  border-top-left-radius: 8px;
 }
 
 .right {
   @extend %form-row-flex-child-right;
   display: flex;
   justify-content: space-between;
+}
+
+.left, .right {
+  padding-top: 34px;
 }
 
 .left label, .right label {
