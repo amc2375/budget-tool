@@ -23,6 +23,7 @@ async function handlePost(request, response) {
     category_id: category_id,
     category_value: request.body.budgetValues[category_id]
   }));
+  console.log(submissionContent);
   const insert = pgp.helpers.insert(
     submissionContent,
     ['submission_id', 'district_id', 'zip_code', 'category_id', 'category_value'],

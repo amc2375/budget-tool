@@ -1,0 +1,39 @@
+@use 'styles/base' as *;
+
+.body {
+  @extend %body;
+}
+
+.header {
+  @extend %home-align-left;
+  padding-bottom: 28px;
+  padding-top: 120px;
+
+  p {
+    color: $gray-800;
+    font-size: 24px;
+    margin: 0;
+    display: block;
+  }
+
+  strong {
+    color: $blue-900;
+    font-size: 48px;
+    margin-top: 18px;
+    display: block;
+  }
+}
+
+.thanks {
+  @extend %home-align-left;
+
+  p {
+    color: $gray-800;
+    font-size: 24px;
+  }
+
+  figcaption {
+    color: $gray-800;
+    font-size: 16px;
+  }
+}

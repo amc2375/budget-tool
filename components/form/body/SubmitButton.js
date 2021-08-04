@@ -1,10 +1,23 @@
+import { useRouter } from 'next/router';
 import styles from './SubmitButton.module.scss';
 
 export default function SubmitButton({ handleSubmit }) {
-    return (
-      <button
-        type={"button"}
-        onClick={handleSubmit}
-        className={styles.button}>{"Submit"}</button>
-    );
+
+  const router = useRouter();
+
+  const route = () => {
+    router.push('/thank-you');
+  }
+
+  const handle = (e) => {
+    handleSubmit(e);
+    route();
+  }
+
+  return (
+    <button
+      type={"button"}
+      onClick={handle}
+      className={styles.button}>{"Submit"}</button>
+  );
 };
