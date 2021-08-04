@@ -6,7 +6,7 @@ import styles from './AboutUs.module.scss';
 export default function AboutUs() {
 
   return (
-    <article className={styles.container}>
+    <article className={styles.container} id={"about-us"}>
       <div className={styles.left}>
         <h1>{"Who we are"}</h1>
       </div>

@@ -7,6 +7,8 @@ export default function Menu() {
     <section className={styles.container}>
       <NavLink text={"Home"} path={"/"}/>
       <NavLink text={"Take the Survey"} path={"/budget-survey"}/>
+      <NavLink text={"About the Project"} path={"/#about-this"}/>
+      <NavLink text={"Who We Are"} path={"/#about-us"}/>
     </section>
   );
 };
