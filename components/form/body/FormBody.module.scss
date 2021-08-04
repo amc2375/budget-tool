@@ -4,10 +4,3 @@
   border-radius: 8px;
   background-color: $white;
 }
-
-.divider {
-  border-top: 1px solid $light-grey;
-  @extend %left-align-vertical;
-  margin-top: 24px;
-  margin-bottom: 24px;
-}

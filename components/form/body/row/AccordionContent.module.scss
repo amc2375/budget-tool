@@ -4,6 +4,7 @@
   padding-top: 48px;
   padding-bottom: 48px;
   @extend %left-align-vertical;
+  @extend %right-align-vertical;
   background-color: $gray-50;
 
   p {

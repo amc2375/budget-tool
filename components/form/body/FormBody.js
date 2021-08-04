@@ -8,7 +8,8 @@ export default function FormBody({
     budgetValues,
     setBudgetValues,
     allocatedTotal,
-    createDefaultBudgetValues
+    createDefaultBudgetValues,
+    handleSubmit
   }) {
 
   return (
@@ -27,7 +28,8 @@ export default function FormBody({
         totalBudget={data.totalBudget}
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}
-        allocatedTotal={allocatedTotal}/>
+        allocatedTotal={allocatedTotal}
+        handleSubmit={handleSubmit}/>
       <div className={styles.divider}/>
     </section>
   );
