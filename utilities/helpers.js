@@ -27,3 +27,13 @@ export const overUnderBudgetText = (allocatedTotal) => {
       return `${(difference * -1).toFixed(2)}% Under Budget`
     }
   }
+
+export const createDefaultBudgetValues = (data) => {
+  let values = {};
+  data.categories.map(category => {
+      values[category.id] = categoryPercentage(
+        category.amount, data.totalBudget
+      );
+  });
+  return values;
+};

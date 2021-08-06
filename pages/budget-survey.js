@@ -11,7 +11,7 @@ const db = require("../utilities/postgres").instance;
 export default function BudgetSurvey({ data }) {
 
   const router = useRouter();
-  console.log(router);
+  console.log(data);
 
   return (
     <Form data={data}/>
