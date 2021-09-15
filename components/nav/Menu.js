@@ -13,8 +13,10 @@ export default function Menu() {
   const isMobile = useMediaQuery({ query: '(max-width: 960px)' });
 
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+    if (isMobile) setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  console.log(`isMobile && !mobileMenuOpen: ${isMobile && !mobileMenuOpen}`);
 
   return (
     <React.Fragment>
@@ -26,7 +28,7 @@ export default function Menu() {
         }
       </div>
       <section
-        style={!isMobile ? {} : (isMobile && mobileMenuOpen ? {} : {display: 'none'})}
+        style={mobileMenuOpen ? {} : {display: 'none'}}
         className={styles.container}>
         <NavLink
           action={toggleMobileMenu} text={"Home"} path={"/"}/>
