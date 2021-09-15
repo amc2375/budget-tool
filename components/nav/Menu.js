@@ -33,7 +33,6 @@ export default function Menu() {
         {
           !mobileMenuOpen ? <Hamburger/> : <X/>
         }
-        <Hamburger/>
       </div>
       <section className={styles.container}>
         {links}

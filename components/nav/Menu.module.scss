@@ -3,6 +3,7 @@
 .hamburger {
   @media (max-width: $mobile-max) {
     width: 32px;
+    margin-top: 15px;
     &:hover {
       cursor: pointer;
     }

@@ -8,7 +8,8 @@
   }
 
   @media (max-width: $mobile-max) {
-
+    display: flex;
+    justify-content: space-between;
   }
 
 }
