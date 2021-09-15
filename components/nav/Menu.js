@@ -16,15 +16,6 @@ export default function Menu() {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const links = (
-    <React.Fragment>
-      <NavLink text={"Home"} path={"/"}/>
-      <NavLink text={"Take the Survey"} path={"/budget-survey"}/>
-      <NavLink text={"About the Project"} path={"/#about-this"}/>
-      <NavLink text={"Who We Are"} path={"/#about-us"}/>
-    </React.Fragment>
-  );
-
   return (
     <React.Fragment>
       <div
@@ -34,8 +25,17 @@ export default function Menu() {
           !mobileMenuOpen ? <Hamburger/> : <X/>
         }
       </div>
-      <section className={styles.container}>
-        {links}
+      <section
+        style={!isMobile ? {} : (isMobile && mobileMenuOpen ? {} : {display: 'none'})}
+        className={styles.container}>
+        <NavLink
+          action={toggleMobileMenu} text={"Home"} path={"/"}/>
+        <NavLink
+          action={toggleMobileMenu} text={"Take the Survey"} path={"/budget-survey"}/>
+        <NavLink
+          action={toggleMobileMenu} text={"About the Project"} path={"/#about-this"}/>
+        <NavLink
+          action={toggleMobileMenu} text={"Who We Are"} path={"/#about-us"}/>
       </section>
     </React.Fragment>
   );

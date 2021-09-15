@@ -4,4 +4,10 @@
   margin-left: 48px;
   color: $blue-900;
   text-decoration: none;
+
+  @media (max-width: $mobile-max) {
+    margin-top: 44px;
+    margin-left: 44px;
+    font-size: $h3-size;
+  }
 }
