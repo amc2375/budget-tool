@@ -9,4 +9,12 @@
   margin-right: 118px;
   margin-top: 64px;
   flex: 4;
+
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
+
+  @media (min-width: $desktop-min) {
+
+  }
 }
