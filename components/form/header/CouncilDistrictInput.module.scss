@@ -11,6 +11,9 @@
   select {
     @extend %text-input;
     min-height: 42px;
-    max-width: 374px;
+    
+    @media (min-width: $desktop-min) {
+      max-width: 374px;
+    }
   }
 }
