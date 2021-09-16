@@ -2,14 +2,16 @@ import MinusButton from './MinusButton.js';
 import Slider from './Slider.js';
 import PlusButton from './PlusButton.js';
 import Text from './Text.js';
-import styles from './Inputs.module.scss';
+import styles from './DesktopInputs.module.scss';
 
-export default function Inputs({
+export default function DesktopInputs({
     budgetValue,
     setBudgetValue,
     totalBudget
   }) {
 
+
+  // see the corresponding scss - this doesn't display on mobile
   return (
     <div className={styles.container}>
       <Text

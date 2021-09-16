@@ -1,0 +1,7 @@
+@use 'styles/base' as *;
+
+.container {
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+}

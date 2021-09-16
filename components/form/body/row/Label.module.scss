@@ -4,7 +4,6 @@
   @extend %form-row-flex-child-left;
   position: relative;
   background-color: $gray-50;
-  padding-left: $form-inner-padding;
 
   svg {
     position: absolute;
@@ -26,6 +25,10 @@
     padding: 6px 0px;
     color: $gray-600;
     font-size: 20px;
+
+    @media (max-width: $mobile-max) {
+      display: none;
+    }
 
     span {
       font-size: 14px;

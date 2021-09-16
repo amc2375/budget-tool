@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Label from './Label.js';
-import Inputs from './Inputs.js';
+import DesktopInputs from './DesktopInputs.js';
 import AccordionContent from './AccordionContent.js';
+import MobileSlider from './MobileSlider.js';
 import styles from './Row.module.scss';
 
 export default function Row({
@@ -24,10 +25,12 @@ export default function Row({
           totalBudget={totalBudget}
           accordionOpen={accordionOpen}
           setAccordionOpen={setAccordionOpen}/>
-        <Inputs
+        <DesktopInputs
           budgetValue={budgetValue}
           setBudgetValue={setBudgetValue}
           totalBudget={totalBudget}/>
+        <MobileSlider
+          budgetValue={budgetValue}/>
       </div>
       <AccordionContent
         open={accordionOpen}

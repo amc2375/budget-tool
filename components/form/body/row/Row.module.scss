@@ -2,4 +2,8 @@
 
 .container {
   display: flex;
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+  }
 }

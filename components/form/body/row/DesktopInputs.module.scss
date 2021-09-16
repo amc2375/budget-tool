@@ -1,6 +1,11 @@
 @use 'styles/base' as *;
 
 .container {
+
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
+
   @extend %form-row-flex-child-right;
   display: flex;
   align-items: center;

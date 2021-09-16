@@ -3,7 +3,9 @@ import styles from './Slider.module.scss';
 export default function Slider({ budgetValue, setBudgetValue }) {
 
   const handler = (e) => {
-    setBudgetValue((e.target.value / 100).toFixed(2));
+    if (setBudgetValue) {
+      setBudgetValue((e.target.value / 100).toFixed(2));
+    }
   };
 
   return (
