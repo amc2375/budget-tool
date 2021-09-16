@@ -14,6 +14,14 @@ export default function FormHeader({
         <p>People&apos;s Vision for the Bronx</p>
         <strong>Participatory Budgeting Survey</strong>
       </header>
+      <section className={styles.directions}>
+        <ol>
+          <li>Select your Council District and Enter Zipcode</li>
+          <li>Allocate the budget according to where you think NYC should spend its budget</li>
+          <li>Ensure that your allocation is at 100%</li>
+          <li>Submit the form</li>
+        </ol>
+      </section>
       <Inputs
         districts={districts}
         setDistrict={setDistrict}
