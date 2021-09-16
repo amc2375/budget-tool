@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavLink from './NavLink.js';
 import styles from './Menu.module.scss';
 import { useMediaQuery } from 'react-responsive';
@@ -10,13 +10,19 @@ export default function Menu() {
     false
   );
 
-  const isMobile = useMediaQuery({ query: '(max-width: 960px)' });
+  const [isMobile, setIsMobile] = useState(
+    false
+  );
 
-  const toggleMobileMenu = () => {
+  const mobile = useMediaQuery({ query: '(max-width: 960px)' });
+
+  useEffect(() => {
+    setIsMobile(mobile);
+  }, [mobile, isMobile]);
+
+  const toggleMobileMenu = (isMobile) => {
     if (isMobile) setMobileMenuOpen(!mobileMenuOpen);
   };
-
-  console.log(`isMobile && !mobileMenuOpen: ${isMobile && !mobileMenuOpen}`);
 
   return (
     <React.Fragment>
@@ -28,16 +34,16 @@ export default function Menu() {
         }
       </div>
       <section
-        style={mobileMenuOpen ? {} : {display: 'none'}}
+        style={!isMobile || mobileMenuOpen ? {} : {display: 'none'}}
         className={styles.container}>
         <NavLink
-          action={toggleMobileMenu} text={"Home"} path={"/"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"Home"} path={"/"}/>
         <NavLink
-          action={toggleMobileMenu} text={"Take the Survey"} path={"/budget-survey"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"Take the Survey"} path={"/budget-survey"}/>
         <NavLink
-          action={toggleMobileMenu} text={"About the Project"} path={"/#about-this"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"About the Project"} path={"/#about-this"}/>
         <NavLink
-          action={toggleMobileMenu} text={"Who We Are"} path={"/#about-us"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"Who We Are"} path={"/#about-us"}/>
       </section>
     </React.Fragment>
   );

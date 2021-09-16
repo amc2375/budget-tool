@@ -6,8 +6,7 @@
   text-decoration: none;
 
   @media (max-width: $mobile-max) {
-    margin-top: 44px;
-    margin-left: 44px;
+    margin: 44px;
     font-size: $h3-size;
   }
 }
