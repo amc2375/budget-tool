@@ -19,7 +19,7 @@ export default function Headings({
   }
 
   const warningTextCaption = (allocatedTotal) => {
-    return allocatedTotal.toFixed(2) != 100.00 ? `${allocatedTotal < 100 ? "Increase" : "Decrease"} your spending by this amount` : "";
+    return allocatedTotal.toFixed(2) != 100.00 ? `${allocatedTotal < 100 ? "Increase" : "Decrease"} spending` : "";
   }
 
   return (

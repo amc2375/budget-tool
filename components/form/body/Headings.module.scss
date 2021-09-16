@@ -3,6 +3,10 @@
 .container {
   display: flex;
 
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+  }
+
   p {
     margin: 0px;
   }
@@ -69,4 +73,23 @@
 .middle {
   height: 49px;
   margin-bottom: 21px;
+}
+
+.bottom {
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
+}
+
+// hide the reset link on mobile
+@media (max-width: $mobile-max) {
+  .right {
+    .rightSub {
+      .top {
+        label {
+          display: none;
+        }
+      }
+    }
+  }
 }
