@@ -12,30 +12,50 @@
     flex: 1;
   }
 
-  .left {
-    margin: 60px 0px;
-    min-width: 226px;
-    
-    h1 {
-      color: $blue-900;
-      font-weight: normal;
-      font-size: 36px;
-      margin: 0;
+  h1 {
+    color: $blue-900;
+    font-weight: normal;
+    font-size: 36px;
+    margin: 0;
+  }
+
+  p {
+    color: $gray-500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (min-width: $desktop-min) {
+
+    .left {
+      margin: 60px 0px;
+      min-width: 226px;
+    }
+
+    .middle, .right {
+      margin: 60px;
+
+      div {
+        height: 36px;
+        width: 178px;
+      }
     }
   }
 
-  .middle, .right {
-    margin: 60px;
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
 
-    div {
-      height: 36px;
-      width: 178px;
+    .left {
+      margin: 45px 0px;
     }
 
-    p {
-      color: $gray-500;
-      font-size: 16px;
-      line-height: 24px;
+    .middle, .right {
+      margin-bottom: 45px;
+
+      div {
+        height: 36px;
+        width: 178px;
+      }
     }
   }
 }

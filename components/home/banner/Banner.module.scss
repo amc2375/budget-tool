@@ -3,8 +3,16 @@
 .container {
   background: $blue-900;
   display: flex;
-  height: 277px;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+
+  @media (min-width: $desktop-min) {
+    height: 277px;
+    overflow: hidden;
+  }
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    height: 360px;
+  }
 }
