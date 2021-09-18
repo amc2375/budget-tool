@@ -1,30 +1,106 @@
 @use 'styles/base' as *;
 
-.slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
-  appearance: none;
-  width: 100%; /* Full-width */
-  height: 6px; /* Specified height */
-  background: $gray-200; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .2s;
-  border-radius: 3px;
+// desktop slider style
+@media (min-width: $desktop-min) {
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 6px; /* Specified height */
+    background: $gray-200; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 3px;
+  }
+
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 26px; /* Set a specific slider handle width */
+    height: 26px; /* Slider handle height */
+    background: $gray-500; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 13px;
+  }
 }
 
-/* Mouse-over effects */
-.slider:hover {
-  opacity: 1; /* Fully shown on mouse-over */
-}
+// mobile slider
+@media (max-width: $mobile-max) {
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 91%; /* Full-width */
+    height: 16px; /* Specified height */
+    background: $white; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 1; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 2px;
+    margin: 0px 0px 0px 16px;
+    border: 1px solid $gray-400;
 
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 26px; /* Set a specific slider handle width */
-  height: 26px; /* Slider handle height */
-  background: $gray-500; /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 13px;
+    // background color to the left of the thumb
+    // https://stackoverflow.com/questions/18389224/how-to-style-html5-range-input-to-have-different-color-before-and-after-slider
+
+    overflow: hidden;
+  }
+
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 3px; /* Set a specific slider handle width */
+    height: 16px; /* Slider handle height */
+    background: $blue-900; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+
+    // background color to the left of the thumb
+    // https://stackoverflow.com/questions/18389224/how-to-style-html5-range-input-to-have-different-color-before-and-after-slider
+
+    -webkit-appearance: none;
+    cursor: ew-resize;
+    box-shadow: -1000px 0 0 1000px $gray-200;
+  }
+
+  // background color to the left of the thumb
+  // https://stackoverflow.com/questions/18389224/how-to-style-html5-range-input-to-have-different-color-before-and-after-slider
+
+  .slider::-webkit-slider-runnable-track {
+    height: 16px;
+    -webkit-appearance: none;
+    color: $blue-900;
+  }
+
+  // background color to the left of the thumb
+  // https://stackoverflow.com/questions/18389224/how-to-style-html5-range-input-to-have-different-color-before-and-after-slider
+
+  .slider::-moz-range-progress {
+    background-color: $gray-200;
+  }
+
+  .slider::-moz-range-track {
+    background-color: $white;
+  }
+
+  .slider::-ms-fill-lower {
+    background-color: $gray-200;
+  }
+
+  .slider::-ms-fill-upper {
+    background-color: $white;
+  }
 }
