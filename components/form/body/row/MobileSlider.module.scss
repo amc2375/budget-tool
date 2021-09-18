@@ -4,6 +4,9 @@
   @media (min-width: $desktop-min) {
     display: none;
   }
-
   background-color: $gray-50;
+  .label {
+    position: relative;
+    display: inline-block;
+  }
 }
