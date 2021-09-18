@@ -35,6 +35,9 @@ export default function Row({
       </div>
       <AccordionContent
         open={accordionOpen}
+        budgetValue={budgetValue}
+        setBudgetValue={setBudgetValue}
+        totalBudget={totalBudget}
         content={budgetCategory.descriptive_html}/>
     </React.Fragment>
   );
