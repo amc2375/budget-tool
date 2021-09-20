@@ -15,11 +15,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  .mobileLabel {
-    color: $gray-400;
-    font-size: 12px;
-  }
+  background-color: $white;
 
   .lineBreak {
     border-top: 1px solid $gray-200;
@@ -35,11 +31,30 @@
 
 }
 
+.mobileLabelAllocate, .mobileLabelDetails {
+
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+
+  color: $gray-400;
+  font-size: 12px;
+}
+
+.mobileLabelDetails {
+  @extend %left-align-vertical;
+  background-color: $white;
+}
+
 .accordionContentLeft {
   @extend %form-row-flex-child-left;
   padding-top: 16px;
   padding-bottom: 32px;
   background-color: $gray-50;
+
+  @media (max-width: $mobile-max) {
+    background-color: $white;
+  }
 
   p {
     margin: 0;
@@ -53,4 +68,10 @@
   @extend %form-row-flex-child-right;
   padding-top: 16px;
   padding-bottom: 32px;
+
+  @media (max-width: $mobile-max) {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: $white;
+  }
 }

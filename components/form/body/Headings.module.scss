@@ -37,6 +37,10 @@
 
 .left, .right {
   padding-top: 34px;
+
+  @media (max-width: $mobile-max) {
+    background-color: $color-background;
+  }
 }
 
 .left label, .right label {

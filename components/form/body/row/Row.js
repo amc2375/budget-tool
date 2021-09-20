@@ -18,7 +18,7 @@ export default function Row({
 
   return (
     <React.Fragment>
-      <div className={styles.container}>
+      <div className={accordionOpen ? styles.containerSelected : styles.container}>
         <Label
           label={budgetCategory.name}
           amount={budgetCategory.amount}

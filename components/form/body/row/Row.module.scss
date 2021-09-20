@@ -5,5 +5,17 @@
 
   @media (max-width: $mobile-max) {
     flex-direction: column;
+    background-color: $color-background;
+  }
+}
+
+.containerSelected {
+  display: flex;
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    background-color: $white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 }

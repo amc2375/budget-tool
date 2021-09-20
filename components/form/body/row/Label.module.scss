@@ -5,6 +5,10 @@
   position: relative;
   background-color: $gray-50;
 
+  @media (max-width: $mobile-max) {
+    background: none;
+  }
+
   svg {
     position: absolute;
     right: 16px;
