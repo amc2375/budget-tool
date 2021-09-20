@@ -14,14 +14,14 @@ export default function AccordionContent({
         <div className={styles.lineBreak}/>
         <label className={styles.mobileLabelAllocate}>ALLOCATION</label>
         <div className={styles.mobileAccordionInputs}>
-          <PlusButton
+          <MinusButton
             budgetValue={budgetValue}
             setBudgetValue={setBudgetValue}/>
           <Text
             budgetValue={budgetValue}
             setBudgetValue={setBudgetValue}
             totalBudget={totalBudget}/>
-          <MinusButton
+          <PlusButton
             budgetValue={budgetValue}
             setBudgetValue={setBudgetValue}/>
         </div>

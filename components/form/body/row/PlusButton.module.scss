@@ -9,4 +9,8 @@
   @extend %little-button;
   margin-left: 12px;
   margin-right: 22px;
+
+  @media (max-width: $mobile-max) {
+    margin-left: 0px;
+  }
 }
