@@ -12,7 +12,7 @@ export default function AccordionContent({
       className={styles.container}>
       <div className={styles.accordionTopMobile}>
         <div className={styles.lineBreak}/>
-        <label>Allocation</label>
+        <label className={styles.mobileLabel}>ALLOCATION</label>
         <div className={styles.mobileAccordionInputs}>
           <PlusButton
             budgetValue={budgetValue}

@@ -8,6 +8,15 @@
   input {
     @extend %text-input;
     width: 107px;
+
+    @media (max-width: $mobile-max) {
+      margin-top: 0px;
+      border: 0px;
+      border-radius: 0px;
+      border-bottom: 2px solid $blue-900;
+      font-size: 32px;
+      color: $blue-900;
+    }
   }
 
   .after {
@@ -16,6 +25,12 @@
     right: 6px;
     top: 22px;
     color: $gray-500;
+
+    @media (max-width: $mobile-max) {
+      top: 0px;
+      font-size: 32px;
+      color: $blue-900;
+    }
   }
 }
 
@@ -23,4 +38,8 @@
   font-size: $p2-size;
   color: $sort-of-light-grey;
   padding-top: 4px;
+
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
 }
