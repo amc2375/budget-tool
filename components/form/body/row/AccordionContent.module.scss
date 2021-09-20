@@ -11,6 +11,23 @@
   @media (min-width: $desktop-min) {
     display: none;
   }
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .lineBreak {
+    border-top: 1px solid $gray-200;
+    width: 92%;
+    margin: 20px auto;
+  }
+
+  .mobileAccordionInputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
 }
 
 .accordionContentLeft {

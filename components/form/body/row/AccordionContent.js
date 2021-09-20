@@ -1,5 +1,7 @@
 import styles from './AccordionContent.module.scss';
 import Text from './Text.js';
+import PlusButton from './PlusButton.js';
+import MinusButton from './MinusButton.js';
 
 export default function AccordionContent({
   content, open, budgetValue, setBudgetValue, totalBudget
@@ -9,12 +11,21 @@ export default function AccordionContent({
       style={open ? {} : {display: 'none'}}
       className={styles.container}>
       <div className={styles.accordionTopMobile}>
-        <br/>
+        <div className={styles.lineBreak}/>
         <label>Allocation</label>
-        <Text
-          budgetValue={budgetValue}
-          setBudgetValue={setBudgetValue}
-          totalBudget={totalBudget}/>
+        <div className={styles.mobileAccordionInputs}>
+          <PlusButton
+            budgetValue={budgetValue}
+            setBudgetValue={setBudgetValue}/>
+          <Text
+            budgetValue={budgetValue}
+            setBudgetValue={setBudgetValue}
+            totalBudget={totalBudget}/>
+          <MinusButton
+            budgetValue={budgetValue}
+            setBudgetValue={setBudgetValue}/>
+        </div>
+        <div className={styles.lineBreak}/>
         <br/>
       </div>
       <div
