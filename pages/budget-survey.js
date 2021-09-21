@@ -45,7 +45,7 @@ export async function getStaticProps() {
   };
   data.categories.forEach(c => c.amount = parseInt(c.amount));
   data.districts.sort((a, b) => alphabetSort(a.district_id, b.district_id));
-  data.categories.sort((a, b) => alphabetSort(a.name, b.name));
+  data.categories.sort((a, b) => alphabetSort(b.amount, a.amount));
   data.totalBudget = calculateFixedBudgetAmount(data);
 
   // By returning { props: { xyz } }, the component
