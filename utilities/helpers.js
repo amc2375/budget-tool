@@ -1,6 +1,6 @@
 // validate user input for integers and floats <= 99.99
 export const validateUserInput = (value) => {
-  const re = /^([0-9]|[1-9][0-9])(\.[0-9]?[0-9]?)?$/;
+  const re = /^([0-9]|[1-9][0-9])(\.[0-9]?)?$/;
   return value === '' || re.test(value);
 }
 

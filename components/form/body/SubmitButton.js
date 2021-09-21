@@ -20,7 +20,7 @@ export default function SubmitButton({ handleSubmit, allocatedTotal }) {
   );
 
   useEffect(() => {
-    if (allocatedTotal && (allocatedTotal).toFixed(1) == "100.00") {
+    if (allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
