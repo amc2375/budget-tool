@@ -5,6 +5,11 @@
 
   @media (max-width: $mobile-max) {
     flex-direction: column;
+    position: sticky;
+    top: -80px;
+    z-index: 101;
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, .05);
+    margin-bottom: 10px;
   }
 
   p {
@@ -23,13 +28,13 @@
   color: $gray-500;
 }
 
-.left {
+.one {
   @extend %form-row-flex-child-left;
   background-color: $gray-50;
   border-top-left-radius: 8px;
 }
 
-.right {
+.two {
   @extend %form-row-flex-child-right;
   display: flex;
   justify-content: space-between;
@@ -39,7 +44,7 @@
   }
 }
 
-.left, .right {
+.one, .two {
   padding-top: 34px;
 
   @media (max-width: $mobile-max) {
@@ -48,11 +53,11 @@
   }
 }
 
-.left label, .right label {
+.one label, .two label {
   @extend %gray-500-label;
 }
 
-.left p, .right p, .right figcaption {
+.one p, .two p, .two figcaption {
   @extend %grey-label;
 }
 
@@ -115,7 +120,7 @@
 
 // hide the reset link on mobile
 @media (max-width: $mobile-max) {
-  .right {
+  .two {
     .rightSub {
       .top {
         label {

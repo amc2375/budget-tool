@@ -87,6 +87,9 @@ $form-inner-padding: 74px;
   a {
     color: $blue-900;
   }
+  @media (max-width: $mobile-max) {
+    overflow: visible;
+  }
 }
 
 

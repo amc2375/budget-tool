@@ -24,7 +24,8 @@ export default function Headings({
 
   return (
     <section className={styles.container}>
-      <div className={styles.left}>
+
+      <div className={styles.one}>
         <div className={styles.top}>
           <label>NYC Budget</label>
         </div>
@@ -35,7 +36,8 @@ export default function Headings({
           <p>Click a department to learn more</p>
         </div>
       </div>
-      <div className={styles.right}>
+
+      <div className={styles.two}>
         <div className={styles.leftSub}>
           <div className={styles.top}>
             <label>Your Allocation</label>
@@ -61,6 +63,7 @@ export default function Headings({
           </div>
         </div>
       </div>
+
     </section>
   );
 };
