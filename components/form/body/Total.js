@@ -4,6 +4,7 @@ import {
   overUnderBudgetText
 } from '../../../utilities/helpers.js';
 import SubmitButton from './SubmitButton.js';
+import ResetLink from './ResetLink.js';
 import styles from './Total.module.scss';
 
 export default function Total({
@@ -11,6 +12,7 @@ export default function Total({
     budgetValues,
     setBudgetValues,
     allocatedTotal,
+    createDefaultBudgetValues,
     handleSubmit
   }) {
 
@@ -43,6 +45,10 @@ export default function Total({
       </div>
       <div className={styles.mobileContainer}>
         <SubmitButton handleSubmit={handleSubmit}/>
+        <p>{overUnderBudgetText(allocatedTotal)}</p>
+        <ResetLink
+          setBudgetValues={setBudgetValues}
+          createDefaultBudgetValues={createDefaultBudgetValues}/>
       </div>
     </React.Fragment>
   );
