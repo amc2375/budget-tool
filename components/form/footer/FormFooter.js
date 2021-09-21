@@ -22,7 +22,7 @@ export default function FormFooter({
           setBudgetValues={setBudgetValues}
           allocatedTotal={allocatedTotal}/>
         <SubmitButton
-          handleSubmit={handleSubmit}/>
+          handleSubmit={handleSubmit} allocatedTotal={allocatedTotal}/>
       </div>
     </section>
   );

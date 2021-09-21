@@ -39,12 +39,12 @@ export default function Total({
           </div>
           <div className={styles.row}>
             <div/>
-            <SubmitButton handleSubmit={handleSubmit}/>
+            <SubmitButton handleSubmit={handleSubmit} allocatedTotal={allocatedTotal}/>
           </div>
         </div>
       </div>
       <div className={styles.mobileContainer}>
-        <SubmitButton handleSubmit={handleSubmit}/>
+        <SubmitButton handleSubmit={handleSubmit} allocatedTotal={allocatedTotal}/>
         <p>{overUnderBudgetText(allocatedTotal)}</p>
         <ResetLink
           setBudgetValues={setBudgetValues}

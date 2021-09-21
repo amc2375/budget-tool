@@ -1,6 +1,6 @@
 @use 'styles/base' as *;
 
-.button {
+.buttonEnabled {
   @include button-colors(
     $border-color: $blue-900,
     $background-color: $blue-900,
@@ -9,5 +9,21 @@
   @extend %big-button;
   @media (min-width: $desktop-min) {
     margin-left: 12px;
+  }
+}
+
+.buttonDisabled {
+  @include button-colors(
+    $border-color: $gray-400,
+    $background-color: $gray-400,
+    $text-color: $white
+  );
+  @extend %big-button;
+  @media (min-width: $desktop-min) {
+    margin-left: 12px;
+  }
+
+  &:hover {
+    cursor: auto;
   }
 }

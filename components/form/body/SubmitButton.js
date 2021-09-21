@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styles from './SubmitButton.module.scss';
 
-export default function SubmitButton({ handleSubmit }) {
+export default function SubmitButton({ handleSubmit, allocatedTotal }) {
 
   const router = useRouter();
 
@@ -14,10 +15,23 @@ export default function SubmitButton({ handleSubmit }) {
     route();
   }
 
+  const [isDisabled, setIsDisabled ] = useState(
+    false
+  );
+
+  useEffect(() => {
+    if (allocatedTotal && (allocatedTotal).toFixed(2) == "100.00") {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [allocatedTotal])
+
   return (
     <button
       type={"button"}
       onClick={handle}
-      className={styles.button}>{"Submit"}</button>
+      className={isDisabled ? styles.buttonDisabled : styles.buttonEnabled}
+      disabled={isDisabled}>{"Submit"}</button>
   );
 };
