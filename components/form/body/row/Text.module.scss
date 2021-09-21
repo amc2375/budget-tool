@@ -27,7 +27,7 @@
     color: $gray-500;
 
     @media (max-width: $mobile-max) {
-      top: 0px;
+      top: 1px;
       font-size: 32px;
       color: $blue-900;
     }

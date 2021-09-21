@@ -4,9 +4,11 @@
   @media (min-width: $desktop-min) {
     display: none;
   }
+  display: flex;
+  flex-direction: column;
   .label {
     position: relative;
-    display: inline-block;
+    max-width: 40px;
     color: $blue-900;
     font-weight: 600;
   }
