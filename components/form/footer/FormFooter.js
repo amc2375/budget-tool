@@ -23,7 +23,7 @@ export default function FormFooter({
           allocatedTotal={allocatedTotal}/>
         <SubmitButton
           handleSubmit={handleSubmit}/>
-    </div>
+      </div>
     </section>
   );
 };

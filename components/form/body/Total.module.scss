@@ -5,6 +5,10 @@
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
+
   label {
     font-size: $p1-size;
     font-weight: bold;
@@ -73,4 +77,14 @@
   border-top: 1px solid $divider-gray;
   margin-top: 9px;
   margin-bottom: 5px;
+}
+
+.mobileContainer {
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

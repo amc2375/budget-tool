@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   billionsAmountString,
   overUnderBudgetText
@@ -16,28 +17,33 @@ export default function Total({
   let totalAmount = (parseFloat(allocatedTotal)/100) * totalBudget;
 
   return (
-  <div className={styles.container}>
-    <div className={styles.left}/>
-    <div className={styles.right}>
-      <div className={styles.row}>
-        <div className={styles.total}>
-          <p>{`${(allocatedTotal).toFixed(2)}%`}</p>
-          <figcaption>{`${billionsAmountString(totalAmount)}`}</figcaption>
-        </div>
-        <div className={styles.overUnder}>
-          <p>{overUnderBudgetText(allocatedTotal)}</p>
+    <React.Fragment>
+      <div className={styles.container}>
+        <div className={styles.left}/>
+        <div className={styles.right}>
+          <div className={styles.row}>
+            <div className={styles.total}>
+              <p>{`${(allocatedTotal).toFixed(2)}%`}</p>
+              <figcaption>{`${billionsAmountString(totalAmount)}`}</figcaption>
+            </div>
+            <div className={styles.overUnder}>
+              <p>{overUnderBudgetText(allocatedTotal)}</p>
+            </div>
+          </div>
+          <div className={styles.divider}/>
+          <div className={styles.row}>
+            <p className={styles.caption}>{"Your Allocation"}</p>
+            <p className={styles.caption}>{allocatedTotal < 100 ? "Increase" : "Decrease"} your spending by this amount</p>
+          </div>
+          <div className={styles.row}>
+            <div/>
+            <SubmitButton handleSubmit={handleSubmit}/>
+          </div>
         </div>
       </div>
-      <div className={styles.divider}/>
-      <div className={styles.row}>
-        <p className={styles.caption}>{"Your Allocation"}</p>
-        <p className={styles.caption}>{allocatedTotal < 100 ? "Increase" : "Decrease"} your spending by this amount</p>
-      </div>
-      <div className={styles.row}>
-        <div/>
+      <div className={styles.mobileContainer}>
         <SubmitButton handleSubmit={handleSubmit}/>
       </div>
-    </div>
-  </div>
+    </React.Fragment>
   );
 };

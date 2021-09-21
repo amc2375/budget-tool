@@ -105,6 +105,10 @@ $form-inner-padding: 74px;
   font-size: $p1-size;
   border-width: 3px;
   border-style: solid;
+
+  @media (max-width: $mobile-max) {
+    width: 90%;
+  }
 }
 
 %little-button {
