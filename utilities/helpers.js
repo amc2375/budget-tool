@@ -1,7 +1,7 @@
 // validate user input for integers and floats
 export const validateUserInput = (value) => {
-  const re = /^([0-9]*)(\.{1})?([0-9]*)+$/;
-  return value === '' || re.test(value)
+  const re = /^([1-9]|[1-9][0-9]|100)(\.[0-9]?[0-9]?)?$/;
+  return value === '' || re.test(value);
 }
 
 // divide a number by 1 billion and round to 2 decimal places

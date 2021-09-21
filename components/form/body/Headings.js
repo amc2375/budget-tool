@@ -48,6 +48,7 @@ export default function Headings({
             <p>Drag the slider or enter a percentage.</p>
           </div>
         </div>
+        <div className={styles.divider}/>
         <div className={styles.rightSub}>
           <div className={styles.top}>
           <ResetLink
