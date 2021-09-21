@@ -54,24 +54,49 @@
 .billions {
   font-size: 24px;
   color: $blue-900;
+  @media (max-width: $mobile-max) {
+    font-size: 20px;
+  }
 }
 
 .allocated {
   font-size: 24px;
   color: $blue-900;
+  @media (max-width: $mobile-max) {
+    font-size: 20px;
+  }
 }
 
 .overAmount {
   font-size: 24px;
   color: $red-800;
+  @media (max-width: $mobile-max) {
+    font-size: 20px;
+  }
+}
+
+.leftSub {
+  text-align: left;
+  @media (max-width: $mobile-max) {
+    .middle {
+      padding: 4px 0px 4px 8px;
+    }
+  }
 }
 
 .rightSub {
   text-align: right;
+  @media (max-width: $mobile-max) {
+    .middle {
+      padding: 4px 0px 4px 8px;
+      border-left: 1px solid $gray-300;
+    }
+  }
 }
 
 .top {
   margin-bottom: 22px;
+  height: 16px
 }
 
 .middle {
