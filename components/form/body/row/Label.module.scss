@@ -7,14 +7,22 @@
 
   @media (max-width: $mobile-max) {
     background: none;
+    display: flex;
   }
 
   svg {
-    position: absolute;
-    right: 16px;
-    top: 5px;
-    padding: 4px;
-    color: $gray-600;
+    @media (min-width: $desktop-min) {
+      position: absolute;
+      right: 16px;
+      top: 5px;
+      padding: 4px;
+      color: $gray-600;
+    }
+
+    @media (max-width: $mobile-max) {
+      position: relative;
+      top: 2px;
+    }
   }
 
   label {
@@ -22,6 +30,12 @@
     color: $gray-600;
     font-size: 20px;
     margin-right: 42px;
+
+    @media (max-width: $mobile-max) {
+      font-weight: 500;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
   }
 
   p {

@@ -25,10 +25,10 @@ export default function Label({
 
   return (
     <section onClick={handleAccordion} className={styles.container}>
-      <ChevronDown
-        style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
       <label>{label}</label>
       <p>{`${percentage}% `}<span>{`(${billionsAmountString(displayAmount)})`}</span></p>
+      <ChevronDown
+        style={accordionOpen ? {transform: 'rotate(180deg)'} : {}}/>
     </section>
   );
 };
