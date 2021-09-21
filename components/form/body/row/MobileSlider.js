@@ -5,7 +5,7 @@ import Slider from './Slider.js';
 export default function MobileSlider({ budgetValue, budgetCategory }) {
 
   const handler = (e) => {
-    setBudgetValue((e.target.value / 100).toFixed(2));
+    setBudgetValue((e.target.value / 100).toFixed(1));
   };
 
   let [sliderWidth, setSliderWidth] = useState(

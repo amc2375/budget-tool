@@ -25,7 +25,7 @@ export default function Total({
         <div className={styles.right}>
           <div className={styles.row}>
             <div className={styles.total}>
-              <p>{`${(allocatedTotal).toFixed(2)}%`}</p>
+              <p>{`${(allocatedTotal).toFixed(1)}%`}</p>
               <figcaption>{`${billionsAmountString(totalAmount)}`}</figcaption>
             </div>
             <div className={styles.overUnder}>

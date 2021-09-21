@@ -16,15 +16,15 @@ export const billionsAmountString = (amount) => {
 };
 
 export const categoryPercentage = (amount, total) => {
-  return (amount * 100 / total).toFixed(2);
+  return (amount * 100 / total).toFixed(1);
 }
 
 export const overUnderBudgetText = (allocatedTotal) => {
     let difference = parseFloat(allocatedTotal) - 100;
     if (difference >= 0) {
-      return `${difference.toFixed(2)}% Over Budget`;
+      return `${difference.toFixed(1)}% Over Budget`;
     } else if (difference < 0) {
-      return `${(difference * -1).toFixed(2)}% Under Budget`
+      return `${(difference * -1).toFixed(1)}% Under Budget`
     }
   }
 

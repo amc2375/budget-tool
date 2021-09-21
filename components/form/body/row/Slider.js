@@ -4,7 +4,7 @@ export default function Slider({ budgetValue, setBudgetValue, id }) {
 
   const handler = (e) => {
     if (setBudgetValue) {
-      setBudgetValue((e.target.value / 100).toFixed(2));
+      setBudgetValue((e.target.value / 100).toFixed(1));
     }
   };
 
