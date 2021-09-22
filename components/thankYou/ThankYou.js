@@ -21,7 +21,7 @@ export default function ThankYou({ data }) {
   const margin = 60;
 
   useEffect(() => {
-    constructChart(data.averages);
+    constructChart(data.averages, data.totalSubmissions);
   })
 
   return (

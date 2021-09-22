@@ -4,7 +4,7 @@ import styles from './charts.module.scss';
 
 // https://jsfiddle.net/matehu/w7h81xz2/
 
-export const constructChart = (data) => {
+export const constructChart = (data, totalSubmissions) => {
 
   // select the dom element to fill with the chart
   const svg = d3.select('#chart');
@@ -14,14 +14,17 @@ export const constructChart = (data) => {
     .attr('class', styles.container)
 
   // set dimensions
-  const margin = 80;
-  const width = 1000 - 2 * margin;
-  const height = 600 - 2 * margin;
+  const marginTop = 80;
+  const marginRight = 40;
+  const marginBottom = 40;
+  const marginLeft = 200;
+  const width = 1000 - marginLeft - marginRight;
+  const height = 600 - marginTop - marginBottom;
 
   // create chart
   const chart = svg.append('g')
     // moves the start of the chart to the (60;60) position of the svg
-    .attr('transform', `translate(${margin}, ${margin})`);
+    .attr('transform', `translate(${marginLeft}, ${marginTop})`);
 
   // establish scales based on dimensions and input data
   // scaleBand for the x-axis which helps to split the range into bands
@@ -140,16 +143,16 @@ export const constructChart = (data) => {
   // add x axis label
   svg.append('text')
     .attr('class', styles.label)
-    .attr('x', width / 2 + margin)
-    .attr('y', height + margin * 1.7)
+    .attr('x', width / 2 + marginLeft)
+    .attr('y', height + marginTop * 1.7)
     .attr('text-anchor', 'middle')
-    .text('Love meter (%)')
+    .text('Allocation (% of Total Budget)')
 
   // add y axis label
   svg.append('text')
     .attr('class', styles.label)
-    .attr('x', -(height / 2) - margin)
-    .attr('y', margin / 2.4)
+    .attr('x', -(height / 2) - marginTop)
+    .attr('y', marginTop / 2.4)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
     .text('Categories')
@@ -157,18 +160,18 @@ export const constructChart = (data) => {
   // add title label
   svg.append('text')
     .attr('class', styles.title)
-    .attr('x', width / 2 + margin)
+    .attr('x', width / 2 + marginLeft)
     .attr('y', 40)
     .attr('text-anchor', 'middle')
-    .text('Most loved programming names in 2018')
+    .text("People's Budget: Averages")
 
   // add footer label
 
   svg.append('text')
     .attr('class', styles.source)
-    .attr('x', width - margin / 2)
-    .attr('y', height + margin * 1.7)
+    .attr('x', width)
+    .attr('y', height + marginTop * 1.7)
     .attr('text-anchor', 'start')
-    .text('Source: Stack Overflow, 2018')
+    .text(`Total Submissions: ${totalSubmissions}`)
 
 }
