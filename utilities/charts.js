@@ -79,18 +79,18 @@ export const constructChart = () => {
   // establish scales based on dimensions and input sample
   // scaleBand for the x-axis which helps to split the range into bands
   // and compute the coordinates and widths of the bars with additional padding.
-  const xScale = d3.scaleBand()
-    .range([0, width])
+  const yScale = d3.scaleBand()
+    .range([0, height])
     .domain(sample.map((s) => s.language))
     .padding(0.4)
 
-  const yScale = d3.scaleLinear()
+  const xScale = d3.scaleLinear()
     // length that should be divided between the limits of the domain values.
-    // the SVG coordinate system starts from the top left corner that’s
-    // why the range takes the height as the first parameter and not zero.
-    .range([height, 0])
+    // the SVG coordinate system starts from the top left corner; that’s
+    // why the range takes the width as the first parameter and not zero.
+    .range([width, 0])
     // minimum and maximum values expected from the data set
-    .domain([0, 100]);
+    .domain([100, 0]);
 
   // add the x axis
   chart.append('g')
@@ -102,16 +102,17 @@ export const constructChart = () => {
     .call(d3.axisLeft(yScale));
 
   // add horizontal lines in the background
-  const makeYLines = () => d3.axisLeft()
-    .scale(yScale)
+  const makexLines = () => d3.axisBottom()
+    .scale(xScale)
 
   chart.append('g')
     .attr('class', styles.grid)
-    .call(makeYLines()
-      .tickSize(-width, 0, 0)
+    .attr('transform', `translate(0, ${height})`)
+    .call(makexLines()
+      .tickSize(-height, 0, 0)
       .tickFormat('')
     )
-
+/*
   // create bar groups, one for each element in the data array
   const barGroups = chart.selectAll()
     .data(sample)
@@ -222,5 +223,5 @@ export const constructChart = () => {
     .attr('y', height + margin * 1.7)
     .attr('text-anchor', 'start')
     .text('Source: Stack Overflow, 2018')
-
+*/
 }
