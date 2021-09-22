@@ -1,6 +1,15 @@
 @use 'styles/base' as *;
 
 .container {
-  display: flex;
-  justify-content: space-between;
+
+  @media (min-width: $desktop-min) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: $mobile-max) {
+    display: flex;
+    justify-content: space-between;
+  }
+
 }

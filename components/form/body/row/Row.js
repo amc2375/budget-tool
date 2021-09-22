@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Label from './Label.js';
-import Inputs from './Inputs.js';
+import DesktopInputs from './DesktopInputs.js';
 import AccordionContent from './AccordionContent.js';
+import MobileSlider from './MobileSlider.js';
 import styles from './Row.module.scss';
 
 export default function Row({
@@ -17,20 +18,26 @@ export default function Row({
 
   return (
     <React.Fragment>
-      <div className={styles.container}>
+      <div className={accordionOpen ? styles.containerSelected : styles.container}>
         <Label
           label={budgetCategory.name}
           amount={budgetCategory.amount}
           totalBudget={totalBudget}
           accordionOpen={accordionOpen}
           setAccordionOpen={setAccordionOpen}/>
-        <Inputs
+        <DesktopInputs
           budgetValue={budgetValue}
           setBudgetValue={setBudgetValue}
           totalBudget={totalBudget}/>
+        <MobileSlider
+          budgetValue={budgetValue}
+          budgetCategory={budgetCategory}/>
       </div>
       <AccordionContent
         open={accordionOpen}
+        budgetValue={budgetValue}
+        setBudgetValue={setBudgetValue}
+        totalBudget={totalBudget}
         content={budgetCategory.descriptive_html}/>
     </React.Fragment>
   );

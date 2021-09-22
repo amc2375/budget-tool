@@ -4,27 +4,55 @@
   @extend %form-row-flex-child-left;
   position: relative;
   background-color: $gray-50;
-  padding-left: $form-inner-padding;
+
+  @media (max-width: $mobile-max) {
+    background: none;
+    display: flex;
+  }
 
   svg {
-    position: absolute;
-    right: 16px;
-    top: 5px;
-    padding: 4px;
+    @media (min-width: $desktop-min) {
+      position: absolute;
+      right: 16px;
+      top: 5px;
+      padding: 4px;
+      color: $gray-600;
+    }
+
+    @media (max-width: $mobile-max) {
+      position: relative;
+      top: 2px;
+    }
   }
 
   label {
     display: block;
-    color: $black;
-    font-size: $p1-size;
-    font-weight: bold;
+    color: $gray-600;
+    font-size: 20px;
     margin-right: 42px;
+
+    @media (max-width: $mobile-max) {
+      font-weight: 500;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
   }
 
   p {
     margin: 0;
     padding: 6px 0px;
-    color: $sort-of-light-grey;
+    color: $gray-600;
+    font-size: 20px;
+
+    @media (max-width: $mobile-max) {
+      display: none;
+    }
+
+    span {
+      font-size: 14px;
+      display: inline;
+      color: $gray-400;
+    }
   }
 
   svg:hover, label:hover, p:hover {

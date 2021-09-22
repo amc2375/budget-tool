@@ -3,6 +3,16 @@
 .container {
   display: flex;
 
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -80px;
+    z-index: 101;
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, .05);
+    margin-bottom: 10px;
+  }
+
   p {
     margin: 0px;
   }
@@ -10,7 +20,7 @@
 
 %gray-500-label {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   color: $gray-500;
 }
 
@@ -19,56 +29,105 @@
   color: $gray-500;
 }
 
-.left {
+.one {
   @extend %form-row-flex-child-left;
   background-color: $gray-50;
   border-top-left-radius: 8px;
 }
 
-.right {
+.two {
   @extend %form-row-flex-child-right;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: $mobile-max) {
+    padding-bottom: 0px;
+  }
 }
 
-.left, .right {
+.one, .two {
   padding-top: 34px;
+
+  @media (max-width: $mobile-max) {
+    background-color: $color-background;
+    padding-top: 0px;
+  }
 }
 
-.left label, .right label {
+.one label, .two label {
   @extend %gray-500-label;
 }
 
-.left p, .right p, .right figcaption {
+.one p, .two p, .two figcaption {
   @extend %grey-label;
 }
 
 .billions {
   font-size: 24px;
   color: $blue-900;
+  @media (max-width: $mobile-max) {
+    font-size: 20px;
+  }
 }
 
 .allocated {
   font-size: 24px;
   color: $blue-900;
-  font-weight: bold;
+  @media (max-width: $mobile-max) {
+    font-size: 20px;
+  }
 }
 
 .overAmount {
   font-size: 24px;
   color: $red-800;
-  font-weight: bold;
+  @media (max-width: $mobile-max) {
+    font-size: 20px;
+  }
+}
+
+.leftSub {
+  text-align: left;
 }
 
 .rightSub {
   text-align: right;
+  @media (max-width: $mobile-max) {
+    .middle {
+      padding-left: 8px;
+      border-left: 1px solid $gray-300;
+      min-width: 190px;
+    }
+  }
 }
 
 .top {
   margin-bottom: 22px;
+  height: 16px
 }
 
 .middle {
-  height: 49px;
+  @media (min-width: $desktop-min) {
+    height: 49px;
+  }
   margin-bottom: 21px;
+}
+
+.bottom {
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
+}
+
+// hide the reset link on mobile
+@media (max-width: $mobile-max) {
+  .two {
+    .rightSub {
+      .top {
+        label {
+          display: none;
+        }
+      }
+    }
+  }
 }

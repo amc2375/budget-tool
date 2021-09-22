@@ -8,5 +8,9 @@
 .form {
   margin: 0;
   padding: 120px $form-outer-padding $form-outer-padding $form-outer-padding;
-  min-width: 580px;
+
+  @media (max-width: $mobile-max) {
+    padding: 0px;
+    width: 100%;
+  }
 }

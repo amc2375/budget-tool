@@ -1,5 +1,20 @@
 @use 'styles/base' as *;
 
+.hamburger {
+  @media (max-width: $mobile-max) {
+    width: 32px;
+    margin: 15px;
+    z-index: 101;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -9,4 +24,23 @@
   margin-right: 118px;
   margin-top: 64px;
   flex: 4;
+
+  @media (max-width: $mobile-max) {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: flex-start;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 800px;
+    background: $white;
+    z-index: 100;
+    margin: 0;
+  }
+
+  @media (min-width: $desktop-min) {
+
+  }
 }

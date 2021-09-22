@@ -3,6 +3,14 @@
 .container {
   width: 330px;
   height: 80px;
+
+  @media (min-width: $desktop-min) {
+    margin-right: 10%;
+  }
+  @media (max-width: $mobile-max) {
+    margin-bottom: 12px;
+    width: 80%;
+  }
 }
 
 .text {

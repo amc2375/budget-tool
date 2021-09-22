@@ -1,7 +1,7 @@
-// validate user input for integers and floats
+// validate user input for integers and floats <= 99.99
 export const validateUserInput = (value) => {
-  const re = /^([0-9]*)(\.{1})?([0-9]*)+$/;
-  return value === '' || re.test(value)
+  const re = /^([0-9]|[1-9][0-9])(\.[0-9]?)?$/;
+  return value === '' || re.test(value);
 }
 
 // divide a number by 1 billion and round to 2 decimal places
@@ -16,14 +16,24 @@ export const billionsAmountString = (amount) => {
 };
 
 export const categoryPercentage = (amount, total) => {
-  return (amount * 100 / total).toFixed(2);
+  return (amount * 100 / total).toFixed(1);
 }
 
 export const overUnderBudgetText = (allocatedTotal) => {
     let difference = parseFloat(allocatedTotal) - 100;
     if (difference >= 0) {
-      return `${difference.toFixed(2)}% Over Budget`;
+      return `${difference.toFixed(1)}% Over Budget`;
     } else if (difference < 0) {
-      return `${(difference * -1).toFixed(2)}% Under Budget`
+      return `${(difference * -1).toFixed(1)}% Under Budget`
     }
   }
+
+export const createDefaultBudgetValues = (data) => {
+  let values = {};
+  data.categories.map(category => {
+      values[category.id] = categoryPercentage(
+        category.amount, data.totalBudget
+      );
+  });
+  return values;
+};

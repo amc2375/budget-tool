@@ -1,13 +1,16 @@
 /* home page! */
-@import "bourbon";
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900';
 
 $blue-900: #1E3A8A;
 $home-background: #E5E5E5;
 $blue-50: #EFF6FF;
 $gray-800: #1F2937;
 $gray-700: #374151;
+$gray-600: #4B5563;
 $gray-500: #6B7280;
 $gray-400: #9CA3AF;
+$gray-300: #D1D5DB;
+$gray-200: #E5E7EB;
 $gray-50: #F9FAFB;
 $red-800: #991B1B;
 $divider-gray: #9CA3AF;
@@ -18,7 +21,7 @@ $divider-gray: #9CA3AF;
 $color-background: #F6F6F7;
 $color-base: #F5F5F5;
 $white: #FFFFFF;
-$black: #151515;
+$black: #4B5563;
 
 // font colors
 $light-grey: #939393;
@@ -37,14 +40,32 @@ $h3-size: 27px;
 $p1-size: 18px;
 $p2-size: 13px;
 
+// media breakpoints
+$mobile-max: 960px;
+$desktop-min: 961px;
+
 /* home page! */
 
 %home-align-left {
-  padding-left: 118px;
+  @media (min-width: $desktop-min) {
+    padding-left: 118px;
+  }
+
+  @media (max-width: $mobile-max) {
+    padding-left: 16px;
+  }
 }
 
 %home-align-right {
-  padding-right: 118px;
+  @media (min-width: $desktop-min) {
+    padding-right: 118px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: $mobile-max) {
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
 }
 
 /* survey page! */
@@ -60,8 +81,15 @@ $form-inner-padding: 74px;
   top: 0;
   margin: 0;
   width: 100%;
-  font-family: $font-stack-helvetica;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
   color: $black;
+  a {
+    color: $blue-900;
+  }
+  @media (max-width: $mobile-max) {
+    overflow: visible;
+  }
 }
 
 
@@ -81,6 +109,10 @@ $form-inner-padding: 74px;
   font-size: $p1-size;
   border-width: 3px;
   border-style: solid;
+
+  @media (max-width: $mobile-max) {
+    width: 90%;
+  }
 }
 
 %little-button {
@@ -91,10 +123,17 @@ $form-inner-padding: 74px;
   font-size: $h3-size;
   border-radius: 6px;
   padding: 0px 6px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  box-shadow: inset 2px 5px 5px rgba(247, 247, 247, 0.25);
+  // filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  // box-shadow: inset 0px 4px 8px 2px rgba(255, 255, 255, 0.3);
   border-width: 1px;
   border-style: solid;
+
+  @media (max-width: $mobile-max) {
+    max-width: 48px;
+    min-width: 48px;
+    width: 48px;
+    height: 48px;
+  }
 }
 
 %big-button:hover, %little-button:hover {
@@ -103,11 +142,23 @@ $form-inner-padding: 74px;
 
 // align various form content along left vertical axis
 %left-align-vertical {
-  padding-left: $form-inner-padding;
+  @media (min-width: $desktop-min) {
+    padding-left: $form-inner-padding;
+  }
+
+  @media (max-width: $mobile-max) {
+    padding-left: 16px;
+  }
 }
 
 %right-align-vertical {
-  padding-right: $form-inner-padding;
+  @media (min-width: $desktop-min) {
+    padding-right: $form-inner-padding;
+  }
+
+  @media (max-width: $mobile-max) {
+    padding-right: 16px;
+  }
 }
 
 // form row - one third
@@ -116,6 +167,11 @@ $form-inner-padding: 74px;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: $form-inner-padding;
+
+  @media (max-width: $mobile-max) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 // form row - two thirds
@@ -123,7 +179,12 @@ $form-inner-padding: 74px;
   padding-bottom: 16px;
   padding-left: 48px;
   padding-right: $form-inner-padding;
-  flex: 2
+  flex: 2;
+
+  @media (max-width: $mobile-max) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 // form
@@ -139,7 +200,9 @@ $form-inner-padding: 74px;
   border: 1px solid #7B7B7B;
   padding: 6px;
   height: 29px;
-  max-width: 216px;
+  @media (min-width: $desktop-min) {
+    max-width: 216px;
+  }
   margin-top: 12px;
   color: $black;
 }

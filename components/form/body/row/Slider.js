@@ -1,9 +1,11 @@
 import styles from './Slider.module.scss';
 
-export default function Slider({ budgetValue, setBudgetValue }) {
+export default function Slider({ budgetValue, setBudgetValue, id }) {
 
   const handler = (e) => {
-    setBudgetValue((e.target.value / 100).toFixed(2));
+    if (setBudgetValue) {
+      setBudgetValue((e.target.value / 100).toFixed(1));
+    }
   };
 
   return (
@@ -14,7 +16,8 @@ export default function Slider({ budgetValue, setBudgetValue }) {
       type={"range"}
       min={0}
       max={10000}
-      step = {1}
+      step={1}
+      id={id}
       required/>
   )
 };

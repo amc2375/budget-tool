@@ -2,7 +2,10 @@
 
 .header {
   @extend %left-align-vertical;
-  padding-bottom: 28px;
+
+  @media (min-width: $desktop-min) {
+    padding-bottom: 28px;
+  }
 
   p {
     color: $gray-800;
@@ -17,4 +20,11 @@
     margin-top: 18px;
     display: block;
   }
+}
+
+.directions {
+  @extend %left-align-vertical;
+  font-size: 20px;
+  line-height: 30px;
+  color: $gray-600;
 }

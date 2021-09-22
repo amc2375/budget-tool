@@ -1,0 +1,15 @@
+@use 'styles/base' as *;
+
+.container {
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+  display: flex;
+  flex-direction: column;
+  .label {
+    position: relative;
+    max-width: 40px;
+    color: $blue-900;
+    font-weight: 600;
+  }
+}

@@ -14,9 +14,18 @@ export default function Headings({
 
   let totalAmount = (parseFloat(allocatedTotal)/100) * totalBudget;
 
+  const warningText = (allocatedTotal) => {
+    return allocatedTotal.toFixed(1) != 100.00 ? overUnderBudgetText(allocatedTotal) : "";
+  }
+
+  const warningTextCaption = (allocatedTotal) => {
+    return allocatedTotal.toFixed(1) != 100.00 ? `${allocatedTotal < 100 ? "Increase" : "Decrease"} spending` : "";
+  }
+
   return (
     <section className={styles.container}>
-      <div className={styles.left}>
+
+      <div className={styles.one}>
         <div className={styles.top}>
           <label>NYC Budget</label>
         </div>
@@ -27,19 +36,21 @@ export default function Headings({
           <p>Click a department to learn more</p>
         </div>
       </div>
-      <div className={styles.right}>
+
+      <div className={styles.two}>
         <div className={styles.leftSub}>
           <div className={styles.top}>
             <label>Your Allocation</label>
           </div>
           <div className={styles.middle}>
-            <div className={styles.allocated}>{`${(allocatedTotal).toFixed(2)}%`}</div>
+            <div className={styles.allocated}>{`${(allocatedTotal).toFixed(1)}%`}</div>
             <figcaption>{`${billionsAmountString(totalAmount)}`}</figcaption>
           </div>
           <div className={styles.bottom}>
             <p>Drag the slider or enter a percentage.</p>
           </div>
         </div>
+        <div className={styles.divider}/>
         <div className={styles.rightSub}>
           <div className={styles.top}>
           <ResetLink
@@ -47,11 +58,12 @@ export default function Headings({
             createDefaultBudgetValues={createDefaultBudgetValues}/>
           </div>
           <div className={styles.middle}>
-            <div className={styles.overAmount}>{overUnderBudgetText(allocatedTotal)}</div>
-            <p>{allocatedTotal < 100 ? "Increase" : "Decrease"} your spending by this amount</p>
+            <div className={styles.overAmount}>{warningText(allocatedTotal)}</div>
+            <p>{warningTextCaption(allocatedTotal)}</p>
           </div>
         </div>
       </div>
+
     </section>
   );
 };

@@ -3,7 +3,7 @@ import Nav from '../nav/Nav.js';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import Footer from '../footer/Footer.js';
-import { categoryPercentage } from '../../utilities/helpers.js';
+import { createDefaultBudgetValues } from '../../utilities/helpers.js';
 import styles from './Form.module.scss';
 
 function Form({ data }) {
@@ -71,25 +71,4 @@ function Form({ data }) {
   );
 }
 
-/*
-
-<FormFooter
-  allocatedTotal={allocatedTotal}
-  budgetValues={budgetValues}
-  setBudgetValues={setBudgetValues}
-  handleSubmit={handleSubmit}/>
-
-*/
-
 export default Form;
-
-// helper to create the object used in the state to track user input
-const createDefaultBudgetValues = (data) => {
-  let values = {};
-  data.categories.map(category => {
-      values[category.id] = categoryPercentage(
-        category.amount, data.totalBudget
-      );
-  });
-  return values;
-};

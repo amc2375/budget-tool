@@ -24,6 +24,18 @@ $ heroku pg:pull postgresql-closed-53032 peoplesbudget-test --app peoplesbudget-
 $ heroku pg:psql postgresql-closed-53032 --app peoplesbudget-test < utilities/schema.sql
 ```
 
+## DANGER: How do you drop the heroku database?
+```
+$ heroku pg:reset -a peoplesbudget-test
+```
+
+## How do you drop a local psql DB?
+```
+$ psql
+$ DROP DATABASE "peoplesbudget-test";
+```
+* Then you can re-seed the remote DB, and pull a copy locally.
+
 ### API routes with REST
 
 Next.js ships with [API routes](https://github.com/vercel/next.js#api-routes), which provide an easy solution to build your own `API`. This example shows how it can be used to create your [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) `API`.

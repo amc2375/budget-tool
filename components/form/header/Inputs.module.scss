@@ -3,4 +3,9 @@
 .container {
   display: flex;
   margin-bottom: 48px;
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
 }

@@ -5,7 +5,7 @@ export default function MinusButton({ budgetValue, setBudgetValue }) {
   const handler = (e) => {
     e.preventDefault();
     if (parseFloat(budgetValue) >= 0.1) {
-      setBudgetValue((parseFloat(budgetValue) - 0.1).toFixed(2));
+      setBudgetValue((parseFloat(budgetValue) - 0.1).toFixed(1));
     }
   }
 

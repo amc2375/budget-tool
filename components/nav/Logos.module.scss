@@ -6,8 +6,16 @@
   height: 30px;
   width: 50%;
   align-items: center;
-  margin-top: 64px;
   flex: 1;
+
+  @media (max-width: $mobile-max) {
+    margin-top: 15px;
+    width: 100%
+  }
+
+  @media (min-width: $desktop-min) {
+    margin-top: 64px;
+  }
 
   svg {
     height: 46px;
