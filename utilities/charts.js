@@ -112,7 +112,7 @@ export const constructChart = () => {
       .tickSize(-height, 0, 0)
       .tickFormat('')
     )
-/*
+
   // create bar groups, one for each element in the data array
   const barGroups = chart.selectAll()
     .data(sample)
@@ -124,10 +124,10 @@ export const constructChart = () => {
   barGroups
     .append('rect')
     .attr('class', styles.bar)
-    .attr('x', (g) => xScale(g.language))
-    .attr('y', (g) => yScale(g.value))
-    .attr('height', (g) => height - yScale(g.value))
-    .attr('width', xScale.bandwidth())
+    .attr('x', (g) => 0)
+    .attr('y', (g) => yScale(g.language))
+    .attr('height', yScale.bandwidth())
+    .attr('width', (g) => xScale(g.value))
     .on('mouseenter', function (event, datum, i) {
       d3.selectAll(`.${styles.value}`)
         .attr('opacity', 0)
@@ -136,23 +136,23 @@ export const constructChart = () => {
         .transition()
         .duration(300)
         .attr('opacity', 0.6)
-        .attr('x', (a) => xScale(a.language) - 5)
-        .attr('width', xScale.bandwidth() + 10)
+        .attr('y', (a) => yScale(a.language) - 5)
+        .attr('height', yScale.bandwidth() + 10)
 
-      const y = yScale(datum.value)
+      const x = xScale(datum.value)
 
       const line = chart.append('line')
         .attr('class', styles.limit)
         .attr('id', 'limit')
-        .attr('x1', 0)
-        .attr('y1', y)
-        .attr('x2', width)
-        .attr('y2', y)
+        .attr('x1', x)
+        .attr('y1', 0)
+        .attr('x2', x)
+        .attr('y2', height)
 
       barGroups.append('text')
         .attr('class', styles.divergence)
-        .attr('x', (a) => xScale(a.language) + xScale.bandwidth() / 2)
-        .attr('y', (a) => yScale(a.value) + 30)
+        .attr('x', (a) => xScale(a.value) - 30)
+        .attr('y', (a) => yScale(a.language) + yScale.bandwidth() / 2)
         .attr('fill', 'white')
         .attr('text-anchor', 'middle')
         .text((a, idx) => {
@@ -174,8 +174,8 @@ export const constructChart = () => {
         .transition()
         .duration(300)
         .attr('opacity', 1)
-        .attr('x', (a) => xScale(a.language))
-        .attr('width', xScale.bandwidth())
+        .attr('y', (a) => yScale(a.language))
+        .attr('height', yScale.bandwidth())
 
       chart.selectAll('#limit').remove()
       chart.selectAll(`.${styles.divergence}`).remove()
@@ -185,8 +185,8 @@ export const constructChart = () => {
   barGroups
     .append('text')
     .attr('class', styles.value)
-    .attr('x', (a) => xScale(a.language) + xScale.bandwidth() / 2)
-    .attr('y', (a) => yScale(a.value) + 30)
+    .attr('x', (a) => xScale(a.value) - 30)
+    .attr('y', (a) => yScale(a.language) + yScale.bandwidth() / 2)
     .attr('text-anchor', 'middle')
     .text((a) => `${a.value}%`)
 
@@ -196,7 +196,7 @@ export const constructChart = () => {
     .attr('x', width / 2 + margin)
     .attr('y', height + margin * 1.7)
     .attr('text-anchor', 'middle')
-    .text('Languages')
+    .text('Love meter (%)')
 
   // add y axis label
   svg.append('text')
@@ -205,7 +205,7 @@ export const constructChart = () => {
     .attr('y', margin / 2.4)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
-    .text('Love meter (%)')
+    .text('Languages')
 
   // add title label
   svg.append('text')
@@ -223,5 +223,5 @@ export const constructChart = () => {
     .attr('y', height + margin * 1.7)
     .attr('text-anchor', 'start')
     .text('Source: Stack Overflow, 2018')
-*/
+
 }
