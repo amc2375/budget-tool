@@ -22,13 +22,13 @@ export default function ThankYou({ data }) {
       </section>
       <section className={styles.charts}>
         <div className={styles.chartChild}>
-          <Image src={chart1}/>
+          <Image src={chart1} alt={"Chart"}/>
         </div>
         <div className={styles.chartChild}>
-          <Image src={chart2}/>
+          <Image src={chart2} alt={"Chart"}/>
         </div>
         <div className={styles.chartChild}>
-          <Image src={chart3}/>
+          <Image src={chart3} alt={"Chart"}/>
         </div>
       </section>
       <Footer />
