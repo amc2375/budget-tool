@@ -3,13 +3,12 @@ const db = require("../../utilities/postgres").instance;
 const getId = () => nanoid(12);
 
 async function handleGet(request, response) {
-  const districts = await db.any("SELECT id, district_id, name FROM bcdi.districts");
-  const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bcdi.categories");
+  const averages = await db.any("SELECT category_id, AVG(category_value) AS avg FROM bcdi.budget GROUP BY category_id;");
+  // const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bcdi.categories");
   const data = {
-    districts: districts,
-    categories: categories
+    averages: averages,
   };
-  data.categories.forEach(c => c.amount = parseInt(c.amount));
+  data.averages.forEach(o => o.avg = parseInt(o.avg));
 
   response.status(200).json(data);
 };
