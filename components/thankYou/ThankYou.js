@@ -13,6 +13,7 @@ import styles from './ThankYou.module.scss';
 
 
 export default function ThankYou({ data }) {
+  console.log("data!!!!:")
   console.log(data);
 
   const height = 400;
@@ -20,7 +21,7 @@ export default function ThankYou({ data }) {
   const margin = 60;
 
   useEffect(() => {
-    constructChart();
+    constructChart(data);
   })
 
   return (

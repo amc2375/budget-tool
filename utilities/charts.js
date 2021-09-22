@@ -57,7 +57,7 @@ const sample = [
   }
 ];
 
-export const constructChart = () => {
+export const constructChart = (data) => {
 
   // select the dom element to fill with the chart
   const svg = d3.select('#chart');
