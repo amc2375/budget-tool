@@ -11,6 +11,7 @@ async function handleGet(request, response) {
     totalSubmissions: totalSubmissions[0].count
   };
   data.averages.forEach(o => o.avg = parseInt(o.avg));
+  data.averages.sort((a, b) => alphabetSort(b.avg, a.avg));
 
   response.status(200).json(data);
 };
@@ -25,3 +26,8 @@ export default function handler(req, res) {
     }
   }
 };
+
+// sorting data alphabetically
+const alphabetSort = (a, b) => (
+  (a > b) ? 1 : ((b > a) ? -1 : 0)
+);

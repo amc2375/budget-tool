@@ -26,6 +26,7 @@
 
 .thanks {
   @extend %home-align-left;
+  margin-bottom: 48px;
 
   p {
     color: $gray-800;
@@ -39,5 +40,6 @@
 }
 
 .layout {
-  text-align: center;
+  @extend %home-align-left;
+  margin-bottom: 48px;
 }

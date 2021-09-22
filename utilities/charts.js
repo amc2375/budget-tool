@@ -4,7 +4,10 @@ import styles from './charts.module.scss';
 
 // https://jsfiddle.net/matehu/w7h81xz2/
 
-export const constructChart = (data, totalSubmissions) => {
+export const constructChart = (data, totalSubmissions, isMobile) => {
+
+  // clear existing chart if it exists
+  d3.selectAll("#chart > *").remove();
 
   // select the dom element to fill with the chart
   const svg = d3.select('#chart');
@@ -18,8 +21,8 @@ export const constructChart = (data, totalSubmissions) => {
   const marginRight = 40;
   const marginBottom = 40;
   const marginLeft = 200;
-  const width = 1000 - marginLeft - marginRight;
-  const height = 600 - marginTop - marginBottom;
+  const width = isMobile ? 400 : 1000 - marginLeft - marginRight;
+  const height = 680 - marginTop - marginBottom;
 
   // create chart
   const chart = svg.append('g')
@@ -52,16 +55,18 @@ export const constructChart = (data, totalSubmissions) => {
     .call(d3.axisLeft(yScale));
 
   // add horizontal lines in the background
-  const makexLines = () => d3.axisBottom()
+  if (!isMobile) {
+    const makexLines = () => d3.axisBottom()
     .scale(xScale)
 
-  chart.append('g')
-    .attr('class', styles.grid)
-    .attr('transform', `translate(0, ${height})`)
-    .call(makexLines()
-      .tickSize(-height, 0, 0)
-      .tickFormat('')
-    )
+    chart.append('g')
+      .attr('class', styles.grid)
+      .attr('transform', `translate(0, ${height})`)
+      .call(makexLines()
+        .tickSize(-height, 0, 0)
+        .tickFormat('')
+      )
+  }
 
   // create bar groups, one for each element in the data array
   const barGroups = chart.selectAll()
@@ -91,18 +96,18 @@ export const constructChart = (data, totalSubmissions) => {
 
       const x = xScale(datum.avg)
 
-      const line = chart.append('line')
-        .attr('class', styles.limit)
-        .attr('id', 'limit')
-        .attr('x1', x)
-        .attr('y1', 0)
-        .attr('x2', x)
-        .attr('y2', height)
+      // const line = chart.append('line')
+      //   .attr('class', styles.limit)
+      //   .attr('id', 'limit')
+      //   .attr('x1', x)
+      //   .attr('y1', 0)
+      //   .attr('x2', x)
+      //   .attr('y2', height)
 
       barGroups.append('text')
         .attr('class', styles.divergence)
-        .attr('x', (a) => xScale(a.avg) - 30)
-        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 2)
+        .attr('x', (a) => xScale(a.avg) + 16)
+        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
         .attr('fill', 'white')
         .attr('text-anchor', 'middle')
         .text((a, idx) => {
@@ -135,8 +140,8 @@ export const constructChart = (data, totalSubmissions) => {
   barGroups
     .append('text')
     .attr('class', styles.value)
-    .attr('x', (a) => xScale(a.avg) - 30)
-    .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 2)
+    .attr('x', (a) => xScale(a.avg) + 16)
+    .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
     .attr('text-anchor', 'middle')
     .text((a) => `${a.avg}%`)
 
@@ -149,7 +154,7 @@ export const constructChart = (data, totalSubmissions) => {
     .text('Allocation (% of Total Budget)')
 
   // add y axis label
-  svg.append('text')
+  if (!isMobile) svg.append('text')
     .attr('class', styles.label)
     .attr('x', -(height / 2) - marginTop)
     .attr('y', marginTop / 2.4)
@@ -170,7 +175,7 @@ export const constructChart = (data, totalSubmissions) => {
   svg.append('text')
     .attr('class', styles.source)
     .attr('x', width)
-    .attr('y', height + marginTop * 1.7)
+    .attr('y', isMobile ? height + marginTop * 2 : height + marginTop * 1.7)
     .attr('text-anchor', 'start')
     .text(`Total Submissions: ${totalSubmissions}`)
 

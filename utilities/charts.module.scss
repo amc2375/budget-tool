@@ -1,10 +1,14 @@
 @use 'styles/base' as *;
 
 .container {
-  width: 1000px;
-  height: 640px;
-  margin: auto;
-  background-color: #2F4A6D;
+  @media (max-width: $mobile-max) {
+    width: 400px;
+  }
+  @media (min-width: $desktop-min) {
+    width: 1000px;
+  }
+  height: 740px;
+  background-color: $color-background;
 
   svg {
     width: 100%;
@@ -12,44 +16,45 @@
   }
 
   .bar {
-    fill: #80cbc4;
+    fill: $blue-900;
   }
 
   text {
     font-size: 12px;
-    fill: #fff;
+    fill: $gray-800;
   }
 
   path {
-    stroke: gray;
+    stroke: $gray-500;
   }
 
   line {
-    stroke: gray;
+    stroke: $gray-500;
   }
 
-  .limit {
-    stroke: #FED966;
-    stroke-width: 3;
-    stroke-dasharray: 3 6;
-  }
+  // .limit {
+  //   stroke: #FED966;
+  //   stroke-width: 3;
+  //   stroke-dasharray: 3 6;
+  // }
 
   .grid path {
     stroke-width: 0;
   }
 
   .grid .tick line {
-    stroke: #9FAAAE;
+    stroke: $gray-800;
     stroke-opacity: 0.3;
   }
 
   .divergence {
     font-size: 14px;
-    fill: #2F4A6D;
+    fill: $gray-800;
   }
 
   .value {
     font-size: 14px;
+    fill: $gray-800;
   }
 
   .title {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Nav from '../nav/Nav.js';
 import Image from 'next/image'
 import chart1 from '../../static/chart1.png';
@@ -8,6 +8,7 @@ import Footer from '../footer/Footer.js';
 import {
   constructChart
 } from '../../utilities/charts.js';
+import { useMediaQuery } from 'react-responsive';
 import styles from './ThankYou.module.scss';
 
 
@@ -20,9 +21,16 @@ export default function ThankYou({ data }) {
   const width = 600;
   const margin = 60;
 
+  const [isMobile, setIsMobile] = useState(
+    false
+  );
+
+  const mobile = useMediaQuery({ query: '(max-width: 960px)' });
+
   useEffect(() => {
-    constructChart(data.averages, data.totalSubmissions);
-  })
+    setIsMobile(mobile);
+    constructChart(data.averages, data.totalSubmissions, isMobile);
+  }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions])
 
   return (
     <main className={styles.body}>
