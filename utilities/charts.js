@@ -4,59 +4,6 @@ import styles from './charts.module.scss';
 
 // https://jsfiddle.net/matehu/w7h81xz2/
 
-const sample = [
-  {
-    language: 'Rust',
-    value: 78.9,
-    color: '#000000'
-  },
-  {
-    language: 'Kotlin',
-    value: 75.1,
-    color: '#00a2ee'
-  },
-  {
-    language: 'Python',
-    value: 68.0,
-    color: '#fbcb39'
-  },
-  {
-    language: 'TypeScript',
-    value: 67.0,
-    color: '#007bc8'
-  },
-  {
-    language: 'Go',
-    value: 65.6,
-    color: '#65cedb'
-  },
-  {
-    language: 'Swift',
-    value: 65.1,
-    color: '#ff6e52'
-  },
-  {
-    language: 'JavaScript',
-    value: 61.9,
-    color: '#f9de3f'
-  },
-  {
-    language: 'C#',
-    value: 60.4,
-    color: '#5d2f8e'
-  },
-  {
-    language: 'F#',
-    value: 59.6,
-    color: '#008fc9'
-  },
-  {
-    language: 'Clojure',
-    value: 59.6,
-    color: '#507dca'
-  }
-];
-
 export const constructChart = (data) => {
 
   // select the dom element to fill with the chart
@@ -76,12 +23,12 @@ export const constructChart = (data) => {
     // moves the start of the chart to the (60;60) position of the svg
     .attr('transform', `translate(${margin}, ${margin})`);
 
-  // establish scales based on dimensions and input sample
+  // establish scales based on dimensions and input data
   // scaleBand for the x-axis which helps to split the range into bands
   // and compute the coordinates and widths of the bars with additional padding.
   const yScale = d3.scaleBand()
     .range([0, height])
-    .domain(sample.map((s) => s.language))
+    .domain(data.map((s) => s.name))
     .padding(0.4)
 
   const xScale = d3.scaleLinear()
@@ -115,7 +62,7 @@ export const constructChart = (data) => {
 
   // create bar groups, one for each element in the data array
   const barGroups = chart.selectAll()
-    .data(sample)
+    .data(data)
     .enter()
     .append('g')
 
@@ -125,9 +72,9 @@ export const constructChart = (data) => {
     .append('rect')
     .attr('class', styles.bar)
     .attr('x', (g) => 0)
-    .attr('y', (g) => yScale(g.language))
+    .attr('y', (g) => yScale(g.name))
     .attr('height', yScale.bandwidth())
-    .attr('width', (g) => xScale(g.value))
+    .attr('width', (g) => xScale(g.avg))
     .on('mouseenter', function (event, datum, i) {
       d3.selectAll(`.${styles.value}`)
         .attr('opacity', 0)
@@ -136,10 +83,10 @@ export const constructChart = (data) => {
         .transition()
         .duration(300)
         .attr('opacity', 0.6)
-        .attr('y', (a) => yScale(a.language) - 5)
+        .attr('y', (a) => yScale(a.name) - 5)
         .attr('height', yScale.bandwidth() + 10)
 
-      const x = xScale(datum.value)
+      const x = xScale(datum.avg)
 
       const line = chart.append('line')
         .attr('class', styles.limit)
@@ -151,18 +98,18 @@ export const constructChart = (data) => {
 
       barGroups.append('text')
         .attr('class', styles.divergence)
-        .attr('x', (a) => xScale(a.value) - 30)
-        .attr('y', (a) => yScale(a.language) + yScale.bandwidth() / 2)
+        .attr('x', (a) => xScale(a.avg) - 30)
+        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 2)
         .attr('fill', 'white')
         .attr('text-anchor', 'middle')
         .text((a, idx) => {
-          const divergence = (a.value - datum.value).toFixed(1)
+          const divergence = (a.avg - datum.avg).toFixed(1)
 
           let text = ''
           if (divergence > 0) text += '+'
           text += `${divergence}%`
 
-          return a.value !== datum.value ? text : '';
+          return a.avg !== datum.avg ? text : '';
         })
 
     })
@@ -174,7 +121,7 @@ export const constructChart = (data) => {
         .transition()
         .duration(300)
         .attr('opacity', 1)
-        .attr('y', (a) => yScale(a.language))
+        .attr('y', (a) => yScale(a.name))
         .attr('height', yScale.bandwidth())
 
       chart.selectAll('#limit').remove()
@@ -185,10 +132,10 @@ export const constructChart = (data) => {
   barGroups
     .append('text')
     .attr('class', styles.value)
-    .attr('x', (a) => xScale(a.value) - 30)
-    .attr('y', (a) => yScale(a.language) + yScale.bandwidth() / 2)
+    .attr('x', (a) => xScale(a.avg) - 30)
+    .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 2)
     .attr('text-anchor', 'middle')
-    .text((a) => `${a.value}%`)
+    .text((a) => `${a.avg}%`)
 
   // add x axis label
   svg.append('text')
@@ -205,7 +152,7 @@ export const constructChart = (data) => {
     .attr('y', margin / 2.4)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
-    .text('Languages')
+    .text('Categories')
 
   // add title label
   svg.append('text')
@@ -213,7 +160,7 @@ export const constructChart = (data) => {
     .attr('x', width / 2 + margin)
     .attr('y', 40)
     .attr('text-anchor', 'middle')
-    .text('Most loved programming languages in 2018')
+    .text('Most loved programming names in 2018')
 
   // add footer label
 

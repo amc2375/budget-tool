@@ -3,7 +3,7 @@ const db = require("../../utilities/postgres").instance;
 const getId = () => nanoid(12);
 
 async function handleGet(request, response) {
-  const averages = await db.any("SELECT category_id, AVG(category_value) AS avg FROM bcdi.budget GROUP BY category_id;");
+  const averages = await db.any("SELECT bcdi.budget.category_id, bcdi.categories.name, AVG(bcdi.budget.category_value) AS avg FROM bcdi.budget INNER JOIN bcdi.categories ON bcdi.budget.category_id=bcdi.categories.id GROUP BY bcdi.budget.category_id, bcdi.categories.name;");
   // const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bcdi.categories");
   const data = {
     averages: averages,
