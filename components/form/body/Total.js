@@ -8,6 +8,8 @@ import ResetLink from './ResetLink.js';
 import styles from './Total.module.scss';
 
 export default function Total({
+    district,
+    zipCode,
     totalBudget,
     budgetValues,
     setBudgetValues,
@@ -39,12 +41,20 @@ export default function Total({
           </div>
           <div className={styles.row}>
             <div/>
-            <SubmitButton handleSubmit={handleSubmit} allocatedTotal={allocatedTotal}/>
+            <SubmitButton
+              district={district}
+              zipCode={zipCode}
+              handleSubmit={handleSubmit}
+              allocatedTotal={allocatedTotal}/>
           </div>
         </div>
       </div>
       <div className={styles.mobileContainer}>
-        <SubmitButton handleSubmit={handleSubmit} allocatedTotal={allocatedTotal}/>
+        <SubmitButton
+          district={district}
+          zipCode={zipCode}
+          handleSubmit={handleSubmit}
+          allocatedTotal={allocatedTotal}/>
         <p>{overUnderBudgetText(allocatedTotal)}</p>
         <ResetLink
           setBudgetValues={setBudgetValues}

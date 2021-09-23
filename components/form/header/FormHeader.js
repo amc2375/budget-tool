@@ -3,6 +3,7 @@ import Inputs from './Inputs.js';
 import styles from './FormHeader.module.scss';
 
 export default function FormHeader({
+    zipCode,
     districts,
     setDistrict,
     setZipCode
@@ -23,6 +24,7 @@ export default function FormHeader({
         </ol>
       </section>
       <Inputs
+        zipCode={zipCode}
         districts={districts}
         setDistrict={setDistrict}
         setZipCode={setZipCode}/>

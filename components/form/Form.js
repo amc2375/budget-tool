@@ -71,11 +71,14 @@ function Form({ data }) {
       <Nav />
       <form className={styles.form}>
         <FormHeader
+          zipCode={zipCode}
           districts={data.districts}
           setDistrict={setDistrict}
           setZipCode={setZipCode}/>
         <FormBody
           data={data}
+          district={district}
+          zipCode={zipCode}
           budgetValues={budgetValues}
           setBudgetValues={setBudgetValues}
           allocatedTotal={allocatedTotal}
