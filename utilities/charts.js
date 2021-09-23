@@ -4,7 +4,7 @@ import styles from './charts.module.scss';
 
 // https://jsfiddle.net/matehu/w7h81xz2/
 
-export const constructChart = (data, totalSubmissions, isMobile) => {
+export const constructChart = (averages, actuals, localSubmission, totalSubmissions, isMobile) => {
 
   // clear existing chart if it exists
   d3.selectAll("#chart > *").remove();
@@ -37,13 +37,13 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
   // and compute the coordinates and widths of the bars with additional padding.
   const yScale = d3.scaleBand()
     .range([0, height])
-    .domain(data.map((s) => s.name))
+    .domain(averages.map((s) => s.name))
     // .padding(0.4)
     .padding(0.1)
 
   const maxValueExpected = () => {
     let max;
-    data.forEach((o) => {
+    averages.forEach((o) => {
       max = (!max || parseInt(o.avg) > max) ? parseInt(o.avg) : max;
     })
     return Math.ceil(max / 10) * 10;
@@ -87,7 +87,7 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
 
   // create bar groups, one for each element in the data array
   const barGroups = chart.selectAll()
-    .data(data)
+    .data(averages)
     .enter()
     .append('g')
 

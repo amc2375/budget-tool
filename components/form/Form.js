@@ -18,6 +18,8 @@ function Form({ data }) {
     createDefaultBudgetValues(data)
   );
 
+  console.log(allocatedTotal);
+
     // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(budgetValues).length > 0) {
@@ -27,7 +29,7 @@ function Form({ data }) {
         return addendA + addendB;
       }));
     }
-  }, [budgetValues])
+  }, [budgetValues, setAllocatedTotal])
 
   // post the results of the survey
   async function handleSubmit(e) {
@@ -47,6 +49,21 @@ function Form({ data }) {
     } catch (error) {
       console.log(error);
     };
+
+    // create formatted object to store in local storage
+    const storedData = [];
+    Object.keys(submissionData.budgetValues).forEach(id => {
+      storedData.push({
+        id: id,
+        percentageValue: submissionData.budgetValues[id]
+      });
+    })
+
+    // store to local storage
+    window.localStorage.setItem(
+      'peoplesBudgetSubmission',
+      JSON.stringify(storedData)
+    );
   }
 
   return (
@@ -72,3 +89,41 @@ function Form({ data }) {
 }
 
 export default Form;
+
+// https://usehooks.com/useLocalStorage/
+// Hook
+function useLocalStorage(key, initialValue) {
+
+  // State to store our value
+  // Pass initial state function to useState so logic is only executed once
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      // Get from local storage by key
+      const item = window.localStorage.getItem(key);
+      console.log("item: " + JSON.parse(item));
+      // Parse stored json or if none return initialValue
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      // If error also return initialValue
+      console.log(error);
+      return initialValue;
+    }
+  });
+  // Return a wrapped version of useState's setter function that ...
+  // ... persists the new value to localStorage.
+  const setValue = (value) => {
+    try {
+      // Allow value to be a function so we have same API as useState
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      // Save state
+      setStoredValue(valueToStore);
+      // Save to local storage
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      // A more advanced implementation would handle the error case
+      console.log(error);
+    }
+  };
+  return [storedValue, setValue];
+}

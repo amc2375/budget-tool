@@ -14,8 +14,6 @@ import styles from './ThankYou.module.scss';
 
 
 export default function ThankYou({ data }) {
-  console.log("data!!!!:")
-  console.log(data);
 
   const height = 400;
   const width = 600;
@@ -29,8 +27,16 @@ export default function ThankYou({ data }) {
 
   useEffect(() => {
     setIsMobile(mobile);
-    constructChart(data.averages, data.totalSubmissions, isMobile);
-  }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions])
+    // store to local storage
+    let localSubmission = JSON.parse(window.localStorage.getItem('peoplesBudgetSubmission'));
+    constructChart(
+      data.averages,
+      data.categories,
+      localSubmission,
+      data.totalSubmissions,
+      isMobile
+    );
+  }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions, data.categories])
 
   // style is added to #container div within charts.js - stylesheet is imported there.
   return (
