@@ -15,7 +15,7 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
   const marginBottom = 80;
   const marginLeft = 200;
   const width = isMobile ? 260 : 1000 - marginLeft - marginRight;
-  const height = isMobile ? 680 : 680 - marginTop - marginBottom;
+  const height = isMobile ? 680 : 620 - marginTop - marginBottom;
 
   // select the dom element to fill with the chart
   const svg = d3.select('#chart')
