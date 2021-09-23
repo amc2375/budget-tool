@@ -134,6 +134,8 @@ $form-inner-padding: 74px;
     width: 48px;
     height: 48px;
     margin: 14px 0px;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
+    box-shadow: inset 0px 4px 8px 2px rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -196,6 +198,11 @@ $form-inner-padding: 74px;
 
 // form text input
 %text-input {
+  @media (max-width: $mobile-max) {
+    -webkit-appearance: none;
+    width: 95%;
+    background: $white;
+  }
   font-size: $p1-size;
   border-radius: 8px;
   border: 1px solid #7B7B7B;

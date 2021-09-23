@@ -1,11 +1,22 @@
 @use 'styles/base' as *;
 
 .button {
-  @include button-colors(
-    $border-color: $blue-50,
-    $background-color: $blue-50,
-    $text-color: $blue-900
-  );
+  @media (min-width: $desktop-min) {
+    @include button-colors(
+      $border-color: $blue-50,
+      $background-color: $blue-50,
+      $text-color: $blue-900
+    );
+  }
   @extend %little-button;
   margin-left: 24px;
+
+  @media (max-width: $mobile-max) {
+    @include button-colors(
+      $border-color: $blue-900,
+      $background-color: $blue-900,
+      $text-color: $white
+    );
+    border: 0;
+  }
 }
