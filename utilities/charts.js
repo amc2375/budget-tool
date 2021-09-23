@@ -58,8 +58,10 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
   const maxValueExpected = () => {
     let max;
-    averages.forEach((o) => {
+    data.forEach((o) => {
       max = (!max || parseInt(o.avg) > max) ? parseInt(o.avg) : max;
+      max = (parseInt(o.actual) > max) ? parseInt(o.actual) : max;
+      max = (parseInt(o.submittedValue) > max) ? parseInt(o.submittedValue) : max;
     })
     return Math.ceil(max / 10) * 10;
   }
