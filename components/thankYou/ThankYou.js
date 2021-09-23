@@ -32,6 +32,7 @@ export default function ThankYou({ data }) {
     constructChart(data.averages, data.totalSubmissions, isMobile);
   }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions])
 
+  // style is added to #container div within charts.js - stylesheet is imported there.
   return (
     <main className={styles.body}>
       <Nav/>

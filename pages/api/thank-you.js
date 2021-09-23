@@ -10,8 +10,9 @@ async function handleGet(request, response) {
     averages: averages,
     totalSubmissions: totalSubmissions[0].count
   };
-  data.averages.forEach(o => o.avg = parseInt(o.avg));
+  data.averages.forEach(o => o.avg = parseFloat(o.avg));
   data.averages.sort((a, b) => alphabetSort(b.avg, a.avg));
+  data.averages.forEach(o => o.avg = (o.avg).toFixed(1));
 
   response.status(200).json(data);
 };

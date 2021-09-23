@@ -9,20 +9,23 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
   // clear existing chart if it exists
   d3.selectAll("#chart > *").remove();
 
+  // set dimensions
+  const marginTop = 80;
+  const marginRight = 40;
+  const marginBottom = 80;
+  const marginLeft = 200;
+  const width = isMobile ? 260 : 1000 - marginLeft - marginRight;
+  const height = isMobile ? 680 : 680 - marginTop - marginBottom;
+
   // select the dom element to fill with the chart
-  const svg = d3.select('#chart');
+  const svg = d3.select('#chart')
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0" + ' ' + (width + marginLeft + marginRight) +
+      ' ' + (height + marginTop + marginBottom));
 
   // select the container
   const svgContainer = d3.select('#container')
     .attr('class', styles.container)
-
-  // set dimensions
-  const marginTop = 80;
-  const marginRight = 40;
-  const marginBottom = 40;
-  const marginLeft = 200;
-  const width = isMobile ? 400 : 1000 - marginLeft - marginRight;
-  const height = 680 - marginTop - marginBottom;
 
   // create chart
   const chart = svg.append('g')
@@ -35,38 +38,52 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
   const yScale = d3.scaleBand()
     .range([0, height])
     .domain(data.map((s) => s.name))
-    .padding(0.4)
+    // .padding(0.4)
+    .padding(0.1)
+
+  const maxValueExpected = () => {
+    let max;
+    data.forEach((o) => {
+      max = (!max || parseInt(o.avg) > max) ? parseInt(o.avg) : max;
+    })
+    return Math.ceil(max / 10) * 10;
+  }
 
   const xScale = d3.scaleLinear()
     // length that should be divided between the limits of the domain values.
     // the SVG coordinate system starts from the top left corner; that’s
     // why the range takes the width as the first parameter and not zero.
     .range([width, 0])
-    // minimum and maximum values expected from the data set
-    .domain([100, 0]);
+    // max and min values expected from the data set
+    .domain([maxValueExpected(), 0])
 
   // add the x axis
   chart.append('g')
     .attr('transform', `translate(0, ${height})`)
-    .call(d3.axisBottom(xScale));
+    .call(d3.axisBottom(xScale).ticks((maxValueExpected()/10)));
 
   // add the y axis with tick marks
-  chart.append('g')
+  const yAxis = chart.append('g')
     .call(d3.axisLeft(yScale));
 
-  // add horizontal lines in the background
-  if (!isMobile) {
-    const makexLines = () => d3.axisBottom()
-    .scale(xScale)
+  setTimeout(()=>{
+    yAxis.selectAll("text")
+      .call(wrap, 180);
+  }, 0);
 
-    chart.append('g')
-      .attr('class', styles.grid)
-      .attr('transform', `translate(0, ${height})`)
-      .call(makexLines()
-        .tickSize(-height, 0, 0)
-        .tickFormat('')
-      )
-  }
+  // add horizontal lines in the background
+  // if (!isMobile) {
+  //   const makexLines = () => d3.axisBottom()
+  //   .scale(xScale)
+  //
+  //   chart.append('g')
+  //     .attr('class', styles.grid)
+  //     .attr('transform', `translate(0, ${height})`)
+  //     .call(makexLines()
+  //       .tickSize(-height, 0, 0)
+  //       .tickFormat('')
+  //     )
+  // }
 
   // create bar groups, one for each element in the data array
   const barGroups = chart.selectAll()
@@ -106,7 +123,7 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
 
       barGroups.append('text')
         .attr('class', styles.divergence)
-        .attr('x', (a) => xScale(a.avg) + 16)
+        .attr('x', (a) => xScale(a.avg) + 24)
         .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
         .attr('fill', 'white')
         .attr('text-anchor', 'middle')
@@ -140,7 +157,7 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
   barGroups
     .append('text')
     .attr('class', styles.value)
-    .attr('x', (a) => xScale(a.avg) + 16)
+    .attr('x', (a) => xScale(a.avg) + 24)
     .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
     .attr('text-anchor', 'middle')
     .text((a) => `${a.avg}%`)
@@ -148,24 +165,24 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
   // add x axis label
   svg.append('text')
     .attr('class', styles.label)
-    .attr('x', width / 2 + marginLeft)
+    .attr('x', (width + marginLeft + marginRight) / 2)
     .attr('y', height + marginTop * 1.7)
     .attr('text-anchor', 'middle')
     .text('Allocation (% of Total Budget)')
 
   // add y axis label
-  if (!isMobile) svg.append('text')
-    .attr('class', styles.label)
-    .attr('x', -(height / 2) - marginTop)
-    .attr('y', marginTop / 2.4)
-    .attr('transform', 'rotate(-90)')
-    .attr('text-anchor', 'middle')
-    .text('Categories')
+  // if (!isMobile) svg.append('text')
+  //   .attr('class', styles.label)
+  //   .attr('x', -(height / 2) - marginTop)
+  //   .attr('y', marginTop / 2.4)
+  //   .attr('transform', 'rotate(-90)')
+  //   .attr('text-anchor', 'middle')
+  //   .text('Categories')
 
   // add title label
   svg.append('text')
     .attr('class', styles.title)
-    .attr('x', width / 2 + marginLeft)
+    .attr('x', (width + marginLeft + marginRight) / 2)
     .attr('y', 40)
     .attr('text-anchor', 'middle')
     .text("People's Budget: Averages")
@@ -174,9 +191,42 @@ export const constructChart = (data, totalSubmissions, isMobile) => {
 
   svg.append('text')
     .attr('class', styles.source)
-    .attr('x', width)
-    .attr('y', isMobile ? height + marginTop * 2 : height + marginTop * 1.7)
-    .attr('text-anchor', 'start')
+    .attr('x', (width + marginLeft + marginRight) / 2)
+    .attr('y', height + marginTop * 2)
+    .attr('text-anchor', 'middle')
     .text(`Total Submissions: ${totalSubmissions}`)
 
+}
+
+// https://observablehq.com/@unfpamaldives/figure4/3
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = .8, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null)
+          .append("tspan")
+          .attr("x", -10)
+          .attr("y", y)
+          .attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan")
+          .attr("x", -10)
+          .attr("y", y)
+          .attr("dy", ++lineNumber * lineHeight + dy + "em")
+          .text(word);
+      }
+    }
+  });
 }

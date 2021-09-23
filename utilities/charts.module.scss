@@ -1,13 +1,8 @@
 @use 'styles/base' as *;
 
 .container {
-  @media (max-width: $mobile-max) {
-    width: 400px;
-  }
-  @media (min-width: $desktop-min) {
-    width: 1000px;
-  }
-  height: 740px;
+  // width: 80%;
+  @extend %home-align-right;
   background-color: $color-background;
 
   svg {
@@ -20,7 +15,12 @@
   }
 
   text {
-    font-size: 12px;
+    @media (max-width: $mobile-max) {
+      font-size: 20px;
+    }
+    @media (min-width: $desktop-min) {
+      font-size: 14px;
+    }
     fill: $gray-800;
   }
 
