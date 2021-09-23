@@ -6,6 +6,21 @@ import styles from './charts.module.scss';
 
 export const constructChart = (averages, actuals, localSubmission, totalSubmissions, isMobile) => {
 
+  // construct the final data structure for the chart to represent
+  const data = [];
+  averages.forEach(obj => {
+    data.push({
+      id: obj.category_id,
+      name: obj.name,
+      avg: obj.avg,
+      actual: actuals.find(o => o.id === obj.category_id).percentageValue,
+      submittedValue: localSubmission.find(o => parseInt(o.id) === obj.category_id).percentageValue
+    })
+  })
+
+  console.log("final answer: ")
+  console.log(data);
+
   // clear existing chart if it exists
   d3.selectAll("#chart > *").remove();
 
