@@ -31,7 +31,9 @@ export default function Row({
           totalBudget={totalBudget}/>
         <MobileSlider
           budgetValue={budgetValue}
-          budgetCategory={budgetCategory}/>
+          budgetCategory={budgetCategory}
+          accordionOpen={accordionOpen}
+          setAccordionOpen={setAccordionOpen}/>
       </div>
       <AccordionContent
         open={accordionOpen}

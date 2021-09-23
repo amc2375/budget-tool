@@ -132,13 +132,13 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
         const x = xScale(datum.avg)
 
-        // const line = chart.append('line')
-        //   .attr('class', styles.limit)
-        //   .attr('id', 'limit')
-        //   .attr('x1', x)
-        //   .attr('y1', 0)
-        //   .attr('x2', x)
-        //   .attr('y2', height)
+        const line = chart.append('line')
+          .attr('class', styles.limit)
+          .attr('id', 'limit')
+          .attr('x1', x)
+          .attr('y1', 0)
+          .attr('x2', x)
+          .attr('y2', height)
 
         // actualBarGroup.append('text')
         //   .attr('class', styles.divergence)
