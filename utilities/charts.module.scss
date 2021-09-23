@@ -8,8 +8,16 @@
     height: 100%;
   }
 
-  .bar {
+  .averageBar {
     fill: $blue-900;
+  }
+
+  .actualBar {
+    fill: #6A33FF;
+  }
+
+  .localSubmissionBar {
+    fill: #00C9AA;
   }
 
   text {
@@ -67,6 +75,10 @@
 
   .source {
     font-size: 10px;
+  }
+
+  .legend {
+    
   }
 
 }

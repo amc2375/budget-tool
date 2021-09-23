@@ -25,7 +25,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   d3.selectAll("#chart > *").remove();
 
   // set dimensions
-  const marginTop = 80;
+  const marginTop = isMobile ? 180 : 80;
   const marginRight = 40;
   const marginBottom = 80;
   const marginLeft = 200;
@@ -112,7 +112,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   // to mouseover
   averagesBarGroup
     .append('rect')
-    .attr('class', styles.bar)
+    .attr('class', styles.averageBar)
     .attr('x', (g) => 0)
     .attr('y', (g) => yScale(g.name))
     .attr('height', yScale.bandwidth() * (1/3))
@@ -138,21 +138,21 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
       //   .attr('x2', x)
       //   .attr('y2', height)
 
-      averagesBarGroup.append('text')
-        .attr('class', styles.divergence)
-        .attr('x', (a) => xScale(a.avg) + 24)
-        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-        .attr('fill', 'white')
-        .attr('text-anchor', 'middle')
-        .text((a, idx) => {
-          const divergence = (a.avg - datum.avg).toFixed(1)
-
-          let text = ''
-          if (divergence > 0) text += '+'
-          text += `${divergence}%`
-
-          return a.avg !== datum.avg ? text : '';
-        })
+      // averagesBarGroup.append('text')
+      //   .attr('class', styles.divergence)
+      //   .attr('x', (a) => xScale(a.avg) + 24)
+      //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+      //   .attr('fill', 'white')
+      //   .attr('text-anchor', 'middle')
+      //   .text((a, idx) => {
+      //     const divergence = (a.avg - datum.avg).toFixed(1)
+      //
+      //     let text = ''
+      //     if (divergence > 0) text += '+'
+      //     text += `${divergence}%`
+      //
+      //     return a.avg !== datum.avg ? text : '';
+      //   })
 
     })
     .on('mouseleave', function () {
@@ -171,27 +171,27 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
     })
 
   // append text to each bar
-  averagesBarGroup
-    .append('text')
-    .attr('class', styles.value)
-    .attr('x', (a) => xScale(a.avg) + 24)
-    .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-    .attr('text-anchor', 'middle')
-    .text((a) => `${a.avg}%`)
+  // averagesBarGroup
+  //   .append('text')
+  //   .attr('class', styles.value)
+  //   .attr('x', (a) => xScale(a.avg) + 24)
+  //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+  //   .attr('text-anchor', 'middle')
+  //   .text((a) => `${a.avg}%`)
 
-    // actuals bar group
+    // actual bar group
 
     // create bar groups, one for each element in the data array
-    const actualsBarGroup = chart.selectAll()
+    const actualBarGroup = chart.selectAll()
       .data(data)
       .enter()
       .append('g')
 
     // for each element in the data set, create a rectangle that reacts
     // to mouseover
-    actualsBarGroup
+    actualBarGroup
       .append('rect')
-      .attr('class', styles.bar)
+      .attr('class', styles.actualBar)
       .attr('x', (g) => 0)
       .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (1/3))
       .attr('height', yScale.bandwidth() * (1/3))
@@ -217,21 +217,21 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         //   .attr('x2', x)
         //   .attr('y2', height)
 
-        actualsBarGroup.append('text')
-          .attr('class', styles.divergence)
-          .attr('x', (a) => xScale(a.avg) + 24)
-          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-          .attr('fill', 'white')
-          .attr('text-anchor', 'middle')
-          .text((a, idx) => {
-            const divergence = (a.avg - datum.avg).toFixed(1)
-
-            let text = ''
-            if (divergence > 0) text += '+'
-            text += `${divergence}%`
-
-            return a.avg !== datum.avg ? text : '';
-          })
+        // actualBarGroup.append('text')
+        //   .attr('class', styles.divergence)
+        //   .attr('x', (a) => xScale(a.avg) + 24)
+        //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+        //   .attr('fill', 'white')
+        //   .attr('text-anchor', 'middle')
+        //   .text((a, idx) => {
+        //     const divergence = (a.avg - datum.avg).toFixed(1)
+        //
+        //     let text = ''
+        //     if (divergence > 0) text += '+'
+        //     text += `${divergence}%`
+        //
+        //     return a.avg !== datum.avg ? text : '';
+        //   })
 
       })
       .on('mouseleave', function () {
@@ -250,13 +250,13 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
       })
 
     // append text to each bar
-    actualsBarGroup
-      .append('text')
-      .attr('class', styles.value)
-      .attr('x', (a) => xScale(a.avg) + 24)
-      .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-      .attr('text-anchor', 'middle')
-      .text((a) => `${a.avg}%`)
+    // actualBarGroup
+    //   .append('text')
+    //   .attr('class', styles.value)
+    //   .attr('x', (a) => xScale(a.avg) + 24)
+    //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+    //   .attr('text-anchor', 'middle')
+    //   .text((a) => `${a.avg}%`)
 
       // local submission bar group
 
@@ -270,7 +270,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
       // to mouseover
       localSubmissionBarGroup
         .append('rect')
-        .attr('class', styles.bar)
+        .attr('class', styles.localSubmissionBar)
         .attr('x', (g) => 0)
         .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (2/3))
         .attr('height', yScale.bandwidth() * (1/3))
@@ -296,21 +296,21 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
           //   .attr('x2', x)
           //   .attr('y2', height)
 
-          localSubmissionBarGroup.append('text')
-            .attr('class', styles.divergence)
-            .attr('x', (a) => xScale(a.avg) + 24)
-            .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-            .attr('fill', 'white')
-            .attr('text-anchor', 'middle')
-            .text((a, idx) => {
-              const divergence = (a.avg - datum.avg).toFixed(1)
-
-              let text = ''
-              if (divergence > 0) text += '+'
-              text += `${divergence}%`
-
-              return a.avg !== datum.avg ? text : '';
-            })
+          // localSubmissionBarGroup.append('text')
+          //   .attr('class', styles.divergence)
+          //   .attr('x', (a) => xScale(a.avg) + 24)
+          //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+          //   .attr('fill', 'white')
+          //   .attr('text-anchor', 'middle')
+          //   .text((a, idx) => {
+          //     const divergence = (a.avg - datum.avg).toFixed(1)
+          //
+          //     let text = ''
+          //     if (divergence > 0) text += '+'
+          //     text += `${divergence}%`
+          //
+          //     return a.avg !== datum.avg ? text : '';
+          //   })
 
         })
         .on('mouseleave', function () {
@@ -329,19 +329,19 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         })
 
       // append text to each bar
-      localSubmissionBarGroup
-        .append('text')
-        .attr('class', styles.value)
-        .attr('x', (a) => xScale(a.avg) + 24)
-        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-        .attr('text-anchor', 'middle')
-        .text((a) => `${a.avg}%`)
+      // localSubmissionBarGroup
+      //   .append('text')
+      //   .attr('class', styles.value)
+      //   .attr('x', (a) => xScale(a.avg) + 24)
+      //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+      //   .attr('text-anchor', 'middle')
+      //   .text((a) => `${a.avg}%`)
 
   // add x axis label
   svg.append('text')
     .attr('class', styles.label)
     .attr('x', (width + marginLeft + marginRight) / 2)
-    .attr('y', height + marginTop * 1.7)
+    .attr('y', isMobile ? height + marginTop * 1.3 : height + marginTop * 1.7)
     .attr('text-anchor', 'middle')
     .text('Allocation (% of Total Budget)')
 
@@ -367,9 +367,70 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   svg.append('text')
     .attr('class', styles.source)
     .attr('x', (width + marginLeft + marginRight) / 2)
-    .attr('y', height + marginTop * 2)
+    .attr('y', height + isMobile ? height + marginTop * 1.4 : height + marginTop * 2)
     .attr('text-anchor', 'middle')
     .text(`Total Submissions: ${totalSubmissions}`)
+
+    // legend
+    // https://bl.ocks.org/mtandre/bea54a387eb5506ad5d46cb5e74d9bce
+
+    var colors = [
+      '#1E3A8A', // blue-900
+      '#6A33FF', // actuals color
+      '#00C9AA' // localSubmission
+    ]
+
+    var legendX = isMobile ? (40) : (width - 100);
+    var legendY = isMobile ? (marginTop / 2.5) : (height - 100);
+
+    var legend = svg.append('g')
+      .attr('class', styles.legend)
+      .attr('transform', 'translate(' +
+        legendX +
+        ', ' +
+        legendY
+        + ')');
+
+    legend.selectAll('rect')
+      .data([
+        "Average of all submissions",
+        "Actual percentage of the 2021 NYC Budget",
+        "Your submission"
+      ])
+      .enter()
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', function(d, i){
+          return i * 36;
+      })
+      .attr('width', 12)
+      .attr('height', 12)
+      .attr('fill', function(d, i){
+          return colors[i];
+      });
+
+    legend.selectAll('text')
+      .data([
+        "Average of all submissions",
+        "Actual percentage of the 2021 NYC Budget",
+        "Your submission"
+      ])
+      .enter()
+      .append('text')
+      .text(function(d){
+          return d;
+      })
+      .attr('x', 18)
+      .attr('y', function(d, i){
+          return i * 36;
+      })
+      .attr('text-anchor', 'start')
+      .attr('alignment-baseline', 'hanging');
+
+    // setTimeout(()=>{
+    //   legend.selectAll("text")
+    //     .call(wrap, 180);
+    // }, 0);
 
 }
 
