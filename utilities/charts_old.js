@@ -120,8 +120,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
       .attr('height', yScale.bandwidth() * (1/3))
       .attr('width', (g) => xScale(g.actual))
       .on('mouseenter', function (event, datum, i) {
-        d3.selectAll('#actualPercentage')
-          .attr('opacity', 1)
+        d3.selectAll(`.${styles.value}`)
+          .attr('opacity', 0)
 
         d3.select(this)
           .transition()
@@ -158,8 +158,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
       })
       .on('mouseleave', function () {
-        d3.selectAll('#actualPercentage')
-          .attr('opacity', 0)
+        d3.selectAll(`.${styles.value}`)
+          .attr('opacity', 1)
 
         d3.select(this)
           .transition()
@@ -176,11 +176,9 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
     actualBarGroup
       .append('text')
       .attr('class', styles.value)
-      .attr('id', 'actualPercentage')
       .attr('x', (a) => xScale(a.actual) + 24)
       .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (3/12))
       .attr('text-anchor', 'middle')
-      .attr('opacity', 0)
       .text((a) => `${a.actual}%`)
 
       // local submission bar group
@@ -201,8 +199,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         .attr('height', yScale.bandwidth() * (1/3))
         .attr('width', (g) => xScale(g.submittedValue))
         .on('mouseenter', function (event, datum, i) {
-          d3.selectAll('#localSubmissionPercentage')
-            .attr('opacity', 1)
+          d3.selectAll(`.${styles.value}`)
+            .attr('opacity', 0)
 
           d3.select(this)
             .transition()
@@ -239,8 +237,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
         })
         .on('mouseleave', function () {
-          d3.selectAll('#localSubmissionPercentage')
-            .attr('opacity', 0)
+          d3.selectAll(`.${styles.value}`)
+            .attr('opacity', 1)
 
           d3.select(this)
             .transition()
@@ -257,11 +255,9 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
       localSubmissionBarGroup
         .append('text')
         .attr('class', styles.value)
-        .attr('id', 'localSubmissionPercentage')
         .attr('x', (a) => xScale(a.submittedValue) + 24)
         .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (7/12))
         .attr('text-anchor', 'middle')
-        .attr('opacity', 0)
         .text((a) => `${a.submittedValue}%`)
 
       // averages bar group
@@ -282,8 +278,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         .attr('height', yScale.bandwidth() * (1/3))
         .attr('width', (g) => xScale(g.avg))
         .on('mouseenter', function (event, datum, i) {
-          d3.selectAll('#averagePercentage')
-            .attr('opacity', 1)
+          d3.selectAll(`.${styles.value}`)
+            .attr('opacity', 0)
 
           d3.select(this)
             .transition()
@@ -293,6 +289,14 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
             .attr('height', yScale.bandwidth() * (1/3))
 
           const x = xScale(datum.avg)
+
+          // const line = chart.append('line')
+          //   .attr('class', styles.limit)
+          //   .attr('id', 'limit')
+          //   .attr('x1', x)
+          //   .attr('y1', 0)
+          //   .attr('x2', x)
+          //   .attr('y2', height)
 
           // averagesBarGroup.append('text')
           //   .attr('class', styles.divergence)
@@ -312,8 +316,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
         })
         .on('mouseleave', function () {
-          d3.selectAll('#averagePercentage')
-            .attr('opacity', 0)
+          d3.selectAll(`.${styles.value}`)
+            .attr('opacity', 1)
 
           d3.select(this)
             .transition()
@@ -330,11 +334,9 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
       averagesBarGroup
         .append('text')
         .attr('class', styles.value)
-        .attr('id', 'averagePercentage')
         .attr('x', (a) => xScale(a.avg) + 24)
         .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (11/12))
         .attr('text-anchor', 'middle')
-        .attr('opacity', 0)
         .text((a) => `${a.avg}%`)
 
   // add x axis label
