@@ -100,20 +100,22 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   //     )
   // }
 
+  // averages bar group
+
   // create bar groups, one for each element in the data array
-  const barGroups = chart.selectAll()
-    .data(averages)
+  const averagesBarGroup = chart.selectAll()
+    .data(data)
     .enter()
     .append('g')
 
   // for each element in the data set, create a rectangle that reacts
   // to mouseover
-  barGroups
+  averagesBarGroup
     .append('rect')
     .attr('class', styles.bar)
     .attr('x', (g) => 0)
     .attr('y', (g) => yScale(g.name))
-    .attr('height', yScale.bandwidth())
+    .attr('height', yScale.bandwidth() * (1/3))
     .attr('width', (g) => xScale(g.avg))
     .on('mouseenter', function (event, datum, i) {
       d3.selectAll(`.${styles.value}`)
@@ -123,8 +125,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         .transition()
         .duration(300)
         .attr('opacity', 0.6)
-        .attr('y', (a) => yScale(a.name) - 5)
-        .attr('height', yScale.bandwidth() + 10)
+        // .attr('y', (a) => yScale(a.name) - 5)
+        .attr('height', yScale.bandwidth() * (1/3) + 10)
 
       const x = xScale(datum.avg)
 
@@ -136,7 +138,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
       //   .attr('x2', x)
       //   .attr('y2', height)
 
-      barGroups.append('text')
+      averagesBarGroup.append('text')
         .attr('class', styles.divergence)
         .attr('x', (a) => xScale(a.avg) + 24)
         .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
@@ -162,20 +164,178 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         .duration(300)
         .attr('opacity', 1)
         .attr('y', (a) => yScale(a.name))
-        .attr('height', yScale.bandwidth())
+        .attr('height', yScale.bandwidth() * (1/3))
 
       chart.selectAll('#limit').remove()
       chart.selectAll(`.${styles.divergence}`).remove()
     })
 
   // append text to each bar
-  barGroups
+  averagesBarGroup
     .append('text')
     .attr('class', styles.value)
     .attr('x', (a) => xScale(a.avg) + 24)
     .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
     .attr('text-anchor', 'middle')
     .text((a) => `${a.avg}%`)
+
+    // actuals bar group
+
+    // create bar groups, one for each element in the data array
+    const actualsBarGroup = chart.selectAll()
+      .data(data)
+      .enter()
+      .append('g')
+
+    // for each element in the data set, create a rectangle that reacts
+    // to mouseover
+    actualsBarGroup
+      .append('rect')
+      .attr('class', styles.bar)
+      .attr('x', (g) => 0)
+      .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (1/3))
+      .attr('height', yScale.bandwidth() * (1/3))
+      .attr('width', (g) => xScale(g.actual))
+      .on('mouseenter', function (event, datum, i) {
+        d3.selectAll(`.${styles.value}`)
+          .attr('opacity', 0)
+
+        d3.select(this)
+          .transition()
+          .duration(300)
+          .attr('opacity', 0.6)
+          // .attr('y', (a) => yScale(a.name) - 5)
+          .attr('height', yScale.bandwidth() * (1/3))
+
+        const x = xScale(datum.avg)
+
+        // const line = chart.append('line')
+        //   .attr('class', styles.limit)
+        //   .attr('id', 'limit')
+        //   .attr('x1', x)
+        //   .attr('y1', 0)
+        //   .attr('x2', x)
+        //   .attr('y2', height)
+
+        actualsBarGroup.append('text')
+          .attr('class', styles.divergence)
+          .attr('x', (a) => xScale(a.avg) + 24)
+          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+          .attr('fill', 'white')
+          .attr('text-anchor', 'middle')
+          .text((a, idx) => {
+            const divergence = (a.avg - datum.avg).toFixed(1)
+
+            let text = ''
+            if (divergence > 0) text += '+'
+            text += `${divergence}%`
+
+            return a.avg !== datum.avg ? text : '';
+          })
+
+      })
+      .on('mouseleave', function () {
+        d3.selectAll(`.${styles.value}`)
+          .attr('opacity', 1)
+
+        d3.select(this)
+          .transition()
+          .duration(300)
+          .attr('opacity', 1)
+          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (1/3))
+          .attr('height', yScale.bandwidth() * (1/3))
+
+        chart.selectAll('#limit').remove()
+        chart.selectAll(`.${styles.divergence}`).remove()
+      })
+
+    // append text to each bar
+    actualsBarGroup
+      .append('text')
+      .attr('class', styles.value)
+      .attr('x', (a) => xScale(a.avg) + 24)
+      .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+      .attr('text-anchor', 'middle')
+      .text((a) => `${a.avg}%`)
+
+      // local submission bar group
+
+      // create bar groups, one for each element in the data array
+      const localSubmissionBarGroup = chart.selectAll()
+        .data(data)
+        .enter()
+        .append('g')
+
+      // for each element in the data set, create a rectangle that reacts
+      // to mouseover
+      localSubmissionBarGroup
+        .append('rect')
+        .attr('class', styles.bar)
+        .attr('x', (g) => 0)
+        .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (2/3))
+        .attr('height', yScale.bandwidth() * (1/3))
+        .attr('width', (g) => xScale(g.submittedValue))
+        .on('mouseenter', function (event, datum, i) {
+          d3.selectAll(`.${styles.value}`)
+            .attr('opacity', 0)
+
+          d3.select(this)
+            .transition()
+            .duration(300)
+            .attr('opacity', 0.6)
+            // .attr('y', (a) => yScale(a.name) - 5)
+            .attr('height', yScale.bandwidth()  * (1/3))
+
+          const x = xScale(datum.avg)
+
+          // const line = chart.append('line')
+          //   .attr('class', styles.limit)
+          //   .attr('id', 'limit')
+          //   .attr('x1', x)
+          //   .attr('y1', 0)
+          //   .attr('x2', x)
+          //   .attr('y2', height)
+
+          localSubmissionBarGroup.append('text')
+            .attr('class', styles.divergence)
+            .attr('x', (a) => xScale(a.avg) + 24)
+            .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+            .attr('fill', 'white')
+            .attr('text-anchor', 'middle')
+            .text((a, idx) => {
+              const divergence = (a.avg - datum.avg).toFixed(1)
+
+              let text = ''
+              if (divergence > 0) text += '+'
+              text += `${divergence}%`
+
+              return a.avg !== datum.avg ? text : '';
+            })
+
+        })
+        .on('mouseleave', function () {
+          d3.selectAll(`.${styles.value}`)
+            .attr('opacity', 1)
+
+          d3.select(this)
+            .transition()
+            .duration(300)
+            .attr('opacity', 1)
+            .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (2/3))
+            .attr('height', yScale.bandwidth() * (1/3))
+
+          chart.selectAll('#limit').remove()
+          chart.selectAll(`.${styles.divergence}`).remove()
+        })
+
+      // append text to each bar
+      localSubmissionBarGroup
+        .append('text')
+        .attr('class', styles.value)
+        .attr('x', (a) => xScale(a.avg) + 24)
+        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+        .attr('text-anchor', 'middle')
+        .text((a) => `${a.avg}%`)
 
   // add x axis label
   svg.append('text')
