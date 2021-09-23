@@ -360,7 +360,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
     .attr('x', (width + marginLeft + marginRight) / 2)
     .attr('y', 40)
     .attr('text-anchor', 'middle')
-    .text("People's Budget: Averages")
+    .text("People's Budget")
 
   // add footer label
 
