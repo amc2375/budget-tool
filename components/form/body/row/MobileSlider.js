@@ -57,7 +57,7 @@ export default function MobileSlider({
         style={{left: `${sliderWidth}px`}}
         className={styles.label}>{`${budgetValue}%`}</div>
         <div
-        style={{left: `${sliderWidth}px`, 'max-width': `${subLabelMaxWidth}px`}}
+        style={{left: `${sliderWidth}px`, maxWidth: `${subLabelMaxWidth}px`}}
         className={styles.subLabel}>{caption()}</div>
     </div>
   )
