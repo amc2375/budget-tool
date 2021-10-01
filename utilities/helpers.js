@@ -4,6 +4,13 @@ export const validateUserInput = (value) => {
   return value === '' || re.test(value);
 }
 
+// validate user input for integers but no more than 5 of them
+export const validateZipCode = (value) => {
+  console.log(value);
+  const re = /^\d{0,5}$/;
+  return value === '' || re.test(value);
+}
+
 // divide a number by 1 billion and round to 2 decimal places
 export const amountInBillions = (amount) => (
   Number(Math.round(amount/1000000000 + 'e2') + 'e-2')

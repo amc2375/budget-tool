@@ -13,6 +13,8 @@
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
     transition: opacity .2s;
     border-radius: 3px;
+    position: relative;
+    top: -4px;
   }
 
   /* Mouse-over effects */
@@ -63,7 +65,7 @@
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 3px; /* Set a specific slider handle width */
+    width: 2px; /* Set a specific slider handle width */
     height: 16px; /* Slider handle height */
     background: $blue-900; /* Green background */
     cursor: pointer; /* Cursor on hover */

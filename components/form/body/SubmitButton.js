@@ -2,7 +2,12 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from './SubmitButton.module.scss';
 
-export default function SubmitButton({ handleSubmit, allocatedTotal }) {
+export default function SubmitButton({
+  handleSubmit,
+  allocatedTotal,
+  district,
+  zipCode
+}) {
 
   const router = useRouter();
 
@@ -20,12 +25,12 @@ export default function SubmitButton({ handleSubmit, allocatedTotal }) {
   );
 
   useEffect(() => {
-    if (allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
+    if (zipCode.length === 5 && district &&allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [allocatedTotal])
+  }, [allocatedTotal, zipCode, district])
 
   return (
     <button

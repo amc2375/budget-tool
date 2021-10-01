@@ -32,9 +32,7 @@ export default function Headings({
         <div className={styles.middle}>
           <div className={styles.billions}>{billionsAmountString(totalBudget)}</div>
         </div>
-        <div className={styles.bottom}>
-          <p>Click a department to learn more</p>
-        </div>
+        <div className={styles.bottom}/>
       </div>
 
       <div className={styles.two}>
@@ -46,9 +44,7 @@ export default function Headings({
             <div className={styles.allocated}>{`${(allocatedTotal).toFixed(1)}%`}</div>
             <figcaption>{`${billionsAmountString(totalAmount)}`}</figcaption>
           </div>
-          <div className={styles.bottom}>
-            <p>Drag the slider or enter a percentage.</p>
-          </div>
+          <div className={styles.bottom}/>
         </div>
         <div className={styles.divider}/>
         <div className={styles.rightSub}>

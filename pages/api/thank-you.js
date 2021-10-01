@@ -1,10 +1,29 @@
 const db = require("../../utilities/postgres").instance;
-const pgp = require("pg-promise")(/*initOptions*/);
 
 const getId = () => nanoid(12);
 
 async function handleGet(request, response) {
+  const categories = await db.any("SELECT bcdi.categories.id, bcdi.categories.name, bcdi.categories.amount FROM bcdi.categories;")
+  const averages = await db.any("SELECT bcdi.budget.category_id, bcdi.categories.name, AVG(bcdi.budget.category_value) AS avg FROM bcdi.budget INNER JOIN bcdi.categories ON bcdi.budget.category_id=bcdi.categories.id GROUP BY bcdi.budget.category_id, bcdi.categories.name;");
+  const totalSubmissions = await db.any("SELECT COUNT (DISTINCT submission_id) AS count FROM bcdi.budget;")
+  // const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bcdi.categories");
+  const data = {
+    categories: categories,
+    averages: averages,
+    totalSubmissions: totalSubmissions[0].count,
+  };
+  data.averages.forEach(o => o.avg = parseFloat(o.avg));
+  data.averages.sort((a, b) => alphabetSort(b.avg, a.avg));
+  data.averages.forEach(o => o.avg = (o.avg).toFixed(1));
 
+  const totalBudget = calculateFixedBudgetAmount(data);
+  data.categories.forEach(o => {
+    o.amount = parseFloat(o.amount);
+    o.percentageValue = ((o.amount / totalBudget) * 100).toFixed(1);
+    o.amount = undefined;
+  });
+
+  response.status(200).json(data);
 };
 
 export default function handler(req, res) {
@@ -16,4 +35,18 @@ export default function handler(req, res) {
       break;
     }
   }
+};
+
+// sorting data alphabetically
+const alphabetSort = (a, b) => (
+  (a > b) ? 1 : ((b > a) ? -1 : 0)
+);
+
+// calculate the fixed budget amount
+const calculateFixedBudgetAmount = (data) => {
+  let sum = 0;
+  data.categories.forEach(category => {
+    sum = sum + parseFloat(category.amount);
+  });
+  return sum;
 };

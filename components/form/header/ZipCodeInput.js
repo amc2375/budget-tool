@@ -1,9 +1,11 @@
 import styles from './ZipCodeInput.module.scss';
+import { validateZipCode } from '../../../utilities/helpers.js'
 
-export default function ZipCodeInput({ setZipCode }) {
+export default function ZipCodeInput({ zipCode, setZipCode }) {
 
   const handler = (e) => {
-    setZipCode(e.target.value);
+    e.preventDefault();
+    if (validateZipCode(e.target.value)) setZipCode(e.target.value);
   }
 
   return (
@@ -13,7 +15,8 @@ export default function ZipCodeInput({ setZipCode }) {
         type="text"
         name="zip-code"
         placeholder="10451"
-        onChange={handler}>
+        onChange={handler}
+        value={zipCode}>
       </input>
     </div>
   );

@@ -5,6 +5,8 @@ import styles from './FormBody.module.scss';
 
 export default function FormBody({
     data,
+    district,
+    zipCode,
     budgetValues,
     setBudgetValues,
     allocatedTotal,
@@ -25,6 +27,8 @@ export default function FormBody({
         setBudgetValues={setBudgetValues}
         totalBudget={data.totalBudget}/>
       <Total
+        district={district}
+        zipCode={zipCode}
         totalBudget={data.totalBudget}
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}

@@ -1,0 +1,84 @@
+@use 'styles/base' as *;
+
+.container {
+  background-color: $color-background;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .averageBar {
+    fill: $blue-900;
+  }
+
+  .actualBar {
+    fill: #6A33FF;
+  }
+
+  .localSubmissionBar {
+    fill: #00C9AA;
+  }
+
+  text {
+    @media (max-width: $mobile-max) {
+      font-size: 20px;
+    }
+    @media (min-width: $desktop-min) {
+      font-size: 14px;
+    }
+    fill: $gray-800;
+  }
+
+  path {
+    stroke: $gray-500;
+  }
+
+  line {
+    stroke: $gray-500;
+  }
+
+  // .limit {
+  //   stroke: #FED966;
+  //   stroke-width: 3;
+  //   stroke-dasharray: 3 6;
+  // }
+
+  .grid path {
+    stroke-width: 0;
+  }
+
+  .grid .tick line {
+    stroke: $gray-800;
+    stroke-opacity: 0.3;
+  }
+
+  .divergence {
+    font-size: 14px;
+    fill: $gray-800;
+  }
+
+  .value {
+    font-size: 14px;
+    fill: $gray-800;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .source {
+    font-size: 10px;
+  }
+
+  .legend {
+    
+  }
+
+}
