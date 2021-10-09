@@ -41,7 +41,8 @@ export default function Row({
         budgetValue={budgetValue}
         setBudgetValue={setBudgetValue}
         totalBudget={totalBudget}
-        content={budgetCategory.descriptive_html}/>
+        budgetCategoryData={budgetCategory}
+        />
     </React.Fragment>
   );
 };
