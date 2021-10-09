@@ -38,7 +38,7 @@ export async function getStaticProps() {
   // };
 
   const districts = await db.any("SELECT id, district_id, name FROM bcdi.districts");
-  const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bcdi.categories");
+  const categories = await db.any("SELECT id, name, descriptive_html, amount, context_amount_1, context_description_1, context_amount_2, context_description_2, context_amount_3, context_description_3 FROM bcdi.categories");
   const data = {
     districts: districts,
     categories: categories
@@ -50,6 +50,10 @@ export async function getStaticProps() {
 
   // By returning { props: { xyz } }, the component
   // will receive `xyz` as a prop at build time
+
+  console.log("data!!!!!! :");
+  console.log(data);
+
   return {
     props: { data }
   }
