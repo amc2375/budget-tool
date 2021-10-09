@@ -26,8 +26,8 @@ export default function ThankYou({ data }) {
   const [userSelectedData, setUserSelectedData] = useState(
     {
       "actuals": false,
-      "localSubmission": false,
-      "averages": false
+      "localSubmission": true,
+      "averages": true
     }
   )
 
@@ -73,12 +73,14 @@ export default function ThankYou({ data }) {
             type="checkbox"
             className="checkbox"
             name={"actuals"}
+            checked={userSelectedData["actuals"]}
             value={userSelectedData["actuals"]}
             onChange={(e) => handleDataSelection(e)}/><label>{"2020 NYC Budget"}</label>
           <input
             type="checkbox"
             className="checkbox"
             name={"localSubmission"}
+            checked={userSelectedData["localSubmission"]}
             value={userSelectedData["localSubmission"]}
             onChange={(e) => handleDataSelection(e)}/>
           <label>{"Your Submission"}</label>
@@ -86,6 +88,7 @@ export default function ThankYou({ data }) {
             type="checkbox"
             className="checkbox"
             name={"averages"}
+            checked={userSelectedData["averages"]}
             value={userSelectedData["averages"]}
             onChange={(e) => handleDataSelection(e)}/>
           <label>{"Average of All Submissions"}</label>

@@ -18,8 +18,21 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
     })
   })
 
-  console.log("final answer: ")
-  console.log(userSelectedData);
+  // set some vars to make chart dynamic based on user selected data
+  let countOfBars = 0;
+  Object.keys(userSelectedData).forEach((key) => {
+    countOfBars = userSelectedData[key] ? countOfBars + 1 : countOfBars;
+  })
+
+  const heightOfBars = 1 / countOfBars;
+
+  let barPositionsX = {
+    "actuals": null,
+    "localSubmission": null,
+    "averages": null,
+  }
+
+  
 
   // clear existing chart if it exists
   d3.selectAll("#chart > *").remove();
