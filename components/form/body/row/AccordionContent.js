@@ -9,7 +9,7 @@ export default function AccordionContent({
 
   const constructBudgetInContextLine = (amount, description) => {
     return (
-      <div>
+      <div className={styles.contextLine}>
         <label>{amount}</label>
         <article>{description}</article>
       </div>
@@ -65,9 +65,10 @@ export default function AccordionContent({
         <div className={styles.lineBreak}/>
       </div>
       <label className={styles.mobileLabelDetails}>Department Details</label>
-      <div
-        className={styles.accordionContentLeft}
-        dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+      <div className={styles.accordionContentLeft}>
+        <label>{"Department Details:"}</label>
+        <div dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+      </div>
       <div className={styles.accordionContentRight}>
         <p>{"The Budget in Context:"}</p>
         <div>{generateBudgetInContext().map(element => element)}</div>
