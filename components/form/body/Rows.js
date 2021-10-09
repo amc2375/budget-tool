@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import Row from './row/Row.js';
 
 export default function Rows({
@@ -7,6 +7,28 @@ export default function Rows({
     setBudgetValues,
     totalBudget
   }) {
+
+  let defaultAccordionState = {};
+  data.categories.forEach(budgetCategory => {
+    defaultAccordionState[budgetCategory.id] = false
+  })
+
+  const [accordionState, setAccordionState] = useState(
+    defaultAccordionState
+  );
+
+  const toggleAccordion = (budgetCategoryId) => {
+    console.log(accordionState);
+    let open = true;
+    if (accordionState[budgetCategoryId]) {
+      open = false;
+    }
+    setAccordionState({
+      ...defaultAccordionState,
+      [budgetCategoryId]: open
+    })
+    console.log(accordionState);
+  }
 
   const setBudgetValue = (key) => {
     return function(value) {
@@ -25,7 +47,9 @@ export default function Rows({
         budgetCategory={budgetCategory}
         budgetValue={budgetValues[budgetCategory.id]}
         setBudgetValue={setBudgetValue(budgetCategory.id)}
-        totalBudget={totalBudget}/>
+        totalBudget={totalBudget}
+        accordionOpen={accordionState[budgetCategory.id]}
+        toggleAccordion={() => toggleAccordion(budgetCategory.id)}/>
     ))}
     </React.Fragment>
   );

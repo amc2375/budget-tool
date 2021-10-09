@@ -9,12 +9,10 @@ export default function Row({
   budgetCategory,
   budgetValue,
   setBudgetValue,
-  totalBudget
+  totalBudget,
+  accordionOpen,
+  toggleAccordion
 }) {
-
-  const [accordionOpen, setAccordionOpen] = useState(
-    false
-  );
 
   return (
     <React.Fragment>
@@ -24,7 +22,7 @@ export default function Row({
           amount={budgetCategory.amount}
           totalBudget={totalBudget}
           accordionOpen={accordionOpen}
-          setAccordionOpen={setAccordionOpen}/>
+          toggleAccordion={toggleAccordion}/>
         <DesktopInputs
           budgetValue={budgetValue}
           setBudgetValue={setBudgetValue}
@@ -34,15 +32,14 @@ export default function Row({
           totalBudget={totalBudget}
           budgetCategory={budgetCategory}
           accordionOpen={accordionOpen}
-          setAccordionOpen={setAccordionOpen}/>
+          toggleAccordion={toggleAccordion}/>
       </div>
       <AccordionContent
         open={accordionOpen}
         budgetValue={budgetValue}
         setBudgetValue={setBudgetValue}
         totalBudget={totalBudget}
-        budgetCategoryData={budgetCategory}
-        />
+        budgetCategoryData={budgetCategory}/>
     </React.Fragment>
   );
 };
