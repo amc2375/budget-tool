@@ -4,7 +4,7 @@ import styles from './charts.module.scss';
 
 // https://jsfiddle.net/matehu/w7h81xz2/
 
-export const constructChart = (averages, actuals, localSubmission, totalSubmissions, isMobile) => {
+export const constructChart = (averages, actuals, localSubmission, totalSubmissions, isMobile, userSelectedData) => {
 
   // construct the final data structure for the chart to represent
   const data = [];
@@ -19,7 +19,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   })
 
   console.log("final answer: ")
-  console.log(data);
+  console.log(userSelectedData);
 
   // clear existing chart if it exists
   d3.selectAll("#chart > *").remove();
@@ -103,239 +103,250 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   // }
 
     // actual bar group
+    if (userSelectedData['actuals']) {
 
-    // create bar groups, one for each element in the data array
-    const actualBarGroup = chart.selectAll()
-      .data(data)
-      .enter()
-      .append('g')
+      // create bar groups, one for each element in the data array
+      const actualBarGroup = chart.selectAll()
+        .data(data)
+        .enter()
+        .append('g')
 
-    // for each element in the data set, create a rectangle that reacts
-    // to mouseover
-    actualBarGroup
-      .append('rect')
-      .attr('class', styles.actualBar)
-      .attr('x', (g) => 0)
-      .attr('y', (g) => yScale(g.name))
-      .attr('height', yScale.bandwidth() * (1/3))
-      .attr('width', (g) => xScale(g.actual))
-      .on('mouseenter', function (event, datum, i) {
-        d3.selectAll('#actualPercentage')
-          .attr('opacity', 1)
+      // for each element in the data set, create a rectangle that reacts
+      // to mouseover
+      actualBarGroup
+        .append('rect')
+        .attr('class', styles.actualBar)
+        .attr('x', (g) => 0)
+        .attr('y', (g) => yScale(g.name))
+        .attr('height', yScale.bandwidth() * (1/3))
+        .attr('width', (g) => xScale(g.actual))
+        .on('mouseenter', function (event, datum, i) {
+          d3.selectAll('#actualPercentage')
+            .attr('opacity', 1)
 
-        d3.select(this)
-          .transition()
-          .duration(300)
-          .attr('opacity', 0.6)
-          // .attr('y', (a) => yScale(a.name) - 5)
-          .attr('height', yScale.bandwidth() * (1/3))
+          d3.select(this)
+            .transition()
+            .duration(300)
+            .attr('opacity', 0.6)
+            // .attr('y', (a) => yScale(a.name) - 5)
+            .attr('height', yScale.bandwidth() * (1/3))
 
-        const x = xScale(datum.avg)
+          const x = xScale(datum.avg)
 
-        const line = chart.append('line')
-          .attr('class', styles.limit)
-          .attr('id', 'limit')
-          .attr('x1', x)
-          .attr('y1', 0)
-          .attr('x2', x)
-          .attr('y2', height)
+          const line = chart.append('line')
+            .attr('class', styles.limit)
+            .attr('id', 'limit')
+            .attr('x1', x)
+            .attr('y1', 0)
+            .attr('x2', x)
+            .attr('y2', height)
 
-        // actualBarGroup.append('text')
-        //   .attr('class', styles.divergence)
-        //   .attr('x', (a) => xScale(a.avg) + 24)
-        //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-        //   .attr('fill', 'white')
-        //   .attr('text-anchor', 'middle')
-        //   .text((a, idx) => {
-        //     const divergence = (a.avg - datum.avg).toFixed(1)
-        //
-        //     let text = ''
-        //     if (divergence > 0) text += '+'
-        //     text += `${divergence}%`
-        //
-        //     return a.avg !== datum.avg ? text : '';
-        //   })
+          // actualBarGroup.append('text')
+          //   .attr('class', styles.divergence)
+          //   .attr('x', (a) => xScale(a.avg) + 24)
+          //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+          //   .attr('fill', 'white')
+          //   .attr('text-anchor', 'middle')
+          //   .text((a, idx) => {
+          //     const divergence = (a.avg - datum.avg).toFixed(1)
+          //
+          //     let text = ''
+          //     if (divergence > 0) text += '+'
+          //     text += `${divergence}%`
+          //
+          //     return a.avg !== datum.avg ? text : '';
+          //   })
 
-      })
-      .on('mouseleave', function () {
-        d3.selectAll('#actualPercentage')
-          .attr('opacity', 0)
+        })
+        .on('mouseleave', function () {
+          d3.selectAll('#actualPercentage')
+            .attr('opacity', 0)
 
-        d3.select(this)
-          .transition()
-          .duration(300)
-          .attr('opacity', 1)
-          .attr('y', (a) => yScale(a.name))
-          .attr('height', yScale.bandwidth() * (1/3))
+          d3.select(this)
+            .transition()
+            .duration(300)
+            .attr('opacity', 1)
+            .attr('y', (a) => yScale(a.name))
+            .attr('height', yScale.bandwidth() * (1/3))
 
-        chart.selectAll('#limit').remove()
-        chart.selectAll(`.${styles.divergence}`).remove()
-      })
+          chart.selectAll('#limit').remove()
+          chart.selectAll(`.${styles.divergence}`).remove()
+        })
 
-    // append text to each bar
-    actualBarGroup
-      .append('text')
-      .attr('class', styles.value)
-      .attr('id', 'actualPercentage')
-      .attr('x', (a) => xScale(a.actual) + 24)
-      .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (3/12))
-      .attr('text-anchor', 'middle')
-      .attr('opacity', 0)
-      .text((a) => `${a.actual}%`)
+      // append text to each bar
+      actualBarGroup
+        .append('text')
+        .attr('class', styles.value)
+        .attr('id', 'actualPercentage')
+        .attr('x', (a) => xScale(a.actual) + 24)
+        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (3/12))
+        .attr('text-anchor', 'middle')
+        .attr('opacity', 0)
+        .text((a) => `${a.actual}%`)
+
+    }
 
       // local submission bar group
 
-      // create bar groups, one for each element in the data array
-      const localSubmissionBarGroup = chart.selectAll()
-        .data(data)
-        .enter()
-        .append('g')
+      if (userSelectedData['localSubmission']) {
 
-      // for each element in the data set, create a rectangle that reacts
-      // to mouseover
-      localSubmissionBarGroup
-        .append('rect')
-        .attr('class', styles.localSubmissionBar)
-        .attr('x', (g) => 0)
-        .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (1/3))
-        .attr('height', yScale.bandwidth() * (1/3))
-        .attr('width', (g) => xScale(g.submittedValue))
-        .on('mouseenter', function (event, datum, i) {
-          d3.selectAll('#localSubmissionPercentage')
-            .attr('opacity', 1)
+        // create bar groups, one for each element in the data array
+        const localSubmissionBarGroup = chart.selectAll()
+          .data(data)
+          .enter()
+          .append('g')
 
-          d3.select(this)
-            .transition()
-            .duration(300)
-            .attr('opacity', 0.6)
-            // .attr('y', (a) => yScale(a.name) - 5)
-            .attr('height', yScale.bandwidth()  * (1/3))
+        // for each element in the data set, create a rectangle that reacts
+        // to mouseover
+        localSubmissionBarGroup
+          .append('rect')
+          .attr('class', styles.localSubmissionBar)
+          .attr('x', (g) => 0)
+          .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (1/3))
+          .attr('height', yScale.bandwidth() * (1/3))
+          .attr('width', (g) => xScale(g.submittedValue))
+          .on('mouseenter', function (event, datum, i) {
+            d3.selectAll('#localSubmissionPercentage')
+              .attr('opacity', 1)
 
-          const x = xScale(datum.avg)
+            d3.select(this)
+              .transition()
+              .duration(300)
+              .attr('opacity', 0.6)
+              // .attr('y', (a) => yScale(a.name) - 5)
+              .attr('height', yScale.bandwidth()  * (1/3))
 
-          // const line = chart.append('line')
-          //   .attr('class', styles.limit)
-          //   .attr('id', 'limit')
-          //   .attr('x1', x)
-          //   .attr('y1', 0)
-          //   .attr('x2', x)
-          //   .attr('y2', height)
+            const x = xScale(datum.avg)
 
-          // localSubmissionBarGroup.append('text')
-          //   .attr('class', styles.divergence)
-          //   .attr('x', (a) => xScale(a.avg) + 24)
-          //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-          //   .attr('fill', 'white')
-          //   .attr('text-anchor', 'middle')
-          //   .text((a, idx) => {
-          //     const divergence = (a.avg - datum.avg).toFixed(1)
-          //
-          //     let text = ''
-          //     if (divergence > 0) text += '+'
-          //     text += `${divergence}%`
-          //
-          //     return a.avg !== datum.avg ? text : '';
-          //   })
+            // const line = chart.append('line')
+            //   .attr('class', styles.limit)
+            //   .attr('id', 'limit')
+            //   .attr('x1', x)
+            //   .attr('y1', 0)
+            //   .attr('x2', x)
+            //   .attr('y2', height)
 
-        })
-        .on('mouseleave', function () {
-          d3.selectAll('#localSubmissionPercentage')
-            .attr('opacity', 0)
+            // localSubmissionBarGroup.append('text')
+            //   .attr('class', styles.divergence)
+            //   .attr('x', (a) => xScale(a.avg) + 24)
+            //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+            //   .attr('fill', 'white')
+            //   .attr('text-anchor', 'middle')
+            //   .text((a, idx) => {
+            //     const divergence = (a.avg - datum.avg).toFixed(1)
+            //
+            //     let text = ''
+            //     if (divergence > 0) text += '+'
+            //     text += `${divergence}%`
+            //
+            //     return a.avg !== datum.avg ? text : '';
+            //   })
 
-          d3.select(this)
-            .transition()
-            .duration(300)
-            .attr('opacity', 1)
-            .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (1/3))
-            .attr('height', yScale.bandwidth() * (1/3))
+          })
+          .on('mouseleave', function () {
+            d3.selectAll('#localSubmissionPercentage')
+              .attr('opacity', 0)
 
-          chart.selectAll('#limit').remove()
-          chart.selectAll(`.${styles.divergence}`).remove()
-        })
+            d3.select(this)
+              .transition()
+              .duration(300)
+              .attr('opacity', 1)
+              .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (1/3))
+              .attr('height', yScale.bandwidth() * (1/3))
 
-      // append text to each bar
-      localSubmissionBarGroup
-        .append('text')
-        .attr('class', styles.value)
-        .attr('id', 'localSubmissionPercentage')
-        .attr('x', (a) => xScale(a.submittedValue) + 24)
-        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (7/12))
-        .attr('text-anchor', 'middle')
-        .attr('opacity', 0)
-        .text((a) => `${a.submittedValue}%`)
+            chart.selectAll('#limit').remove()
+            chart.selectAll(`.${styles.divergence}`).remove()
+          })
+
+        // append text to each bar
+        localSubmissionBarGroup
+          .append('text')
+          .attr('class', styles.value)
+          .attr('id', 'localSubmissionPercentage')
+          .attr('x', (a) => xScale(a.submittedValue) + 24)
+          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (7/12))
+          .attr('text-anchor', 'middle')
+          .attr('opacity', 0)
+          .text((a) => `${a.submittedValue}%`)
+
+      }
 
       // averages bar group
 
-      // create bar groups, one for each element in the data array
-      const averagesBarGroup = chart.selectAll()
-        .data(data)
-        .enter()
-        .append('g')
+      if (userSelectedData['averages']) {
 
-      // for each element in the data set, create a rectangle that reacts
-      // to mouseover
-      averagesBarGroup
-        .append('rect')
-        .attr('class', styles.averageBar)
-        .attr('x', (g) => 0)
-        .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (2/3))
-        .attr('height', yScale.bandwidth() * (1/3))
-        .attr('width', (g) => xScale(g.avg))
-        .on('mouseenter', function (event, datum, i) {
-          d3.selectAll('#averagePercentage')
-            .attr('opacity', 1)
+        // create bar groups, one for each element in the data array
+        const averagesBarGroup = chart.selectAll()
+          .data(data)
+          .enter()
+          .append('g')
 
-          d3.select(this)
-            .transition()
-            .duration(300)
-            .attr('opacity', 0.6)
-            // .attr('y', (a) => yScale(a.name) - 5)
-            .attr('height', yScale.bandwidth() * (1/3))
+        // for each element in the data set, create a rectangle that reacts
+        // to mouseover
+        averagesBarGroup
+          .append('rect')
+          .attr('class', styles.averageBar)
+          .attr('x', (g) => 0)
+          .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (2/3))
+          .attr('height', yScale.bandwidth() * (1/3))
+          .attr('width', (g) => xScale(g.avg))
+          .on('mouseenter', function (event, datum, i) {
+            d3.selectAll('#averagePercentage')
+              .attr('opacity', 1)
 
-          const x = xScale(datum.avg)
+            d3.select(this)
+              .transition()
+              .duration(300)
+              .attr('opacity', 0.6)
+              // .attr('y', (a) => yScale(a.name) - 5)
+              .attr('height', yScale.bandwidth() * (1/3))
 
-          // averagesBarGroup.append('text')
-          //   .attr('class', styles.divergence)
-          //   .attr('x', (a) => xScale(a.avg) + 24)
-          //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-          //   .attr('fill', 'white')
-          //   .attr('text-anchor', 'middle')
-          //   .text((a, idx) => {
-          //     const divergence = (a.avg - datum.avg).toFixed(1)
-          //
-          //     let text = ''
-          //     if (divergence > 0) text += '+'
-          //     text += `${divergence}%`
-          //
-          //     return a.avg !== datum.avg ? text : '';
-          //   })
+            const x = xScale(datum.avg)
 
-        })
-        .on('mouseleave', function () {
-          d3.selectAll('#averagePercentage')
-            .attr('opacity', 0)
+            // averagesBarGroup.append('text')
+            //   .attr('class', styles.divergence)
+            //   .attr('x', (a) => xScale(a.avg) + 24)
+            //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
+            //   .attr('fill', 'white')
+            //   .attr('text-anchor', 'middle')
+            //   .text((a, idx) => {
+            //     const divergence = (a.avg - datum.avg).toFixed(1)
+            //
+            //     let text = ''
+            //     if (divergence > 0) text += '+'
+            //     text += `${divergence}%`
+            //
+            //     return a.avg !== datum.avg ? text : '';
+            //   })
 
-          d3.select(this)
-            .transition()
-            .duration(300)
-            .attr('opacity', 1)
-            .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (2/3))
-            .attr('height', yScale.bandwidth() * (1/3))
+          })
+          .on('mouseleave', function () {
+            d3.selectAll('#averagePercentage')
+              .attr('opacity', 0)
 
-          chart.selectAll('#limit').remove()
-          chart.selectAll(`.${styles.divergence}`).remove()
-        })
+            d3.select(this)
+              .transition()
+              .duration(300)
+              .attr('opacity', 1)
+              .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (2/3))
+              .attr('height', yScale.bandwidth() * (1/3))
 
-      // append text to each bar
-      averagesBarGroup
-        .append('text')
-        .attr('class', styles.value)
-        .attr('id', 'averagePercentage')
-        .attr('x', (a) => xScale(a.avg) + 24)
-        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (11/12))
-        .attr('text-anchor', 'middle')
-        .attr('opacity', 0)
-        .text((a) => `${a.avg}%`)
+            chart.selectAll('#limit').remove()
+            chart.selectAll(`.${styles.divergence}`).remove()
+          })
+
+        // append text to each bar
+        averagesBarGroup
+          .append('text')
+          .attr('class', styles.value)
+          .attr('id', 'averagePercentage')
+          .attr('x', (a) => xScale(a.avg) + 24)
+          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (11/12))
+          .attr('text-anchor', 'middle')
+          .attr('opacity', 0)
+          .text((a) => `${a.avg}%`)
+
+      }
 
   // add x axis label
   svg.append('text')
@@ -411,7 +422,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
     legend.selectAll('text')
       .data([
-        "Actual percentage of the 2021 NYC Budget",
+        "2021 NYC Budget",
         "Your submission",
         "Average of all submissions"
       ])

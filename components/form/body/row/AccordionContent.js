@@ -9,7 +9,7 @@ export default function AccordionContent({
 
   const constructBudgetInContextLine = (amount, description) => {
     return (
-      <div className={styles.contextLine}>
+      <div className={styles.contextLine} key={amount}>
         <label>{amount}</label>
         <article>{description}</article>
       </div>

@@ -23,6 +23,21 @@ export default function ThankYou({ data }) {
     false
   );
 
+  const [userSelectedData, setUserSelectedData] = useState(
+    {
+      "actuals": false,
+      "localSubmission": false,
+      "averages": false
+    }
+  )
+
+  const handleDataSelection = (e) => {
+    setUserSelectedData({
+      ...userSelectedData,
+      [e.target.name]: !userSelectedData[e.target.name]
+    });
+  }
+
   const mobile = useMediaQuery({ query: '(max-width: 960px)' });
 
   useEffect(() => {
@@ -34,9 +49,10 @@ export default function ThankYou({ data }) {
       data.categories,
       localSubmission,
       data.totalSubmissions,
-      isMobile
+      isMobile,
+      userSelectedData
     );
-  }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions, data.categories])
+  }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions, data.categories, userSelectedData])
 
   // style is added to #container div within charts.js - stylesheet is imported there.
   return (
@@ -51,6 +67,29 @@ export default function ThankYou({ data }) {
         <figcaption>{"We're tallying responses from residents across the Bronx. Check out the results so far:"}</figcaption>
       </section>
       <div className={styles.layout} id="layout">
+        <header>{"People's Budget"}</header>
+        <div className={styles.checkBoxes}>
+          <input
+            type="checkbox"
+            className="checkbox"
+            name={"actuals"}
+            value={userSelectedData["actuals"]}
+            onChange={(e) => handleDataSelection(e)}/><label>{"2020 NYC Budget"}</label>
+          <input
+            type="checkbox"
+            className="checkbox"
+            name={"localSubmission"}
+            value={userSelectedData["localSubmission"]}
+            onChange={(e) => handleDataSelection(e)}/>
+          <label>{"Your Submission"}</label>
+          <input
+            type="checkbox"
+            className="checkbox"
+            name={"averages"}
+            value={userSelectedData["averages"]}
+            onChange={(e) => handleDataSelection(e)}/>
+          <label>{"Average of All Submissions"}</label>
+        </div>
         <div id="container">
           <svg id="chart"/>
         </div>
