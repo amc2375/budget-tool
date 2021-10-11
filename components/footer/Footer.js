@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className={styles.container}>
       <div className={styles.left}>
         <Heading/>
-        <CallToAction text={"Get started"} path={"/"} type={"button-footer"}/>
+        <CallToAction text={"Get started"} path={"/budget-survey"} type={"button-footer"}/>
       </div>
       <div className={styles.middle}></div>
       <div className={styles.right}>

@@ -46,4 +46,69 @@
   @extend %home-align-left;
   @extend %home-align-right;
   margin-bottom: 48px;
+
+  header {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    color: $gray-800;
+    padding-top: 40px;
+  }
+
+  .checkBoxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    @media (max-width: $mobile-max) {
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    width: 60%;
+    margin: 40px auto 0px auto;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        cursor: pointer;
+      }
+      @media (max-width: $mobile-max) {
+        margin-top: 12px;
+      }
+    }
+
+    input {
+      min-width: 24px;
+      min-height: 24px;
+      margin-left: 36px;
+      margin-right: 12px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .actuals, .localSubmission, .averages {
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: $gray-800;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .actuals {
+    background-color: $gray-500-faded;
+  }
+
+  .localSubmission {
+    background-color: $bronx-orange-faded;
+  }
+
+  .averages {
+    background-color: $blue-900-faded;
+  }
 }

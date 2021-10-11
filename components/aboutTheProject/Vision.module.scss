@@ -1,0 +1,78 @@
+@use 'styles/base' as *;
+
+.container {
+  background: $blue-50;
+  color: $blue-900;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 148px;
+  @media (max-width: $mobile-max) {
+    text-align: left;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 74px;
+  }
+
+  h1 {
+    @media (max-width: $mobile-max) {
+      font-size: 36px;
+    }
+    @media (min-width: $desktop-min) {
+      font-size: 56px;
+      margin: 108px 0px 36px 0px;
+    }
+  }
+
+  p {
+    font-size: 24px;
+    @media (min-width: $desktop-min) {
+      max-width: 45%;
+      margin: 0 auto;
+    }
+  }
+}
+
+.content {
+
+  @extend %about-align-left;
+  @extend %about-align-right;
+
+  h3 {
+    font-size: 24px;
+    text-align: left;
+    margin: 96px 0px 24px 0px;
+  }
+
+}
+
+.columns {
+
+  display: flex;
+  text-align: left;
+
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+  }
+
+  @media (min-width: $desktop-min) {
+    flex-direction: row;
+  }
+
+  p {
+    flex: 1;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+    max-width: 50%;
+    @media (max-width: $mobile-max) {
+      max-width: 100%;
+      padding-bottom: 32px;
+    }
+  }
+
+}
+
+.spacer {
+  display: block;
+  width: 64px;
+}

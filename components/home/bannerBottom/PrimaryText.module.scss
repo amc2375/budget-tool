@@ -1,0 +1,15 @@
+@use 'styles/base' as *;
+
+.container {
+  @media (max-width: $mobile-max) {
+    margin-bottom: 24px;
+    width: 80%;
+    text-align: center;
+  }
+}
+
+.text {
+  font-size: 36px;
+  color: $gray-50;
+  margin: 0px;
+}

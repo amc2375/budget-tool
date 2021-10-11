@@ -12,6 +12,7 @@
     @extend %text-input;
     min-height: 42px;
     max-width: 386px;
+    -webkit-appearance: none;
     // https://codepen.io/vkjgr/pen/VYMeXp
     background-image:
       linear-gradient(45deg, transparent 50%, gray 50%),

@@ -10,14 +10,14 @@ export default function Label({
     amount,
     totalBudget,
     accordionOpen,
-    setAccordionOpen
+    toggleAccordion
   }) {
 
   /* when a user clicks on the ChevronDown component, the value of
   accordionOpen will invert and the html components will be
   styled..........accordingly */
   const handleAccordion = () => {
-    setAccordionOpen(!accordionOpen);
+    toggleAccordion();
   };
 
   let percentage = categoryPercentage(amount, totalBudget);

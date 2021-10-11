@@ -1,0 +1,32 @@
+@use 'styles/base' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background: $blue-900;
+  align-items: center;
+  padding-top: 94px;
+  padding-bottom: 104px;
+  @media (max-width: $mobile-max) {
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 48px;
+  }
+
+  h1 {
+    text-align: center;
+    color: $gray-50;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 40px;
+    max-width: 492px;
+  }
+
+  li {
+    color: $gray-50;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 32px;
+    max-width: 598px;
+  }
+}

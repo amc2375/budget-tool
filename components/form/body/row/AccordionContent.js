@@ -4,8 +4,45 @@ import PlusButton from './PlusButton.js';
 import MinusButton from './MinusButton.js';
 
 export default function AccordionContent({
-  content, open, budgetValue, setBudgetValue, totalBudget
+  budgetCategoryData, open, budgetValue, setBudgetValue, totalBudget
 }) {
+
+  const constructBudgetInContextLine = (amount, description) => {
+    return (
+      <div className={styles.contextLine} key={amount}>
+        <label>{amount}</label>
+        <article>{description}</article>
+      </div>
+    )
+  }
+
+  const generateBudgetInContext = () => {
+    let elementCollection = [];
+
+    if (budgetCategoryData.context_amount_1 != null) {
+      elementCollection.push(constructBudgetInContextLine(
+        budgetCategoryData.context_amount_1,
+        budgetCategoryData.context_description_1
+      ));
+    }
+
+    if (budgetCategoryData.context_amount_2 != null) {
+      elementCollection.push(constructBudgetInContextLine(
+        budgetCategoryData.context_amount_2,
+        budgetCategoryData.context_description_2
+      ));
+    }
+
+    if (budgetCategoryData.context_amount_3 != null) {
+      elementCollection.push(constructBudgetInContextLine(
+        budgetCategoryData.context_amount_3,
+        budgetCategoryData.context_description_3
+      ));
+    }
+
+    return elementCollection;
+  }
+
   return(
     <section
       style={open ? {} : {display: 'none'}}
@@ -28,10 +65,14 @@ export default function AccordionContent({
         <div className={styles.lineBreak}/>
       </div>
       <label className={styles.mobileLabelDetails}>Department Details</label>
-      <div
-        className={styles.accordionContentLeft}
-        dangerouslySetInnerHTML={{ __html: content }}/>
-      <div className={styles.accordionContentRight}>{"Placeholder text"}</div>
+      <div className={styles.accordionContentLeft}>
+        <label>{"Department Details:"}</label>
+        <div dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+      </div>
+      <div className={styles.accordionContentRight}>
+        <p>{"The Budget in Context:"}</p>
+        <div>{generateBudgetInContext().map(element => element)}</div>
+      </div>
     </section>
   );
 };

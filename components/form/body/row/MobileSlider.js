@@ -8,7 +8,7 @@ export default function MobileSlider({
   totalBudget,
   budgetCategory,
   accordionOpen,
-  setAccordionOpen
+  toggleAccordion
 }) {
 
   const handler = (e) => {
@@ -37,7 +37,7 @@ export default function MobileSlider({
 
   const handleAccordion = (e) => {
     e.preventDefault();
-    setAccordionOpen(!accordionOpen);
+    toggleAccordion();
   };
 
   const caption = () => {

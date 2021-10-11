@@ -1,12 +1,19 @@
 @use 'styles/base' as *;
 
-.link:link, .link:visited {
-  margin-left: 48px;
+.link:link, .link:visited, .selectedLink:link, .selectedLink:visited {
+  margin: 0px 40px;
   color: $blue-900;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
 
   @media (max-width: $mobile-max) {
     margin: 44px;
     font-size: $h3-size;
   }
+}
+
+.selectedLink:link {
+  text-decoration: underline;
 }

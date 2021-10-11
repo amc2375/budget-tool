@@ -1,20 +1,23 @@
 @use 'styles/base' as *;
 
 .container {
-
+  width: 648px;
   @media (min-width: $desktop-min) {
-    margin-right: 10%;
-    width: 330px;
     height: 80px;
   }
+  margin-top: 24px;
+
   @media (max-width: $mobile-max) {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     width: 80%;
   }
 }
 
 .text {
-  font-size: 36px;
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center;
+  line-height: 32px;
   color: $gray-50;
   margin: 0px;
 }

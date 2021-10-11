@@ -5,6 +5,8 @@ import styles from './SplashImage.module.scss';
 export default function SplashImage() {
 
   return (
-    <Image src={splashImage} alt={"Bronx Mural"}/>
+    <div className={styles.container}>
+      <Image src={splashImage} alt={"Bronx Mural"}/>
+    </div>
   );
 };

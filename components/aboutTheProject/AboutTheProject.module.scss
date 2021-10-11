@@ -1,7 +1,6 @@
 @use 'styles/base' as *;
 
-.container {
-  align-items: center;
-  overflow: hidden;
+.body {
+  @extend %body;
   background-color: $blue-50;
 }

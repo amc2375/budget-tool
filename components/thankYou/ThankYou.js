@@ -23,6 +23,21 @@ export default function ThankYou({ data }) {
     false
   );
 
+  const [userSelectedData, setUserSelectedData] = useState(
+    {
+      "actuals": false,
+      "localSubmission": true,
+      "averages": true
+    }
+  )
+
+  const handleDataSelection = (type) => {
+    setUserSelectedData({
+      ...userSelectedData,
+      [type]: !userSelectedData[type]
+    });
+  }
+
   const mobile = useMediaQuery({ query: '(max-width: 960px)' });
 
   useEffect(() => {
@@ -34,9 +49,10 @@ export default function ThankYou({ data }) {
       data.categories,
       localSubmission,
       data.totalSubmissions,
-      isMobile
+      isMobile,
+      userSelectedData
     );
-  }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions, data.categories])
+  }, [mobile, setIsMobile, isMobile, data.averages, data.totalSubmissions, data.categories, userSelectedData])
 
   // style is added to #container div within charts.js - stylesheet is imported there.
   return (
@@ -51,6 +67,30 @@ export default function ThankYou({ data }) {
         <figcaption>{"We're tallying responses from residents across the Bronx. Check out the results so far:"}</figcaption>
       </section>
       <div className={styles.layout} id="layout">
+        <header>{"People's Budget"}</header>
+        <div className={styles.checkBoxes}>
+          <div onClick={(e) => handleDataSelection("actuals")}>
+            <input
+            type="checkbox"
+            checked={userSelectedData["actuals"]}
+            value={userSelectedData["actuals"]}/>
+          <label className={styles.actuals}>{"2020 NYC Budget"}</label>
+          </div>
+          <div onClick={(e) => handleDataSelection("localSubmission")}>
+            <input
+              type="checkbox"
+              checked={userSelectedData["localSubmission"]}
+              value={userSelectedData["localSubmission"]}/>
+            <label className={styles.localSubmission}>{"Your Submission"}</label>
+          </div>
+          <div onClick={(e) => handleDataSelection("averages")}>
+            <input
+              type="checkbox"
+              checked={userSelectedData["averages"]}
+              value={userSelectedData["averages"]}/>
+            <label className={styles.averages}>{"Average of All Submissions"}</label>
+          </div>
+        </div>
         <div id="container">
           <svg id="chart"/>
         </div>
