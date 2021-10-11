@@ -2,6 +2,7 @@
 
 .container {
   @extend %home-align-left;
+  @extend %home-align-right;
   display: flex;
   min-height: 542px;
   align-items: center;
@@ -14,7 +15,7 @@
 }
 
 .left {
-  flex: 2;
+  flex: 1;
   margin-right: 50px;
   max-width: 680px;
 

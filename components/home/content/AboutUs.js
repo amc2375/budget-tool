@@ -1,22 +1,26 @@
 import React from 'react';
 import Image from 'next/image';
-import bcdiLogoColor from '../../../static/bcdi_logo_color.png';
-import BarnardUrbanStudiesLogo from '../../../static/barnard_urban_studies_logo.svg';
+import CallToAction from '../../callToAction/CallToAction.js';
 import styles from './AboutUs.module.scss';
 export default function AboutUs() {
 
   return (
     <article className={styles.container} id={"about-us"}>
       <div className={styles.left}>
-        <h1>{"Who we are"}</h1>
-      </div>
-      <div className={styles.middle}>
-        <Image src={bcdiLogoColor} alt={"Bronx Cooperative Development Initiative logo"}/>
-        <p>{"The Bronx Cooperative Development Initiative (BCDI) is a community-led effort to build an equitable, sustainable, and democratic local economy that creates wealth and ownership for low-income people of color—what we call economic democracy."}</p>
+        <h1>{"How to Stay Involved"}</h1>
+        <p>{"Thank you for filling out the Bronx People’s Budget Survey! Our borough-wide planning process is ongoing and we need your ideas and solutions to help shape the future of the Bronx!"}</p>
+        <p>{"To get involved in our planning process and connect to one of our member organizations in your neighborhood, fill out this form."}</p>
+        <a>Fill out Google Form</a>
+        <p>{"To learn about upcoming events and other resources:"}</p>
+        <a>Visit our Linktree</a>
       </div>
       <div className={styles.right}>
-        <BarnardUrbanStudiesLogo/>
-        <p>{"The Barnard–Columbia Urban Studies program enables students to explore and understand the urban experience in all of its richness and complexity.  It recognizes the city as an amalgam of diverse peoples and their social, political, economic, and cultural interactions within a distinctive built environment."}</p>
+        <h1>{"Set the Budget"}</h1>
+        <h3>{"Take the Participatory Budgeting Survey from People’s Vision for the Bronx"}</h3>
+        <CallToAction
+          text={"Take the Survey"}
+          path={"/budget-survey"}
+          type={"button-splash"}/>
       </div>
     </article>
   );

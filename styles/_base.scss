@@ -54,7 +54,7 @@ $desktop-min: 961px;
 
 %home-align-left {
   @media (min-width: $desktop-min) {
-    padding-left: 237px;
+    padding-left: 16%;
   }
 
   @media (max-width: $mobile-max) {
@@ -64,7 +64,7 @@ $desktop-min: 961px;
 
 %home-align-right {
   @media (min-width: $desktop-min) {
-    padding-right: 237px;
+    padding-right: 8%;
     box-sizing: border-box;
   }
 
