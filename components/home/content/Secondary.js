@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import CallToAction from '../../callToAction/CallToAction.js';
-import styles from './AboutUs.module.scss';
-export default function AboutUs() {
+import styles from './Secondary.module.scss';
+export default function Secondary() {
 
   return (
     <article className={styles.container} id={"about-us"}>

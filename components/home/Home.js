@@ -1,8 +1,8 @@
 import React from 'react';
 import Nav from '../nav/Nav.js';
-import Splash from './splash/Splash.js';
+import BannerTop from './bannerTop/BannerTop.js';
 import SplashImage from './splash/SplashImage.js';
-import Banner from './banner/Banner.js';
+import BannerBottom from './bannerBottom/BannerBottom.js';
 import Seal from './seal/Seal.js';
 import Content from './content/Content.js';
 import Footer from '../footer/Footer.js';
@@ -12,9 +12,9 @@ export default function Home() {
   return (
     <main className={styles.body}>
       <Nav/>
-      <Splash/>
+      <BannerTop/>
       <Seal/>
-      <Banner/>
+      <BannerBottom/>
       <SplashImage/>
       <Content/>
       <Footer/>

@@ -2,8 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import bronxDots from '../../../static/bronx_dots.png';
 import CallToAction from '../../callToAction/CallToAction.js';
-import styles from './AboutThis.module.scss';
-export default function AboutThis() {
+import styles from './Primary.module.scss';
+export default function Primary() {
 
   return (
     <article className={styles.container} id={"about-this"}>

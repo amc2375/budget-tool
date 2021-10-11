@@ -1,8 +1,8 @@
 import React from 'react';
 import PrimaryText from './PrimaryText.js';
 import SecondaryText from './SecondaryText.js';
-import styles from './Banner.module.scss';
-export default function Banner() {
+import styles from './BannerBottom.module.scss';
+export default function BannerBottom() {
 
   return (
     <section className={styles.container}>
