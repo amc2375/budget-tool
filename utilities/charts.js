@@ -342,64 +342,64 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
     // legend
     // https://bl.ocks.org/mtandre/bea54a387eb5506ad5d46cb5e74d9bce
-
-    var colors = [
-      '#6B7280', // actuals color
-      '#EF7053', // localSubmission
-      '#1E3A8A' // blue-900
-    ]
-
-    var legendX = isMobile ? (40) : (width - 100);
-    var legendY = isMobile ? (marginTop / 2.5) : (height - 100);
-
-    var legend = svg.append('g')
-      .attr('class', styles.legend)
-      .attr('transform', 'translate(' +
-        legendX +
-        ', ' +
-        legendY
-        + ')');
-
-    legend.selectAll('rect')
-      .data([
-        "Average of all submissions",
-        "Actual percentage of the 2021 NYC Budget",
-        "Your submission"
-      ])
-      .enter()
-      .append('rect')
-      .attr('x', 0)
-      .attr('y', function(d, i){
-          return i * 36;
-      })
-      .attr('width', 12)
-      .attr('height', 12)
-      .attr('fill', function(d, i){
-          return colors[i];
-      });
-
-    legend.selectAll('text')
-      .data([
-        "2021 NYC Budget",
-        "Your submission",
-        "Average of all submissions"
-      ])
-      .enter()
-      .append('text')
-      .text(function(d){
-          return d;
-      })
-      .attr('x', 18)
-      .attr('y', function(d, i){
-          return i * 36;
-      })
-      .attr('text-anchor', 'start')
-      .attr('alignment-baseline', 'hanging');
-
-    // setTimeout(()=>{
-    //   legend.selectAll("text")
-    //     .call(wrap, 180);
-    // }, 0);
+    //
+    // var colors = [
+    //   '#6B7280', // actuals color
+    //   '#EF7053', // localSubmission
+    //   '#1E3A8A' // blue-900
+    // ]
+    //
+    // var legendX = isMobile ? (40) : (width - 100);
+    // var legendY = isMobile ? (marginTop / 2.5) : (height - 100);
+    //
+    // var legend = svg.append('g')
+    //   .attr('class', styles.legend)
+    //   .attr('transform', 'translate(' +
+    //     legendX +
+    //     ', ' +
+    //     legendY
+    //     + ')');
+    //
+    // legend.selectAll('rect')
+    //   .data([
+    //     "Average of all submissions",
+    //     "Actual percentage of the 2021 NYC Budget",
+    //     "Your submission"
+    //   ])
+    //   .enter()
+    //   .append('rect')
+    //   .attr('x', 0)
+    //   .attr('y', function(d, i){
+    //       return i * 36;
+    //   })
+    //   .attr('width', 12)
+    //   .attr('height', 12)
+    //   .attr('fill', function(d, i){
+    //       return colors[i];
+    //   });
+    //
+    // legend.selectAll('text')
+    //   .data([
+    //     "2021 NYC Budget",
+    //     "Your submission",
+    //     "Average of all submissions"
+    //   ])
+    //   .enter()
+    //   .append('text')
+    //   .text(function(d){
+    //       return d;
+    //   })
+    //   .attr('x', 18)
+    //   .attr('y', function(d, i){
+    //       return i * 36;
+    //   })
+    //   .attr('text-anchor', 'start')
+    //   .attr('alignment-baseline', 'hanging');
+    //
+    // // setTimeout(()=>{
+    // //   legend.selectAll("text")
+    // //     .call(wrap, 180);
+    // // }, 0);
 
 }
 
