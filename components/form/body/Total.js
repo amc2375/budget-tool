@@ -20,6 +20,14 @@ export default function Total({
 
   let totalAmount = (parseFloat(allocatedTotal)/100) * totalBudget;
 
+  const warningText = (allocatedTotal) => {
+    return allocatedTotal.toFixed(1) != 100.00 ? overUnderBudgetText(allocatedTotal) : "";
+  }
+
+  const warningTextCaption = (allocatedTotal) => {
+    return allocatedTotal.toFixed(1) != 100.00 ? `${allocatedTotal < 100 ? "Increase" : "Decrease"} spending` : "";
+  }
+
   return (
     <React.Fragment>
       <div className={styles.container}>
@@ -31,13 +39,13 @@ export default function Total({
               <figcaption>{`${billionsAmountString(totalAmount)}`}</figcaption>
             </div>
             <div className={styles.overUnder}>
-              <p>{overUnderBudgetText(allocatedTotal)}</p>
+              <p>{warningText(allocatedTotal)}</p>
             </div>
           </div>
           <div className={styles.divider}/>
           <div className={styles.row}>
             <p className={styles.caption}>{"Your Allocation"}</p>
-            <p className={styles.caption}>{allocatedTotal < 100 ? "Increase" : "Decrease"} your spending by this amount</p>
+            <p className={styles.caption}>{warningTextCaption(allocatedTotal)}</p>
           </div>
           <div className={styles.row}>
             <div/>
