@@ -2,7 +2,9 @@
 
 .container {
   width: 648px;
-  height: 80px;
+  @media (min-width: $desktop-min) {
+    height: 80px;
+  }
   margin-top: 24px;
 
   @media (max-width: $mobile-max) {

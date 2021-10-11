@@ -16,6 +16,10 @@
     color: $blue-900;
     font-weight: normal;
     font-size: 36px;
+    @media (max-width: $mobile-max) {
+      font-size: 24px;
+      font-weight: 500;
+    }
     margin: 0;
   }
 
@@ -72,12 +76,7 @@
     }
 
     .middle, .right {
-      margin-bottom: 45px;
-
-      div {
-        height: 36px;
-        width: 178px;
-      }
+      display: none;
     }
   }
 }

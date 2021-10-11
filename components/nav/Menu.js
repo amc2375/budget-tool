@@ -26,6 +26,7 @@ export default function Menu() {
 
   return (
     <React.Fragment>
+      <div className={styles.mobileHeader}><p>{"Participatory Budgeting Survey"}</p></div>
       <div
         className={styles.hamburger}
         onClick={toggleMobileMenu}>

@@ -7,14 +7,11 @@
   align-items: center;
   justify-content: center;
   border-top: 16px solid $bronx-orange;
-
-  @media (min-width: $desktop-min) {
-    height: 542px;
-    overflow: hidden;
-  }
+  height: 542px;
+  overflow: hidden;
 
   @media (max-width: $mobile-max) {
-    flex-direction: column;
-    height: 360px;
+    height: 542px;
+    overflow: hidden;
   }
 }
