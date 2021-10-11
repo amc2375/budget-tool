@@ -56,7 +56,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   d3.selectAll("#chart > *").remove();
 
   // set dimensions
-  const marginTop = isMobile ? 180 : 80;
+  const marginTop = 80;
   const marginRight = 40;
   const marginBottom = 80;
   const marginLeft = 200;
@@ -310,7 +310,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   svg.append('text')
     .attr('class', styles.label)
     .attr('x', (width + marginLeft + marginRight) / 2)
-    .attr('y', isMobile ? height + marginTop * 1.3 : height + marginTop * 1.8)
+    .attr('y', height + marginTop * 1.8)
     .attr('text-anchor', 'middle')
     .text('Allocation (% of Total Budget)')
 
@@ -336,7 +336,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   svg.append('text')
     .attr('class', styles.source)
     .attr('x', (width + marginLeft + marginRight) / 2)
-    .attr('y', isMobile ? height + marginTop * 1.4 : height + marginTop * 1.5)
+    .attr('y', height + marginTop * 1.5)
     .attr('text-anchor', 'middle')
     .text(`Total Submissions: ${totalSubmissions}`)
 

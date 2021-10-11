@@ -31,10 +31,10 @@ export default function ThankYou({ data }) {
     }
   )
 
-  const handleDataSelection = (e) => {
+  const handleDataSelection = (type) => {
     setUserSelectedData({
       ...userSelectedData,
-      [e.target.name]: !userSelectedData[e.target.name]
+      [type]: !userSelectedData[type]
     });
   }
 
@@ -69,31 +69,25 @@ export default function ThankYou({ data }) {
       <div className={styles.layout} id="layout">
         <header>{"People's Budget"}</header>
         <div className={styles.checkBoxes}>
-          <div>
+          <div onClick={(e) => handleDataSelection("actuals")}>
             <input
             type="checkbox"
-            name={"actuals"}
             checked={userSelectedData["actuals"]}
-            value={userSelectedData["actuals"]}
-            onChange={(e) => handleDataSelection(e)}/>
+            value={userSelectedData["actuals"]}/>
           <label className={styles.actuals}>{"2020 NYC Budget"}</label>
           </div>
-          <div>
+          <div onClick={(e) => handleDataSelection("localSubmission")}>
             <input
               type="checkbox"
-              name={"localSubmission"}
               checked={userSelectedData["localSubmission"]}
-              value={userSelectedData["localSubmission"]}
-              onChange={(e) => handleDataSelection(e)}/>
+              value={userSelectedData["localSubmission"]}/>
             <label className={styles.localSubmission}>{"Your Submission"}</label>
           </div>
-          <div>
+          <div onClick={(e) => handleDataSelection("averages")}>
             <input
               type="checkbox"
-              name={"averages"}
               checked={userSelectedData["averages"]}
-              value={userSelectedData["averages"]}
-              onChange={(e) => handleDataSelection(e)}/>
+              value={userSelectedData["averages"]}/>
             <label className={styles.averages}>{"Average of All Submissions"}</label>
           </div>
         </div>
