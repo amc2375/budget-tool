@@ -3,18 +3,64 @@
 .container {
   border-top: 16px solid $bronx-orange;
   background-color: $white;
+  padding-top: 112px;
+  padding-bottom: 68px;
+  @extend %about-align-left;
+  @extend %about-align-right;
+
+  p, h3 {
+    font-size: 16px;
+    color: $gray-500;
+  }
+
+  h3 {
+    font-weight: 700;
+  }
+
 }
 
 .iconContainer {
+  width: 70%;
+  margin: 0 auto;
 
+  img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 94px;
+    display: block;
+    width: auto;
+    height: auto;
+  }
 }
 
-.iconSubContainer1, .iconSubContainer2 {
+.iconSubContainer1, .iconSubContainer2, .iconSubContainer3 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 36px;
+
   div {
     justify-content: center;
   }
+}
 
+.iconSubContainer3 {
+  justify-content: space-around;
   img {
-    max-height: 56px;
+    max-height: 60px;
+  }
+}
+
+.columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  section, > p {
+    flex: 1;
+    width: 50%;
+  }
+
+  div {
+    width: 64px;
   }
 }

@@ -37,12 +37,6 @@
     margin: 96px 0px 24px 0px;
   }
 
-  p {
-    font-size: 16px;
-    line-height: 24px;
-    margin: 0 64px 0 0;
-  }
-
 }
 
 .columns {
@@ -60,6 +54,15 @@
 
   p {
     flex: 1;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+    max-width: 50%;
   }
 
+}
+
+.spacer {
+  display: block;
+  width: 64px;
 }

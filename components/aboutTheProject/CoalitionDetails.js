@@ -20,8 +20,7 @@ export default function CoalitionDetails() {
       <div className={styles.iconContainer}>
         <div className={styles.iconSubContainer1}>
           <Image src={bananaKelly} alt={"Banana Kelly"}/>
-          <Image src={bcdi} alt={"Bronx Cooperative Development Initiative"}/>
-          <Image src={bronxBethany} alt={"Bronx Bethany"}/>
+          <Image src={whedco} alt={"WHEDCO"}/>
           <Image src={laal} alt={"LAAL"}/>
           <Image src={local79} alt={"Local 79"}/>
           <Image src={mekong} alt={"Mekong"}/>
@@ -31,16 +30,20 @@ export default function CoalitionDetails() {
           <Image src={nosQuedamos} alt={"Nos Quedamos"}/>
           <Image src={nwbccc} alt={"N.W.B.C.C.C."}/>
           <Image src={thePoint} alt={"The Point"}/>
-          <Image src={whedco} alt={"WHEDCO"}/>
+          <Image src={bronxBethany} alt={"Bronx Bethany"}/>
+        </div>
+        <div className={styles.iconSubContainer3}>
+          <Image src={bcdi} alt={"Bronx Cooperative Development Initiative"}/>
           <Image src={ympj} alt={"Youth Ministries for Peace and Justice"}/>
         </div>
       </div>
-      <div className={styles.content}>
-        <h3>{"A Plan for the Bronx"}</h3>
-        <div className={styles.columns}>
+      <div className={styles.columns}>
+        <section>
+          <h3>{"A Plan for the Bronx"}</h3>
           <p>{"The Bronx-wide Coalition is made up of community, labor, and faith community groups that have come together to advance a shared vision for the Bronx grounded in advancing racial justice and economic democracy, which we define as shared ownership and shared decision-making over our assets and local economy. The Bronx already has much of what it needs to transform its local economy and become a thriving, healthy borough. "}</p>
-          <p>{"However, Bronxites currently do not have enough meaningful ownership or control over our futures. To ensure existing residents who fought for the Bronx can continue to call it home for generations to come, our Coalition of organizations and residents launched a Bronx-wide planning process in the spring of 2021. We’ve begun to engage Bronx residents through virtual People’s Assemblies, and we’ll continue to have virtual and in-person events to source our assets, challenges, opportunities, and solutions for transforming our Bronx."}</p>
-        </div>
+        </section>
+        <div className={styles.spacer}/>
+        <p>{"However, Bronxites currently do not have enough meaningful ownership or control over our futures. To ensure existing residents who fought for the Bronx can continue to call it home for generations to come, our Coalition of organizations and residents launched a Bronx-wide planning process in the spring of 2021. We’ve begun to engage Bronx residents through virtual People’s Assemblies, and we’ll continue to have virtual and in-person events to source our assets, challenges, opportunities, and solutions for transforming our Bronx."}</p>
       </div>
     </section>
   );
