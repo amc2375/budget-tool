@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ValuesAndPrinciples.module.scss';
+import styles from './Vision.module.scss';
 export default function ValuesAndPrinciples() {
 
   return (

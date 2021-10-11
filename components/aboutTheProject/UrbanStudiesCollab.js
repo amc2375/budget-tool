@@ -1,11 +1,12 @@
 import React from 'react';
+import BarnardUrbanStudiesLogo from '../../static/barnard_urban_studies_logo.svg';
 import styles from './UrbanStudiesCollab.module.scss';
 export default function UrbanStudiesCollab() {
 
   return (
     <section className={styles.container}>
       <div className={styles.logo}>
-
+        <BarnardUrbanStudiesLogo/>
       </div>
       <div className={styles.content}>
         <h3>{"Barnard-Columbia Urban Studies Program"}</h3>

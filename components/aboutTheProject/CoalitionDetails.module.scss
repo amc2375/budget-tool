@@ -1,1 +1,20 @@
 @use 'styles/base' as *;
+
+.container {
+  border-top: 16px solid $bronx-orange;
+  background-color: $white;
+}
+
+.iconContainer {
+
+}
+
+.iconSubContainer1, .iconSubContainer2 {
+  div {
+    justify-content: center;
+  }
+
+  img {
+    max-height: 56px;
+  }
+}
