@@ -3,7 +3,7 @@
 .container {
   @extend %home-align-left;
   display: flex;
-  min-height: 750px;
+  min-height: 542px;
   align-items: center;
   justify-content: space-between;
   background: $blue-50;
@@ -29,6 +29,7 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
+    max-width: 456px;
   }
 }
 
@@ -37,6 +38,7 @@
   align-items: center;
   margin: auto 110px auto 55px;
   max-width: 538px;
+  opacity: .1;
 
   div {
     justify-content: center;

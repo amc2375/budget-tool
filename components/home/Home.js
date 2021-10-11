@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../nav/Nav.js';
 import Splash from './splash/Splash.js';
+import SplashImage from './splash/SplashImage.js';
 import Banner from './banner/Banner.js';
 import Seal from './seal/Seal.js';
 import Content from './content/Content.js';
@@ -12,8 +13,9 @@ export default function Home() {
     <main className={styles.body}>
       <Nav/>
       <Splash/>
-      <Banner/>
       <Seal/>
+      <Banner/>
+      <SplashImage/>
       <Content/>
       <Footer/>
     </main>

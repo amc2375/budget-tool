@@ -15,11 +15,5 @@
   min-width: 288px;
   @extend %home-align-left;
   @extend %home-align-right;
-}
-
-.bottom {
-  margin-top: 48px;
-  align-items: center;
-  overflow: hidden;
-  background-color: $blue-900;
+  padding-bottom: 96px;
 }

@@ -3,11 +3,13 @@
 .container {
   background: $blue-900;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-top: 16px solid $bronx-orange;
 
   @media (min-width: $desktop-min) {
-    height: 277px;
+    height: 542px;
     overflow: hidden;
   }
 

@@ -1,12 +1,6 @@
 @use 'styles/base' as *;
 
 .container {
-
-  @media (min-width: $desktop-min) {
-    margin-right: 10%;
-    width: 330px;
-    height: 80px;
-  }
   @media (max-width: $mobile-max) {
     margin-bottom: 24px;
     width: 80%;

@@ -3,8 +3,7 @@ export default function SecondaryText() {
 
   return (
     <article className={styles.container}>
-      <p className={styles.text}>{"How would you allocate the City’s budget?"}</p>
-      <p className={styles.text}>{"How much of our money should go to each city department every year?"}</p>
+      <p className={styles.text}>{"The New York City Budget reflects the City’s priorities. We want to know what’s important to you and how you would allocate the budget to reflect your needs and priorities."}</p>
     </article>
   );
 };

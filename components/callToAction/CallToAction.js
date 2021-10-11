@@ -5,7 +5,7 @@ export default function CallToAction({ text, path, type }) {
 
   const router = useRouter();
   const route = () => {
-    router.push('/budget-survey')
+    router.push(path)
   }
 
   // uses an scss function to pass the scss variable name for the color of the button

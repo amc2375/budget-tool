@@ -1,1 +1,7 @@
 @use 'styles/base' as *;
+
+.container {
+  align-items: center;
+  overflow: hidden;
+  background-color: $blue-50;
+}

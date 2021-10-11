@@ -54,7 +54,7 @@ $desktop-min: 961px;
 
 %home-align-left {
   @media (min-width: $desktop-min) {
-    padding-left: 118px;
+    padding-left: 237px;
   }
 
   @media (max-width: $mobile-max) {
@@ -64,7 +64,7 @@ $desktop-min: 961px;
 
 %home-align-right {
   @media (min-width: $desktop-min) {
-    padding-right: 118px;
+    padding-right: 237px;
     box-sizing: border-box;
   }
 
@@ -107,8 +107,9 @@ $form-inner-padding: 74px;
 }
 
 %big-button {
-  width: 156px;
-  height: 48px;
+  width: 211px;
+  height: 62px;
+  font-weight: 500;
   margin-top: 12px;
   margin-bottom: 12px;
   border-radius: 8px;

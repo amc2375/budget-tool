@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import bronxDots from '../../../static/bronx_dots.png';
+import CallToAction from '../../callToAction/CallToAction.js';
 import styles from './AboutThis.module.scss';
 export default function AboutThis() {
 
@@ -8,9 +9,12 @@ export default function AboutThis() {
     <article className={styles.container} id={"about-this"}>
       <div className={styles.left}>
         <h1>{"About the Project"}</h1>
-        <p>{"The Bronx already has much of what it needs to transform its local economy and become a thriving, healthy borough. However, Bronxites currently do not have enough meaningful ownership or control over our futures. To ensure existing residents who fought for the Bronx can continue to call it home for generations to come, a coalition of Bronx organizations is engaging residents and local stakeholders in the creation of a Bronx-wide Platform and Plan to establish a community-driven, comprehensive vision for economic development rooted in advancing racial justice and economic democracy."}</p>
-        <p>{"In order to address root causes, combat generational systems failures, and meaningfully respond to the urgent pressures that are threatening the Bronx’s status as the last affordable borough for low-income and working-class people in New York City, the Bronx requires a vision and plan for equitable economic development that is ambitious, coordinated, and long-term."}</p>
-      </div>
+        <p>{"The Bronx People’s Budget Survey is part of the work of the Bronx-wide Coalition to establish a community driven, comprehensive vision for economic development grounded in racial justice and economic democracy in our borough and city."}</p>
+        <CallToAction
+          text={"Read More"}
+          path={"/about-the-project"}
+          type={"button-splash"}/>
+    </div>
       <div className={styles.right}>
         <Image src={bronxDots} alt={"Image of the Bronx Borough Footprint"}/>
       </div>
