@@ -12,7 +12,7 @@ export default function Primary() {
         <p>{"The Bronx People’s Budget Survey is part of the work of the Bronx-wide Coalition to establish a community driven, comprehensive vision for economic development grounded in racial justice and economic democracy in our borough and city."}</p>
         <CallToAction
           text={"Read More"}
-          path={"/about-the-project"}
+          path={"/about"}
           type={"button-splash"}/>
     </div>
       <div className={styles.right}>

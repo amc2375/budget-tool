@@ -42,7 +42,7 @@ export default function Menu() {
         <NavLink
           action={() => toggleMobileMenu(isMobile)} text={"SET THE BUDGET"} path={"/budget-survey"}/>
         <NavLink
-          action={() => toggleMobileMenu(isMobile)} text={"ABOUT THE PROJECT"} path={"/#about-this"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"ABOUT THE PROJECT"} path={"/about"}/>
       </section>
     </React.Fragment>
   );
