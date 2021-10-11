@@ -26,13 +26,31 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
   const heightOfBars = 1 / countOfBars;
 
-  let barPositionsX = {
-    "actuals": null,
-    "localSubmission": null,
-    "averages": null,
+  let barPositionActuals, barPositionLocalSubmission, barPositionAverages;
+
+  if (countOfBars === 1) {
+    barPositionActuals = userSelectedData['actuals'] ? 0 : null;
+    barPositionLocalSubmission = userSelectedData['localSubmission'] ? 0 : null;
+    barPositionAverages = userSelectedData['averages'] ? 0 : null;
+  } else if (countOfBars === 2) {
+    if (userSelectedData['actuals']) {
+      barPositionActuals = 0;
+      if (userSelectedData['localSubmission']) {
+        barPositionLocalSubmission = 1/2;
+      } else if (userSelectedData['averages']) {
+        barPositionAverages = 1/2;
+      }
+    } else {
+      barPositionLocalSubmission = 0;
+      barPositionAverages = 1/2;
+    }
+  } else if (countOfBars === 3) {
+    barPositionActuals = 0;
+    barPositionLocalSubmission = 1 / 3;
+    barPositionAverages = 2 / 3;
   }
 
-  
+
 
   // clear existing chart if it exists
   d3.selectAll("#chart > *").remove();
@@ -115,6 +133,17 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   //     )
   // }
 
+    console.log("START START START START START")
+  console.log("logging yScale.bandwidth()")
+  console.log(yScale.bandwidth());
+  console.log("logging actuals position multiplier")
+  console.log(barPositionActuals)
+  console.log("logging local position multiplier")
+  console.log(barPositionLocalSubmission)
+  console.log("logging avg position multiplier")
+  console.log(barPositionAverages)
+  console.log("END END END END END END")
+
     // actual bar group
     if (userSelectedData['actuals']) {
 
@@ -130,8 +159,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         .append('rect')
         .attr('class', styles.actualBar)
         .attr('x', (g) => 0)
-        .attr('y', (g) => yScale(g.name))
-        .attr('height', yScale.bandwidth() * (1/3))
+        .attr('y', (g) => yScale(g.name) + (yScale.bandwidth() * barPositionActuals))
+        .attr('height', yScale.bandwidth() * heightOfBars)
         .attr('width', (g) => xScale(g.actual))
         .on('mouseenter', function (event, datum, i) {
           d3.selectAll('#actualPercentage')
@@ -142,7 +171,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
             .duration(300)
             .attr('opacity', 0.6)
             // .attr('y', (a) => yScale(a.name) - 5)
-            .attr('height', yScale.bandwidth() * (1/3))
+            .attr('height', yScale.bandwidth() * heightOfBars)
 
           const x = xScale(datum.avg)
 
@@ -180,7 +209,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
             .duration(300)
             .attr('opacity', 1)
             .attr('y', (a) => yScale(a.name))
-            .attr('height', yScale.bandwidth() * (1/3))
+            .attr('height', yScale.bandwidth() * heightOfBars)
 
           chart.selectAll('#limit').remove()
           chart.selectAll(`.${styles.divergence}`).remove()
@@ -192,7 +221,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
         .attr('class', styles.value)
         .attr('id', 'actualPercentage')
         .attr('x', (a) => xScale(a.actual) + 24)
-        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (3/12))
+        .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (barPositionActuals + (heightOfBars/1.4)))
         .attr('text-anchor', 'middle')
         .attr('opacity', 0)
         .text((a) => `${a.actual}%`)
@@ -215,8 +244,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
           .append('rect')
           .attr('class', styles.localSubmissionBar)
           .attr('x', (g) => 0)
-          .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (1/3))
-          .attr('height', yScale.bandwidth() * (1/3))
+          .attr('y', (g) => yScale(g.name) + (yScale.bandwidth() * barPositionLocalSubmission))
+          .attr('height', yScale.bandwidth() * heightOfBars)
           .attr('width', (g) => xScale(g.submittedValue))
           .on('mouseenter', function (event, datum, i) {
             d3.selectAll('#localSubmissionPercentage')
@@ -227,7 +256,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
               .duration(300)
               .attr('opacity', 0.6)
               // .attr('y', (a) => yScale(a.name) - 5)
-              .attr('height', yScale.bandwidth()  * (1/3))
+              .attr('height', yScale.bandwidth()  * heightOfBars)
 
             const x = xScale(datum.avg)
 
@@ -264,8 +293,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
               .transition()
               .duration(300)
               .attr('opacity', 1)
-              .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (1/3))
-              .attr('height', yScale.bandwidth() * (1/3))
+              .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * barPositionLocalSubmission)
+              .attr('height', yScale.bandwidth() * heightOfBars)
 
             chart.selectAll('#limit').remove()
             chart.selectAll(`.${styles.divergence}`).remove()
@@ -277,7 +306,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
           .attr('class', styles.value)
           .attr('id', 'localSubmissionPercentage')
           .attr('x', (a) => xScale(a.submittedValue) + 24)
-          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (7/12))
+          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (barPositionLocalSubmission + (heightOfBars/1.4)))
           .attr('text-anchor', 'middle')
           .attr('opacity', 0)
           .text((a) => `${a.submittedValue}%`)
@@ -300,8 +329,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
           .append('rect')
           .attr('class', styles.averageBar)
           .attr('x', (g) => 0)
-          .attr('y', (g) => yScale(g.name) + yScale.bandwidth() * (2/3))
-          .attr('height', yScale.bandwidth() * (1/3))
+          .attr('y', (g) => yScale(g.name) + (yScale.bandwidth() * barPositionAverages))
+          .attr('height', yScale.bandwidth() * heightOfBars)
           .attr('width', (g) => xScale(g.avg))
           .on('mouseenter', function (event, datum, i) {
             d3.selectAll('#averagePercentage')
@@ -312,7 +341,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
               .duration(300)
               .attr('opacity', 0.6)
               // .attr('y', (a) => yScale(a.name) - 5)
-              .attr('height', yScale.bandwidth() * (1/3))
+              .attr('height', yScale.bandwidth() * heightOfBars)
 
             const x = xScale(datum.avg)
 
@@ -341,8 +370,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
               .transition()
               .duration(300)
               .attr('opacity', 1)
-              .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (2/3))
-              .attr('height', yScale.bandwidth() * (1/3))
+              .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * barPositionAverages)
+              .attr('height', yScale.bandwidth() * heightOfBars)
 
             chart.selectAll('#limit').remove()
             chart.selectAll(`.${styles.divergence}`).remove()
@@ -354,7 +383,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
           .attr('class', styles.value)
           .attr('id', 'averagePercentage')
           .attr('x', (a) => xScale(a.avg) + 24)
-          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (11/12))
+          .attr('y', (a) => yScale(a.name) + yScale.bandwidth() * (barPositionAverages + (heightOfBars/1.4)))
           .attr('text-anchor', 'middle')
           .attr('opacity', 0)
           .text((a) => `${a.avg}%`)
