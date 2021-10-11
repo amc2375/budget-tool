@@ -6,6 +6,11 @@
   @extend %about-align-right;
   padding-top: 130px;
   padding-bottom: 130px;
+  @media (max-width: $mobile-max) {
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 48px;
+  }
 
   .content {
 
@@ -19,6 +24,9 @@
     .columns {
 
       display: flex;
+      @media (max-width: $mobile-max) {
+        flex-direction: column;
+      }
 
       p {
         color: $gray-500;

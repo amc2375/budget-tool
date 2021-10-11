@@ -6,6 +6,12 @@
   margin: 0 auto;
   text-align: center;
   padding-bottom: 148px;
+  @media (max-width: $mobile-max) {
+    text-align: left;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 74px;
+  }
 
   h1 {
     @media (max-width: $mobile-max) {
@@ -58,6 +64,10 @@
     line-height: 24px;
     margin: 0;
     max-width: 50%;
+    @media (max-width: $mobile-max) {
+      max-width: 100%;
+      padding-bottom: 32px;
+    }
   }
 
 }

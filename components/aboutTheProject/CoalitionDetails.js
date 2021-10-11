@@ -32,10 +32,10 @@ export default function CoalitionDetails() {
           <Image src={thePoint} alt={"The Point"}/>
           <Image src={bronxBethany} alt={"Bronx Bethany"}/>
         </div>
-        <div className={styles.iconSubContainer3}>
-          <Image src={bcdi} alt={"Bronx Cooperative Development Initiative"}/>
-          <Image src={ympj} alt={"Youth Ministries for Peace and Justice"}/>
-        </div>
+      </div>
+      <div className={styles.iconSubContainer3}>
+        <Image src={ympj} alt={"Youth Ministries for Peace and Justice"}/>
+        <Image src={bcdi} alt={"Bronx Cooperative Development Initiative"}/>
       </div>
       <div className={styles.columns}>
         <section>
