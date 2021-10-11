@@ -37,13 +37,11 @@ export default function Menu() {
         style={!isMobile || mobileMenuOpen ? {} : {display: 'none'}}
         className={styles.container}>
         <NavLink
-          action={() => toggleMobileMenu(isMobile)} text={"Home"} path={"/"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"HOME"} path={"/"}/>
         <NavLink
-          action={() => toggleMobileMenu(isMobile)} text={"Take the Survey"} path={"/budget-survey"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"SET THE BUDGET"} path={"/budget-survey"}/>
         <NavLink
-          action={() => toggleMobileMenu(isMobile)} text={"About the Project"} path={"/#about-this"}/>
-        <NavLink
-          action={() => toggleMobileMenu(isMobile)} text={"Who We Are"} path={"/#about-us"}/>
+          action={() => toggleMobileMenu(isMobile)} text={"ABOUT THE PROJECT"} path={"/#about-this"}/>
       </section>
     </React.Fragment>
   );
