@@ -69,29 +69,33 @@ export default function ThankYou({ data }) {
       <div className={styles.layout} id="layout">
         <header>{"People's Budget"}</header>
         <div className={styles.checkBoxes}>
-          <input
+          <div>
+            <input
             type="checkbox"
-            className="checkbox"
             name={"actuals"}
             checked={userSelectedData["actuals"]}
             value={userSelectedData["actuals"]}
-            onChange={(e) => handleDataSelection(e)}/><label>{"2020 NYC Budget"}</label>
-          <input
-            type="checkbox"
-            className="checkbox"
-            name={"localSubmission"}
-            checked={userSelectedData["localSubmission"]}
-            value={userSelectedData["localSubmission"]}
             onChange={(e) => handleDataSelection(e)}/>
-          <label>{"Your Submission"}</label>
-          <input
-            type="checkbox"
-            className="checkbox"
-            name={"averages"}
-            checked={userSelectedData["averages"]}
-            value={userSelectedData["averages"]}
-            onChange={(e) => handleDataSelection(e)}/>
-          <label>{"Average of All Submissions"}</label>
+          <label className={styles.actuals}>{"2020 NYC Budget"}</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name={"localSubmission"}
+              checked={userSelectedData["localSubmission"]}
+              value={userSelectedData["localSubmission"]}
+              onChange={(e) => handleDataSelection(e)}/>
+            <label className={styles.localSubmission}>{"Your Submission"}</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name={"averages"}
+              checked={userSelectedData["averages"]}
+              value={userSelectedData["averages"]}
+              onChange={(e) => handleDataSelection(e)}/>
+            <label className={styles.averages}>{"Average of All Submissions"}</label>
+          </div>
         </div>
         <div id="container">
           <svg id="chart"/>

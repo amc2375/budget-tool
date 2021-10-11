@@ -133,17 +133,6 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   //     )
   // }
 
-    console.log("START START START START START")
-  console.log("logging yScale.bandwidth()")
-  console.log(yScale.bandwidth());
-  console.log("logging actuals position multiplier")
-  console.log(barPositionActuals)
-  console.log("logging local position multiplier")
-  console.log(barPositionLocalSubmission)
-  console.log("logging avg position multiplier")
-  console.log(barPositionAverages)
-  console.log("END END END END END END")
-
     // actual bar group
     if (userSelectedData['actuals']) {
 
@@ -172,33 +161,6 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
             .attr('opacity', 0.6)
             // .attr('y', (a) => yScale(a.name) - 5)
             .attr('height', yScale.bandwidth() * heightOfBars)
-
-          const x = xScale(datum.avg)
-
-          const line = chart.append('line')
-            .attr('class', styles.limit)
-            .attr('id', 'limit')
-            .attr('x1', x)
-            .attr('y1', 0)
-            .attr('x2', x)
-            .attr('y2', height)
-
-          // actualBarGroup.append('text')
-          //   .attr('class', styles.divergence)
-          //   .attr('x', (a) => xScale(a.avg) + 24)
-          //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-          //   .attr('fill', 'white')
-          //   .attr('text-anchor', 'middle')
-          //   .text((a, idx) => {
-          //     const divergence = (a.avg - datum.avg).toFixed(1)
-          //
-          //     let text = ''
-          //     if (divergence > 0) text += '+'
-          //     text += `${divergence}%`
-          //
-          //     return a.avg !== datum.avg ? text : '';
-          //   })
-
         })
         .on('mouseleave', function () {
           d3.selectAll('#actualPercentage')
@@ -257,33 +219,6 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
               .attr('opacity', 0.6)
               // .attr('y', (a) => yScale(a.name) - 5)
               .attr('height', yScale.bandwidth()  * heightOfBars)
-
-            const x = xScale(datum.avg)
-
-            // const line = chart.append('line')
-            //   .attr('class', styles.limit)
-            //   .attr('id', 'limit')
-            //   .attr('x1', x)
-            //   .attr('y1', 0)
-            //   .attr('x2', x)
-            //   .attr('y2', height)
-
-            // localSubmissionBarGroup.append('text')
-            //   .attr('class', styles.divergence)
-            //   .attr('x', (a) => xScale(a.avg) + 24)
-            //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-            //   .attr('fill', 'white')
-            //   .attr('text-anchor', 'middle')
-            //   .text((a, idx) => {
-            //     const divergence = (a.avg - datum.avg).toFixed(1)
-            //
-            //     let text = ''
-            //     if (divergence > 0) text += '+'
-            //     text += `${divergence}%`
-            //
-            //     return a.avg !== datum.avg ? text : '';
-            //   })
-
           })
           .on('mouseleave', function () {
             d3.selectAll('#localSubmissionPercentage')
@@ -342,25 +277,6 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
               .attr('opacity', 0.6)
               // .attr('y', (a) => yScale(a.name) - 5)
               .attr('height', yScale.bandwidth() * heightOfBars)
-
-            const x = xScale(datum.avg)
-
-            // averagesBarGroup.append('text')
-            //   .attr('class', styles.divergence)
-            //   .attr('x', (a) => xScale(a.avg) + 24)
-            //   .attr('y', (a) => yScale(a.name) + yScale.bandwidth() / 1.5)
-            //   .attr('fill', 'white')
-            //   .attr('text-anchor', 'middle')
-            //   .text((a, idx) => {
-            //     const divergence = (a.avg - datum.avg).toFixed(1)
-            //
-            //     let text = ''
-            //     if (divergence > 0) text += '+'
-            //     text += `${divergence}%`
-            //
-            //     return a.avg !== datum.avg ? text : '';
-            //   })
-
           })
           .on('mouseleave', function () {
             d3.selectAll('#averagePercentage')
@@ -394,7 +310,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   svg.append('text')
     .attr('class', styles.label)
     .attr('x', (width + marginLeft + marginRight) / 2)
-    .attr('y', isMobile ? height + marginTop * 1.3 : height + marginTop * 1.7)
+    .attr('y', isMobile ? height + marginTop * 1.3 : height + marginTop * 1.8)
     .attr('text-anchor', 'middle')
     .text('Allocation (% of Total Budget)')
 
@@ -408,19 +324,19 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   //   .text('Categories')
 
   // add title label
-  svg.append('text')
-    .attr('class', styles.title)
-    .attr('x', (width + marginLeft + marginRight) / 2)
-    .attr('y', 40)
-    .attr('text-anchor', 'middle')
-    .text("People's Budget")
+  // svg.append('text')
+  //   .attr('class', styles.title)
+  //   .attr('x', (width + marginLeft + marginRight) / 2)
+  //   .attr('y', 40)
+  //   .attr('text-anchor', 'middle')
+  //   .text("People's Budget")
 
   // add footer label
 
   svg.append('text')
     .attr('class', styles.source)
     .attr('x', (width + marginLeft + marginRight) / 2)
-    .attr('y', height + isMobile ? height + marginTop * 1.4 : height + marginTop * 2)
+    .attr('y', isMobile ? height + marginTop * 1.4 : height + marginTop * 1.5)
     .attr('text-anchor', 'middle')
     .text(`Total Submissions: ${totalSubmissions}`)
 
@@ -428,8 +344,8 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
     // https://bl.ocks.org/mtandre/bea54a387eb5506ad5d46cb5e74d9bce
 
     var colors = [
-      '#6A33FF', // actuals color
-      '#00C9AA', // localSubmission
+      '#6B7280', // actuals color
+      '#EF7053', // localSubmission
       '#1E3A8A' // blue-900
     ]
 
