@@ -8,7 +8,7 @@
   }
 
   p {
-    color: $gray-800;
+    color: $gray-600;
     font-size: 24px;
     margin: 0;
     display: block;
@@ -26,5 +26,5 @@
   @extend %left-align-vertical;
   font-size: 20px;
   line-height: 30px;
-  color: $gray-600;
+  color: $blue-900;
 }

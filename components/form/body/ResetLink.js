@@ -13,6 +13,6 @@ export default function ResetLink({
   return (
     <label
       className={styles.link}
-      onClick={handler}>{"Reset All Departments"}</label>
+      onClick={handler}>{"Reset Values"}</label>
   );
 };

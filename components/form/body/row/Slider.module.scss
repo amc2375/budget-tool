@@ -75,7 +75,7 @@
 
     -webkit-appearance: none;
     cursor: ew-resize;
-    box-shadow: -1000px 0 0 1000px $gray-200;
+    box-shadow: -1000px 0 0 1000px $gray-300;
   }
 
   // background color to the left of the thumb
@@ -91,7 +91,7 @@
   // https://stackoverflow.com/questions/18389224/how-to-style-html5-range-input-to-have-different-color-before-and-after-slider
 
   .slider::-moz-range-progress {
-    background-color: $gray-200;
+    background-color: $gray-300;
   }
 
   .slider::-moz-range-track {
@@ -99,7 +99,7 @@
   }
 
   .slider::-ms-fill-lower {
-    background-color: $gray-200;
+    background-color: $gray-300;
   }
 
   .slider::-ms-fill-upper {
