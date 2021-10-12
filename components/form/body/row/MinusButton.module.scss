@@ -15,8 +15,10 @@
     @include button-colors(
       $border-color: $blue-900,
       $background-color: $blue-900,
-      $text-color: $white
+      $text-color: $blue-50
     );
     border: 0;
+    min-width: 70px;
+    font-weight: 600;
   }
 }

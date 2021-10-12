@@ -16,9 +16,11 @@
     @include button-colors(
       $border-color: $blue-900,
       $background-color: $blue-900,
-      $text-color: $white
+      $text-color: $blue-50
     );
     border: 0px solid $blue-900;
     margin-left: 0px;
+    min-width: 70px;
+    font-weight: 600;
   }
 }

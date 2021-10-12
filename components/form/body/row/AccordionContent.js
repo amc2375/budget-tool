@@ -1,5 +1,8 @@
 import styles from './AccordionContent.module.scss';
-import { amountInBillions } from '../../../../utilities/helpers.js';
+import {
+  billionsAmountString,
+  categoryPercentage
+} from '../../../../utilities/helpers.js';
 import Text from './Text.js';
 import PlusButton from './PlusButton.js';
 import MinusButton from './MinusButton.js';
@@ -44,38 +47,37 @@ export default function AccordionContent({
     return elementCollection;
   }
 
-  const mobileDetailCaption = () => {
-    if (budgetValue == '' || budgetValue == 0) {
-      return "$0";
-    } else {
-      let multiplier = parseFloat(budgetValue)/100;
-      return `$${amountInBillions(totalBudget * multiplier)} Billion`;
-    }
-  }
+  let percentage = categoryPercentage(budgetCategoryData.amount, totalBudget);
+  let displayAmount = (percentage / 100) * totalBudget;
 
   return(
     <section
       style={open ? {} : {display: 'none'}}
       className={styles.container}>
       <div className={styles.accordionTopMobile}>
-        <label className={styles.mobileLabelAllocate}>ALLOCATION</label>
-        <div className={styles.mobileAccordionInputs}>
-          <MinusButton
-            budgetValue={budgetValue}
-            setBudgetValue={setBudgetValue}/>
-          <Text
-            budgetValue={budgetValue}
-            setBudgetValue={setBudgetValue}
-            totalBudget={totalBudget}/>
-          <PlusButton
-            budgetValue={budgetValue}
-            setBudgetValue={setBudgetValue}/>
+        <div className={styles.accordionContentDepartmentDetails}>
+          <label>{"Department Details"}</label>
+          <div className={styles.mobileDetail}><p>{`2021 Budget: ${percentage}% (${billionsAmountString(displayAmount)})`}</p></div>
+          <div dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
         </div>
-        <div className={styles.lineBreak}/>
+        <div className={styles.mobileAccordionInputWrapper}>
+          <label className={styles.mobileLabelAllocate}>Allocation</label>
+          <div className={styles.mobileAccordionInputs}>
+            <MinusButton
+              budgetValue={budgetValue}
+              setBudgetValue={setBudgetValue}/>
+            <Text
+              budgetValue={budgetValue}
+              setBudgetValue={setBudgetValue}
+              totalBudget={totalBudget}/>
+            <PlusButton
+              budgetValue={budgetValue}
+              setBudgetValue={setBudgetValue}/>
+          </div>
+        </div>
       </div>
       <div className={styles.accordionContentLeft}>
         <label>{"Department Details"}</label>
-        <div className={styles.mobileDetail}><p>{`2021 Budget: ${budgetValue}% (${mobileDetailCaption()})`}</p></div>
         <div dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
       </div>
       <div className={styles.accordionContentRight}>
