@@ -46,7 +46,11 @@
 
     ol {
       margin: 0;
-      list-style-type: circle;
+    }
+  }
+  @media (min-width: $desktop-min) {
+    ol {
+      padding-left: 26px;
     }
   }
 }

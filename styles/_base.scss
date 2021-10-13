@@ -186,7 +186,7 @@ $form-inner-padding: 74px;
 }
 
 // form row - one third
-%form-row-flex-child-left {
+%form-row-flex-child-left, %form-heading-flex-child-left {
   flex: 1;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -199,7 +199,7 @@ $form-inner-padding: 74px;
 }
 
 // form row - two thirds
-%form-row-flex-child-right {
+%form-row-flex-child-right, %form-heading-flex-child-right {
   padding-bottom: 16px;
   padding-left: 48px;
   padding-right: $form-inner-padding;
@@ -207,6 +207,13 @@ $form-inner-padding: 74px;
 
   @media (max-width: $mobile-max) {
     padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+%form-row-flex-child-left, %form-row-flex-child-right {
+  @media (max-width: $mobile-max) {
+    padding-left: 12px;
     padding-right: 16px;
   }
 }
