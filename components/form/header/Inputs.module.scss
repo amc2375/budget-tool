@@ -2,10 +2,47 @@
 
 .container {
   display: flex;
-  margin-bottom: 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 14px 0px 0px 0px;
 
   @media (max-width: $mobile-max) {
-    flex-direction: column;
     margin-bottom: 12px;
   }
+
+  strong {
+    color: $blue-900;
+    font-weight: 700;
+    font-size: 24px;
+    padding-bottom: 18px;
+  }
+}
+
+.skipMobile {
+  background: #C4C4C430;
+  border-radius: 8px;
+  padding: 14px 12px;
+  color: $gray-700;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 24px 0;
+  max-width: 386px;
+
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    margin: 0px;
+  }
+
+}
+
+.hide {
+  display: none;
 }

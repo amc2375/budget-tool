@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../nav/Nav.js';
+import FormModal from './modal/FormModal.js';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import Footer from '../footer/Footer.js';
@@ -13,6 +14,7 @@ function Form({ data }) {
   down so children can update state values. */
   const [district, setDistrict] = useState('');
   const [zipCode, setZipCode] = useState('');
+  const [budgetFamiliarity, setBudgetFamiliarity] = useState('');
   const [allocatedTotal, setAllocatedTotal] = useState(100);
   const [budgetValues, setBudgetValues] = useState(
     createDefaultBudgetValues(data)
@@ -37,6 +39,7 @@ function Form({ data }) {
     const submissionData = {
       district: district,
       zipCode: zipCode,
+      budgetFamiliarity: budgetFamiliarity,
       budgetValues: budgetValues
     }
 
@@ -70,15 +73,26 @@ function Form({ data }) {
     <div className={styles.body}>
       <Nav />
       <form className={styles.form}>
+        <FormModal
+          zipCode={zipCode}
+          districts={data.districts}
+          district={district}
+          setDistrict={setDistrict}
+          setZipCode={setZipCode}
+          budgetFamiliarity={budgetFamiliarity}
+          setBudgetFamiliarity={setBudgetFamiliarity}/>
         <FormHeader
           zipCode={zipCode}
           districts={data.districts}
           setDistrict={setDistrict}
-          setZipCode={setZipCode}/>
+          setZipCode={setZipCode}
+          budgetFamiliarity={budgetFamiliarity}
+          setBudgetFamiliarity={setBudgetFamiliarity}/>
         <FormBody
           data={data}
           district={district}
           zipCode={zipCode}
+          budgetFamiliarity={budgetFamiliarity}
           budgetValues={budgetValues}
           setBudgetValues={setBudgetValues}
           allocatedTotal={allocatedTotal}

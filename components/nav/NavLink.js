@@ -6,9 +6,6 @@ export default function NavButton({ text, path, action }) {
 
   const router = useRouter();
   const currentPath = router.pathname;
-  console.log("paths:")
-  console.log(router.pathname)
-  console.log(path)
 
   return (
     <Link href={ path }>

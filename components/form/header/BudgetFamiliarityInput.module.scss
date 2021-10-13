@@ -1,0 +1,50 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %header-input-container;
+  display: flex;
+  flex-direction: column;
+
+  .mainLabel {
+    padding-bottom: 10px;
+    color: $gray-700;
+  }
+
+  .radioButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    padding-bottom: 4px;
+
+    input {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  .labels {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 4px;
+    color: $gray-700;
+  }
+
+  .subLabels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 26px;
+    color: $gray-700;
+  }
+
+  .labels, .subLabels {
+    margin-top: 4px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+}

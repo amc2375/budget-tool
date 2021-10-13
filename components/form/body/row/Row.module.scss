@@ -8,6 +8,7 @@
     background-color: $color-background;
     padding: 8px 0px;
     border-bottom: 1px solid $gray-200;
+    border-left: 6px solid $color-background;
   }
 }
 
@@ -16,7 +17,7 @@
 
   @media (max-width: $mobile-max) {
     flex-direction: column;
-    background-color: $gray-200;
+    background-color: #1E3A8A02;
     // border-top-left-radius: 8px;
     // border-top-right-radius: 8px;
     padding: 8px 0px 20px 0px;

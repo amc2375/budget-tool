@@ -19,4 +19,8 @@
   align-items: center;
   min-width: 288px;
   padding-bottom: 96px;
+  @media (max-width: $mobile-max) {
+    align-items: flex-start;
+    padding-left: 8%;
+  }
 }

@@ -30,7 +30,7 @@ export default function MobileSlider({
   useEffect(() => {
     const slider = document.getElementById(budgetCategory);
     const percentageOfSliderProgress = (budgetValue/100);
-    const calculatedPosition = ((0.92 * percentageOfSliderProgress) + 0.04) * slider.clientWidth;
+    const calculatedPosition = ((0.92 * percentageOfSliderProgress) + 0.02) * slider.clientWidth;
     setSliderWidth(slider === null ? 0 : calculatedPosition);
     setSubLabelMaxWidth(percentageOfSliderProgress <= .78 ? 120 : 75);
   }, [sliderWidth, budgetCategory, budgetValue]);

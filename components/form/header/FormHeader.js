@@ -6,7 +6,9 @@ export default function FormHeader({
     zipCode,
     districts,
     setDistrict,
-    setZipCode
+    setZipCode,
+    budgetFamiliarity,
+    setBudgetFamiliarity
   }) {
 
   return (
@@ -17,17 +19,11 @@ export default function FormHeader({
       </header>
       <section className={styles.directions}>
         <ol>
-          <li>Select your Council District and Enter Zipcode</li>
-          <li>Allocate the budget according to where you think NYC should spend its budget</li>
+          <li>Change the budget according to your needs and priorities</li>
           <li>Ensure that your allocation is at 100%</li>
           <li>Submit the form</li>
         </ol>
       </section>
-      <Inputs
-        zipCode={zipCode}
-        districts={districts}
-        setDistrict={setDistrict}
-        setZipCode={setZipCode}/>
     </React.Fragment>
   );
 

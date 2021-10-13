@@ -13,12 +13,13 @@
       margin-top: 0px;
       border: 0px;
       border-radius: 0px;
-      border-bottom: 2px solid $blue-900;
+      border-bottom: 1px solid $blue-900;
       font-size: 32px;
       color: $blue-900;
       width: 90px;
       background: none;
-      font-weight: 600;
+      font-weight: 500;
+      padding-top: 12px;
     }
   }
 
@@ -30,7 +31,7 @@
     color: $gray-500;
 
     @media (max-width: $mobile-max) {
-      top: 1px;
+      top: 8px;
       font-size: 32px;
       color: $blue-900;
     }

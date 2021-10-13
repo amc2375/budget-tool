@@ -9,7 +9,6 @@
   @media (max-width: $mobile-max) {
     padding-left: 4%;
     padding-right: 4%;
-    padding-top: 48px;
   }
 
   .content {
@@ -19,6 +18,9 @@
       line-height: 36px;
       font-weight: 500;
       color: $blue-900;
+      @media (max-width: $mobile-max) {
+        max-width: 280px;
+      }
     }
 
     .columns {

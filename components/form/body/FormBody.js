@@ -7,6 +7,7 @@ export default function FormBody({
     data,
     district,
     zipCode,
+    budgetFamiliarity,
     budgetValues,
     setBudgetValues,
     allocatedTotal,
@@ -29,6 +30,7 @@ export default function FormBody({
       <Total
         district={district}
         zipCode={zipCode}
+        budgetFamiliarity={budgetFamiliarity}
         totalBudget={data.totalBudget}
         budgetValues={budgetValues}
         setBudgetValues={setBudgetValues}

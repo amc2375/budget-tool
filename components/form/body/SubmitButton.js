@@ -6,6 +6,7 @@ export default function SubmitButton({
   handleSubmit,
   allocatedTotal,
   district,
+  budgetFamiliarity,
   zipCode
 }) {
 
@@ -25,12 +26,12 @@ export default function SubmitButton({
   );
 
   useEffect(() => {
-    if (zipCode.length === 5 && district &&allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
+    if (zipCode.length === 5 && district && budgetFamiliarity && allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [allocatedTotal, zipCode, district])
+  }, [allocatedTotal, zipCode, district, budgetFamiliarity])
 
   return (
     <button

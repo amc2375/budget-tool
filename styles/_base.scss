@@ -2,7 +2,7 @@
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900';
 
 $blue-900: #1E3A8A;
-$home-background: #E5E5E5;
+$home-background: #F3F4F6;
 $blue-50: #EFF6FF;
 $gray-800: #1F2937;
 $gray-700: #374151;
@@ -126,9 +126,9 @@ $form-inner-padding: 74px;
   font-weight: 500;
   margin-top: 12px;
   margin-bottom: 12px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: $p1-size;
-  border-width: 3px;
+  border-width: 2px;
   border-style: solid;
 
   @media (max-width: $mobile-max) {
@@ -186,7 +186,7 @@ $form-inner-padding: 74px;
 }
 
 // form row - one third
-%form-row-flex-child-left {
+%form-row-flex-child-left, %form-heading-flex-child-left {
   flex: 1;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -199,7 +199,7 @@ $form-inner-padding: 74px;
 }
 
 // form row - two thirds
-%form-row-flex-child-right {
+%form-row-flex-child-right, %form-heading-flex-child-right {
   padding-bottom: 16px;
   padding-left: 48px;
   padding-right: $form-inner-padding;
@@ -207,6 +207,13 @@ $form-inner-padding: 74px;
 
   @media (max-width: $mobile-max) {
     padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+%form-row-flex-child-left, %form-row-flex-child-right {
+  @media (max-width: $mobile-max) {
+    padding-left: 12px;
     padding-right: 16px;
   }
 }

@@ -10,6 +10,7 @@ import styles from './Total.module.scss';
 export default function Total({
     district,
     zipCode,
+    budgetFamiliarity,
     totalBudget,
     budgetValues,
     setBudgetValues,
@@ -50,6 +51,7 @@ export default function Total({
           <div className={styles.row}>
             <div/>
             <SubmitButton
+              budgetFamiliarity={budgetFamiliarity}
               district={district}
               zipCode={zipCode}
               handleSubmit={handleSubmit}
@@ -59,6 +61,7 @@ export default function Total({
       </div>
       <div className={styles.mobileContainer}>
         <SubmitButton
+          budgetFamiliarity={budgetFamiliarity}
           district={district}
           zipCode={zipCode}
           handleSubmit={handleSubmit}

@@ -29,13 +29,13 @@
 }
 
 .one {
-  @extend %form-row-flex-child-left;
+  @extend %form-heading-flex-child-left;
   background-color: $gray-50;
   border-top-left-radius: 8px;
 }
 
 .two {
-  @extend %form-row-flex-child-right;
+  @extend %form-heading-flex-child-right;
   display: flex;
   justify-content: space-between;
 

@@ -12,6 +12,10 @@
     font-size: 24px;
     margin: 0;
     display: block;
+    @media (max-width: $mobile-max) {
+      display: none;
+    }
+
   }
 
   strong {
@@ -19,6 +23,11 @@
     font-size: 48px;
     margin-top: 18px;
     display: block;
+
+    @media (max-width: $mobile-max) {
+      font-size: 36px;
+      font-weight: 600;
+    }
   }
 }
 
@@ -27,4 +36,21 @@
   font-size: 20px;
   line-height: 30px;
   color: $blue-900;
+  @media (max-width: $mobile-max) {
+    font-size: 16px;
+    color: $gray-600;
+    padding-top: 36px;
+    padding-bottom: 36px;
+    padding-left: 0px;
+    width: 90%;
+
+    ol {
+      margin: 0;
+    }
+  }
+  @media (min-width: $desktop-min) {
+    ol {
+      padding-left: 26px;
+    }
+  }
 }

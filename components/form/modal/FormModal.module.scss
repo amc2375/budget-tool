@@ -1,0 +1,171 @@
+@use 'styles/base' as *;
+
+.modalBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 102;
+  background-color: $home-background;
+  opacity: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.modalBody {
+  position: absolute;
+  top: 2vh;
+  left: 15%;
+  z-index: 103;
+  width: 70%;
+  border-top: 16px solid $bronx-orange;
+  border-radius: 8px;
+  background-color: $white;
+  @media (max-width: $mobile-max) {
+    width: 92%;
+    left: 4%;
+  }
+}
+
+.header {
+  width: 80%;
+  margin: 0 auto;
+  @media (min-width: $desktop-min) {
+    padding-bottom: 28px;
+  }
+
+  strong {
+    color: $blue-900;
+    font-size: 48px;
+    margin-top: 56px;
+    display: block;
+    @media (max-width: $mobile-max) {
+      font-size: 24px;
+    }
+  }
+}
+
+.introduction {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 30px;
+  color: $blue-900;
+
+  p {
+    @media (max-width: $mobile-max) {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 500;
+    }
+  }
+}
+
+.selectionWrapper {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  border-top: 1px solid $blue-900;
+  padding-bottom: 47px;
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+    border-top: 0;
+  }
+}
+
+.skipDesktop {
+
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
+
+  flex: 2;
+  background: #C4C4C430;
+  padding: 14px 32px;
+
+  strong {
+    color: $blue-900;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  p {
+    color: $gray-700;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .buttonEnabled {
+    @include button-colors(
+      $border-color: $blue-900,
+      $background-color: $white,
+      $text-color: $blue-900
+    );
+    @extend %big-button;
+  }
+
+}
+
+.skipMobile {
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+
+  strong {
+    color: $blue-900;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  p {
+    color: $gray-700;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+}
+
+.buttonEnabled {
+  @include button-colors(
+    $border-color: $blue-900,
+    $background-color: $blue-900,
+    $text-color: $white
+  );
+  @extend %big-button;
+  margin-top: 24px;
+  margin-bottom: 0;
+  @media (max-width: $mobile-max) {
+    width: 60%;
+  }
+}
+
+.buttonDisabled {
+  @include button-colors(
+    $border-color: $gray-400,
+    $background-color: $gray-400,
+    $text-color: $white
+  );
+  @extend %big-button;
+  margin-top: 24px;
+  margin-bottom: 0;
+  @media (max-width: $mobile-max) {
+    width: 60%;
+  }
+
+  &:hover {
+    cursor: auto;
+  }
+}
+
+.selection {
+  flex: 3;
+}
+
+.header, .introduction, .selectionWrapper {
+  @media (max-width: $mobile-max) {
+    width: 90%;
+  }
+}
+
+.hide {
+  display: none;
+}
