@@ -22,8 +22,8 @@ export default function Inputs({
   const handleIntermediarySkipMobileToggle = (e) => {
     setInputsAreHidden(!inputsAreHidden);
     setContinueButtonIsDisabled(!continueButtonIsDisabled);
-    district === "0" ? setDistrict("") : setDistrict("0");
-    zipCode === "00000" ? setZipCode("") : setZipCode("00000");
+    district === "1" ? setDistrict("") : setDistrict("1");
+    zipCode === "99999" ? setZipCode("") : setZipCode("99999");
     budgetFamiliarity === "0" ? setBudgetFamiliarity("") : setBudgetFamiliarity("0");
   }
 
