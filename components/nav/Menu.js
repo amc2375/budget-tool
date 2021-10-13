@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavLink from './NavLink.js';
 import styles from './Menu.module.scss';
 import { useMediaQuery } from 'react-responsive';
+import { useRouter } from 'next/router'
 import Hamburger from '../../static/hamburger.svg';
 import X from '../../static/x.svg';
 export default function Menu() {
@@ -24,9 +25,17 @@ export default function Menu() {
     if (isMobile) setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  const router = useRouter();
+  const pathName = router.pathname
+
   return (
     <React.Fragment>
-      <div className={styles.mobileHeader}><p>{"Participatory Budgeting Survey"}</p></div>
+      <div className={styles.mobileHeader}>
+        <p>
+          {
+            pathName !== "/budget-survey" ? "Participatory Budgeting Survey" : ""
+          }
+        </p></div>
       <div
         className={styles.hamburger}
         onClick={toggleMobileMenu}>
