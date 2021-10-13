@@ -43,6 +43,8 @@ function Form({ data }) {
       budgetValues: budgetValues
     }
 
+    console.log(submissionData);
+
     try {
       fetch("/api/form", {
         method: "POST",
