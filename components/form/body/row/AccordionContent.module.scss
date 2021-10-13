@@ -75,7 +75,7 @@
     margin-right: 48px;
     font-size: 16px;
     line-height: 20px;
-    padding-top: 32px;
+    padding-top: 12px;
     @media (max-width: $mobile-max) {
       padding-top: 16px;
     }
@@ -84,7 +84,6 @@
   label {
     color: $gray-400;
     margin: 0;
-    padding-bottom: 8px;
     font-size: 16px;
     line-height: 28px;
     @media (max-width: $mobile-max) {
@@ -116,13 +115,12 @@
   p {
     color: $gray-400;
     margin: 0;
-    padding-bottom: 8px;
     font-size: 16px;
     line-height: 28px;
   }
 
   .contextLine {
-    padding: 24px 0px;
+    padding: 16px 0px;
     border-bottom: 1px solid $gray-200;
     display: flex;
     min-height: 60px;
