@@ -67,7 +67,6 @@ export default function ThankYou({ data }) {
         <figcaption>{"We're tallying responses from residents across the Bronx. Check out the results so far:"}</figcaption>
       </section>
       <div className={styles.layout} id="layout">
-        <header>{"Survey Results"}</header>
         <div className={styles.checkBoxes}>
           <div onClick={(e) => handleDataSelection("actuals")}>
             <input

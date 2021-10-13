@@ -26,7 +26,7 @@ export default function SubmitButton({
   );
 
   useEffect(() => {
-    if (zipCode.length === 5 && district && budgetFamiliarity && allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
+    if (allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
