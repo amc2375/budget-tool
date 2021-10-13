@@ -3,5 +3,34 @@
 .container {
   @extend %header-input-container;
   @extend %form-row-flex-child-left;
+  display: flex;
+  flex-direction: column;
+
+  .radioButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+
+  .labels {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .subLabels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .labels, .subLabels {
+    margin-top: 4px;
+  }
+
+  label {
+    font-size: 14px;
+  }
 
 }

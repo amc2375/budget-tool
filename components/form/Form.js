@@ -83,6 +83,7 @@ function Form({ data }) {
           data={data}
           district={district}
           zipCode={zipCode}
+          budgetFamiliarity={budgetFamiliarity}
           budgetValues={budgetValues}
           setBudgetValues={setBudgetValues}
           allocatedTotal={allocatedTotal}
