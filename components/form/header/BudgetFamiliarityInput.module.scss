@@ -2,27 +2,39 @@
 
 .container {
   @extend %header-input-container;
-  @extend %form-row-flex-child-left;
   display: flex;
   flex-direction: column;
+
+  .mainLabel {
+    padding-bottom: 10px;
+  }
 
   .radioButtons {
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-top: 10px;
+    padding-bottom: 4px;
+
+    input {
+      background-color: $bronx-orange;
+      width: 17px;
+      height: 17px;
+    }
   }
 
   .labels {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding-bottom: 4px;
   }
 
   .subLabels {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 26px;
   }
 
   .labels, .subLabels {

@@ -1,0 +1,89 @@
+@use 'styles/base' as *;
+
+.modalBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 102;
+  background-color: $home-background;
+  opacity: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.modalBody {
+  position: absolute;
+  top: 2vh;
+  left: 15%;
+  z-index: 103;
+  width: 70%;
+  border-top: 16px solid $bronx-orange;
+  border-radius: 8px;
+  background-color: $white;
+}
+
+.header {
+  width: 80%;
+  margin: 0 auto;
+  @media (min-width: $desktop-min) {
+    padding-bottom: 28px;
+  }
+
+  p {
+    color: $gray-600;
+    font-size: 24px;
+    margin: 0;
+    display: block;
+  }
+
+  strong {
+    color: $blue-900;
+    font-size: 48px;
+    margin-top: 18px;
+    display: block;
+  }
+}
+
+.introduction {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 30px;
+  color: $blue-900;
+}
+
+.selection {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  border-top: 1px solid $blue-900;
+  padding-bottom: 47px;
+}
+
+.skip {
+  flex: 2;
+  background: #C4C4C430;
+  padding: 14px 32px;
+
+  strong {
+    color: $blue-900;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  p {
+    color: $gray-700;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .buttonEnabled {
+    @include button-colors(
+      $border-color: $blue-900,
+      $background-color: $white,
+      $text-color: $blue-900
+    );
+    @extend %big-button;
+  }
+
+}

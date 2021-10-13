@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../nav/Nav.js';
+import FormModal from './modal/FormModal.js';
 import FormHeader from './header/FormHeader.js';
 import FormBody from './body/FormBody.js';
 import Footer from '../footer/Footer.js';
@@ -72,6 +73,13 @@ function Form({ data }) {
     <div className={styles.body}>
       <Nav />
       <form className={styles.form}>
+        <FormModal
+          zipCode={zipCode}
+          districts={data.districts}
+          setDistrict={setDistrict}
+          setZipCode={setZipCode}
+          budgetFamiliarity={budgetFamiliarity}
+          setBudgetFamiliarity={setBudgetFamiliarity}/>
         <FormHeader
           zipCode={zipCode}
           districts={data.districts}

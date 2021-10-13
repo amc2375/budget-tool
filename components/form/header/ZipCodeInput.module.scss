@@ -2,9 +2,8 @@
 
 .container {
   @extend %header-input-container;
-  @extend %form-row-flex-child-right;
-  padding-top: 8px;
-  padding-top: 8px;
+  padding-top: 24px;
+  width: 80%;
 
   label {
     font-size: 14px;

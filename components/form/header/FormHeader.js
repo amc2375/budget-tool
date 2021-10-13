@@ -25,13 +25,6 @@ export default function FormHeader({
           <li>Submit the form</li>
         </ol>
       </section>
-      <Inputs
-        zipCode={zipCode}
-        districts={districts}
-        setDistrict={setDistrict}
-        setZipCode={setZipCode}
-        budgetFamiliarity={budgetFamiliarity}
-        setBudgetFamiliarity={setBudgetFamiliarity}/>
     </React.Fragment>
   );
 

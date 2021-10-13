@@ -2,8 +2,8 @@
 
 .container {
   @extend %header-input-container;
-  @extend %form-row-flex-child-left;
-
+  width: 80%;
+  
   label {
     font-size: 14px;
   }

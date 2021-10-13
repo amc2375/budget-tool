@@ -1,11 +1,47 @@
 @use 'styles/base' as *;
 
 .container {
+  flex: 3;
   display: flex;
-  margin-bottom: 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 14px 0px 0px 0px;
 
   @media (max-width: $mobile-max) {
-    flex-direction: column;
     margin-bottom: 12px;
+  }
+
+  strong {
+    color: $blue-900;
+    font-weight: 700;
+    font-size: 24px;
+    padding-bottom: 18px;
+  }
+}
+
+.buttonEnabled {
+  @include button-colors(
+    $border-color: $blue-900,
+    $background-color: $blue-900,
+    $text-color: $white
+  );
+  @extend %big-button;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+.buttonDisabled {
+  @include button-colors(
+    $border-color: $gray-400,
+    $background-color: $gray-400,
+    $text-color: $white
+  );
+  @extend %big-button;
+  margin-top: 24px;
+  margin-bottom: 0;
+
+  &:hover {
+    cursor: auto;
   }
 }

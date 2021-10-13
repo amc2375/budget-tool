@@ -14,6 +14,7 @@ export default function Inputs({
 
   return (
     <section className={styles.container}>
+      <strong>{"Bronx Residents"}</strong>
       <BudgetFamiliarityInput
         budgetFamiliarity={budgetFamiliarity}
         setBudgetFamiliarity={setBudgetFamiliarity}/>
@@ -23,6 +24,9 @@ export default function Inputs({
       <ZipCodeInput
         zipCode={zipCode}
         setZipCode={setZipCode}/>
+      <button
+        type={"button"}
+        className={styles.buttonDisabled}>{"Continue"}</button>
     </section>
   );
 };
