@@ -1,16 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
-import bananaKelly from '../../static/coalition_logos/banana_kelly.jpg';
+import bananaKelly from '../../static/coalition_logos/banana_kelly.png';
 import bcdi from '../../static/coalition_logos/bcdi.png';
 import bronxBethany from '../../static/coalition_logos/bronx_bethany.png';
 import laal from '../../static/coalition_logos/laal.png';
 import local79 from '../../static/coalition_logos/local_79.png';
 import mekong from '../../static/coalition_logos/mekong.png';
 import mom from '../../static/coalition_logos/mom.png';
-import nosQuedamos from '../../static/coalition_logos/nos_quedamos.jpg';
+import nosQuedamos from '../../static/coalition_logos/nos_quedamos.png';
 import nwbccc from '../../static/coalition_logos/nwbccc.png';
-import thePoint from '../../static/coalition_logos/the_point.jpeg';
-import whedco from '../../static/coalition_logos/whedco.jpg';
+import thePoint from '../../static/coalition_logos/the_point.png';
+import whedco from '../../static/coalition_logos/whedco.png';
 import ympj from '../../static/coalition_logos/ympj.png';
 import styles from './CoalitionDetails.module.scss';
 export default function CoalitionDetails() {
@@ -19,23 +19,21 @@ export default function CoalitionDetails() {
     <section className={styles.container}>
       <div className={styles.iconContainer}>
         <div className={styles.iconSubContainer1}>
-          <Image src={bananaKelly} alt={"Banana Kelly"}/>
-          <Image src={whedco} alt={"WHEDCO"}/>
-          <Image src={laal} alt={"LAAL"}/>
+          <Image src={mom} alt={"Mothers On The Move"}/>
           <Image src={local79} alt={"Local 79"}/>
-          <Image src={mekong} alt={"Mekong"}/>
+          <Image src={thePoint} alt={"The Point"}/>
+          <Image src={nwbccc} alt={"N.W.B.C.C.C."}/>
+          <Image src={laal} alt={"LAAL"}/>
+          <Image src={bananaKelly} alt={"Banana Kelly"}/>
         </div>
         <div className={styles.iconSubContainer2}>
-          <Image src={mom} alt={"Mothers On The Move"}/>
+          <Image src={ympj} alt={"Youth Ministries for Peace and Justice"}/>
+          <Image src={whedco} alt={"WHEDCO"}/>
           <Image src={nosQuedamos} alt={"Nos Quedamos"}/>
-          <Image src={nwbccc} alt={"N.W.B.C.C.C."}/>
-          <Image src={thePoint} alt={"The Point"}/>
+          <Image src={mekong} alt={"Mekong"}/>
           <Image src={bronxBethany} alt={"Bronx Bethany"}/>
-        </div>
+          <Image src={bcdi} alt={"Bronx Cooperative Development Initiative"}/>
       </div>
-      <div className={styles.iconSubContainer3}>
-        <Image src={ympj} alt={"Youth Ministries for Peace and Justice"}/>
-        <Image src={bcdi} alt={"Bronx Cooperative Development Initiative"}/>
       </div>
       <div className={styles.columns}>
         <section>
