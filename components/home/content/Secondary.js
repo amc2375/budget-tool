@@ -8,7 +8,7 @@ export default function Secondary() {
     <article className={styles.container} id={"about-us"}>
       <div className={styles.left}>
         <h1>{"How to Stay Involved"}</h1>
-        <p>{"Thank you for filling out the Bronx People’s Budget Survey! Our borough-wide planning process is ongoing and we need your ideas and solutions to help shape the future of the Bronx!"}</p>
+        <p>{"Our borough-wide planning process is ongoing and we need your ideas and solutions to help shape the future of the Bronx!"}</p>
         <p>{"To get involved in our planning process and connect to one of our member organizations in your neighborhood, fill out this form."}</p>
         <a>Fill out Google Form</a>
         <p>{"To learn about upcoming events and other resources:"}</p>

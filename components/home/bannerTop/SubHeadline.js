@@ -3,6 +3,6 @@ import styles from './SubHeadline.module.scss';
 export default function SubHeadline() {
 
   return (
-    <p className={styles.text}>{"Take the Participatory Budgeting Survey from the Bronx-wide Coalition"}</p>
+    <p className={styles.text}>{"Take the Bronx People's Budget Survey from the Bronx-wide Coalition!"}</p>
   );
 };
