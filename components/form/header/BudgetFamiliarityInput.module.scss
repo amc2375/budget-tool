@@ -7,6 +7,7 @@
 
   .mainLabel {
     padding-bottom: 10px;
+    color: $gray-700;
   }
 
   .radioButtons {
@@ -27,6 +28,7 @@
     align-items: center;
     justify-content: space-around;
     padding-bottom: 4px;
+    color: $gray-700;
   }
 
   .subLabels {
@@ -34,6 +36,7 @@
     align-items: center;
     justify-content: space-between;
     padding-bottom: 26px;
+    color: $gray-700;
   }
 
   .labels, .subLabels {

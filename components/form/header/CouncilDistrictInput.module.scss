@@ -9,6 +9,7 @@
 
   label {
     font-size: 14px;
+    color: $gray-700;
   }
 
   select {
@@ -31,5 +32,6 @@
       5px 5px,
       1px 1.5em;
     background-repeat: no-repeat;
+    color: $gray-700;
   }
 }
