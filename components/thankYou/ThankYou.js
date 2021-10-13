@@ -59,15 +59,15 @@ export default function ThankYou({ data }) {
     <main className={styles.body}>
       <Nav/>
       <header className={styles.header}>
-        <p>People&apos;s Vision for the Bronx</p>
-        <strong>Participatory Budgeting Survey</strong>
+        <p>{"Bronx-wide Coalition"}</p>
+        <strong>{"Bronx People's Budget Survey"}</strong>
       </header>
       <section className={styles.thanks}>
         <p>{"Thanks for your response!"}</p>
         <figcaption>{"We're tallying responses from residents across the Bronx. Check out the results so far:"}</figcaption>
       </section>
       <div className={styles.layout} id="layout">
-        <header>{"People's Budget"}</header>
+        <header>{"Survey Results"}</header>
         <div className={styles.checkBoxes}>
           <div onClick={(e) => handleDataSelection("actuals")}>
             <input

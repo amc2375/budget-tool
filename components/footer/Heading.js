@@ -4,8 +4,8 @@ export default function Heading() {
 
   return (
     <React.Fragment>
-      <h1>{"People’s Vision for the Bronx"}</h1>
-      <p>{"Participatory Budgeting Survey"}</p>
+      <h1>{"Bronx-wide Coalition"}</h1>
+      <p>{"Bronx People’s Budget Survey"}</p>
     </React.Fragment>
   );
 };

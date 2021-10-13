@@ -16,7 +16,7 @@ export default function Secondary() {
       </div>
       <div className={styles.right}>
         <h1>{"Set the Budget"}</h1>
-        <h3>{"Take the Participatory Budgeting Survey from People’s Vision for the Bronx"}</h3>
+        <h3>{"Take the Bronx People’s Budget Survey from the Bronx-wide Coalition"}</h3>
         <CallToAction
           text={"Take the Survey"}
           path={"/budget-survey"}

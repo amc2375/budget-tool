@@ -14,8 +14,8 @@ export default function FormHeader({
   return (
     <React.Fragment>
       <header className={styles.header}>
-        <p>People&apos;s Vision for the Bronx</p>
-        <strong>Participatory Budgeting Survey</strong>
+        <p>{"Bronx-wide Coalition"}</p>
+        <strong>{"Bronx People's Budget Survey"}</strong>
       </header>
       <section className={styles.directions}>
         <ol>
