@@ -76,6 +76,7 @@ function Form({ data }) {
         <FormModal
           zipCode={zipCode}
           districts={data.districts}
+          district={district}
           setDistrict={setDistrict}
           setZipCode={setZipCode}
           budgetFamiliarity={budgetFamiliarity}

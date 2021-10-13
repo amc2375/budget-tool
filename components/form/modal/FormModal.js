@@ -5,11 +5,19 @@ import styles from './FormModal.module.scss';
 export default function FormModal({
     zipCode,
     districts,
+    district,
     setDistrict,
     setZipCode,
     budgetFamiliarity,
     setBudgetFamiliarity
   }) {
+
+  const handleSkip = (e) => {
+    const background = document.getElementsByClassName(`${styles.modalBackground}`);
+    const modal = document.getElementsByClassName(`${styles.modalBody}`);
+    if (background[0]) background[0].remove();
+    if (modal[0]) modal[0].remove();
+  }
 
   return (
     <React.Fragment>
@@ -25,15 +33,20 @@ export default function FormModal({
           <Inputs
             zipCode={zipCode}
             districts={districts}
+            district={district}
             setDistrict={setDistrict}
             setZipCode={setZipCode}
             budgetFamiliarity={budgetFamiliarity}
-            setBudgetFamiliarity={setBudgetFamiliarity}/>
+            setBudgetFamiliarity={setBudgetFamiliarity}
+            modalBackgroundClass={`${styles.modalBackground}`}
+            modalBodyClass={`${styles.modalBody}`}
+            />
           <div className={styles.skip}>
             <strong>{"I live outside of the Bronx"}</strong>
             <p>{"We appreciate your interest in this project, feel free to try out the tool!"}</p>
             <button
               type={"button"}
+              onClick={handleSkip}
               className={styles.buttonEnabled}>{"Start Survey"}</button>
           </div>
         </section>
