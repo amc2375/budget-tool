@@ -6,7 +6,9 @@ export default function FormHeader({
     zipCode,
     districts,
     setDistrict,
-    setZipCode
+    setZipCode,
+    budgetFamiliarity,
+    setBudgetFamiliarity
   }) {
 
   return (
@@ -27,7 +29,9 @@ export default function FormHeader({
         zipCode={zipCode}
         districts={districts}
         setDistrict={setDistrict}
-        setZipCode={setZipCode}/>
+        setZipCode={setZipCode}
+        budgetFamiliarity={budgetFamiliarity}
+        setBudgetFamiliarity={setBudgetFamiliarity}/>
     </React.Fragment>
   );
 

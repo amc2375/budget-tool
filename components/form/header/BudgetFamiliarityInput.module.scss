@@ -1,0 +1,7 @@
+@use 'styles/base' as *;
+
+.container {
+  @extend %header-input-container;
+  @extend %form-row-flex-child-left;
+
+}

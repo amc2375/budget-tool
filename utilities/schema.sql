@@ -234,6 +234,7 @@ CREATE TABLE bcdi.budget (
 	"submission_id" text NOT NULL,
 	"district_id" int4 NOT NULL,
 	"zip_code" numeric NOT NULL,
+	"budget_familiarity" int1 NOT NULL,
 	"category_id" int4 NOT NULL,
 	"category_value" numeric NOT NULL,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

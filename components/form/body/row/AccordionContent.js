@@ -58,7 +58,7 @@ export default function AccordionContent({
         <div className={styles.accordionContentDepartmentDetails}>
           <label>{"Department Details"}</label>
           <div className={styles.mobileDetail}><p>{`2021 Budget: ${percentage}% (${billionsAmountString(displayAmount)})`}</p></div>
-          <div dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+          <div className={styles.readMore} dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
         </div>
         <div className={styles.mobileAccordionInputWrapper}>
           <label className={styles.mobileLabelAllocate}>Allocation</label>

@@ -20,13 +20,14 @@ async function handlePost(request, response) {
     submission_id: submission_id,
     district_id: request.body.district,
     zip_code: request.body.zipCode,
+    budget_familiarity: request.body.budgetFamiliarity,
     category_id: category_id,
     category_value: request.body.budgetValues[category_id]
   }));
   console.log(submissionContent);
   const insert = pgp.helpers.insert(
     submissionContent,
-    ['submission_id', 'district_id', 'zip_code', 'category_id', 'category_value'],
+    ['submission_id', 'district_id', 'zip_code', 'budget_familiarity', 'category_id', 'category_value'],
     'bcdi.budget'
   ).replace('"bcdi.budget"', "bcdi.budget");
   const query = await db.any(insert);
