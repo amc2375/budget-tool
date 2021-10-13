@@ -10,7 +10,7 @@ export default function Info() {
           <a>{"Home"}</a>
         </Link>
         <Link href={"/budget-survey"}>
-          <a>{"Participatory Budgeting Survey"}</a>
+          <a>{"Bronx People's Budget Survey"}</a>
         </Link>
       </div>
       <div className={styles.container}>
