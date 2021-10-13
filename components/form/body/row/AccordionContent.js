@@ -61,7 +61,7 @@ export default function AccordionContent({
           <div className={styles.readMore} dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
         </div>
         <div className={styles.mobileAccordionInputWrapper}>
-          <label className={styles.mobileLabelAllocate}>Allocation</label>
+          <label className={styles.mobileLabelAllocate}>Tap to Enter Value</label>
           <div className={styles.mobileAccordionInputs}>
             <MinusButton
               budgetValue={budgetValue}

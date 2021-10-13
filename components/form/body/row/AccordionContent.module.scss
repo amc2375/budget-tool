@@ -30,11 +30,12 @@
     background: $color-base;
     width: 90%;
     border-radius: 8px;
+    height: 96px;
   }
 
   .mobileAccordionInputs {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
   }
