@@ -1,7 +1,6 @@
 @use 'styles/base' as *;
 
 .container {
-  flex: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -20,28 +19,30 @@
   }
 }
 
-.buttonEnabled {
-  @include button-colors(
-    $border-color: $blue-900,
-    $background-color: $blue-900,
-    $text-color: $white
-  );
-  @extend %big-button;
-  margin-top: 24px;
-  margin-bottom: 0;
+.skipMobile {
+  background: #C4C4C430;
+  border-radius: 8px;
+  padding: 14px 12px;
+  color: $gray-700;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 24px 0;
+  max-width: 386px;
+
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    margin: 0px;
+  }
+
 }
 
-.buttonDisabled {
-  @include button-colors(
-    $border-color: $gray-400,
-    $background-color: $gray-400,
-    $text-color: $white
-  );
-  @extend %big-button;
-  margin-top: 24px;
-  margin-bottom: 0;
-
-  &:hover {
-    cursor: auto;
-  }
+.hide {
+  display: none;
 }

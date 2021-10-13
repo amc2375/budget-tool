@@ -4,6 +4,9 @@
   @extend %header-input-container;
   padding-top: 24px;
   width: 80%;
+  @media (max-width: $mobile-max) {
+    width: 100%;
+  }
 
   label {
     font-size: 14px;

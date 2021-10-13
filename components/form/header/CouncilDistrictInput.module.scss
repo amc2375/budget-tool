@@ -3,7 +3,10 @@
 .container {
   @extend %header-input-container;
   width: 80%;
-  
+  @media (max-width: $mobile-max) {
+    width: 100%;
+  }
+
   label {
     font-size: 14px;
   }
@@ -12,6 +15,7 @@
     @extend %text-input;
     min-height: 42px;
     max-width: 386px;
+    width: 100%;
     -webkit-appearance: none;
     // https://codepen.io/vkjgr/pen/VYMeXp
     background-image:

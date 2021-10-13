@@ -6,6 +6,7 @@
   box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
   @media (min-width: $desktop-min) {
     border-top: 16px solid $bronx-orange;
+    margin-top: 56px;
   }
 
   @media (max-width: $mobile-max) {
