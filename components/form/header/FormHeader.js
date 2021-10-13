@@ -19,7 +19,6 @@ export default function FormHeader({
       </header>
       <section className={styles.directions}>
         <ol>
-          <li>Select your Council District and Enter Zipcode</li>
           <li>Allocate the budget according to where you think NYC should spend its budget</li>
           <li>Ensure that your allocation is at 100%</li>
           <li>Submit the form</li>
