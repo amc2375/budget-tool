@@ -31,8 +31,6 @@ export const convertAmountToWordsForContext = (amount) => {
 }
 
 export const categoryPercentage = (amount, total) => {
-  console.log("Amount:::::::")
-  console.log(amount);
   return (amount * 100 / total).toFixed(1);
 }
 

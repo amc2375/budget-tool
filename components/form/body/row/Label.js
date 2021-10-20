@@ -21,7 +21,7 @@ export default function Label({
   };
 
   let percentage = categoryPercentage(amount, totalBudget);
-  let displayAmount = (percentage / 100) * totalBudget;
+  let displayAmount = amount;
 
   return (
     <section onClick={handleAccordion} className={styles.container}>
