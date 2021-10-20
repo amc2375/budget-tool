@@ -22,6 +22,14 @@ export const billionsAmountString = (amount) => {
   return rowAmountInBillions != 0 ? `$${rowAmountInBillions} Billion` : "$0";
 };
 
+export const convertAmountToWordsForContext = (amount) => {
+  if (amount >= 1000000000) {
+    return `$${Number(Math.round(amount/1000000000 + 'e2') + 'e-2')} Billion`
+  } else {
+    return `$${Number(Math.round(amount/1000000 + 'e2') + 'e-2')} Million`
+  }
+}
+
 export const categoryPercentage = (amount, total) => {
   return (amount * 100 / total).toFixed(1);
 }

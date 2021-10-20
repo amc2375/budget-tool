@@ -1,8 +1,10 @@
 import styles from './AccordionContent.module.scss';
 import {
   billionsAmountString,
-  categoryPercentage
+  categoryPercentage,
+  convertAmountToWordsForContext
 } from '../../../../utilities/helpers.js';
+import ExternalLink from '../../../../static/external-link.svg';
 import Text from './Text.js';
 import PlusButton from './PlusButton.js';
 import MinusButton from './MinusButton.js';
@@ -22,32 +24,36 @@ export default function AccordionContent({
 
   const generateBudgetInContext = () => {
     let elementCollection = [];
-
-    if (budgetCategoryData.context_amount_1 != null) {
+    budgetCategoryData.contexts.forEach(context => {
+      let amount = convertAmountToWordsForContext(context.amount);
       elementCollection.push(constructBudgetInContextLine(
-        budgetCategoryData.context_amount_1,
-        budgetCategoryData.context_description_1
+        amount,
+        context.description
       ));
-    }
-
-    if (budgetCategoryData.context_amount_2 != null) {
-      elementCollection.push(constructBudgetInContextLine(
-        budgetCategoryData.context_amount_2,
-        budgetCategoryData.context_description_2
-      ));
-    }
-
-    if (budgetCategoryData.context_amount_3 != null) {
-      elementCollection.push(constructBudgetInContextLine(
-        budgetCategoryData.context_amount_3,
-        budgetCategoryData.context_description_3
-      ));
-    }
+    })
 
     return elementCollection;
   }
 
-  let percentage = categoryPercentage(budgetCategoryData.amount, totalBudget);
+  const constructLink = (name, url) => {
+    return (
+      <a className={styles.link} key={name} href={url} target='_blank' rel="noreferrer">{name}<div className={styles.svgWrapper}><ExternalLink/></div></a>
+    )
+  }
+
+  const generateLinks = () => {
+    let elementCollection = [];
+    budgetCategoryData.links.forEach(link => {
+      elementCollection.push(constructLink(
+        link.name,
+        link.url
+      ));
+    })
+
+    return elementCollection;
+  }
+
+  let percentage = categoryPercentage(budgetCategoryData.name, totalBudget);
   let displayAmount = (percentage / 100) * totalBudget;
 
   return(
@@ -58,7 +64,8 @@ export default function AccordionContent({
         <div className={styles.accordionContentDepartmentDetails}>
           <label>{"Department Details"}</label>
           <div className={styles.mobileDetail}><p>{`2021 Budget: ${percentage}% (${billionsAmountString(displayAmount)})`}</p></div>
-          <div className={styles.readMore} dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+          <div><p>{budgetCategoryData.description}</p></div>
+          <div>{generateLinks().map(element => element)}</div>
         </div>
         <div className={styles.mobileAccordionInputWrapper}>
           <label className={styles.mobileLabelAllocate}>Tap to Enter Value</label>
@@ -78,7 +85,9 @@ export default function AccordionContent({
       </div>
       <div className={styles.accordionContentLeft}>
         <label>{"Department Details"}</label>
-        <div dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+        <p>{budgetCategoryData.description}</p>
+        <label className={styles.linksLabel}>{"Departments Included:"}</label>
+        <div className={styles.links}>{generateLinks().map(element => element)}</div>
       </div>
       <div className={styles.accordionContentRight}>
         <p>{"The Budget in Context:"}</p>

@@ -13,7 +13,6 @@ export default function Home() {
     <main className={styles.body}>
       <Nav/>
       <BannerTop/>
-      <Seal/>
       <BannerBottom/>
       <SplashImage/>
       <Content/>

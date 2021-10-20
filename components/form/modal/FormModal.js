@@ -53,7 +53,8 @@ export default function FormModal({
           <strong>{"Welcome to the Survey"}</strong>
         </header>
         <section className={styles.introduction}>
-          <p>{"We believe the people of the Bronx and New York City should have a more direct say in how the budget is created, so that it reflects the true needs and priorities of its residents."}</p>
+          <p>{"The New York City budget should reflect the needs of the people who live here. You should have a say in how our money gets spent. "}</p>
+          <figcaption>{"This task can be a little overwhelming, that’s okay. It’s one step towards a more representative allocation of the city’s resources."}</figcaption>
         </section>
         <section className={styles.selectionWrapper}>
           <div className={styles.selection}>

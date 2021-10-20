@@ -3,10 +3,10 @@ const db = require("../../utilities/postgres").instance;
 const getId = () => nanoid(12);
 
 async function handleGet(request, response) {
-  const categories = await db.any("SELECT bcdi.categories.id, bcdi.categories.name, bcdi.categories.amount FROM bcdi.categories;")
-  const averages = await db.any("SELECT bcdi.budget.category_id, bcdi.categories.name, AVG(bcdi.budget.category_value) AS avg FROM bcdi.budget INNER JOIN bcdi.categories ON bcdi.budget.category_id=bcdi.categories.id GROUP BY bcdi.budget.category_id, bcdi.categories.name;");
-  const totalSubmissions = await db.any("SELECT COUNT (DISTINCT submission_id) AS count FROM bcdi.budget;")
-  // const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bcdi.categories");
+  const categories = await db.any("SELECT bronx.categories.id, bronx.categories.name, bronx.categories.amount FROM bronx.categories;")
+  const averages = await db.any("SELECT bronx.budget.category_id, bronx.categories.name, AVG(bronx.budget.category_value) AS avg FROM bronx.budget INNER JOIN bronx.categories ON bronx.budget.category_id=bronx.categories.id GROUP BY bronx.budget.category_id, bronx.categories.name;");
+  const totalSubmissions = await db.any("SELECT COUNT (DISTINCT submission_id) AS count FROM bronx.budget;")
+  // const categories = await db.any("SELECT id, name, descriptive_html, amount FROM bronx.categories");
   const data = {
     categories: categories,
     averages: averages,
