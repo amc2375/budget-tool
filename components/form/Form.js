@@ -20,12 +20,7 @@ function Form({ data }) {
     createDefaultBudgetValues(data)
   );
 
-  console.log("data!!!!!!!! :")
-  console.log(data);
-
-  console.log(allocatedTotal);
-
-    // this should run after handleBudgetValueInput before render
+  // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(budgetValues).length > 0) {
       setAllocatedTotal(Object.values(budgetValues).reduce((a, b) => {

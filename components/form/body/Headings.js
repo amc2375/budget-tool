@@ -30,7 +30,7 @@ export default function Headings({
           <label>NYC Budget</label>
         </div>
         <div className={styles.middle}>
-          <div className={styles.billions}>{billionsAmountString(totalBudget)}</div>
+          <div className={styles.billions}>{`${billionsAmountString(totalBudget)}*`}</div>
         </div>
         <div className={styles.bottom}/>
       </div>

@@ -9,7 +9,7 @@ export default function Primary() {
     <article className={styles.container} id={"about-this"}>
       <div className={styles.left}>
         <h1>{"About the Project"}</h1>
-        <p>{"The Bronx People’s Budget Survey is part of the work of the Bronx-wide Coalition to establish a community driven, comprehensive vision for economic development grounded in racial justice and economic democracy in our borough and city."}</p>
+        <p>{"The Bronx People’s Budget Survey is part of the work of "}<a href='https://bcdi.nyc/bronxwideplan' target='_blank' rel='noreferrer'>{"the Bronx-wide Coalition"}</a>{" to establish a community driven, comprehensive vision for economic development grounded in racial justice and economic democracy in our borough and city."}</p>
         <CallToAction
           text={"Read More"}
           path={"/about"}

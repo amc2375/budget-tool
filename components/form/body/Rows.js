@@ -1,5 +1,6 @@
 import React, {useState } from 'react';
 import Row from './row/Row.js';
+import styles from './Rows.module.scss';
 
 export default function Rows({
     data,

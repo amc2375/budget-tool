@@ -1,12 +1,19 @@
 @use 'styles/base' as *;
 
 .button {
+  transition: background-color 0.25s ease;
+  transition: border-color 0.25s ease;
   @media (min-width: $desktop-min) {
     @include button-colors(
       $border-color: $blue-50,
       $background-color: $blue-50,
       $text-color: $blue-900
     );
+    padding-top: 4px;
+    &:hover {
+      background-color: $blue-100;
+      border-color: $blue-100;
+    }
   }
   @extend %little-button;
   margin-left: 12px;

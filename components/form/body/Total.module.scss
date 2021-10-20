@@ -26,12 +26,23 @@
 .left {
   @extend %form-row-flex-child-left;
   background: $gray-50;
-  height: 240px;
+  height: 224px;
+  padding-top: 64px;
+
+  span {
+    display: block;
+    font-size: 14px;
+    display: block;
+    color: $gray-500;
+    max-width: 90%;
+  }
+
+
 }
 
 .right {
   @extend %form-row-flex-child-right;
-  height: 180px;
+  height: 220px;
   padding-top: 60px;
   p {
     margin: 0;
