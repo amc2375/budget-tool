@@ -10,9 +10,9 @@ export default function Secondary() {
         <h1>{"How to Stay Involved"}</h1>
         <p>{"Our borough-wide planning process is ongoing and we need your ideas and solutions to help shape the future of the Bronx!"}</p>
         <p>{"To get involved in our planning process and connect to one of our member organizations in your neighborhood, fill out this form."}</p>
-        <a>Fill out Google Form</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdQPTcs4rTVKpHy1XV7LboRRPnT1pEYCmfM-OipNiqf7L1qWA/viewform" target="_blank" rel="noreferrer">Fill out Google Form</a>
         <p>{"To learn about upcoming events and other resources:"}</p>
-        <a>Visit our Linktree</a>
+        <a href="https://linktr.ee/bxpower" target="_blank" rel="noreferrer">Visit our Linktree</a>
       </div>
       <div className={styles.right}>
         <h1>{"Set the Budget"}</h1>

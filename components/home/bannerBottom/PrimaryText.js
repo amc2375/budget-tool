@@ -4,7 +4,7 @@ export default function PrimaryText() {
 
   return (
     <article className={styles.container}>
-      <p className={styles.text}>{"We want to hear from you"}</p>
+      <p className={styles.text}>{"We want to hear from you."}</p>
     </article>
   );
 };
