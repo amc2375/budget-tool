@@ -2,7 +2,7 @@
 CREATE SCHEMA IF NOT EXISTS bronx;
 
 /* create new table of districts */
-DROP TABLE IF EXISTS bronx.districts;
+DROP TABLE IF EXISTS bronx.districts CASCADE;
 CREATE SEQUENCE IF NOT EXISTS district_sequence_id;
 CREATE TABLE bronx.districts (
 	"id" int4 NOT NULL DEFAULT nextval('district_sequence_id'::regclass),
@@ -24,12 +24,12 @@ INSERT INTO bronx.districts (district_id, name) VALUES (17, 'Salamanca Jr.');
 INSERT INTO bronx.districts (district_id, name) VALUES (18, 'Ruben Diaz Sr.');
 
 /* create the table of categories */
-DROP TABLE IF EXISTS bronx.categories;
+DROP TABLE IF EXISTS bronx.categories CASCADE;
 CREATE SEQUENCE IF NOT EXISTS category_sequence_id;
 CREATE TABLE bronx.categories (
 	"id" int4 NOT NULL DEFAULT nextval('category_sequence_id'::regclass),
 	"name" text NOT NULL,
-	"descriptive_html" text NOT NULL,
+	"description" text NOT NULL,
 	"amount" numeric NOT NULL,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY ("id")
@@ -46,7 +46,7 @@ CREATE TABLE bronx.category_links (
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY ("id"),
 	FOREIGN KEY (category_id) REFERENCES bronx.categories(id) ON DELETE CASCADE
-)
+);
 
 /* create new table of 'context' rows with an amount and description */
 DROP TABLE IF EXISTS bronx.category_contexts;
@@ -59,7 +59,7 @@ CREATE TABLE bronx.category_contexts (
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY ("id"),
 	FOREIGN KEY (category_id) REFERENCES bronx.categories(id) ON DELETE CASCADE
-)
+);
 
 /* insert each required category using foreign keys to identify related links and contexts */
 
@@ -68,7 +68,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	1,
 	'Education',
@@ -118,7 +118,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	2,
 	'CUNY',
@@ -168,7 +168,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	3,
 	'Social Services',
@@ -215,7 +215,7 @@ INSERT INTO bronx.category_links (
 	url,
 	category_id
 ) VALUES (
-	"Administration for Children's Services",
+	'Administration for Children''s Services',
 	'https://www1.nyc.gov/site/acs/about/about.page',
 	3
 );
@@ -293,7 +293,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	4,
 	'Police and Corrections',
@@ -365,7 +365,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	5,
 	'General Government',
@@ -448,7 +448,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	6,
 	'Health and Hospitals',
@@ -520,7 +520,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	7,
 	'Sanitation',
@@ -571,8 +571,7 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
-	context_description_3
+	description
 ) VALUES (
 	8,
 	'Environmental Protection',
@@ -633,12 +632,12 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	9,
 	'City Planning, Housing, and Urban Development',
 	1500000000.00,
-	"The Department of Housing Preservation and Development (HPD) promotes the quality and affordability of the city's housing and the strength and diversity of its many neighborhoods. The agency preserves and builds affordable housing and protects tenants. It enforces the building code and engages in neighborhood planning. The Department of City Planning (DCP) is New York City’s primary land use agency and is instrumental in designing the City’s physical and socioeconomic framework. This budget line also includes funding for the New York City Department of Buildings (DOB) and the Landmarks Preservation Commission  that protects New York City's architecturally, historically, and culturally significant buildings and sites by granting them landmark or historic district status, and regulating them after designation."
+	'The Department of Housing Preservation and Development (HPD) promotes the quality and affordability of the city''s housing and the strength and diversity of its many neighborhoods. The agency preserves and builds affordable housing and protects tenants. It enforces the building code and engages in neighborhood planning. The Department of City Planning (DCP) is New York City’s primary land use agency and is instrumental in designing the City’s physical and socioeconomic framework. This budget line also includes funding for the New York City Department of Buildings (DOB) and the Landmarks Preservation Commission  that protects New York City''s architecturally, historically, and culturally significant buildings and sites by granting them landmark or historic district status, and regulating them after designation.'
 );
 
 /* city planning, housing, and urban development context 1 */
@@ -716,12 +715,12 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	10,
 	'Libraries, Recreation, and Culture',
 	 1000000000.00,
-	 "The Department of Cultural Affairs (DCLA), and  Departments of Parks and Recreation, maintain and promote museum and cultural institutions, public parks, community programs, and other neighborhood- strengthening services. With nearly 53 million items and 92 locations, the New York Public Library is the second largest public library in the United States and the third largest in the world.  Libraries allow people to borrow books and other materials, have access to wifi and technology (such as computers and printers). They provide assistance through workshops, public programming and research services."
+	 'The Department of Cultural Affairs (DCLA), and  Departments of Parks and Recreation, maintain and promote museum and cultural institutions, public parks, community programs, and other neighborhood- strengthening services. With nearly 53 million items and 92 locations, the New York Public Library is the second largest public library in the United States and the third largest in the world.  Libraries allow people to borrow books and other materials, have access to wifi and technology (such as computers and printers). They provide assistance through workshops, public programming and research services.'
 );
 
 /* libraries, recreation, and culture context 1 */
@@ -788,12 +787,12 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	11,
 	'Fire',
 	 2000000000.00,
-	 "The Fire Department of the City of New York (FDNY) provides fire suppression and prevention services, along with emergency rescue/medical response."
+	 'The Fire Department of the City of New York (FDNY) provides fire suppression and prevention services, along with emergency rescue/medical response.'
 );
 
 /* fire context 1 */
@@ -849,12 +848,12 @@ INSERT INTO bronx.categories (
 	id,
 	name,
 	amount,
-	descriptive_html
+	description
 ) VALUES (
 	12,
 	'Transportation',
 	 1000000000.00,
-	 "The Department of Transportation (DOT) plans, builds, and maintains the city's overall transportation system infrastructure, which includes streets, bike lanes, highways, and bridges. The department continually works to improve traffic mobility and generally reduce congestion throughout the city, while also conducting traffic safety educational programs. The MTA is funded through a combination of the State of New York, tolls and farebox revenue."
+	 'The Department of Transportation (DOT) plans, builds, and maintains the city''s overall transportation system infrastructure, which includes streets, bike lanes, highways, and bridges. The department continually works to improve traffic mobility and generally reduce congestion throughout the city, while also conducting traffic safety educational programs. The MTA is funded through a combination of the State of New York, tolls and farebox revenue.'
 );
 
 /* transportation context 1 */
@@ -900,6 +899,10 @@ INSERT INTO bronx.category_links (
 	'https://www.transportation.gov/',
 	12
 );
+
+
+
+
 
 /* create the budget table to hold user submission data */
 DROP TABLE IF EXISTS bronx.budget;
