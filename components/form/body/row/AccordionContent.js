@@ -53,7 +53,7 @@ export default function AccordionContent({
     return elementCollection;
   }
 
-  let percentage = categoryPercentage(budgetCategoryData.name, totalBudget);
+  let percentage = categoryPercentage(budgetCategoryData.amount, totalBudget);
   let displayAmount = (percentage / 100) * totalBudget;
 
   return(
