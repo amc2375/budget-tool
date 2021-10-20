@@ -72,6 +72,7 @@ export default function Total({
         <ResetLink
           setBudgetValues={setBudgetValues}
           createDefaultBudgetValues={createDefaultBudgetValues}/>
+        <p>{"*Approximately $26 billion of the ~$99 billion budget is not adjustable. This includes debt service payments, pension and benefits for city workers, and a miscellaneous budget line. These categories have been omitted from the form."}</p>
       </div>
     </React.Fragment>
   );
