@@ -58,7 +58,7 @@ export default function AccordionContent({
         <div className={styles.accordionContentDepartmentDetails}>
           <label>{"Department Details"}</label>
           <div className={styles.mobileDetail}><p>{`2021 Budget: ${percentage}% (${billionsAmountString(displayAmount)})`}</p></div>
-          <div className={styles.readMore} dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+          <div className={styles.readMore}><p>{budgetCategoryData.description}</p></div>
         </div>
         <div className={styles.mobileAccordionInputWrapper}>
           <label className={styles.mobileLabelAllocate}>Tap to Enter Value</label>
@@ -78,7 +78,7 @@ export default function AccordionContent({
       </div>
       <div className={styles.accordionContentLeft}>
         <label>{"Department Details"}</label>
-        <div dangerouslySetInnerHTML={{ __html: budgetCategoryData.descriptive_html }}/>
+        <div><p>{budgetCategoryData.description}</p></div>
       </div>
       <div className={styles.accordionContentRight}>
         <p>{"The Budget in Context:"}</p>

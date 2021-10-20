@@ -38,7 +38,7 @@ export async function getStaticProps() {
   // };
 
   const districts = await db.any("SELECT id, district_id, name FROM bronx.districts");
-  const categories = await db.any("SELECT id, name, descriptive_html, amount, context_amount_1, context_description_1, context_amount_2, context_description_2, context_amount_3, context_description_3 FROM bronx.categories");
+  const categories = await db.any("SELECT id, name, description, amount FROM bronx.categories");
   const data = {
     districts: districts,
     categories: categories
