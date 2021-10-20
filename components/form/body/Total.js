@@ -32,7 +32,9 @@ export default function Total({
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <div className={styles.left}/>
+        <div className={styles.left}>
+          <span>{"*Approximately $26 billion of the ~$99 billion budget is not adjustable. This includes debt service payments, pension and benefits for city workers, and a miscellaneous budget line. These categories have been omitted from the form."}</span>
+        </div>
         <div className={styles.right}>
           <div className={styles.row}>
             <div className={styles.total}>

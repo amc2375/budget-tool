@@ -31,7 +31,7 @@ export const convertAmountToWordsForContext = (amount) => {
 }
 
 export const categoryPercentage = (amount, total) => {
-  return (amount * 100 / total).toFixed(1);
+  return ((amount * 100 / total)).toFixed(1);
 }
 
 export const overUnderBudgetText = (allocatedTotal) => {
@@ -46,9 +46,10 @@ export const overUnderBudgetText = (allocatedTotal) => {
 export const createDefaultBudgetValues = (data) => {
   let values = {};
   data.categories.map(category => {
-      values[category.id] = categoryPercentage(
-        category.amount, data.totalBudget
-      );
+    values[category.id] = categoryPercentage(
+      category.amount, data.totalBudget
+    );
   });
+
   return values;
 };
