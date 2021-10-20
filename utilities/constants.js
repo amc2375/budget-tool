@@ -1,4 +1,4 @@
-// these are JSON mocks of bcdi.districts objects
+// these are JSON mocks of bronx.districts objects
 export const BRONX_COUNCIL_DISTRICTS = [
   {
     id: 1,

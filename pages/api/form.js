@@ -28,8 +28,8 @@ async function handlePost(request, response) {
   const insert = pgp.helpers.insert(
     submissionContent,
     ['submission_id', 'district_id', 'zip_code', 'budget_familiarity', 'category_id', 'category_value'],
-    'bcdi.budget'
-  ).replace('"bcdi.budget"', "bcdi.budget");
+    'bronx.budget'
+  ).replace('"bronx.budget"', "bronx.budget");
   const query = await db.any(insert);
   response.status(200).json(query);
 };

@@ -1,8 +1,10 @@
-CREATE SCHEMA IF NOT EXISTS bcdi;
+/* create schema */
+CREATE SCHEMA IF NOT EXISTS bronx;
 
+/* create new table of districts */
+DROP TABLE IF EXISTS bronx.districts;
 CREATE SEQUENCE IF NOT EXISTS district_sequence_id;
-
-CREATE TABLE bcdi.districts (
+CREATE TABLE bronx.districts (
 	"id" int4 NOT NULL DEFAULT nextval('district_sequence_id'::regclass),
 	"district_id" int4,
 	"name" text NOT NULL,
@@ -10,36 +12,76 @@ CREATE TABLE bcdi.districts (
 	PRIMARY KEY ("id")
 );
 
-INSERT INTO bcdi.districts (district_id, name) VALUES (8, 'Ayala');
-INSERT INTO bcdi.districts (district_id, name) VALUES (11, 'Dinowitz');
-INSERT INTO bcdi.districts (district_id, name) VALUES (12, 'Riley');
-INSERT INTO bcdi.districts (district_id, name) VALUES (13, 'Gjonaj');
-INSERT INTO bcdi.districts (district_id, name) VALUES (14, 'Cabrera');
-INSERT INTO bcdi.districts (district_id, name) VALUES (15, 'Feliz');
-INSERT INTO bcdi.districts (district_id, name) VALUES (16, 'Gibson');
-INSERT INTO bcdi.districts (district_id, name) VALUES (17, 'Salamanca Jr.');
-INSERT INTO bcdi.districts (district_id, name) VALUES (18, 'Ruben Diaz Sr.');
-INSERT INTO bcdi.districts (name) VALUES ('NYC - prefer not to say');
-INSERT INTO bcdi.districts (name) VALUES ('Outside NYC');
+/* create district entities */
+INSERT INTO bronx.districts (district_id, name) VALUES (8, 'Ayala');
+INSERT INTO bronx.districts (district_id, name) VALUES (11, 'Dinowitz');
+INSERT INTO bronx.districts (district_id, name) VALUES (12, 'Riley');
+INSERT INTO bronx.districts (district_id, name) VALUES (13, 'Gjonaj');
+INSERT INTO bronx.districts (district_id, name) VALUES (14, 'Cabrera');
+INSERT INTO bronx.districts (district_id, name) VALUES (15, 'Feliz');
+INSERT INTO bronx.districts (district_id, name) VALUES (16, 'Gibson');
+INSERT INTO bronx.districts (district_id, name) VALUES (17, 'Salamanca Jr.');
+INSERT INTO bronx.districts (district_id, name) VALUES (18, 'Ruben Diaz Sr.');
 
+/* create new table of contexts with amount and description */
+DROP TABLE IF EXISTS bronx.category_contexts;
+CREATE SEQUENCE IF NOT EXISTS category_context_sequence_id;
+CREATE TABLE bronx.category_contexts (
+	"id" int4 NOT NULL DEFAULT nextval('category_context_sequence_id'::regclass),
+	"amount" numeric NOT NULL,
+	"description" text NOT NULL,
+	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY ("id")
+)
+
+/* fill up the contexts table */
+INSERT INTO bronx.category_contexts (
+	name,
+	url
+) VALUES (
+	'Name',
+	'URL'
+);
+
+/* create new table of links to accompany categories */
+DROP TABLE IF EXISTS bronx.category_links;
+CREATE SEQUENCE IF NOT EXISTS category_link_sequence_id;
+CREATE TABLE bronx.category_links (
+	"id" int4 NOT NULL DEFAULT nextval('category_link_sequence_id'::regclass),
+	"name" text NOT NULL,
+	"url" text NOT NULL,
+	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY ("id")
+)
+
+/* fill up the links table */
+INSERT INTO bronx.category_links (
+	name,
+	url
+) VALUES (
+	'Name',
+	'URL'
+);
+
+
+/* create the table of categories */
+DROP TABLE IF EXISTS bronx.categories;
 CREATE SEQUENCE IF NOT EXISTS category_sequence_id;
-
-CREATE TABLE bcdi.categories (
+CREATE TABLE bronx.categories (
 	"id" int4 NOT NULL DEFAULT nextval('category_sequence_id'::regclass),
 	"name" text NOT NULL,
 	"descriptive_html" text NOT NULL,
 	"amount" numeric NOT NULL,
-	"context_amount_1" text,
-	"context_description_1" text,
-	"context_amount_2" text,
-	"context_description_2" text,
-	"context_amount_3" text,
-	"context_description_3" text,
+	"category_context_id" int4 NOT NULL,
+	"category_link_id" int4,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY ("id")
+	PRIMARY KEY ("id"),
+	FOREIGN KEY (category_context_id) REFERENCES bronx.category_contexts(id) ON DELETE CASCADE,
+  FOREIGN KEY (category_link_id) REFERENCES bronx.category_links(id) ON DELETE CASCADE
 );
 
-INSERT INTO bcdi.categories (
+/* insert each required category using foreign keys to identify related links and contexts */
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -57,7 +99,7 @@ INSERT INTO bcdi.categories (
 	 '~2.5 months of funding for universal pre-K'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -75,7 +117,7 @@ INSERT INTO bcdi.categories (
 	 '4-years, free in-state tuition for ~3,607 students'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -93,7 +135,7 @@ INSERT INTO bcdi.categories (
 	 '213 homeless family shelter units for a year (about 1 percent of the average annual cost of sheltering families)'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -111,7 +153,7 @@ INSERT INTO bcdi.categories (
 	 '1.7 days of incarcerating the average daily population of 9,790 inmates in city jails'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -129,7 +171,7 @@ INSERT INTO bcdi.categories (
 	 'Half a year of funding for Office of Labor Relations (negotiates with labor unions)'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -151,7 +193,7 @@ INSERT INTO bcdi.categories (
 	 'Cost of building ~1,600,000 sq feet of new hospital space in underserved neighborhoods'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -169,7 +211,7 @@ INSERT INTO bcdi.categories (
 	 '9 days of disposal of residential garbage'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -191,7 +233,7 @@ INSERT INTO bcdi.categories (
 	 '~1 year of heat, light, and power for the department'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -209,7 +251,7 @@ INSERT INTO bcdi.categories (
 	'Office of Housing Preservation general maintenance and repair for one year'
 );
 
-INSERT INTO bcdi.categories (
+INSERT INTO bronx.categories (
 	name,
 	amount,
 	descriptive_html,
@@ -227,9 +269,11 @@ INSERT INTO bcdi.categories (
 	 '952 summer pool and beach season lifeguards (68 percent of seasonal lifeguards)'
 );
 
-CREATE SEQUENCE IF NOT EXISTS budget_sequence_id;
 
-CREATE TABLE bcdi.budget (
+/* create the budget table to hold user submission data */
+DROP TABLE IF EXISTS bronx.budget;
+CREATE SEQUENCE IF NOT EXISTS budget_sequence_id;
+CREATE TABLE bronx.budget (
 	"id" int4 NOT NULL DEFAULT nextval('budget_sequence_id'::regclass),
 	"submission_id" text NOT NULL,
 	"district_id" int4,
@@ -238,7 +282,7 @@ CREATE TABLE bcdi.budget (
 	"category_id" int4 NOT NULL,
 	"category_value" numeric NOT NULL,
 	"created_at" timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT "district_constraint_id" FOREIGN KEY ("district_id") REFERENCES "bcdi"."districts"("id") ON DELETE CASCADE,
-	CONSTRAINT "category_constraint_id" FOREIGN KEY ("category_id") REFERENCES "bcdi"."categories"("id") ON DELETE CASCADE,
+  CONSTRAINT "district_constraint_id" FOREIGN KEY ("district_id") REFERENCES "bronx"."districts"("id") ON DELETE CASCADE,
+	CONSTRAINT "category_constraint_id" FOREIGN KEY ("category_id") REFERENCES "bronx"."categories"("id") ON DELETE CASCADE,
 	PRIMARY KEY ("id")
 )
