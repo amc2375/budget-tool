@@ -39,14 +39,22 @@ export async function getStaticProps() {
 
   const districts = await db.any("SELECT id, district_id, name FROM bronx.districts");
   const categories = await db.any("SELECT id, name, description, amount FROM bronx.categories");
+  const contexts = await db.any("SELECT amount, description, category_id FROM bronx.category_contexts");
+  const links = await db.any("SELECT name, url, category_id FROM bronx.category_links");
   const data = {
     districts: districts,
     categories: categories
   };
-  data.categories.forEach(c => c.amount = parseInt(c.amount));
+  data.categories.forEach(c => {
+    c.amount = parseInt(c.amount);
+    c.links = links.filter(link => link.category_id == c.id);
+    c.contexts = contexts.filter(context => context.category_id == c.id);
+  });
   data.districts.sort((a, b) => alphabetSort(a.district_id, b.district_id));
   data.categories.sort((a, b) => alphabetSort(b.amount, a.amount));
   data.totalBudget = calculateFixedBudgetAmount(data);
+
+  // add contexts and links to category objects
 
   // By returning { props: { xyz } }, the component
   // will receive `xyz` as a prop at build time

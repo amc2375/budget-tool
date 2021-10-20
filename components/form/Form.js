@@ -20,6 +20,9 @@ function Form({ data }) {
     createDefaultBudgetValues(data)
   );
 
+  console.log("data!!!!!!!! :")
+  console.log(data);
+
   console.log(allocatedTotal);
 
     // this should run after handleBudgetValueInput before render

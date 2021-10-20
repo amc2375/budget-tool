@@ -1,7 +1,8 @@
 import styles from './AccordionContent.module.scss';
 import {
   billionsAmountString,
-  categoryPercentage
+  categoryPercentage,
+  convertAmountToWordsForContext
 } from '../../../../utilities/helpers.js';
 import Text from './Text.js';
 import PlusButton from './PlusButton.js';
@@ -22,27 +23,13 @@ export default function AccordionContent({
 
   const generateBudgetInContext = () => {
     let elementCollection = [];
-
-    if (budgetCategoryData.context_amount_1 != null) {
+    budgetCategoryData.contexts.forEach(context => {
+      let amount = convertAmountToWordsForContext(context.amount);
       elementCollection.push(constructBudgetInContextLine(
-        budgetCategoryData.context_amount_1,
-        budgetCategoryData.context_description_1
+        amount,
+        context.description
       ));
-    }
-
-    if (budgetCategoryData.context_amount_2 != null) {
-      elementCollection.push(constructBudgetInContextLine(
-        budgetCategoryData.context_amount_2,
-        budgetCategoryData.context_description_2
-      ));
-    }
-
-    if (budgetCategoryData.context_amount_3 != null) {
-      elementCollection.push(constructBudgetInContextLine(
-        budgetCategoryData.context_amount_3,
-        budgetCategoryData.context_description_3
-      ));
-    }
+    })
 
     return elementCollection;
   }
