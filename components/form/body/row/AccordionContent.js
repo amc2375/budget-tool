@@ -53,7 +53,7 @@ export default function AccordionContent({
     return elementCollection;
   }
 
-  let percentage = categoryPercentage(budgetCategoryData.name, totalBudget);
+  let percentage = categoryPercentage(budgetCategoryData.amount, totalBudget);
   let displayAmount = (percentage / 100) * totalBudget;
 
   return(
@@ -63,7 +63,7 @@ export default function AccordionContent({
       <div className={styles.accordionTopMobile}>
         <div className={styles.accordionContentDepartmentDetails}>
           <label>{"Department Details"}</label>
-          <div className={styles.mobileDetail}><p>{`2021 Budget: ${percentage}% (${billionsAmountString(displayAmount)})`}</p></div>
+          <div className={styles.mobileDetail}><p>{`2021 Budget: ${percentage}% (${billionsAmountString(budgetCategoryData.amount)})`}</p></div>
           <div><p>{budgetCategoryData.description}</p></div>
           <div>{generateLinks().map(element => element)}</div>
         </div>
