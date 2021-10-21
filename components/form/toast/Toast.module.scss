@@ -1,0 +1,70 @@
+@use 'styles/base' as *;
+
+.toastContainer {
+  background-color: $white;
+  border-left: 8px solid $bronx-orange;
+  border-radius: 8px;
+  position: fixed;
+  top: 10vh;
+  left: 20vw;
+  right: 20vw;
+  z-index: 1000;
+  display: flex;
+
+  h1, p {
+    color: $blue-900;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 24px;
+    padding-top: 16px;
+    padding-bottom: 0px;
+  }
+
+  padding-bottom: 16px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.triangle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 108px;
+  svg {
+    width: 36px;
+    height: 36px;
+    stroke: $blue-900;
+  }
+}
+
+.x {
+  position: absolute;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: $gray-600;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.content {
+  flex: 6;
+  padding-right: 10%;
+}
