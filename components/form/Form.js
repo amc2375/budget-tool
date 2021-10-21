@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Toast from './toast/Toast.js';
 import Nav from '../nav/Nav.js';
 import FormModal from './modal/FormModal.js';
 import FormHeader from './header/FormHeader.js';
@@ -8,6 +10,8 @@ import { createDefaultBudgetValues } from '../../utilities/helpers.js';
 import styles from './Form.module.scss';
 
 function Form({ data }) {
+
+  const router = useRouter();
 
   /* initialize state variables for controlling inputs in the form.
   these variable references and the functions to set are passed
@@ -34,43 +38,59 @@ function Form({ data }) {
   // post the results of the survey
   async function handleSubmit(e) {
     e.preventDefault();
-    const submissionData = {
-      district: district,
-      zipCode: zipCode,
-      budgetFamiliarity: budgetFamiliarity,
-      budgetValues: budgetValues
+    if (allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
+      const submissionData = {
+        district: district,
+        zipCode: zipCode,
+        budgetFamiliarity: budgetFamiliarity,
+        budgetValues: budgetValues
+      }
+
+      console.log(submissionData);
+
+      try {
+        fetch("/api/form", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(submissionData),
+        });
+      } catch (error) {
+        console.log(error);
+      };
+
+      // create formatted object to store in local storage
+      const storedData = [];
+      Object.keys(submissionData.budgetValues).forEach(id => {
+        storedData.push({
+          id: id,
+          percentageValue: submissionData.budgetValues[id]
+        });
+      })
+
+      // store to local storage
+      window.localStorage.setItem(
+        'peoplesBudgetSubmission',
+        JSON.stringify(storedData)
+      );
+
+      router.push('/thank-you');
+
+    } else {
+      const toast = document.getElementById("toast");
+      toast.classList.remove(styles.hidden);
+      window.setTimeout(() => {
+        toast.classList.add(styles.hidden)
+      }, 15000);
     }
+  }
 
-    console.log(submissionData);
-
-    try {
-      fetch("/api/form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submissionData),
-      });
-    } catch (error) {
-      console.log(error);
-    };
-
-    // create formatted object to store in local storage
-    const storedData = [];
-    Object.keys(submissionData.budgetValues).forEach(id => {
-      storedData.push({
-        id: id,
-        percentageValue: submissionData.budgetValues[id]
-      });
-    })
-
-    // store to local storage
-    window.localStorage.setItem(
-      'peoplesBudgetSubmission',
-      JSON.stringify(storedData)
-    );
+  const exitToastHandler = () => {
+    document.getElementById("toast").classList.add(styles.hidden);
   }
 
   return (
     <div className={styles.body}>
+      <div className={styles.hidden} id="toast"><Toast allocatedTotal={allocatedTotal} exitToastHandler={exitToastHandler}/></div>
       <Nav />
       <form className={styles.form}>
         <FormModal

@@ -1,0 +1,112 @@
+@use 'styles/base' as *;
+
+.toastContainer {
+  background-color: $white;
+  border-radius: 8px;
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+
+  @media (min-width: $desktop-min) {
+    border-left: 8px solid $bronx-orange;
+    top: 10vh;
+    left: 20vw;
+    right: 20vw;
+  }
+
+  @media (max-width: $mobile-max) {
+    padding-left: 5%;
+    border-top: 8px solid $bronx-orange;
+    top: 5vh;
+    left: 10vw;
+    right: 10vw;
+  }
+
+  h1, p {
+    color: $blue-900;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    padding-top: 16px;
+    padding-bottom: 0px;
+  }
+
+  padding-bottom: 16px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.triangleDesktop, .triangleMobile {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 36px;
+    height: 36px;
+    stroke: $blue-900;
+  }
+}
+
+.triangleDesktop {
+  @media (max-width: $mobile-max) {
+    display: none;
+  }
+  min-width: 108px;
+}
+
+.triangleMobile {
+  @media (min-width: $desktop-min) {
+    display: none;
+  }
+  justify-content: flex-start;
+}
+
+.x {
+  position: absolute;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: $gray-600;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: $mobile-max) {
+  .mobileHeader {
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 5%;
+    padding-top: 26px;
+
+    div {
+      flex: 1;
+    }
+
+    h1 {
+      flex: 3;
+    }
+  }
+}
+
+.content {
+  flex: 6;
+  padding-right: 10%;
+}
