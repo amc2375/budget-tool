@@ -36,7 +36,7 @@ export default function FormModal({
   }
 
   const handleSkip = (e) => {
-    setDistrict('1');
+    setDistrict('0');
     setZipCode('99999');
     setBudgetFamiliarity('0');
     const background = document.getElementsByClassName(`${styles.modalBackground}`);
