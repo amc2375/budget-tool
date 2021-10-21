@@ -61,7 +61,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
   const marginBottom = 80;
   const marginLeft = 200;
   const width = isMobile ? 260 : 1000 - marginLeft - marginRight;
-  const height = isMobile ? 680 : 620 - marginTop - marginBottom;
+  const height = isMobile ? 1000 : 620 - marginTop - marginBottom;
 
   // select the dom element to fill with the chart
   const svg = d3.select('#chart')
@@ -116,7 +116,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
   setTimeout(()=>{
     yAxis.selectAll("text")
-      .call(wrap, 180);
+      .call(wrap, 200);
   }, 0);
 
   // add horizontal lines in the background
@@ -408,6 +408,7 @@ function wrap(text, width) {
   text.each(function() {
     var text = d3.select(this),
         words = text.text().split(/\s+/).reverse(),
+        charCount = text.text().length,
         word,
         line = [],
         lineNumber = 0,
@@ -428,8 +429,8 @@ function wrap(text, width) {
         line = [word];
         tspan = text.append("tspan")
           .attr("x", -10)
-          .attr("y", y)
-          .attr("dy", ++lineNumber * lineHeight + dy + "em")
+          .attr("y", y - 0)
+          .attr("dy", ++lineNumber * (lineHeight + 0.1) + dy + "em")
           .text(word);
       }
     }
