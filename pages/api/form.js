@@ -18,24 +18,26 @@ async function handlePost(request, response) {
   const submission_id = getId();
   let valuesToSubmit = [];
   const submissionContent = Object.keys(request.body.budgetValues).map((category_id) => {
-    if (valuesToSubmit.length == 0) {
-      if (!request.body.budgetFamiliarity || !request.body.zipCode || !request.body.district) {
+    if (!request.body.budgetFamiliarity || !request.body.zipCode || !request.body.district) {
+      if (valuesToSubmit.length == 0) {
         valuesToSubmit = ['submission_id', 'category_id', 'category_value'];
-        return {
-          submission_id: submission_id,
-          category_id: category_id,
-          category_value: request.body.budgetValues[category_id]
-        }
-      } else {
+      }
+      return {
+        submission_id: submission_id,
+        category_id: category_id,
+        category_value: request.body.budgetValues[category_id]
+      }
+    } else {
+      if (valuesToSubmit.length == 0) {
         valuesToSubmit = ['submission_id', 'district_id', 'zip_code', 'budget_familiarity', 'category_id', 'category_value']
-        return {
-          submission_id: submission_id,
-          district_id: request.body.district,
-          zip_code: request.body.zipCode,
-          budget_familiarity: request.body.budgetFamiliarity,
-          category_id: category_id,
-          category_value: request.body.budgetValues[category_id]
-        }
+      }
+      return {
+        submission_id: submission_id,
+        district_id: request.body.district,
+        zip_code: request.body.zipCode,
+        budget_familiarity: request.body.budgetFamiliarity,
+        category_id: category_id,
+        category_value: request.body.budgetValues[category_id]
       }
     }
   });

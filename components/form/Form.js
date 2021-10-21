@@ -40,12 +40,19 @@ function Form({ data }) {
   // post the results of the survey
   async function handleSubmit(e) {
     e.preventDefault();
+    let submissionData;
     if (allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
-      const submissionData = {
-        district: district,
-        zipCode: zipCode,
-        budgetFamiliarity: budgetFamiliarity,
-        budgetValues: budgetValues
+      if (district != '' && zipCode != '' && budgetFamiliarity != '') {
+        submissionData = {
+          district: district,
+          zipCode: zipCode,
+          budgetFamiliarity: budgetFamiliarity,
+          budgetValues: budgetValues
+        }
+      } else {
+        submissionData = {
+          budgetValues: budgetValues
+        }
       }
 
       console.log(submissionData);
