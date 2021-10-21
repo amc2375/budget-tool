@@ -20,9 +20,12 @@ export default function FormModal({ allocatedTotal, exitToastHandler }) {
   return (
     <div className={styles.toastContainer}>
       <div className={styles.x} onClick={exitToastHandler}><X /></div>
-      <div className={styles.triangle}><AlertTriangle /></div>
+      <div className={styles.triangleDesktop}><AlertTriangle /></div>
       <div className={styles.content}>
-        <h1>{`Looks like you're ${percentage()}% ${overUnder()} budget.`}</h1>
+        <div className={styles.mobileHeader}>
+          <div className={styles.triangleMobile}><AlertTriangle /></div>
+          <h1>{`Looks like you're ${percentage()}% ${overUnder()} budget.`}</h1>
+        </div>
         <p>{`You might want the city to spend ${moreLess()} money (many people agree), but right now we’re only allowing balanced submissions.`}</p>
         <p>{"Allocate 100% of the budget before submitting your survey."}</p>
       </div>
