@@ -36,6 +36,18 @@ $ DROP DATABASE "peoplesbudget-test";
 ```
 * Then you can re-seed the remote DB, and pull a copy locally.
 
+## There are two databases, a "test" and a "production"
+* peoplesbudget-test
+  * see above for connection details
+* peoplesbudget-bronx-production
+```
+$ psql --host=ec2-3-215-83-124.compute-1.amazonaws.com --port=5432 --username=rgfcwfgyuahgsd --password --dbname=d76vt49mjnuq65
+
+$ heroku pg:pull postgresql-dimensional-77072 peoplesbudget-bronx-production --app peoplesbudget-bronx-production
+
+$ heroku pg:psql postgresql-dimensional-77072 --app peoplesbudget-bronx-production < utilities/schema.sql
+```
+
 ### API routes with REST
 
 Next.js ships with [API routes](https://github.com/vercel/next.js#api-routes), which provide an easy solution to build your own `API`. This example shows how it can be used to create your [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) `API`.
