@@ -24,6 +24,8 @@ function Form({ data }) {
     createDefaultBudgetValues(data)
   );
 
+  const [toastTimeout, setToastTimeout] = useState(null);
+
   // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(budgetValues).length > 0) {
@@ -38,12 +40,19 @@ function Form({ data }) {
   // post the results of the survey
   async function handleSubmit(e) {
     e.preventDefault();
+    let submissionData;
     if (allocatedTotal && (allocatedTotal).toFixed(1) == "100.0") {
-      const submissionData = {
-        district: district,
-        zipCode: zipCode,
-        budgetFamiliarity: budgetFamiliarity,
-        budgetValues: budgetValues
+      if (district != '' && zipCode != '' && budgetFamiliarity != '') {
+        submissionData = {
+          district: district,
+          zipCode: zipCode,
+          budgetFamiliarity: budgetFamiliarity,
+          budgetValues: budgetValues
+        }
+      } else {
+        submissionData = {
+          budgetValues: budgetValues
+        }
       }
 
       console.log(submissionData);
@@ -78,14 +87,17 @@ function Form({ data }) {
     } else {
       const toast = document.getElementById("toast");
       toast.classList.remove(styles.hidden);
-      window.setTimeout(() => {
+      const toastTimeout = setTimeout(() => {
         toast.classList.add(styles.hidden)
       }, 15000);
+      setToastTimeout(toastTimeout);
     }
   }
 
   const exitToastHandler = () => {
     document.getElementById("toast").classList.add(styles.hidden);
+    clearTimeout(toastTimeout);
+    setToastTimeout(null);
   }
 
   return (

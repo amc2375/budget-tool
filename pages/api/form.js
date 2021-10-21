@@ -16,18 +16,35 @@ async function handleGet(request, response) {
 
 async function handlePost(request, response) {
   const submission_id = getId();
-  const submissionContent = Object.keys(request.body.budgetValues).map(category_id => ({
-    submission_id: submission_id,
-    district_id: request.body.district,
-    zip_code: request.body.zipCode,
-    budget_familiarity: request.body.budgetFamiliarity,
-    category_id: category_id,
-    category_value: request.body.budgetValues[category_id]
-  }));
+  let valuesToSubmit = [];
+  const submissionContent = Object.keys(request.body.budgetValues).map((category_id) => {
+    if (!request.body.budgetFamiliarity || !request.body.zipCode || !request.body.district) {
+      if (valuesToSubmit.length == 0) {
+        valuesToSubmit = ['submission_id', 'category_id', 'category_value'];
+      }
+      return {
+        submission_id: submission_id,
+        category_id: category_id,
+        category_value: request.body.budgetValues[category_id]
+      }
+    } else {
+      if (valuesToSubmit.length == 0) {
+        valuesToSubmit = ['submission_id', 'district_id', 'zip_code', 'budget_familiarity', 'category_id', 'category_value']
+      }
+      return {
+        submission_id: submission_id,
+        district_id: request.body.district,
+        zip_code: request.body.zipCode,
+        budget_familiarity: request.body.budgetFamiliarity,
+        category_id: category_id,
+        category_value: request.body.budgetValues[category_id]
+      }
+    }
+  });
   console.log(submissionContent);
   const insert = pgp.helpers.insert(
     submissionContent,
-    ['submission_id', 'district_id', 'zip_code', 'budget_familiarity', 'category_id', 'category_value'],
+    valuesToSubmit,
     'bronx.budget'
   ).replace('"bronx.budget"', "bronx.budget");
   const query = await db.any(insert);

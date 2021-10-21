@@ -189,13 +189,14 @@ $form-inner-padding: 74px;
 // form row - one third
 %form-row-flex-child-left, %form-heading-flex-child-left {
   flex: 1;
-  padding-top: 8px;
+  padding-top: 16px;
   padding-bottom: 8px;
   padding-left: $form-inner-padding;
 
   @media (max-width: $mobile-max) {
     padding-left: 16px;
     padding-right: 0px;
+    padding-top: 8px;
   }
 }
 
@@ -209,6 +210,10 @@ $form-inner-padding: 74px;
   @media (max-width: $mobile-max) {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  @media (min-width: $desktop-min) {
+    padding-top: 8px;
   }
 }
 
