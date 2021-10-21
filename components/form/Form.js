@@ -73,9 +73,8 @@ function Form({ data }) {
         JSON.stringify(storedData)
       );
 
-      const route = () => {
-        router.push('/thank-you');
-      }
+      router.push('/thank-you');
+
     } else {
       const toast = document.getElementById("toast");
       toast.classList.remove(styles.hidden);
