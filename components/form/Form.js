@@ -24,6 +24,8 @@ function Form({ data }) {
     createDefaultBudgetValues(data)
   );
 
+  const [toastTimeout, setToastTimeout] = useState(null);
+
   // this should run after handleBudgetValueInput before render
   useEffect(() => {
     if (Object.values(budgetValues).length > 0) {
@@ -78,14 +80,17 @@ function Form({ data }) {
     } else {
       const toast = document.getElementById("toast");
       toast.classList.remove(styles.hidden);
-      window.setTimeout(() => {
+      const toastTimeout = setTimeout(() => {
         toast.classList.add(styles.hidden)
       }, 15000);
+      setToastTimeout(toastTimeout);
     }
   }
 
   const exitToastHandler = () => {
     document.getElementById("toast").classList.add(styles.hidden);
+    clearTimeout(toastTimeout);
+    setToastTimeout(null);
   }
 
   return (
