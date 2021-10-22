@@ -11,7 +11,6 @@ const db = require("../utilities/postgres").instance;
 export default function BudgetSurvey({ data }) {
 
   const router = useRouter();
-  console.log(data);
 
   return (
     <Form data={data}/>
@@ -58,9 +57,6 @@ export async function getStaticProps() {
 
   // By returning { props: { xyz } }, the component
   // will receive `xyz` as a prop at build time
-
-  console.log("data!!!!!! :");
-  console.log(data);
 
   return {
     props: { data }

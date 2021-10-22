@@ -19,7 +19,6 @@ export default function Rows({
   );
 
   const toggleAccordion = (budgetCategoryId) => {
-    console.log(accordionState);
     let open = true;
     if (accordionState[budgetCategoryId]) {
       open = false;
@@ -27,8 +26,7 @@ export default function Rows({
     setAccordionState({
       ...defaultAccordionState,
       [budgetCategoryId]: open
-    })
-    console.log(accordionState);
+    });
   }
 
   const setBudgetValue = (key) => {

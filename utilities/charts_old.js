@@ -18,9 +18,6 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
     })
   })
 
-  console.log("final answer: ")
-  console.log(data);
-
   // clear existing chart if it exists
   d3.selectAll("#chart > *").remove();
 

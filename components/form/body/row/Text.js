@@ -12,7 +12,6 @@ export default function Text({
 
   const handler = (e) => {
     e.preventDefault();
-    console.log(typeof e.target.value);
     if (
       (validateUserInput(e.target.value) && e.target.value <= 99.99) ||
       e.target.value == "100"
