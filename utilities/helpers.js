@@ -45,11 +45,32 @@ export const overUnderBudgetText = (allocatedTotal) => {
 
 export const createDefaultBudgetValues = (data) => {
   let values = {};
+
   data.categories.map(category => {
     values[category.id] = categoryPercentage(
       category.amount, data.totalBudget
     );
   });
+  // console.log("values:")
+  // console.log(values);
+  //
+  // let total = Object.values(values).reduce((a, b) => parseFloat(a) + parseFloat(b));
+  // console.log("total:")
+  // console.log(total);
+  // if (total > 100) {
+  //   let keys = Object.keys(values).sort((a, b) => values[a] >= values[b]);
+  //   console.log(keys);
+  //   while (total > 100) {
+  //     keys.forEach((key) => values[key] -= 0.1);
+  //     total -= 0.1;
+  //   }
+  // } else if (total < 100) {
+  //   let keys = Object.keys(values).sort((a, b) => values[b] >= values[a]);
+  //   while (total > 100) {
+  //     keys.forEach((key) => values[key] += 0.1);
+  //     total += 0.1;
+  //   }
+  // }
 
   return values;
 };
