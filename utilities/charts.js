@@ -116,7 +116,7 @@ export const constructChart = (averages, actuals, localSubmission, totalSubmissi
 
   setTimeout(()=>{
     yAxis.selectAll("text")
-      .call(wrap, 200);
+      .call(wrap, 180);
   }, 0);
 
   // add horizontal lines in the background

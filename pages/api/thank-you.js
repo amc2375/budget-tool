@@ -28,7 +28,7 @@ async function handleGet(request, response) {
 
 export default function handler(req, res) {
   const { method } = req;
-  console.log(method);
+  // console.log(method);
   switch (method) {
     case "GET": {
       handleGet(req, res);

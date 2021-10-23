@@ -55,8 +55,6 @@ function Form({ data }) {
         }
       }
 
-      console.log(submissionData);
-
       try {
         fetch("/api/form", {
           method: "POST",
@@ -64,7 +62,6 @@ function Form({ data }) {
           body: JSON.stringify(submissionData),
         });
       } catch (error) {
-        console.log(error);
       };
 
       // create formatted object to store in local storage
@@ -149,12 +146,10 @@ function useLocalStorage(key, initialValue) {
     try {
       // Get from local storage by key
       const item = window.localStorage.getItem(key);
-      console.log("item: " + JSON.parse(item));
       // Parse stored json or if none return initialValue
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       // If error also return initialValue
-      console.log(error);
       return initialValue;
     }
   });
@@ -171,7 +166,6 @@ function useLocalStorage(key, initialValue) {
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
       // A more advanced implementation would handle the error case
-      console.log(error);
     }
   };
   return [storedValue, setValue];

@@ -64,6 +64,13 @@ export default function ThankYou({ data }) {
       </header>
       <section className={styles.thanks}>
         <p>{"Thanks for your response!"}</p>
+        <div className={styles.googleFormContainer}>
+          <h1>{"We’re looking to improve this survey experience!"}</h1>
+          <p>{"Did you enjoy the Bronx People’s Survey? Have ideas for how to improve the tool? We would appreciate 60 more seconds of your time. This google form will help us better understand the priorities of Bronx residents and how the survey can make those needs heard."}</p>
+          <form action="https://docs.google.com/forms/d/e/1FAIpQLSc0RxF46b7Mf7rwULQp9UU6WQs-GoYJQfdR-TkJkrJ9KYmZJA/viewform" target="_blank" rel="noreferrer">
+            <button>{"Google Form"}</button>
+          </form>
+        </div>
         <figcaption>{"We're tallying responses from residents across the Bronx. Check out the results so far:"}</figcaption>
       </section>
       <div className={styles.layout} id="layout">

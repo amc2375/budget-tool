@@ -41,7 +41,6 @@ async function handlePost(request, response) {
       }
     }
   });
-  console.log(submissionContent);
   const insert = pgp.helpers.insert(
     submissionContent,
     valuesToSubmit,
@@ -54,7 +53,7 @@ async function handlePost(request, response) {
 
 export default function handler(req, res) {
   const { method } = req;
-  console.log(method);
+  // console.log(method);
   switch (method) {
     case "GET": {
       // not used

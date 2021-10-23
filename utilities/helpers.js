@@ -6,7 +6,6 @@ export const validateUserInput = (value) => {
 
 // validate user input for integers but no more than 5 of them
 export const validateZipCode = (value) => {
-  console.log(value);
   const re = /^\d{0,5}$/;
   return value === '' || re.test(value);
 }
@@ -45,11 +44,35 @@ export const overUnderBudgetText = (allocatedTotal) => {
 
 export const createDefaultBudgetValues = (data) => {
   let values = {};
+
   data.categories.map(category => {
     values[category.id] = categoryPercentage(
       category.amount, data.totalBudget
     );
   });
+
+  let total = Object.values(values).reduce((a, b) => parseFloat(a) + parseFloat(b));
+  if (total > 100) {
+    let keys = Object.keys(values).sort((a, b) => values[b] - values[a]);
+    let balanced = false;
+    let i = 0;
+    while (!balanced) {
+      values[keys[(i % keys.length)]] = (values[keys[(i % keys.length)]] - 0.1).toFixed(1);
+      total -= 0.1;
+      i++;
+      balanced = total == 100;
+    }
+  } else if (total < 100) {
+    let keys = Object.keys(values).sort((a, b) => values[b] + values[a]);
+    let balanced = false;
+    let i = 0;
+    while (!balanced) {
+      values[keys[(i % keys.length)]] = (values[keys[(i % keys.length)]] + 0.1).toFixed(1);
+      total += 0.1;
+      i++;
+      balanced = total == 100;
+    }
+  }
 
   return values;
 };
