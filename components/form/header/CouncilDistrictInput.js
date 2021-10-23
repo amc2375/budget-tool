@@ -8,7 +8,6 @@ export default function CouncilDistrictInput({
 
   const handler = (e) => {
     setDistrict(e.target.value);
-    window.setTimeout(() => console.log(district));
   }
 
   return (
