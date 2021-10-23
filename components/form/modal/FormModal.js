@@ -21,12 +21,14 @@ export default function FormModal({
   );
 
   useEffect(() => {
-    if (zipCode.length === 5 && budgetFamiliarity && district) {
+    if (inputsAreHidden) {
+      setContinueButtonIsDisabled(false);
+    } else if (zipCode.length === 5 && budgetFamiliarity && district) {
       setContinueButtonIsDisabled(false);
     } else {
       setContinueButtonIsDisabled(true);
     }
-  }, [zipCode, district, budgetFamiliarity])
+  }, [zipCode, district, budgetFamiliarity, inputsAreHidden])
 
   const handleContinue = (e) => {
     const background = document.getElementsByClassName(`${styles.modalBackground}`);
