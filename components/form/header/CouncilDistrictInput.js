@@ -2,7 +2,8 @@ import styles from './CouncilDistrictInput.module.scss';
 
 export default function CouncilDistrictInput({
     districts,
-    setDistrict
+    setDistrict,
+    district
   }) {
 
   const handler = (e) => {
@@ -15,7 +16,8 @@ export default function CouncilDistrictInput({
       <select
         defaultValue="default"
         required={true}
-        onChange={handler}>
+        onChange={handler}
+        value={district ? district : "default"}>
         <option value="default" disabled>--</option>
         {districts.map(district => (
           <option

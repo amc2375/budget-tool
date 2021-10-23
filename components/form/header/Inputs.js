@@ -20,11 +20,11 @@ export default function Inputs({
   }) {
 
   const handleIntermediarySkipMobileToggle = (e) => {
-    setInputsAreHidden(!inputsAreHidden);
-    setContinueButtonIsDisabled(!continueButtonIsDisabled);
     setDistrict('');
     setZipCode('');
     setBudgetFamiliarity('');
+    setInputsAreHidden(!inputsAreHidden);
+    // setContinueButtonIsDisabled(!continueButtonIsDisabled);
   }
 
   return (
@@ -51,6 +51,7 @@ export default function Inputs({
           budgetFamiliarity={budgetFamiliarity}
           setBudgetFamiliarity={setBudgetFamiliarity}/>
         <CouncilDistrictInput
+          district={district}
           districts={districts}
           setDistrict={setDistrict}/>
         <ZipCodeInput
